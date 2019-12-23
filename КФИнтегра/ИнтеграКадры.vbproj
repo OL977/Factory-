@@ -1,0 +1,1061 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8C5AC10-0AB5-482D-8536-2279927B269C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ИнтеграКадры.My.MyApplication</StartupObject>
+    <RootNamespace>ИнтеграКадры</RootNamespace>
+    <AssemblyName>ИнтеграКадры</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS64\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://rikconsulting.by/IS64/</InstallUrl>
+    <UpdateUrl>http://rikconsulting.by/IS64/</UpdateUrl>
+    <SupportUrl>http://rikconsulting.by</SupportUrl>
+    <ProductName>КФ Интегра - Кадры</ProductName>
+    <PublisherName>ООО Рикманс</PublisherName>
+    <SuiteName>ООО Рикманс</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>56</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ИнтеграКадры.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ИнтеграКадры.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A784576EE71B586080158D79DCFC7D11D5501272</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ИнтеграКадры_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>ИнтеграКадры.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>ИнтеграКадры.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ИнтеграКадры.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>ИнтеграКадры.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Эмблема.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EASendMail, Version=7.5.0.3, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.5.0.3\lib\net461\EASendMail.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentFTP, Version=28.0.1.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.28.0.1\lib\net45\FluentFTP.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Spreadsheet, Version=45.0.35.1019, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <HintPath>..\packages\GemBox.Spreadsheet.45.0.0.1019\lib\net35\GemBox.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.2.1.0\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.1.1.2\lib\net451\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.1.1.2\lib\net451\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.2.1.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.1.1.1\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.1.1.1\lib\net45\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.14.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.14\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.ZidiumTarget, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.Zidium.1.0.6\lib\net35-client\NLog.ZidiumTarget.dll</HintPath>
+    </Reference>
+    <Reference Include="office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\office.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.NonGeneric.4.3.0\lib\net46\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Specialized, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Specialized.4.3.0\lib\net46\System.Collections.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Process, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.Process.4.3.0\lib\net461\System.Diagnostics.Process.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.StackTrace.4.3.0\lib\net46\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.FtpClient, Version=1.0.5824.34026, Culture=neutral, PublicKeyToken=fa4be07daa57c2b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.FtpClient.1.0.5824.34026\lib\net40\System.Net.FtpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Formatters.4.3.0\lib\net46\System.Runtime.Serialization.Formatters.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.ThreadPool, Version=4.0.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.ThreadPool.4.3.0\lib\net46\System.Threading.ThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="unvell.ReoGrid, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\unvell.ReoGrid.dll.2.1.0.0\lib\20\unvell.ReoGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="WinSCPnet, Version=1.6.5.9925, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinSCP.5.15.5\lib\net\WinSCPnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Zidium.Api, Version=1.0.53.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Api.Zidium.Net.1.0.53\lib\net35-client\Zidium.Api.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Async.vb" />
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.vb">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.vb">
+      <DependentUpon>Form4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form4.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form5.Designer.vb">
+      <DependentUpon>Form5.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form5.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form6.Designer.vb">
+      <DependentUpon>Form6.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form6.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ftp.vb" />
+    <Compile Include="MDIParent1.Designer.vb">
+      <DependentUpon>MDIParent1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MDIParent1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb" />
+    <Compile Include="ModuleWrite.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Module2.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Resources\Образцы\Class1.vb" />
+    <Compile Include="SendEMail.Designer.vb">
+      <DependentUpon>SendEMail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SendEMail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen1.Designer.vb">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="БанкОтдДобав.Designer.vb">
+      <DependentUpon>БанкОтдДобав.vb</DependentUpon>
+    </Compile>
+    <Compile Include="БанкОтдДобав.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ВидыРаботДогПодряда.Designer.vb">
+      <DependentUpon>ВидыРаботДогПодряда.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ВидыРаботДогПодряда.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ВсплывФормаПриЗагр.Designer.vb">
+      <DependentUpon>ВсплывФормаПриЗагр.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ВсплывФормаПриЗагр.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ВыборОрганизации.Designer.vb">
+      <DependentUpon>ВыборОрганизации.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ВыборОрганизации.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДатВыплЗпАванс.Designer.vb">
+      <DependentUpon>ДатВыплЗпАванс.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДатВыплЗпАванс.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДоговорПодрядаАктИное.Designer.vb">
+      <DependentUpon>ДоговорПодрядаАктИное.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДоговорПодрядаАктИное.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДоговорПодрядаАкт.Designer.vb">
+      <DependentUpon>ДоговорПодрядаАкт.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДоговорПодрядаАкт.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДоговорПодрядаСписки.Designer.vb">
+      <DependentUpon>ДоговорПодрядаСписки.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДоговорПодрядаСписки.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДоговорПодрядаСпискиАкты.Designer.vb">
+      <DependentUpon>ДоговорПодрядаСпискиАкты.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДоговорПодрядаСпискиАкты.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДогПодВыборНомДоговора.Designer.vb">
+      <DependentUpon>ДогПодВыборНомДоговора.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДогПодВыборНомДоговора.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДогПодрядаАктИноеСоздать.Designer.vb">
+      <DependentUpon>ДогПодрядаАктИноеСоздать.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДогПодрядаАктИноеСоздать.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДолжИнстр.Designer.vb">
+      <DependentUpon>ДолжИнстр.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДолжИнстр.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ДолжОконч.vb" />
+    <Compile Include="ДопРестлайн.Designer.vb">
+      <DependentUpon>ДопРестлайн.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДопРестлайн.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Заработная плата.Designer.vb">
+      <DependentUpon>Заработная плата.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Заработная плата.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ИзменБанк.Designer.vb">
+      <DependentUpon>ИзменБанк.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ИзменБанк.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Инсотранцы.Designer.vb">
+      <DependentUpon>Инсотранцы.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Инсотранцы.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="КонтрДопИзменСтавка.Designer.vb">
+      <DependentUpon>КонтрДопИзменСтавка.vb</DependentUpon>
+    </Compile>
+    <Compile Include="КонтрДопИзменСтавка.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="КонтрДопЛемел.Designer.vb">
+      <DependentUpon>КонтрДопЛемел.vb</DependentUpon>
+    </Compile>
+    <Compile Include="КонтрДопЛемел.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="НеподпДокументы.Designer.vb">
+      <DependentUpon>НеподпДокументы.vb</DependentUpon>
+    </Compile>
+    <Compile Include="НеподпДокументы.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="НовОргДопФорма.Designer.vb">
+      <DependentUpon>НовОргДопФорма.vb</DependentUpon>
+    </Compile>
+    <Compile Include="НовОргДопФорма.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтменУвольнения.Designer.vb">
+      <DependentUpon>ОтменУвольнения.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтменУвольнения.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Отпуск.Designer.vb">
+      <DependentUpon>Отпуск.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Отпуск.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтпускДобСотр.Designer.vb">
+      <DependentUpon>ОтпускДобСотр.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтпускДобСотр.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтпускНачало.Designer.vb">
+      <DependentUpon>ОтпускНачало.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтпускНачало.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтпускНовыйГрафик.Designer.vb">
+      <DependentUpon>ОтпускНовыйГрафик.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтпускНовыйГрафик.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтпускСоц.Designer.vb">
+      <DependentUpon>ОтпускСоц.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтпускСоц.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтпускСписки.Designer.vb">
+      <DependentUpon>ОтпускСписки.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтпускСписки.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтчетСотрудники.Designer.vb">
+      <DependentUpon>ОтчетСотрудники.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтчетСотрудники.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПарольНаСтатистику.Designer.vb">
+      <DependentUpon>ПарольНаСтатистику.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПарольНаСтатистику.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПеревНовОтдел.Designer.vb">
+      <DependentUpon>ПеревНовОтдел.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПеревНовОтдел.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Перевод.Designer.vb">
+      <DependentUpon>Перевод.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Перевод.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводВремНач.Designer.vb">
+      <DependentUpon>ПереводВремНач.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводВремНач.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводГрафик.Designer.vb">
+      <DependentUpon>ПереводГрафик.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводГрафик.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводИстория.Designer.vb">
+      <DependentUpon>ПереводИстория.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводИстория.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводНовДолжн.Designer.vb">
+      <DependentUpon>ПереводНовДолжн.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводНовДолжн.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводОрганиз.Designer.vb">
+      <DependentUpon>ПереводОрганиз.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводОрганиз.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводПродлРабДня.Designer.vb">
+      <DependentUpon>ПереводПродлРабДня.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводПродлРабДня.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводРазр.Designer.vb">
+      <DependentUpon>ПереводРазр.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводРазр.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводСотрудн.Designer.vb">
+      <DependentUpon>ПереводСотрудн.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводСотрудн.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводСрокКонтр.Designer.vb">
+      <DependentUpon>ПереводСрокКонтр.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводСрокКонтр.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПереводСтавка.Designer.vb">
+      <DependentUpon>ПереводСтавка.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПереводСтавка.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Печать.Designer.vb">
+      <DependentUpon>Печать.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Печать.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Поиск.Designer.vb">
+      <DependentUpon>Поиск.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Поиск.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПоискДоч.Designer.vb">
+      <DependentUpon>ПоискДоч.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПоискДоч.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Прием2.Designer.vb">
+      <DependentUpon>Прием2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Прием2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПриказПродления.Designer.vb">
+      <DependentUpon>ПриказПродления.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПриказПродления.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Примечание.Designer.vb">
+      <DependentUpon>Примечание.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Примечание.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ПринятыеСписки.Designer.vb">
+      <DependentUpon>ПринятыеСписки.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ПринятыеСписки.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="СправкаЗпКонстанта.Designer.vb">
+      <DependentUpon>СправкаЗпКонстанта.vb</DependentUpon>
+    </Compile>
+    <Compile Include="СправкаЗпКонстанта.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="СправкаПоЗарплате.Designer.vb">
+      <DependentUpon>СправкаПоЗарплате.vb</DependentUpon>
+    </Compile>
+    <Compile Include="СправкаПоЗарплате.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Статистикас.Designer.vb">
+      <DependentUpon>Статистикас.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Статистикас.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="СущностьБД.vb" />
+    <Compile Include="Уведомление.Designer.vb">
+      <DependentUpon>Уведомление.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Уведомление.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="УведомлениеФорма.Designer.vb">
+      <DependentUpon>УведомлениеФорма.vb</DependentUpon>
+    </Compile>
+    <Compile Include="УведомлениеФорма.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Уволенные.Designer.vb">
+      <DependentUpon>Уволенные.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Уволенные.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Штатное.Designer.vb">
+      <DependentUpon>Штатное.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Штатное.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ШтатноеПослеИзменения.Designer.vb">
+      <DependentUpon>ШтатноеПослеИзменения.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ШтатноеПослеИзменения.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ШтатноеСписки.Designer.vb">
+      <DependentUpon>ШтатноеСписки.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ШтатноеСписки.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ШтИзмСтавкиВспл.Designer.vb">
+      <DependentUpon>ШтИзмСтавкиВспл.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ШтИзмСтавкиВспл.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ШтИзмСтавкиВсплКласс.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form5.resx">
+      <DependentUpon>Form5.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form6.resx">
+      <DependentUpon>Form6.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIParent1.resx">
+      <DependentUpon>MDIParent1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SendEMail.resx">
+      <DependentUpon>SendEMail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="БанкОтдДобав.resx">
+      <DependentUpon>БанкОтдДобав.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ВидыРаботДогПодряда.resx">
+      <DependentUpon>ВидыРаботДогПодряда.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ВсплывФормаПриЗагр.resx">
+      <DependentUpon>ВсплывФормаПриЗагр.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ВыборОрганизации.resx">
+      <DependentUpon>ВыборОрганизации.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДатВыплЗпАванс.resx">
+      <DependentUpon>ДатВыплЗпАванс.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДоговорПодрядаАктИное.resx">
+      <DependentUpon>ДоговорПодрядаАктИное.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДоговорПодрядаАкт.resx">
+      <DependentUpon>ДоговорПодрядаАкт.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДоговорПодрядаСписки.resx">
+      <DependentUpon>ДоговорПодрядаСписки.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДоговорПодрядаСпискиАкты.resx">
+      <DependentUpon>ДоговорПодрядаСпискиАкты.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДогПодВыборНомДоговора.resx">
+      <DependentUpon>ДогПодВыборНомДоговора.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДогПодрядаАктИноеСоздать.resx">
+      <DependentUpon>ДогПодрядаАктИноеСоздать.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДолжИнстр.resx">
+      <DependentUpon>ДолжИнстр.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДопРестлайн.resx">
+      <DependentUpon>ДопРестлайн.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Заработная плата.resx">
+      <DependentUpon>Заработная плата.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ИзменБанк.resx">
+      <DependentUpon>ИзменБанк.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Инсотранцы.resx">
+      <DependentUpon>Инсотранцы.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="КонтрДопИзменСтавка.resx">
+      <DependentUpon>КонтрДопИзменСтавка.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="КонтрДопЛемел.resx">
+      <DependentUpon>КонтрДопЛемел.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="НеподпДокументы.resx">
+      <DependentUpon>НеподпДокументы.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="НовОргДопФорма.resx">
+      <DependentUpon>НовОргДопФорма.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтменУвольнения.resx">
+      <DependentUpon>ОтменУвольнения.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Отпуск.resx">
+      <DependentUpon>Отпуск.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтпускДобСотр.resx">
+      <DependentUpon>ОтпускДобСотр.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтпускНачало.resx">
+      <DependentUpon>ОтпускНачало.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтпускНовыйГрафик.resx">
+      <DependentUpon>ОтпускНовыйГрафик.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтпускСоц.resx">
+      <DependentUpon>ОтпускСоц.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтпускСписки.resx">
+      <DependentUpon>ОтпускСписки.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтчетСотрудники.resx">
+      <DependentUpon>ОтчетСотрудники.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПарольНаСтатистику.resx">
+      <DependentUpon>ПарольНаСтатистику.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПеревНовОтдел.resx">
+      <DependentUpon>ПеревНовОтдел.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Перевод.resx">
+      <DependentUpon>Перевод.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводВремНач.resx">
+      <DependentUpon>ПереводВремНач.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводГрафик.resx">
+      <DependentUpon>ПереводГрафик.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводИстория.resx">
+      <DependentUpon>ПереводИстория.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводНовДолжн.resx">
+      <DependentUpon>ПереводНовДолжн.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводОрганиз.resx">
+      <DependentUpon>ПереводОрганиз.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводПродлРабДня.resx">
+      <DependentUpon>ПереводПродлРабДня.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводРазр.resx">
+      <DependentUpon>ПереводРазр.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводСотрудн.resx">
+      <DependentUpon>ПереводСотрудн.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводСрокКонтр.resx">
+      <DependentUpon>ПереводСрокКонтр.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПереводСтавка.resx">
+      <DependentUpon>ПереводСтавка.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Печать.resx">
+      <DependentUpon>Печать.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Поиск.resx">
+      <DependentUpon>Поиск.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПоискДоч.resx">
+      <DependentUpon>ПоискДоч.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Прием2.resx">
+      <DependentUpon>Прием2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПриказПродления.resx">
+      <DependentUpon>ПриказПродления.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Примечание.resx">
+      <DependentUpon>Примечание.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ПринятыеСписки.resx">
+      <DependentUpon>ПринятыеСписки.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="СправкаЗпКонстанта.resx">
+      <DependentUpon>СправкаЗпКонстанта.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="СправкаПоЗарплате.resx">
+      <DependentUpon>СправкаПоЗарплате.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Статистикас.resx">
+      <DependentUpon>Статистикас.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Уведомление.resx">
+      <DependentUpon>Уведомление.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="УведомлениеФорма.resx">
+      <DependentUpon>УведомлениеФорма.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Уволенные.resx">
+      <DependentUpon>Уволенные.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Штатное.resx">
+      <DependentUpon>Штатное.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ШтатноеПослеИзменения.resx">
+      <DependentUpon>ШтатноеПослеИзменения.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ШтатноеСписки.resx">
+      <DependentUpon>ШтатноеСписки.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ШтИзмСтавкиВспл.resx">
+      <DependentUpon>ШтИзмСтавкиВспл.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Resources\Уведомление.doc" />
+    <None Include="Resources\Уволенные.xlsx" />
+    <None Include="Resources\Штатное.xlsx" />
+    <None Include="WindowsApp3_TemporaryKey.pfx" />
+    <None Include="Zidium.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="АктПодряда.doc" />
+    <None Include="ИнтеграКадры_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Эмблема.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\WinSCP.5.15.5\build\WinSCP.targets" Condition="Exists('..\packages\WinSCP.5.15.5\build\WinSCP.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\WinSCP.5.15.5\build\WinSCP.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WinSCP.5.15.5\build\WinSCP.targets'))" />
+  </Target>
+</Project>

@@ -1,0 +1,4 @@
+﻿[*.{cs,vb}]
+
+# IDE0037: Использовать имя выводимого элемента
+dotnet_style_prefer_inferred_tuple_names = true:silent

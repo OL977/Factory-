@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ИнтеграКадры", "КФИнтегра\ИнтеграКадры.vbproj", "{E8C5AC10-0AB5-482D-8536-2279927B269C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E5DFBF23-463E-4ABA-923D-5C4B6793535A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Debug|x64.ActiveCfg = Debug|x64
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Debug|x64.Build.0 = Debug|x64
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Debug|x86.ActiveCfg = Debug|x86
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Debug|x86.Build.0 = Debug|x86
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Release|x64.ActiveCfg = Release|x64
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Release|x64.Build.0 = Release|x64
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Release|x86.ActiveCfg = Release|x86
+		{E8C5AC10-0AB5-482D-8536-2279927B269C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3CF5ED1-E5E9-4F69-8B74-207B0FC217B1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,52 @@
+﻿1>------ Сборка начата: проект: WindowsApp3, Конфигурация: Debug x86 ------
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ШтатноеСписки.vb(27,21): warning BC42024: Неиспользованная локальная переменная: "StrSql2".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ШтатноеСписки.vb(27,30): warning BC42024: Неиспользованная локальная переменная: "StrSql3".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Штатное.vb(86,21): warning BC42024: Неиспользованная локальная переменная: "StrSql2".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Штатное.vb(86,30): warning BC42024: Неиспользованная локальная переменная: "StrSql3".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(402,17): warning BC42024: Неиспользованная локальная переменная: "gth".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(449,49): warning BC42104: Используется переменная "УведОПродл", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(478,49): warning BC42104: Используется переменная "УведОПродл", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(170,16): warning BC42104: Используется переменная "ДобОконч", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(187,16): warning BC42104: Используется переменная "Склонение", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(203,16): warning BC42104: Используется переменная "Склонение2", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(219,16): warning BC42104: Используется переменная "ЧислПроп", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(238,16): warning BC42104: Используется переменная "разрядстрока", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(287,16): warning BC42104: Используется переменная "ДолжРодПадежФункц", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(333,5): warning BC42105: Функция "ОсновУвольн" не возвращает значение для всех ветвей кода. Во время выполнения при использовании результата может возникнуть пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(598,13): warning BC42024: Неиспользованная локальная переменная: "ДолжСОконч".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(598,25): warning BC42024: Неиспользованная локальная переменная: "СтавкаНов".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(598,36): warning BC42024: Неиспользованная локальная переменная: "СклонГод".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(598,46): warning BC42024: Неиспользованная локальная переменная: "СрКонтПроп".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(598,58): warning BC42024: Неиспользованная локальная переменная: "ПоСовмИлиОсн".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ModuleWrite.vb(387,16): warning BC42104: Используется переменная "ДолжТворПадеж", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ДолжОконч.vb(27,44): warning BC42104: Используется переменная "вопрос", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ДолжОконч.vb(7,21): warning BC42024: Неиспользованная локальная переменная: "вопрос2".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ИзменБанк.vb(7,13): warning BC42024: Неиспользованная локальная переменная: "StrSql".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ИзменБанк.vb(33,13): warning BC42024: Неиспользованная локальная переменная: "StrSql".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Уведомление.vb(943,73): warning BC42104: Используется переменная "разрядпроп", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ПриказПродления.vb(27,21): warning BC42024: Неиспользованная локальная переменная: "StrSql2".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\ПриказПродления.vb(27,30): warning BC42024: Неиспользованная локальная переменная: "StrSql3".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Печать.vb(249,9): warning BC42104: Используется переменная "wdDoc2", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(36,21): warning BC42024: Неиспользованная локальная переменная: "StrSql2".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(36,30): warning BC42024: Неиспользованная локальная переменная: "StrSql3".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(168,13): warning BC42024: Неиспользованная локальная переменная: "i".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(186,13): warning BC42024: Неиспользованная локальная переменная: "v3".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(653,37): warning BC42104: Используется переменная "Files2", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(660,37): warning BC42104: Используется переменная "Files3", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(680,37): warning BC42104: Используется переменная "Files", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(688,37): warning BC42104: Используется переменная "Files4", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(827,5): warning BC42105: Функция "ПроверкаУвольнения" не возвращает значение для всех ветвей кода. Во время выполнения при использовании результата может возникнуть пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(1150,13): warning BC42104: Используется переменная "ОбязН", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(1550,50): warning BC42104: Используется переменная "ДатУведомл", прежде чем ей было присвоено значение. Во время выполнения может появиться пустая ссылка на исключение.
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(2063,13): warning BC42024: Неиспользованная локальная переменная: "i".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Form2.vb(3581,17): warning BC42024: Неиспользованная локальная переменная: "sop".
+1>C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\Штатное.vb(615,12): warning BC42303: Комментарий XML не может находиться внутри метода или свойства. Комментарий XML будет игнорироваться.
+1>  WindowsApp3 -> C:\Users\OLEG\source\repos\WindowsApp3\WindowsApp3\bin\x86\Debug\Рик(кадры).exe
+Сборка WindowsApp3...
+2>------ Начало публикации: проект: WindowsApp3, Конфигурация: Debug x86 ------
+Подсоединение к "U:\Офис\Рикконсалтинг\Программа\86\"...
+Публикуются файлы...
+Публикация завершилась успешно.
+U:\Офис\Рикконсалтинг\Программа\86\
+========== Сборка: успешно: 1, с ошибками: 0, без изменений: 0, пропущено: 0 ==========
+========== Публикация: успешно: 1, с ошибками: 0, пропущено: 0 ==========
