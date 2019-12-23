@@ -19,6 +19,8 @@ Public Class ДоговорПодрядаАктИное
     Dim a0()
     Dim Код As Integer
     Dim datrow As DataTable
+    Dim ПутьДляУдаления As String
+    Dim DictList1 As New Dictionary(Of String, String)
 
     Private Async Sub Com1()
 
@@ -57,11 +59,12 @@ Public Class ДоговорПодрядаАктИное
             For Each mas In groupboxControl.Controls.OfType(Of MaskedTextBox)()
                 mas.Text = ""
             Next
-            'For Each txt In groupboxControl.Controls.OfType(Of TextBox)()
-            '    txt.Text = ""
-            'Next
+            For Each txt In groupboxControl.Controls.OfType(Of TextBox)()
+                txt.Text = ""
+            Next
         Next
 
+        RichTextBox1.Text = ""
         ComboBox5.Text = ""
 
         Dim dt As New DataTable
@@ -170,14 +173,15 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
         'Dim da2 As New OleDbDataAdapter(c2)
         'da2.Fill(ds2, "Ставка2")
 
-        Dim list = From x In (From x In dtPutiDokumentovAll.AsEnumerable Where Not IsDBNull(x.Item("IDСотрудник")) Select x) Where x.Item("IDСотрудник") = id And x.Item("ДокМесто").ToString.Contains("Акт договор подряда иное") Select x
+        Dim list = From x In (From x In dtPutiDokumentovAll.AsEnumerable Where Not IsDBNull(x.Item("IDСотрудник")) Select x)
+                   Where Not x.IsNull("IDСотрудник") AndAlso x.Item("IDСотрудник") = id And x.Item("ДокМесто").ToString.Contains("Акт договор подряда иное") Select x
 
         ListBox1.Items.Clear()
-        ComboBox4.Items.Clear()
+        DictList1.Clear()
 
         For Each f In list ' Распечатываем весь получившийся массив
             ListBox1.Items.Add(f.Item("ИмяФайла").ToString) ' На ListBox2
-            ComboBox4.Items.Add(f.Item("ПолныйПуть"))
+            DictList1.Add(f.Item("ИмяФайла"), f.Item("ПолныйПуть"))
         Next
 
 
@@ -222,22 +226,26 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
 
 
         Dim list = From x In (From x1 In dtPutiDokumentovAll.AsEnumerable Where Not IsDBNull(x1.Item("IDСотрудник")) Select x1)
-                   Where x.Item("IDСотрудник") = id _
+                   Where Not x.IsNull("IDСотрудник") AndAlso x.Item("IDСотрудник") = id _
                                                  And x.Item("ДокМесто").ToString.Contains("Акт договор подряда иное") _
-                                                 And x.Item("ИмяФайла").ToString.Contains(name) _
-                                                 And x.Item("ИмяФайла").ToString.Contains(ComboBox5.Text) Select x
-
+                                                 And x.Item("ИмяФайла").ToString.Contains(name) Select x
+        ' And x.Item("ИмяФайла").ToString.Contains(ComboBox5.Text) 
         '(From x1 In dtPutiDokumentovAll.AsEnumerable Where Not IsDBNull(x1.Item("IDСотрудник")) Select x1)
 
 
         ListBox1.Items.Clear()
-        ComboBox4.Items.Clear()
+        DictList1.Clear()
 
         For Each f In list ' Распечатываем весь получившийся массив
             ListBox1.Items.Add(f.Item("ИмяФайла").ToString) ' На ListBox2
-            ComboBox4.Items.Add(f.Item("ПолныйПуть"))
-        Next
+            Try
+                DictList1.Add(f.Item("ИмяФайла").ToString, f.Item("ПолныйПуть"))
+            Catch ex As Exception
 
+            End Try
+
+        Next
+        ListBox1.Sorted = True
 
 
     End Sub
@@ -343,7 +351,7 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
                       AndAlso x.Field(Of String)("НомерДогПодр") = ComboBox3.Text
                   Select y).CopyToDataTable()
         Catch ex As Exception
-            MessageBox.Show("Нет готовых актов для данного договора!", Рик)
+            MessageBox.Show("Нет актов для данного договора" & vbCrLf & "Создайте акт!", Рик)
             ComboBox5.Items.Clear()
             Exit Sub
         End Try
@@ -487,8 +495,7 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
 
     End Sub
     Private Sub СохрВБазу()
-        Dim strsql As String
-        Dim ds3 As DataTable
+
         Dim objlist As New ArrayList()
 
         Dim list As New Dictionary(Of String, Object)
@@ -497,68 +504,11 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
         list.Add("@ПорНомерАктаИное", ComboBox5.Text)
 
 
-        Updates(stroka:="UPDATE ДогПодряда SET ЗаПериодСИное='" & MaskedTextBox2.Text & "',ЗаПериодПоИное='" & MaskedTextBox3.Text & "',
-ДатаАктаИное='" & MaskedTextBox6.Text & "',ДатаОплатыРаботИное='" & MaskedTextBox1.Text & "'
-WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорНомерАктаИное=@ПорНомерАктаИное", list, "ДогПодряда")
-
-
-
-
-
-
-
-
-
-
-        '        If НадоБновл = True Then 'изменение существующего акта
-        '            For i As Integer = 0 To v - 1
-        '                Dim list As New Dictionary(Of String, Object)
-        '                list.Add("@ID", CType(Label96.Text, Integer))
-        '                list.Add("@НомерДогПодр", ComboBox3.Text)
-        '                list.Add("@ПорНомерАктаИное", ComboBox5.Text)
-        '                list.Add("@ВыпРаб1", a0(i)(0))
-
-        '                Updates(stroka:="UPDATE ДогПодряда SET ОбъемВыпРаботАктИное='" & a0(i)(3) & "',ЕдИзмерАктИное='" & a0(i)(1) & "',
-        'ОбщСтоимРаботАктИное='" & a0(i)(4) & "',ЗаПериодСИное='" & MaskedTextBox2.Text & "',ЗаПериодПоИное='" & MaskedTextBox3.Text & "',
-        'ДатаАктаИное='" & MaskedTextBox6.Text & "',ДатаОплатыРаботИное='" & MaskedTextBox1.Text & "'
-        'WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорНомерАктаИное=@ПорНомерАктаИное AND ВыпРаб1=@ВыпРаб1", List, "ДогПодряда")
-        '                list.Clear()
-        '            Next
-        '            MessageBox.Show("Данные изменены!", Рик)
-        '        Else
-        '            For i As Integer = 0 To v - 1
-        '                Dim list2 As New Dictionary(Of String, Object)
-        '                list2.Add("@ID", CType(Label96.Text, Integer))
-        '                list2.Add("@НомерДогПодр", ComboBox3.Text)
-        '                list2.Add("@ПорНомерАктаИное", ComboBox5.Text) 'создание нового акта
-        '                list2.Add("@ОбъемВыпРаботАктИное", a0(i)(3))
-        '                list2.Add("@ЕдИзмерАктИное", a0(i)(1))
-        '                list2.Add("@СтоимЕдРаботыАктИное", a0(i)(2))
-        '                list2.Add("@ОбщСтоимРаботАктИное", a0(i)(4))
-        '                list2.Add("@ЗаПериодСИное", MaskedTextBox2.Text)
-        '                list2.Add("@ЗаПериодПоИное", MaskedTextBox3.Text)
-        '                list2.Add("@ДатаАктаИное", MaskedTextBox6.Text)
-        '                list2.Add("@ДатаОплатыРаботИное", MaskedTextBox1.Text)
-        '                list2.Add("@ВыпРаб1", a0(i)(0))
-
-
-
-
-        '                Updates(stroka:="INSERT INTO ДогПодряда(ОбъемВыпРаботАктИное,ЕдИзмерАктИное,СтоимЕдРаботыАктИное,
-        'ОбщСтоимРаботАктИное, ЗаПериодСИное, ЗаПериодПоИное, ДатаАктаИное,ДатаОплатыРаботИное, ПорНомерАктаИное, iD, НомерДогПодр,ВыпРаб1)
-        'VALUES(@ОбъемВыпРаботАктИное,@ЕдИзмерАктИное,@СтоимЕдРаботыАктИное,@ОбщСтоимРаботАктИное,@ЗаПериодСИное, @ЗаПериодПоИное,
-        '@ДатаАктаИное,@ДатаОплатыРаботИное,@ПорНомерАктаИное,@ID,@НомерДогПодр,@ВыпРаб1)", list2, "ДогПодряда")
-
-
-
-
-
-
-        '                list2.Clear()
-        '            Next
-        '            MessageBox.Show("Данные добавлены в базу!", Рик)
-
-        '        End If
+        Updates(stroka:="UPDATE ДогПодрядаАктИное
+SET ЗаПериодСИное='" & MaskedTextBox2.Text & "',ЗаПериодПоИное='" & MaskedTextBox3.Text & "',
+        ДатаАктаИное='" & MaskedTextBox6.Text & "',ДатаОплатыРаботИное='" & MaskedTextBox1.Text & "'
+FROM ДогПодрядаАктИное INNER JOIN ДогПодряда ON ДогПодрядаАктИное.IDДогПодряда = ДогПодряда.Код
+        WHERE ДогПодряда.ID=@ID AND ДогПодряда.НомерДогПодр=@НомерДогПодр AND ДогПодрядаАктИное.ПорНомерАктаИное=@ПорНомерАктаИное", list, "ДогПодряда")
 
 
 
@@ -580,6 +530,11 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
         If CheckBox4.Checked = False Then
             Доки()
         End If
+
+        refreshList2(ComboBox3.Text)
+        comb5sel(sender)
+
+        dtDogPodrAktInoe()
         'Me.Close()
     End Sub
     Private Function ДогПодНом()
@@ -611,53 +566,6 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
         oWord = CreateObject("Word.Application")
         oWord.Visible = False
         Dim delstring As String
-        'Select Case v
-        '    Case 1
-        '        Начало("ActPodriadaInoe1.doc")
-        '        oWordDoc = oWord.Documents.Add(firthtPath & "\ActPodriadaInoe1.doc")
-        '        delstring = "\ActPodriadaInoe1.doc"
-        '    Case 2
-        '        Начало("ActPodriadaInoe2.doc")
-        '        oWordDoc = oWord.Documents.Add(firthtPath & "\ActPodriadaInoe2.doc")
-        '        delstring = "\ActPodriadaInoe2.doc"
-        '    Case 3
-        '        Начало("ActPodriadaInoe3.doc")
-        '        oWordDoc = oWord.Documents.Add(firthtPath & "\ActPodriadaInoe3.doc")
-        '        delstring = "\ActPodriadaInoe3.doc"
-        '    Case 4
-        '        Начало("ActPodriadaInoe4.doc")
-        '        oWordDoc = oWord.Documents.Add(firthtPath & "\ActPodriadaInoe4.doc")
-        '        delstring = "\ActPodriadaInoe4.doc"
-        '    Case Else
-        '        Начало("ActPodriadaInoe1.doc")
-        '        delstring = "\ActPodriadaInoe1.doc"
-        '        oWordDoc = oWord.Documents.Add(firthtPath & "\ActPodriadaInoe1.doc")
-        'End Select
-
-
-
-
-
-        'Try
-        '    IO.File.Copy(strcon, "C:\Users\Public\Documents\Рик\ActPodriada.doc")
-        'Catch ex As Exception
-        '    If ex.Message.Contains("уже существует") Then
-        '        Try
-        '            IO.File.Delete("C:\Users\Public\Documents\Рик\ActPodriada.doc")
-        '            IO.File.Copy(strcon, "C:\Users\Public\Documents\Рик\ActPodriada.doc")
-        '        Catch e As System.IO.IOException
-        '            If e.Message.Contains("используется другим процессом") Then
-        '                For Each p As Process In Process.GetProcessesByName("winword")
-        '                    p.Kill()
-        '                    p.WaitForExit()
-        '                Next
-        '            End If
-        '        End Try
-        '    End If
-        '    IO.File.Delete("C:\Users\Public\Documents\Рик\ActPodriada.doc")
-        '    IO.File.Copy(strcon, "C:\Users\Public\Documents\Рик\ActPodriada.doc")
-        'End Try
-
 
 
         Начало("ActPodriadaInoe5.doc")
@@ -712,58 +620,6 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
             .Item("АктПодр10").Range.Text = "N " & ComboBox3.Text & " - " & Strings.Right(ДП(0), 4)
             .Item("АктПодр11").Range.Text = ДП(0)
 
-
-
-
-
-
-
-
-
-
-
-            'For i As Integer = 0 To 0
-            '    .Item("АктПодр12").Range.Text = ТекстРаботИменПадеж(a0(0)(0))
-            '    .Item("АктПодр13").Range.Text = (a0(0)(3))
-            '    .Item("АктПодр14").Range.Text = (a0(0)(2))
-            '    .Item("АктПодр15").Range.Text = (a0(0)(4))
-            '    .Item("АктПодр36").Range.Text = (a0(0)(1))
-            '    If v = 1 Then Exit For
-            '    .Item("АктПодр37").Range.Text = ТекстРаботИменПадеж(a0(1)(0))
-            '    .Item("АктПодр38").Range.Text = (a0(1)(1))
-            '    .Item("АктПодр39").Range.Text = (a0(1)(3))
-            '    .Item("АктПодр40").Range.Text = (a0(1)(2))
-            '    .Item("АктПодр41").Range.Text = (a0(1)(4))
-            '    If v = 2 Then Exit For
-            '    .Item("АктПодр42").Range.Text = ТекстРаботИменПадеж(a0(2)(0))
-            '    .Item("АктПодр43").Range.Text = (a0(2)(1))
-            '    .Item("АктПодр44").Range.Text = (a0(2)(3))
-            '    .Item("АктПодр45").Range.Text = (a0(2)(2))
-            '    .Item("АктПодр46").Range.Text = (a0(2)(4))
-            '    If v = 3 Then Exit For
-            '    .Item("АктПодр47").Range.Text = ТекстРаботИменПадеж(a0(3)(0))
-            '    .Item("АктПодр48").Range.Text = (a0(3)(1))
-            '    .Item("АктПодр49").Range.Text = (a0(3)(3))
-            '    .Item("АктПодр50").Range.Text = (a0(3)(2))
-            '    .Item("АктПодр51").Range.Text = (a0(3)(4))
-            'Next
-
-            'If v = 1 Then
-            'allstoim = ДобРазрядности(TextBox9.Text)
-            'ElseIf v = 2 Then
-            '    If IsNumeric(TextBox2.Text) And IsNumeric(TextBox9.Text) Then
-            '        allstoim = ДобРазрядности(CType(Math.Round(CDbl(TextBox9.Text) + CDbl(TextBox2.Text), 2), String))
-            '    Else
-            '        Throw New Exception("Не все строки заполены!")
-            '    End If
-            'ElseIf v = 3 Then
-            '        allstoim = ДобРазрядности(CType(Math.Round(CDbl(TextBox9.Text) + CDbl(TextBox2.Text) + CDbl(TextBox12.Text), 2), String))
-            '    Else
-            '        allstoim = ДобРазрядности(CType(Math.Round(CDbl(TextBox9.Text) + CDbl(TextBox2.Text) + CDbl(TextBox12.Text) + CDbl(TextBox17.Text), 2), String))
-            'End If
-
-
-
             allstoim = Math.Round(allstoim, 2)
 
             Dim allststring As String
@@ -808,6 +664,16 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
 
         End With
 
+        'удаляем на сервере файл
+        DeleteFluentFTP(ПутьДляУдаления)
+
+        'удаляем строку в таблице пути документов
+        Dim s = dtPutiDokumentovAll.Select("ПолныйПуть='" & ПутьДляУдаления & "'")
+
+        Dim list2 As New Dictionary(Of String, Object)
+        list2.Add("@Код", s(0).Item("Код"))
+        Updates(stroka:="DELETE FROM ПутиДокументов WHERE Код=@Код", list2, "ПутиДокументов")
+
         Dim Name As String = ComboBox5.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда иное)(Договор № " & ComboBox3.Text & ")" & ".doc"
         Dim СохрЗак2 As New List(Of String)
         СохрЗак2.AddRange(New String() {ComboBox1.Text & "\Договор подряда\" & Now.Year & "\", Name})
@@ -817,40 +683,11 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
         Конец(ComboBox1.Text & "\Договор подряда\" & Now.Year, Name, CType(Label96.Text, Integer), ComboBox1.Text, delstring, "Акт договор подряда иное")
         Dim massFTP3 As New ArrayList
         massFTP3.Add(СохрЗак2)
+
         Parallel.Invoke(Sub() RunMoving4())
 
 
 
-
-
-
-        'If Not IO.Directory.Exists(OnePath & ComboBox1.Text & "\Договор подряда\" & Now.Year) Then
-        '    IO.Directory.CreateDirectory(OnePath & ComboBox1.Text & "\Договор подряда\" & Now.Year)
-        'End If
-
-        'oWordDoc.SaveAs2("C:\Users\Public\Documents\Рик\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда иное)" & ".doc",,,,,, False)
-
-        ''oWordDoc.SaveAs2("U: \Офис\Финансовый\6. Бух.услуги\Кадры\" & Клиент & "\Заявление\" & Год & "\" & Заявление(9) & " (заявление)" & ".doc",,,,,, False)
-        'Try
-        '    IO.File.Copy("C:\Users\Public\Documents\Рик\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда иное)" & ".doc", OnePath & ComboBox1.Text & "\Договор подряда\" & Now.Year & "\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда)" & ".doc")
-        'Catch ex As Exception
-        '    If MessageBox.Show("Акт договора подряда с сотрудником " & ФИОКорРук(ComboBox19.Text, False) & " существует. Заменить старый документ новым?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
-        '        Try
-        '            IO.File.Delete(OnePath & ComboBox1.Text & "\Договор подряда\" & Now.Year & "\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда иное)" & ".doc")
-        '        Catch ex1 As Exception
-        '            MessageBox.Show("Закройте файл!", Рик)
-        '        End Try
-
-
-        '        IO.File.Copy("C:\Users\Public\Documents\Рик\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда)" & ".doc", OnePath & ComboBox1.Text & "\Договор подряда\" & Now.Year & "\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда)" & ".doc")
-        '    End If
-        'End Try
-        'СохрЗак = OnePath & ComboBox1.Text & "\Договор подряда\" & Now.Year & "\" & TextBox4.Text & " " & ФИОКорРук(ComboBox19.Text, False) & " от " & MaskedTextBox6.Text & " (Акт договор подряда)" & ".doc"
-
-        'oWordDoc.Close(True)
-        'oWord.Quit(True)
-
-        'Dim mass() As String
         If MessageBox.Show("Акт договора подряда с сотрудником " & vbCrLf & ФИОКорРук(ComboBox19.Text, False) & " сформирован успешно!" & vbCrLf & "Распечатать документ!", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.None) = DialogResult.OK Then
             ПечатьДоковFTP(massFTP3, 2)
         End If
@@ -864,7 +701,8 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
             Exit Sub
         End If
 
-        Dim l As String = ComboBox4.Items.Item(ListBox1.SelectedIndex)
+        'Dim l As String = ComboBox4.Items.Item(ListBox1.SelectedIndex)
+        Dim l As String = DictList1(ListBox1.SelectedItem)
 
         ВыгрузкаФайловНаЛокалыныйКомп(l, PathVremyanka & ListBox1.SelectedItem)
 
@@ -968,113 +806,93 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
                                                      .FormatFlags = StringFormatFlags.NoWrap})
 
     End Sub
-
-    Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox5.SelectedIndexChanged
+    Private Sub comb5sel(ByVal sender As Object)
         If ComboBox3.Text = "" Then
             MessageBox.Show("Выберите номер договора!", Рик)
             Exit Sub
         End If
 
+        For x As Integer = 0 To ListBox1.Items.Count - 1
+            If Strings.Left(ListBox1.Items(x).ToString, 3) = ComboBox5.Text Then
+                ListBox1.SelectedIndex = x
+                ПутьДляУдаления = DictList1(ListBox1.SelectedItem)
+            End If
+        Next
 
-
-
-        ОбновлGrid()
-
-        'Dim d = ds.Count
-
-        'With Me
-        '    .TextBox1.Text = ds(0).Item(11).ToString
-        '    .TextBox6.Text = ds(0).Item(14).ToString
-        '    If ds(0).Item(17).ToString = "" Then
-        '        .TextBox7.Text = ds(0).Item(12).ToString & "," & ds(0).Item(13).ToString
-        '    Else
-        '        .TextBox7.Text = ds(0).Item(17).ToString
-        '    End If
-        '    .TextBox8.Text = ds(0).Item(15).ToString
-        '    .TextBox9.Text = ds(0).Item(18).ToString
-
-        '    If d = 1 Then Exit Sub
-        '    GroupBox4.Enabled = True
-        '    .TextBox11.Text = ds(1).Item(11).ToString
-        '    .TextBox10.Text = ds(1).Item(14).ToString
-        '    If ds(1).Item(17).ToString = "" Then
-        '        .TextBox5.Text = ds(1).Item(12).ToString & "," & ds(1).Item(13).ToString
-        '    Else
-        '        .TextBox5.Text = ds(1).Item(17).ToString
-        '    End If
-        '    .TextBox3.Text = ds(1).Item(15).ToString
-        '    .TextBox2.Text = ds(1).Item(18).ToString
-
-        '    If d = 2 Then Exit Sub
-        '    GroupBox5.Enabled = True
-        '    .TextBox16.Text = ds(2).Item(11).ToString
-        '    .TextBox15.Text = ds(2).Item(14).ToString
-        '    If ds(2).Item(17).ToString = "" Then
-        '        .TextBox14.Text = ds(2).Item(12).ToString & "," & ds(2).Item(13).ToString
-        '    Else
-        '        .TextBox14.Text = ds(2).Item(17).ToString
-        '    End If
-        '    .TextBox13.Text = ds(2).Item(15).ToString
-        '    .TextBox12.Text = ds(2).Item(18).ToString
-
-        '    If d = 3 Then Exit Sub
-        '    GroupBox6.Enabled = True
-        '    .TextBox21.Text = ds(3).Item(11).ToString
-        '    .TextBox20.Text = ds(3).Item(14).ToString
-        '    If ds(3).Item(17).ToString = "" Then
-        '        .TextBox19.Text = ds(3).Item(12).ToString & "," & ds(3).Item(13).ToString
-        '    Else
-        '        .TextBox19.Text = ds(3).Item(17).ToString
-        '    End If
-        '    .TextBox18.Text = ds(3).Item(15).ToString
-        '    .TextBox17.Text = ds(3).Item(18).ToString
-
-        'End With
-
-
+        ОбновлGrid(sender)
     End Sub
-    Private Sub ОбновлGrid()
+
+    Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox5.SelectedIndexChanged
+        comb5sel(sender)
+    End Sub
+    Private Sub ОбновлGrid(ByVal sender)
         Dim j = CType(Label96.Text, Integer)
         Dim ds1
 
-        ds1 = dtDogovorPadriadaAll.Select("ID=" & j & " And НомерДогПодр=" & ComboBox3.Text & " And ПорНомерАктаИное=" & ComboBox5.Text & "")
+        'ds1 = dtDogovorPadriadaAll.Select("ID=" & j & " And НомерДогПодр=" & ComboBox3.Text & " And ПорНомерАктаИное=" & ComboBox5.Text & "")
+
+        'Выборка для grid1 - по номеру сотрудника, договора и акта
+        Dim ds2 = (From x In dtDogovorPadriadaAll.AsEnumerable
+                   Join y In dtDogPodrAktInoeAll.AsEnumerable On x.Field(Of Integer)("Код") Equals
+                      y.Field(Of Integer)("IDДогПодряда")
+                   Where Not x.IsNull("ID") AndAlso x.Item("ID") = j _
+                      AndAlso Not x.IsNull("НомерДогПодр") AndAlso x.Item("НомерДогПодр") = ComboBox3.Text _
+                      AndAlso Not y.IsNull("ПорНомерАктаИное") AndAlso y.Item("ПорНомерАктаИное") = ComboBox5.Text
+                   Select New With {.Наименование = y.Item("ВыпРаб1"), .Единица = y.Item("ЕдИзмерАктИное"),
+                      .Стоимость2 = y.Item("СтоимЕдРаботыАктИное"), .Объем = y.Item("ОбъемВыпРаботАктИное"),
+                      .Стоимость = y.Item("ОбщСтоимРаботАктИное"), .Код = y.Item("ID")}).ToList()
+
+
+        Dim ds = (From x In dtDogovorPadriadaAll.AsEnumerable
+                  Join y In dtDogPodrAktInoeAll.AsEnumerable On x.Field(Of Integer)("Код") Equals
+                      y.Field(Of Integer)("IDДогПодряда")
+                  Where Not x.IsNull("ID") AndAlso x.Item("ID") = j _
+                      AndAlso Not x.IsNull("НомерДогПодр") AndAlso x.Item("НомерДогПодр") = ComboBox3.Text _
+                      AndAlso Not y.IsNull("ПорНомерАктаИное") AndAlso y.Item("ПорНомерАктаИное") = ComboBox5.Text
+                  Select y).ToList()
 
 
 
 
-
-        Dim ds = From x In dtDogovorPadriadaAll.AsEnumerable() Where Not x.IsNull("ID") AndAlso x.Item("ID") = j _
-                                                               AndAlso Not x.IsNull("НомерДогПодр") AndAlso x.Item("НомерДогПодр") = ComboBox3.Text _
-                                                               AndAlso Not x.IsNull("ПорНомерАктаИное") AndAlso x.Item("ПорНомерАктаИное") = ComboBox5.Text
-                 Select New With {.Наименование = x.Item("ВыпРаб1"), .Единица = x.Item("ЕдИзмерАктИное"), .Стоимость2 = x.Item("СтоимЕдРаботыАктИное"),
-                     .Объем = x.Item("ОбъемВыпРаботАктИное"), .Стоимость = x.Item("ОбщСтоимРаботАктИное"), .Код = x.Item("Код")}
-
+        'Dim ds = From x In dtDogovorPadriadaAll.AsEnumerable() Where Not x.IsNull("ID") AndAlso x.Item("ID") = j _
+        '                                                       AndAlso Not x.IsNull("НомерДогПодр") AndAlso x.Item("НомерДогПодр") = ComboBox3.Text _
+        '                                                       AndAlso Not x.IsNull("ПорНомерАктаИное") AndAlso x.Item("ПорНомерАктаИное") = ComboBox5.Text
+        '         Select New With {.Наименование = x.Item("ВыпРаб1"), .Единица = x.Item("ЕдИзмерАктИное"), .Стоимость2 = x.Item("СтоимЕдРаботыАктИное"),
+        '             .Объем = x.Item("ОбъемВыпРаботАктИное"), .Стоимость = x.Item("ОбщСтоимРаботАктИное"), .Код = x.Item("Код")}
 
 
-        If ds1(0).Item(19).ToString.Length = 1 Then
-            ComboBox5.Text = "00" & ds1(0).Item(19).ToString
-        ElseIf ds1(0).Item(19).ToString.Length = 2 Then
-            ComboBox5.Text = "0" & ds1(0).Item(19).ToString
 
-        Else
-            ComboBox5.Text = ds1(0).Item(19).ToString
-        End If
+        'If ds1(0).Item(19).ToString.Length = 1 Then
+        '    ComboBox5.Text = "00" & ds1(0).Item(19).ToString
+        'ElseIf ds1(0).Item(19).ToString.Length = 2 Then
+        '    ComboBox5.Text = "0" & ds1(0).Item(19).ToString
+
+        'Else
+        '    ComboBox5.Text = ds1(0).Item(19).ToString
+        'End If
 
 
-        Grid1.DataSource = ds.ToList()
+        Grid1.DataSource = ds2
         Grid1.Columns(1).HeaderCell.Value = "Единица измерения"
         Grid1.Columns(2).HeaderCell.Value = "Цена"
         Grid1.Columns(3).HeaderCell.Value = "Объем работ"
         Grid1.Columns("Код").Visible = False
         GridView(Grid1)
 
+        If sender Is ComboBox5 Then
+            MaskedTextBox1.Text = ds(0).Item("ДатаОплатыРаботИное").ToString
+            MaskedTextBox2.Text = ds(0).Item("ЗаПериодСИное").ToString
+            MaskedTextBox3.Text = ds(0).Item("ЗаПериодПоИное").ToString
+            MaskedTextBox6.Text = ds(0).Item("ДатаАктаИное").ToString
+        End If
+
+        RichTextBox1.Text = ""
+
+        For Each txt In Controls.OfType(Of TextBox)()
+            txt.Text = ""
+        Next
 
 
-
-        MaskedTextBox1.Text = ds1(0).Item(23).ToString
-        MaskedTextBox2.Text = ds1(0).Item(20).ToString
-        MaskedTextBox3.Text = ds1(0).Item(21).ToString
-        MaskedTextBox6.Text = ds1(0).Item(22).ToString
     End Sub
 
     Private Sub Grid1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles Grid1.CellClick
@@ -1201,7 +1019,7 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
 
 
         Dim list As New Dictionary(Of String, Object)
-        list.Add("@Код", Код)
+        list.Add("@Код", Grid1.CurrentRow.Cells("Код").Value)
         list.Add("@ОбъемВыпРаботАктИное", TextBox23.Text)
         list.Add("@ОбщСтоимРаботАктИное", TextBox24.Text)
 
@@ -1211,14 +1029,15 @@ WHERE ID=@ID AND НомерДогПодр=@НомерДогПодр AND ПорН
         'list.Add("@ДатаОплатыРаботИное", MaskedTextBox1.Text)
 
 
-        Updates(stroka:="UPDATE ДогПодряда SET ОбъемВыпРаботАктИное=@ОбъемВыпРаботАктИное, ОбщСтоимРаботАктИное=@ОбщСтоимРаботАктИное 
-WHERE Код=@Код", list)
+        Updates(stroka:="UPDATE ДогПодрядаАктИное
+SET ОбъемВыпРаботАктИное=@ОбъемВыпРаботАктИное, ОбщСтоимРаботАктИное=@ОбщСтоимРаботАктИное 
+WHERE ID=@Код", list)
 
         'ЗаПериодСИное =@ЗаПериодСИное, ЗаПериодПоИное=@ЗаПериодПоИное, ДатаАктаИное=@ДатаАктаИное, ДатаОплатыРаботИное=@ДатаОплатыРаботИное
-        Parallel.Invoke(Sub() RunMoving9())
+        Parallel.Invoke(Sub() RunMoving24())
         MessageBox.Show("Данные договора подряда изменены!", Рик)
 
-        ОбновлGrid()
+        ОбновлGrid(sender)
     End Sub
 
     Private Sub TextBox23_LostFocus(sender As Object, e As EventArgs) Handles TextBox23.LostFocus
@@ -1265,6 +1084,87 @@ WHERE Код=@Код", list)
 
     End Sub
 
+    Private Sub MenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs)
+
+    End Sub
+
+    Private Sub ListBox1_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub УдалитьToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles УдалитьToolStripMenuItem.Click
+
+        If ListBox1.SelectedItems.Count = 0 Then Exit Sub
+
+        If MessageBox.Show("Удалить акт " & vbCrLf & ListBox1.SelectedItem, Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+            Exit Sub
+        End If
+        Dim int As Integer
+        Try
+            int = CType(Label96.Text, Integer)
+        Catch ex As Exception
+
+        End Try
+
+        'удаляем на сервере файл
+        DeleteFluentFTP(DictList1(ListBox1.SelectedItem))
+
+        'удаляем строку в таблице пути документов
+        Dim s = dtPutiDokumentovAll.Select("ПолныйПуть='" & DictList1(ListBox1.SelectedItem) & "'")
+
+        Dim list2 As New Dictionary(Of String, Object)
+        list2.Add("@Код", s(0).Item("Код"))
+        Updates(stroka:="DELETE FROM ПутиДокументов WHERE Код=@Код", list2, "ПутиДокументов")
+
+        Dim list3 As New Dictionary(Of String, Object)
+        list3.Add("@ID", int)
+        list3.Add("@НомерДогПодр", ComboBox3.Text)
+        list3.Add("@ПорНомерАктаИное", Strings.Left(ListBox1.SelectedItem, 3))
+
+        Updates(stroka:="DELETE ДогПодрядаАктИное
+FROM ДогПодрядаАктИное INNER JOIN ДогПодряда ON ДогПодрядаАктИное.IDДогПодряда = ДогПодряда.Код
+WHERE ДогПодряда.ID=@ID And ДогПодряда.НомерДогПодр=@НомерДогПодр AND ДогПодрядаАктИное.ПорНомерАктаИное=@ПорНомерАктаИное",
+                list3, "ДогПодрядаАктИное")
+
+        'refreshList2(ComboBox3.Text)
+        'comb5sel(sender)
+        'dtDogPodrAktInoe()
+
+
+        MessageBox.Show("Акт удален!", Рик)
+        ListBox1.Items.Clear()
+
+        For Each s2 In Me.Controls.OfType(Of TextBox)()
+            s2.Text = ""
+        Next
+        ComboBox5.Items.Clear()
+        ComboBox3.Text = ""
+
+        RichTextBox1.Text = ""
+
+        For Each s2 In Me.Controls.OfType(Of CheckBox)()
+            s2.Checked = False
+        Next
+
+        For Each groupboxControl In Me.Controls.OfType(Of GroupBox)()
+            For Each s2 In groupboxControl.Controls.OfType(Of MaskedTextBox)()
+                s2.Text = ""
+            Next
+        Next
+
+        Dim ds As DataTable
+        Grid1.DataSource = ds
+
+        refreshList2(ComboBox3.Text)
+
+    End Sub
+
+    Private Sub ListBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles ListBox1.MouseDown
+        If e.Button = MouseButtons.Right Then
+            ContextMenuStrip1.Show(MousePosition, ToolStripDropDownDirection.Right)
+        End If
+    End Sub
+
     Private Sub ComboBox5_LostFocus(sender As Object, e As EventArgs) Handles ComboBox5.LostFocus
         Dim dt As New List(Of String)
         If ComboBox5.Text = "" Then Exit Sub
@@ -1280,5 +1180,37 @@ WHERE Код=@Код", list)
                 End Select
             End If
         Next
+    End Sub
+
+    Private Sub ДоговорПодрядаАктИное_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
+
+        For Each groupboxControl In Me.Controls.OfType(Of GroupBox)() 'очистка контролов внутри гроупбоксов
+            For Each txt In groupboxControl.Controls.OfType(Of TextBox)()
+                txt.Text = ""
+            Next
+            For Each cbo In groupboxControl.Controls.OfType(Of ComboBox)()
+                cbo.SelectedIndex = -1
+            Next
+            For Each mas In groupboxControl.Controls.OfType(Of MaskedTextBox)()
+                mas.Text = ""
+            Next
+
+        Next
+
+        For Each s In Me.Controls.OfType(Of TextBox)()
+            s.Text = ""
+        Next
+
+        For Each b In Me.Controls.OfType(Of ComboBox)()
+            b.Text = ""
+            b.Items.Clear()
+        Next
+
+        RichTextBox1.Text = ""
+        For Each s2 In Me.Controls.OfType(Of CheckBox)()
+            s2.Checked = False
+        Next
+
+
     End Sub
 End Class

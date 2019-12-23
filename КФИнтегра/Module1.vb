@@ -338,6 +338,12 @@ Module Module1
                 dtPodriadaOsoben()
             Case "ШтатРаспис"
                 dtStatnoeRaspisanie()
+            Case "ДогПодДолжн"
+                dtDogPodrDoljnost()
+            Case "ДогПодрядаАктИное"
+                dtDogPodrAktInoe()
+            Case "ДогПодрядаРаботыИное"
+                dtDogPodrRabotyInoe()
         End Select
 
 

@@ -22,6 +22,7 @@ Partial Class ДоговорПодрядаАктИное
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ДоговорПодрядаАктИное))
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
@@ -49,7 +50,6 @@ Partial Class ДоговорПодрядаАктИное
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
         Me.ComboBox5 = New System.Windows.Forms.ComboBox()
         Me.Grid1 = New System.Windows.Forms.DataGridView()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
@@ -64,12 +64,15 @@ Partial Class ДоговорПодрядаАктИное
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.УдалитьToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         CType(Me.Grid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'CheckBox4
@@ -164,7 +167,7 @@ Partial Class ДоговорПодрядаАктИное
         'ComboBox2
         '
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(1095, 95)
+        Me.ComboBox2.Location = New System.Drawing.Point(34, 41)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(63, 25)
         Me.ComboBox2.TabIndex = 97
@@ -271,7 +274,9 @@ Partial Class ДоговорПодрядаАктИное
         '
         Me.GroupBox12.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.GroupBox12.Controls.Add(Me.Label96)
+        Me.GroupBox12.Controls.Add(Me.ComboBox6)
         Me.GroupBox12.Controls.Add(Me.ComboBox19)
+        Me.GroupBox12.Controls.Add(Me.ComboBox2)
         Me.GroupBox12.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.GroupBox12.Location = New System.Drawing.Point(734, 22)
         Me.GroupBox12.Margin = New System.Windows.Forms.Padding(4)
@@ -337,15 +342,6 @@ Partial Class ДоговорПодрядаАктИное
         Me.GroupBox7.Size = New System.Drawing.Size(357, 75)
         Me.GroupBox7.TabIndex = 123
         Me.GroupBox7.TabStop = False
-        '
-        'ComboBox4
-        '
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(1013, 95)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(63, 25)
-        Me.ComboBox4.TabIndex = 127
-        Me.ComboBox4.Visible = False
         '
         'ComboBox5
         '
@@ -413,9 +409,9 @@ Partial Class ДоговорПодрядаАктИное
         '
         Me.Label14.Location = New System.Drawing.Point(691, 502)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(172, 18)
+        Me.Label14.Size = New System.Drawing.Size(44, 22)
         Me.Label14.TabIndex = 133
-        Me.Label14.Text = "Стоимость единицы изм."
+        Me.Label14.Text = "Цена"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'TextBox22
@@ -480,18 +476,29 @@ Partial Class ДоговорПодрядаАктИное
         'ComboBox6
         '
         Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Location = New System.Drawing.Point(938, 95)
+        Me.ComboBox6.Location = New System.Drawing.Point(128, 41)
         Me.ComboBox6.Name = "ComboBox6"
         Me.ComboBox6.Size = New System.Drawing.Size(63, 25)
         Me.ComboBox6.TabIndex = 139
         Me.ComboBox6.Visible = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.УдалитьToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'УдалитьToolStripMenuItem
+        '
+        Me.УдалитьToolStripMenuItem.Name = "УдалитьToolStripMenuItem"
+        Me.УдалитьToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.УдалитьToolStripMenuItem.Text = "Удалить"
         '
         'ДоговорПодрядаАктИное
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1183, 603)
-        Me.Controls.Add(Me.ComboBox6)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.TextBox24)
         Me.Controls.Add(Me.Label16)
@@ -505,7 +512,6 @@ Partial Class ДоговорПодрядаАктИное
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Grid1)
         Me.Controls.Add(Me.ComboBox5)
-        Me.Controls.Add(Me.ComboBox4)
         Me.Controls.Add(Me.GroupBox7)
         Me.Controls.Add(Me.ComboBox3)
         Me.Controls.Add(Me.Label2)
@@ -513,7 +519,6 @@ Partial Class ДоговорПодрядаАктИное
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox13)
@@ -535,6 +540,7 @@ Partial Class ДоговорПодрядаАктИное
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         CType(Me.Grid1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -565,7 +571,6 @@ Partial Class ДоговорПодрядаАктИное
     Friend WithEvents Label2 As Label
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents GroupBox7 As GroupBox
-    Friend WithEvents ComboBox4 As ComboBox
     Friend WithEvents ComboBox5 As ComboBox
     Friend WithEvents Grid1 As DataGridView
     Friend WithEvents RichTextBox1 As RichTextBox
@@ -580,4 +585,6 @@ Partial Class ДоговорПодрядаАктИное
     Friend WithEvents Label16 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents ComboBox6 As ComboBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents УдалитьToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -639,6 +639,7 @@ VALUES(
         RichTextBox1.Text = ""
         CheckBox2.Checked = False
         Com1Sel9()
+        dtDogPodrAktInoe()
     End Sub
 
     Private Function ДогПодНом()
