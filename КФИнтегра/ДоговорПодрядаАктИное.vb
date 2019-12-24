@@ -622,16 +622,16 @@ FROM ДогПодрядаАктИное INNER JOIN ДогПодряда ON До�
 
             allstoim = Math.Round(allstoim, 2)
 
-            Dim allststring As String
-            If (allstoim = Math.Truncate(allstoim)) Then
-                allststring = CType(allstoim, String) & ",00"
-            Else
-                allststring = CType(allstoim, String)
+            'Dim allststring As String
+            'If (allstoim = Math.Truncate(allstoim)) Then
+            '    allststring = CType(allstoim, String) & ",00"
+            'Else
+            '    allststring = CType(allstoim, String)
 
-            End If
+            'End If
 
 
-            .Item("АктПодр16").Range.Text = allststring
+            .Item("АктПодр16").Range.Text = Format(allstoim, "f")
             .Item("АктПодр17").Range.Text = ЧислоПрописДляСправки(allstoim)
             Dim mObj As Object = Подоходный(allstoim)
             .Item("АктПодр18").Range.Text = mObj(0) & " руб."

@@ -8,8 +8,9 @@
     'Order By x.Field(Of String)("Отделы")
     'Select Case x.Field(Of String)("Отделы") Distinct)
 
-
-
+    'добавляет недостающие нули в чмсло в строку
+    'Dim f2 As Double = 38.5
+    'Dim f1 As String = Format(f2, "f") 'форматирует 
 
 
 

@@ -388,6 +388,16 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
             MessageBox.Show("Сформируйте список работ для добавления в акт!", Рик)
             Return 1
         End If
+
+        For x As Integer = 0 To DtGr2.Rows.Count - 1
+            If DtGr2.Rows(0).Item(3).ToString = "" Or DtGr2.Rows(0).Item(3).ToString = "" Then
+                MessageBox.Show("Заполните таблицу!", Рик)
+                Return 1
+            End If
+        Next
+
+
+
         'If TextBox1.Text = "" Or TextBox2.Text = "" Or TextBox3.Text = "" Then
         '    MessageBox.Show("Заполните раздел 'Отработанное время и начисленная сумма'!", Рик)
         '    Return 1
@@ -608,8 +618,10 @@ VALUES(
         '        Updates(strsql)
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'a0 = {({TextBox1.Text, TextBox6.Text, TextBox7.Text, TextBox8.Text, TextBox9.Text}), ({TextBox11.Text, TextBox10.Text, TextBox5.Text, TextBox3.Text, TextBox2.Text}),
-        '    ({TextBox16.Text, TextBox15.Text, TextBox14.Text, TextBox13.Text, TextBox12.Text}), ({TextBox21.Text, TextBox20.Text, TextBox19.Text, TextBox18.Text, TextBox17.Text})}
+
+
+
+
         If Проверка() = 1 Then Exit Sub
 
         If TextBox1.Text.Length = 1 Then
@@ -728,16 +740,16 @@ VALUES(
 
             allstoim = Math.Round(allstoim, 2)
 
-            Dim allststring As String
-            If (allstoim = Math.Truncate(allstoim)) Then
-                allststring = CType(allstoim, String) & ",00"
-            Else
-                allststring = CType(allstoim, String)
+            'Dim allststring As String
+            'If (allstoim = Math.Truncate(allstoim)) Then
+            '    allststring = CType(allstoim, String) & ",00"
+            'Else
+            '    allststring = CType(allstoim, String)
 
-            End If
+            'End If
 
 
-            .Item("АктПодр16").Range.Text = allststring
+            .Item("АктПодр16").Range.Text = Format(allstoim, "f")
             .Item("АктПодр17").Range.Text = ЧислоПрописДляСправки(allstoim)
             Dim mObj As Object = Подоходный(allstoim)
             .Item("АктПодр18").Range.Text = mObj(0) & " руб."
