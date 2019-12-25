@@ -1469,7 +1469,7 @@ WHERE ИДСотр=@IDСотр", list1, "Штатное")
         End If
 
 
-            Чист()
+        Чист()
         StrSql = "SELECT Контракт FROM ДогСотрудн WHERE IDСотр=" & IDСотрудника & ""
         ds = Selects(StrSql)
         Select Case errds
@@ -1778,7 +1778,7 @@ WHERE ОбъектОбщепита.АдресОбъекта='" & arrtcom("ComboB
             End If
 
         ElseIf CheckBox7.Checked = True And CheckBox5.Checked = True Then
-                Try
+            Try
                 IDСотрудника = CType(Label96.Text, Integer)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
@@ -1818,7 +1818,7 @@ VALUES(" & IDСотрудника & ",'" & ДПодНом & "','" & Me.MaskedTex
             Dim strsql = "INSERT INTO ДогПодряда(ID,НомерДогПодр,ДатаДогПодр,Должность,ДатаНачала,ДатаОконч,СтоимЧасаРуб,СтоимЧасаКоп,ОбъекОбщепита,Примечание)
 VALUES(" & IDСотрудника & ",'" & ДПодНом & "','" & Me.MaskedTextBox6.Text & "','" & Me.ComboBox22.Text & "','" & Me.MaskedTextBox7.Text & "',
 '" & Me.MaskedTextBox8.Text & "','" & Me.TextBox61.Text & "','" & Me.TextBox62.Text & "','" & Me.ComboBox25.Text & "','" & Примечани & "')"
-            Updates(StrSql)
+            Updates(strsql)
         ElseIf CheckBox5.Checked = False And ComboBox27.Text = "иное" Then
             For i As Integer = 0 To ДогПодрВыпРаб.Count - 1
                 Dim mn As Object
@@ -3203,9 +3203,17 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         Await Task.Run(Sub() ОчисткаМаяков())
     End Sub
     Private Function ПроверкаКонтрактИлиПодрядДобавляем()
+        'проверяем заполненность
+        If CheckBox5.Checked = False Or ComboBox19.Text = "" Or IsNumeric(Label96.Text) = False Or CheckBox27.Checked = True Then Return 0
+        'проверяем стоит ли обрабатывать дальше или это обновление существующего
+        Dim f3 = dtKartochkaSotrudnikaAll.Select("IDСотр=" & CType(Label96.Text, Integer) & "")
+        Dim dp3 = dtDogovorPadriadaAll.Select("ID=" & CType(Label96.Text, Integer) & "")
+
+        If CheckBox7.Checked = False And f3.Length > 0 Then Return 0
+        If CheckBox7.Checked = True And dp3.Length > 0 Then Return 0
 
         'Проверка (существует ли в комбобоксе сотрудник с дп или к или р(что бы не дублировать.
-        If CheckBox5.Checked = False Or ComboBox19.Text = "" Or IsNumeric(Label96.Text) = False Then Exit Function
+
 
         Dim dpod As Boolean
         Dim kont As Boolean
@@ -3236,56 +3244,51 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
                         kont = True
                     End If
                     If RTrim(Replace(ComboBox19.Text, "(тд)", "(дп)")) = r Then
-                        tdog = True
+                        dpod = True
                     End If
                 Next
             Case Else
                 kont = True
+                Dim mp As String
+                Dim mp1 As String
+                If ComboBox19.Text.Contains("(кт)") Then
+                    mp = RTrim(Replace(ComboBox19.Text, "(кт)", "(тд)"))
+                    mp1 = RTrim(Replace(ComboBox19.Text, "(кт)", "(дп)"))
+                Else
+                    mp = ComboBox19.Text & "(тд)"
+                    mp1 = ComboBox19.Text & "(дп)"
+                End If
+
                 For Each r In ComboBox19.Items
-                    If RTrim(Replace(ComboBox19.Text, "(кт)", "")) = r Or RTrim(Replace(ComboBox19.Text, "(тд)", "(кт)")) = r Then
-                        kont = True
+
+                    If mp1 = r Then
+                        dpod = True
                     End If
-                    If RTrim(Replace(ComboBox19.Text, "(тд)", "(дп)")) = r Then
+
+                    If mp = r Then
                         tdog = True
                     End If
+
                 Next
         End Select
 
         'ищем по фио контракт или труд дог
-        If dpod = True Then
-            For Each r In ComboBox19.Items
-                If RTrim(Replace(ComboBox19.Text, "(дп)", "")) = r Or RTrim(Replace(ComboBox19.Text, "(дп)", "(кт)")) = r Then
-                    kont = True
-                End If
-                If RTrim(Replace(ComboBox19.Text, "(дп)", "(тд)")) = r Then
-                    tdog = True
-                End If
-            Next
-        End If
+
 
         'ищем по фио договор подряда или труд дог
-        If dpod = True Then
-            For Each r In ComboBox19.Items
-                If RTrim(Replace(ComboBox19.Text, "(дп)", "")) = r Or RTrim(Replace(ComboBox19.Text, "(дп)", "(кт)")) = r Then
-                    kont = True
-                End If
-                If RTrim(Replace(ComboBox19.Text, "(дп)", "(тд)")) = r Then
-                    tdog = True
-                End If
-            Next
-        End If
+
 
         If CheckBox5.Checked = True And ComboBox19.Text <> "" And IsNumeric(Label96.Text) And CheckBox7.Checked = False Then
-            Dim f = dtKartochkaSotrudnikaAll.Select("IDСотр=" & CType(Label96.Text, Integer) & "")
-            Dim dp = dtDogovorPadriadaAll.Select("ID=" & CType(Label96.Text, Integer) & "")
+            'Dim f = dtKartochkaSotrudnikaAll.Select("IDСотр=" & CType(Label96.Text, Integer) & "")
+            'Dim dp = dtDogovorPadriadaAll.Select("ID=" & CType(Label96.Text, Integer) & "")
 
             If kont = True And dpod = True Then
                 MessageBox.Show("У данного сотрудника уже заключен контракт!", Рик)
                 Return 1
             End If
 
-            If dp.Length > 0 Then
-                If MessageBox.Show("Создать с данным сотрудником контракт?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
+            If dp3.Length > 0 Then
+                If MessageBox.Show("Создать контракт?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
                     Решение = "Контракт"
                 End If
             End If
@@ -3295,17 +3298,20 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
 
         If CheckBox5.Checked = True And ComboBox19.Text <> "" And IsNumeric(Label96.Text) And CheckBox7.Checked = True Then
-            Dim f = dtKartochkaSotrudnikaAll.Select("IDСотр=" & CType(Label96.Text, Integer) & "")
-            Dim dp = dtDogovorPadriadaAll.Select("ID=" & CType(Label96.Text, Integer) & "")
+            'Dim f = dtKartochkaSotrudnikaAll.Select("IDСотр=" & CType(Label96.Text, Integer) & "")
+            'Dim dp = dtDogovorPadriadaAll.Select("ID=" & CType(Label96.Text, Integer) & "")
+
+            If kont = True And dpod = True Then
+                MessageBox.Show("У данного сотрудника уже заключен контракт!", Рик)
+                Return 1
+            End If
+
+
+            If f3.Length > 0 Then
 
 
 
-
-            If f.Length > 0 Then
-
-
-
-                If MessageBox.Show("Создать с данным сотрудником договор-подряда?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
+                If MessageBox.Show("Создать договор-подряда?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
 
                     Решение = "Подряд"
                 End If
@@ -3436,7 +3442,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         End If
 
 
-        If ПровИндивидКонтр(ComboBox1.Text) = False And CheckBox5.Checked = True And CheckBox7.Checked = False Then 'обновление данных
+        If ПровИндивидКонтр(ComboBox1.Text) = False And CheckBox5.Checked = True And CheckBox7.Checked = False And Решение = "" Then 'обновление данных
 
             ОбщОбновл()
 
@@ -3544,7 +3550,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         ДобСотТаск.Start()
         'Parallel.Invoke(Sub() ДобавлНовогоСотрудника())
 
-        ALLALL()
+
 
         If PrintPapie = 0 Then
             MessageBox.Show("Сотрудник добавлен!", Рик)
@@ -3553,6 +3559,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         If PrintPapie = 1 Then 'основной модуль по оформлению документов
             ДобСотТаск.Wait()
             Доки("общ")
+            ALLALL()
             Me.Cursor = Cursors.Default
         End If
 
@@ -3727,7 +3734,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         ДатРожд = MaskedTextBox9.Text
 
         If CheckBox5.Checked = False Then
-            'KillProc()
+
             ДобавлНовогоСотрудника()
             If MessageBox.Show("Сотрудник добавлен в базу! Оформить Документы?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 Доки("амасейлс")
@@ -4895,7 +4902,7 @@ AND Сотрудники.ИДНомер='" & TextBox8.Text & "'")
             End If
             .Add("@ФИОСборное", Trim(surName) & " " & Trim(arrtbox("TextBox2")) & " " & Trim(arrtbox("TextBox3")))
             .Add("@ФИОРодПод", Trim(arrtbox("TextBox6")) & " " & Trim(arrtbox("TextBox5")) & " " & Trim(arrtbox("TextBox4")))
-            .Add("@ТипОтношения", "(к)")
+            .Add("@ТипОтношения", "(кт)")
         End With
 
 
@@ -5051,7 +5058,6 @@ VALUES(" & idClient & ", '" & arrtmask("MaskedTextBox4") & "', '" & combx11 & "'
         End If
 
         Parallel.Invoke(Sub() RunMoving2())
-        Обнов1()
 
         Статистика(Trim(arrtbox("TextBox1")) & " " & Trim(arrtbox("TextBox2")) & " " & Trim(arrtbox("TextBox3")), "Добавление нового сотрудника", combx1)
 
@@ -6490,9 +6496,9 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         'If CheckBox8.Checked = True Then
         GroupBox19.Visible = True
-            CheckBox24.Checked = False
-            Button2.Visible = False
-            TextBox63.Text = ""
+        CheckBox24.Checked = False
+        Button2.Visible = False
+        TextBox63.Text = ""
         'Else
         '    GroupBox19.Visible = False
         '    Button2.Visible = True
