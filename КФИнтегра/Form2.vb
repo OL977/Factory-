@@ -74,6 +74,7 @@ Public Class Прием
     Dim Поток1 As New Thread(AddressOf НалогиИОбязанДогПодряда)
     Public РазрИзменКонтр
     Dim Решение As String
+    Dim idДолжность As Integer
 
     Private Sub ДанИзБазы()
         If ComboBox20.InvokeRequired Or ComboBox21.InvokeRequired Then
@@ -1199,6 +1200,7 @@ WHERE КодСотрудники=@КодСотрудники", list, "Сотру
             inostan = "False"
         End If
 
+        'Обновляем таблицу сотрудники данными и обновляем саму таблицу.
         Updates(stroka:="UPDATE Сотрудники SET Сотрудники.Фамилия='" & Trim(TextBox1.Text) & "', Сотрудники.Имя='" & Trim(TextBox2.Text) & "', Сотрудники.Отчество='" & Trim(TextBox3.Text) & "', 
 Сотрудники.ФамилияРодПад='" & Trim(TextBox6.Text) & "', Сотрудники.ИмяРодПад='" & Trim(TextBox5.Text) & "', Сотрудники.ОтчествоРодПад='" & Trim(TextBox4.Text) & "', 
 Сотрудники.ПаспортСерия='" & TextBox12.Text & "', Сотрудники.ПаспортНомер='" & TextBox7.Text & "', Сотрудники.ПаспортКогдаВыдан='" & MaskedTextBox1.Text & "',
@@ -1208,7 +1210,7 @@ WHERE КодСотрудники=@КодСотрудники", list, "Сотру
 Сотрудники.ИмяДляЗаявления='" & Trim(TextBox11.Text) & "', Сотрудники.ОтчествоДляЗаявления='" & Trim(TextBox10.Text) & "', Сотрудники.Пол='" & cmb28 & "', Сотрудники.ДатаРожд='" & MaskedTextBox9.Text & "',
 Сотрудники.Гражданин='" & TextBox51.Text & "', Сотрудники.Иностранец='" & inostan & "',
 ФИОСборное='" & Trim(TextBox1.Text) & " " & Trim(TextBox2.Text) & " " & Trim(TextBox3.Text) & "', ФИОРодПод='" & Trim(TextBox6.Text) & " " & Trim(TextBox5.Text) & " " & Trim(TextBox4.Text) & "'
-        WHERE Сотрудники.КодСотрудники=@КодСотрудники", list, "КодСотрудники")
+        WHERE Сотрудники.КодСотрудники=@КодСотрудники", list, "Сотрудники")
 
 
 
@@ -1254,9 +1256,9 @@ WHERE СоставСемьи.IDСотр =@IDСотр", list, "СоставСем
             adf = ""
         End If
 
-        StrSql = ""
-        StrSql = "SELECT ДатаПриема,ПродлКонтрС FROM КарточкаСотрудника WHERE IDСотр=" & IDСотрудника & ""
-        ds = Selects(StrSql)
+
+        Dim ds2 = Selects(StrSql:="SELECT ДатаПриема,ПродлКонтрС FROM КарточкаСотрудника WHERE IDСотр=" & IDСотрудника & "")
+
 
         Select Case errds
             Case 1
@@ -1268,7 +1270,7 @@ WHERE СоставСемьи.IDСотр =@IDСотр", list, "СоставСем
             Case 0
 
 
-                If ds.Rows(0).Item(1).ToString <> "" Then
+                If ds2.Rows(0).Item(1).ToString <> "" Then
                     If MessageBox.Show("С данным сотрудником продлен контракт" & vbCrLf & "Если вы не меняли!" & vbCrLf & "1)Дату(приказа,контракта)" & vbCrLf & "2)Период контракта!" & vbCrLf & "Нажмите 'Да'" & vbCrLf & "Если были изменения нажмите 'Нет'", Рик, MessageBoxButtons.YesNo) = DialogResult.No Then
                         If MessageBox.Show("Будет внесены следующие изменения!" & vbCrLf & "1)Заменены старые даты приема, контракта, приказа" & vbCrLf & "2)Изменена дата уведомления о продлении контракта" & vbCrLf & "3)Удалены все даты продлений контракта", Рик, MessageBoxButtons.YesNo) = DialogResult.Yes Then
                             Dim bn As String = ""
@@ -3302,7 +3304,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
             'Dim dp = dtDogovorPadriadaAll.Select("ID=" & CType(Label96.Text, Integer) & "")
 
             If kont = True And dpod = True Then
-                MessageBox.Show("У данного сотрудника уже заключен контракт!", Рик)
+                MessageBox.Show("У данного сотрудника уже заключен договор-подряда!", Рик)
                 Return 1
             End If
 
@@ -3550,8 +3552,6 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         ДобСотТаск.Start()
         'Parallel.Invoke(Sub() ДобавлНовогоСотрудника())
 
-
-
         If PrintPapie = 0 Then
             MessageBox.Show("Сотрудник добавлен!", Рик)
         End If
@@ -3559,7 +3559,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         If PrintPapie = 1 Then 'основной модуль по оформлению документов
             ДобСотТаск.Wait()
             Доки("общ")
-            ALLALL()
+
             Me.Cursor = Cursors.Default
         End If
 
@@ -4994,13 +4994,11 @@ VALUES(@НазвОрганиз, @Фамилия, @Имя, @Отчество,@Ф�
 VALUES(@ИДСотр, @Должность, @Разряд, @ТарифнаяСтавка, @ПовышОклПроц,
 @РасчДолжностнОклад, @Отдел, @ПовышОклРуб, @ЧасоваяТарифСтавка)", list)
 
-
+        'Добавляем ФОТ и обновляем таблицу штатное
         Updates(stroka:="UPDATE Штатное SET ФонОплатыТруда=" & Replace(ФОТ2, ",", ".") & " WHERE ИДСотр=@ИДСотр", list, "Штатное")
 
 
-
-
-
+        'Вставляем в таблицу продление контракта и обновляем таблицу.
         Updates(stroka:="INSERT INTO ПродлКонтракта(IDСотр,ФИО,ДатаПриема,ДатаОкончания,СрокКонтракта,НомерУвед)
 VALUES(@ИДСотр,'" & surNameAll & "','" & arrtmask("MaskedTextBox4") & "','" & arrtmask("MaskedTextBox5") & "',
 '" & combx11 & "','" & arrtbox("TextBox38") & "')", list, "ПродлКонтракта")
@@ -5019,45 +5017,52 @@ VALUES(@ИДСотр,'" & surNameAll & "','" & arrtmask("MaskedTextBox4") & "','
             _СуммирУчет = ""
         End If
 
-        Updates(stroka:="INSERT INTO КарточкаСотрудника(IDСотр,ДатаПриема,СрокКонтракта,ТипРаботы,Ставка,ВремяНачРаботы,
-ПродолРабДня,Обед,ОкончРабДня,ДатаУведомлПродКонтр,АдресОбъектаОбщепита,ДатаЗарплаты,ДатаАванса,ПоСовмест,СуммирУчет,Примечание)
-VALUES(" & idClient & ", '" & arrtmask("MaskedTextBox4") & "', '" & combx11 & "', '" & combx15 & "', '" & combx10 & "','" & combx12 & "',
-'" & combx16 & "','" & arrtbox("TextBox49") & "','" & arrtbox("TextBox50") & "','" & ДатаУведомл(combx11, arrtmask("MaskedTextBox4")) & "',
-'" & combx18 & "','" & arrtbox("TextBox40") & "','" & arrtbox("TextBox56") & "','" & _ПоСовмест & "','" & _СуммирУчет & "','" & Примечани & "')")
 
-        Dim StrSql4 As String = "SELECT IDСотр, Контракт, ДатаКонтракта, СрокОкончКонтр, Приказ, 
-Датаприказа, Заявление, ДатаЗаявл, ДолжностИнстр, ДатаДолжнИнстр From ДогСотрудн"
+        Dim list4 As New Dictionary(Of String, Object)
+        list4.Add("@IDСотр", idClient)
+        list4.Add("@ДатаПриема", arrtmask("MaskedTextBox4"))
+        list4.Add("@СрокКонтракта", combx11)
+        list4.Add("@ТипРаботы", combx15)
+        list4.Add("@Ставка", combx10)
+        list4.Add("@ВремяНачРаботы", combx12)
+        list4.Add("@ПродолРабДня", combx16)
+        list4.Add("@Обед", arrtbox("TextBox49"))
+        list4.Add("@ОкончРабДня", arrtbox("TextBox50"))
+        list4.Add("@ДатаУведомлПродКонтр", ДатаУведомл(combx11, arrtmask("MaskedTextBox4")))
+        list4.Add("@АдресОбъектаОбщепита", combx18)
+        list4.Add("@ДатаЗарплаты", arrtbox("TextBox40"))
+        list4.Add("@ДатаАванса", arrtbox("TextBox56"))
+        list4.Add("@ПоСовмест", _ПоСовмест)
+        list4.Add("@СуммирУчет", _СуммирУчет)
+        list4.Add("@Примечание", Примечани)
 
-        Dim conn3 As New SqlConnection(ConString)
-        If conn3.State = ConnectionState.Closed Then
-            conn3.Open()
-        End If
-        Dim c4 As New SqlCommand(StrSql4, conn3)
-        Dim ds4 As New DataSet
-        Dim da4 As New SqlDataAdapter(c4)
-        da4.Fill(ds4, "ДогСотрудн")
-        Dim cb4 As New SqlCommandBuilder(da4)
-        Dim dsNewRow4 As DataRow
-        dsNewRow4 = ds4.Tables("ДогСотрудн").NewRow()
-        dsNewRow4.Item("IDСотр") = idClient
-        'dsNewRow1.Item("Фамилия") = Me.TextBox1.Text
-        dsNewRow4.Item("Контракт") = arrtbox("TextBox38")
-        dsNewRow4.Item("ДатаКонтракта") = arrtmask("MaskedTextBox3")
-        dsNewRow4.Item("СрокОкончКонтр") = arrtmask("MaskedTextBox5")
-        dsNewRow4.Item("Приказ") = НПриказа
-        dsNewRow4.Item("Датаприказа") = arrtmask("MaskedTextBox3")
-        ds4.Tables("ДогСотрудн").Rows.Add(dsNewRow4)
-        da4.Update(ds4, "ДогСотрудн")
 
-        If conn3.State = ConnectionState.Open Then
-            conn3.Close()
-        End If
+        'Вставляем в таблицу Карточкасотрудника данные контракта и обновляем таблицу.
+        Updates(stroka:="INSERT INTO КарточкаСотрудника(IDСотр,ДатаПриема,СрокКонтракта,ТипРаботы,
+Ставка,ВремяНачРаботы,ПродолРабДня,Обед,
+ОкончРабДня,ДатаУведомлПродКонтр,АдресОбъектаОбщепита,ДатаЗарплаты,
+ДатаАванса,ПоСовмест,СуммирУчет,Примечание)
+VALUES(@IDСотр,@ДатаПриема,@СрокКонтракта,@ТипРаботы,
+@Ставка,@ВремяНачРаботы,@ПродолРабДня,@Обед,
+@ОкончРабДня,@ДатаУведомлПродКонтр,@АдресОбъектаОбщепита,@ДатаЗарплаты,
+@ДатаАванса,@ПоСовмест,@СуммирУчет,@Примечание)", list4, "КарточкаСотрудника")
+
+        'Вставляем в таблицу ДогСотрудн данные контракта и обновляем таблицу.
+        Dim list5 As New Dictionary(Of String, Object)
+        list5.Add("@IDСотр", idClient)
+        list5.Add("@Контракт", arrtbox("TextBox38"))
+        list5.Add("@ДатаКонтракта", arrtmask("MaskedTextBox3"))
+        list5.Add("@СрокОкончКонтр", arrtmask("MaskedTextBox5"))
+        list5.Add("@Приказ", НПриказа)
+        list5.Add("@Датаприказа", arrtmask("MaskedTextBox3"))
+
+        Updates(stroka:="INSERT INTO ДогСотрудн(IDСотр,Контракт,ДатаКонтракта,СрокОкончКонтр,Приказ,Датаприказа)
+VALUES(@IDСотр,@Контракт,@ДатаКонтракта,@СрокОкончКонтр,@Приказ,@Датаприказа)", list5, "ДогСотрудн")
+
 
         If arrtbox("TextBox25") <> "" Then
             дети(idClient)
         End If
-
-        Parallel.Invoke(Sub() RunMoving2())
 
         Статистика(Trim(arrtbox("TextBox1")) & " " & Trim(arrtbox("TextBox2")) & " " & Trim(arrtbox("TextBox3")), "Добавление нового сотрудника", combx1)
 
@@ -5575,20 +5580,6 @@ FROM СоставСемьи"
             TextBox61.Text = ""
             TextBox62.Text = ""
             TextBox63.Text = ""
-            CheckBox9.Checked = False
-            CheckBox10.Checked = False
-            CheckBox11.Checked = False
-            CheckBox21.Checked = False
-            CheckBox20.Checked = False
-            CheckBox19.Checked = False
-            CheckBox18.Checked = False
-            CheckBox15.Checked = False
-            CheckBox14.Checked = False
-            CheckBox13.Checked = False
-            CheckBox12.Checked = False
-            CheckBox16.Checked = False
-            CheckBox17.Checked = False
-            CheckBox22.Checked = False
             ListBox1.Items.Clear()
             TextBox39.Text = ""
         End If
@@ -5601,6 +5592,58 @@ FROM СоставСемьи"
             Label98.Text = "Старая фамилия ( " & ds(0).Item(32).ToString & " ) была до " & Strings.Left(ds(0).Item(40).ToString, 10)
         End If
     End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        If RichTextBox2.Text = "" Then
+            MessageBox.Show("Введите должность!", Рик)
+            Exit Sub
+        End If
+        Dim ds = dtDogPodrDoljnostAll.Select("Клиент='" & ComboBox1.Text & "' And Должность ='" & RichTextBox2.Text & "'")
+        If ds.Length > 0 Then
+            If MessageBox.Show("Должность " & RichTextBox2.Text & " уже существует!" & vbCrLf & "Содать новую?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+                Exit Sub
+            End If
+        End If
+        Dim list As New Dictionary(Of String, Object)
+        list.Add("@Клиент", ComboBox1.Text)
+        list.Add("@Должность", RichTextBox2.Text)
+        'Содаем новую должность
+        idДолжность = Updates(stroka:="INSERT INTO ДогПодДолжн(Клиент,Должность)
+VALUES(@Клиент,@Должность);SELECT SCOPE_IDENTITY()", list, "ДогПодДолжн", 1)
+        RichTextBox2.Text = ""
+        MessageBox.Show("Должность добавлена!", Рик)
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        If RichTextBox2.Text = "" Then
+            MessageBox.Show("Выберите должность для изменения!", Рик)
+            Exit Sub
+        End If
+        Dim list As New Dictionary(Of String, Object)
+        list.Add("@Код", idДолжность)
+        list.Add("@Должность", RichTextBox2.Text)
+        'Содаем новую должность
+        Updates(stroka:="UPDATE ДогПодДолжн SET Должность=@Должность WHERE Код=@Код", list, "ДогПодДолжн")
+        MessageBox.Show("Должность изменена!", Рик)
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        If RichTextBox2.Text = "" Then
+            MessageBox.Show("Выберите должность для удаления!", Рик)
+            Exit Sub
+        End If
+
+        If MessageBox.Show("Удалить должность " & RichTextBox2.Text & " и её обязанности?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
+        End If
+        Dim list As New Dictionary(Of String, Object)
+        list.Add("@Код", idДолжность)
+
+        'Содаем новую должность
+        Updates(stroka:="DELETE ДогПодДолжн WHERE Код=@Код", list, "ДогПодДолжн")
+        MessageBox.Show("Должность удалена!", Рик)
+    End Sub
+
     Private Sub УскорИзменСотр()
 
         Dim ds = dtSotrudnikiAll.Select("КодСотрудники= " & КодСотрудника & "")
@@ -6424,74 +6467,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         End If
     End Sub
 
-    Private Sub CheckBox9_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox9.CheckedChanged
-        If CheckBox9.Checked = True Then
-            TextBox64.Visible = True
-            CheckBox10.Visible = True
-            CheckBox10.Enabled = False
-        Else
-            TextBox64.Visible = False
-            CheckBox10.Visible = False
-            TextBox64.Text = ""
-        End If
-    End Sub
 
-    Private Sub CheckBox8_CheckedChanged(sender As Object, e As EventArgs)
-        'If CheckBox8.Checked = True Then
-        '    GroupBox19.Visible = True
-        '    CheckBox24.Checked = False
-        '    Button2.Visible = False
-        '    TextBox63.Text = ""
-        'Else
-        '    GroupBox19.Visible = False
-        '    Button2.Visible = True
-        'End If
-    End Sub
-
-    Private Sub GroupBox19_Enter(sender As Object, e As EventArgs) Handles GroupBox19.Enter
-
-    End Sub
-
-    Private Sub CheckBox10_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox10.CheckedChanged
-        If CheckBox10.Checked = True Then
-            TextBox65.Visible = True
-            CheckBox11.Visible = True
-            CheckBox9.Enabled = False
-            CheckBox11.Enabled = False
-        Else
-            TextBox65.Visible = False
-            CheckBox11.Visible = False
-            TextBox65.Text = ""
-            CheckBox9.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox11_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox11.CheckedChanged
-        If CheckBox11.Checked = True Then
-            TextBox66.Visible = True
-            CheckBox20.Visible = True
-            CheckBox10.Enabled = False
-            CheckBox20.Enabled = False
-        Else
-            TextBox66.Visible = False
-            CheckBox20.Visible = False
-            TextBox66.Text = ""
-            CheckBox10.Enabled = True
-        End If
-    End Sub
-
-    Private Sub ComboBox17_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox17.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub MaskedTextBox3_MaskInputRejected(sender As Object, e As MaskInputRejectedEventArgs) Handles MaskedTextBox3.MaskInputRejected
-        'Dim messageBoxVB As New System.Text.StringBuilder()
-        'messageBoxVB.AppendFormat("{0} = {1}", "Position", e.Position)
-        'messageBoxVB.AppendLine()
-        'messageBoxVB.AppendFormat("{0} = {1}", "RejectionHint", e.RejectionHint)
-        'messageBoxVB.AppendLine()
-        'MessageBox.Show(messageBoxVB.ToString(), "MaskInputRejected Event")
-    End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         'If CheckBox8.Checked = True Then
@@ -6593,160 +6569,6 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             End If
         End If
     End Sub
-
-    Private Sub CheckBox20_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox20.CheckedChanged
-        If CheckBox20.Checked = True Then
-            TextBox67.Visible = True
-            CheckBox19.Visible = True
-            CheckBox11.Enabled = False
-            CheckBox19.Enabled = False
-        Else
-            TextBox67.Visible = False
-            CheckBox19.Visible = False
-            TextBox67.Text = ""
-            CheckBox11.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox19_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox19.CheckedChanged
-        If CheckBox19.Checked = True Then
-            TextBox73.Visible = True
-            CheckBox18.Visible = True
-            CheckBox20.Enabled = False
-            CheckBox18.Enabled = False
-        Else
-            TextBox73.Visible = False
-            CheckBox18.Visible = False
-            TextBox73.Text = ""
-            CheckBox20.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox18_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox18.CheckedChanged
-        If CheckBox18.Checked = True Then
-            TextBox72.Visible = True
-            CheckBox21.Visible = True
-            CheckBox19.Enabled = False
-            CheckBox21.Enabled = False
-        Else
-            TextBox72.Visible = False
-            CheckBox21.Visible = False
-            TextBox72.Text = ""
-            CheckBox19.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox21_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox21.CheckedChanged
-        If CheckBox21.Checked = True Then
-            TextBox76.Visible = True
-            CheckBox14.Visible = True
-            CheckBox18.Enabled = False
-            CheckBox14.Enabled = False
-        Else
-            TextBox76.Visible = False
-            CheckBox14.Visible = False
-            TextBox76.Text = ""
-            CheckBox18.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox14_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox14.CheckedChanged
-        If CheckBox14.Checked = True Then
-            TextBox71.Visible = True
-            CheckBox13.Visible = True
-            CheckBox21.Enabled = False
-            CheckBox13.Enabled = False
-        Else
-            TextBox71.Visible = False
-            CheckBox13.Visible = False
-            TextBox71.Text = ""
-            CheckBox21.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox13_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox13.CheckedChanged
-        If CheckBox13.Checked = True Then
-            TextBox70.Visible = True
-            CheckBox15.Visible = True
-            CheckBox14.Enabled = False
-            CheckBox15.Enabled = False
-        Else
-            TextBox70.Visible = False
-            CheckBox15.Visible = False
-            TextBox70.Text = ""
-            CheckBox14.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox15_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox15.CheckedChanged
-        If CheckBox15.Checked = True Then
-            TextBox69.Visible = True
-            CheckBox12.Visible = True
-            CheckBox13.Enabled = False
-            CheckBox12.Enabled = False
-        Else
-            TextBox69.Visible = False
-            CheckBox12.Visible = False
-            TextBox69.Text = ""
-            CheckBox13.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox12_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox12.CheckedChanged
-        If CheckBox12.Checked = True Then
-            TextBox68.Visible = True
-            CheckBox16.Visible = True
-            CheckBox15.Enabled = False
-            CheckBox16.Enabled = False
-        Else
-            TextBox68.Visible = False
-            CheckBox16.Visible = False
-            TextBox68.Text = ""
-            CheckBox15.Enabled = True
-        End If
-    End Sub
-    Private Sub CheckBox16_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox16.CheckedChanged
-        If CheckBox16.Checked = True Then
-            TextBox75.Visible = True
-            CheckBox17.Visible = True
-            CheckBox12.Enabled = False
-            CheckBox17.Enabled = False
-        Else
-            TextBox75.Visible = False
-            CheckBox17.Visible = False
-            TextBox75.Text = ""
-            CheckBox12.Enabled = True
-        End If
-    End Sub
-
-
-    Private Sub CheckBox17_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox17.CheckedChanged
-        If CheckBox17.Checked = True Then
-            TextBox74.Visible = True
-            CheckBox22.Visible = True
-            CheckBox16.Enabled = False
-            CheckBox22.Enabled = False
-        Else
-            TextBox74.Visible = False
-            CheckBox22.Visible = False
-            TextBox74.Text = ""
-            CheckBox16.Enabled = True
-        End If
-    End Sub
-
-    Private Sub CheckBox22_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox22.CheckedChanged
-        If CheckBox22.Checked = True Then
-            TextBox77.Visible = True
-
-            CheckBox17.Enabled = False
-        Else
-            TextBox77.Visible = False
-
-            TextBox77.Text = ""
-            CheckBox17.Enabled = True
-        End If
-    End Sub
-
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim Err As String = ""
         Dim StrSql2 As String = "Select Клиент, Должность From ДогПодДолжн Where Должность ='" & Me.TextBox63.Text & "' AND Клиент = '" & ComboBox1.Text & "'"
@@ -6781,62 +6603,6 @@ Where Должность ='" & ComboBox22.Text & "' AND Клиент = '" & Comb
 
                 Updates(stroka:="DELETE Обязанности FROM ДогПодрОбязан WHERE ДогПодрОбязан.ID=" & IDsotr2 & "")
 
-                If TextBox64.Text <> "" Then
-                    arr(0) = TextBox64.Text
-                    sd += 1
-                End If
-                If TextBox65.Text <> "" Then
-                    arr(1) = TextBox65.Text
-                    sd += 1
-                End If
-                If TextBox66.Text <> "" Then
-                    arr(2) = TextBox66.Text
-                    sd += 1
-                End If
-                If TextBox67.Text <> "" Then
-                    arr(3) = TextBox67.Text
-                    sd += 1
-                End If
-                If TextBox73.Text <> "" Then
-                    arr(4) = TextBox73.Text
-                    sd += 1
-                End If
-                If TextBox72.Text <> "" Then
-                    arr(5) = TextBox72.Text
-                    sd += 1
-                End If
-                If TextBox76.Text <> "" Then
-                    arr(6) = TextBox76.Text
-                    sd += 1
-                End If
-                If TextBox71.Text <> "" Then
-                    arr(7) = TextBox71.Text
-                    sd += 1
-                End If
-                If TextBox70.Text <> "" Then
-                    arr(8) = TextBox70.Text
-                    sd += 1
-                End If
-                If TextBox69.Text <> "" Then
-                    arr(9) = TextBox69.Text
-                    sd += 1
-                End If
-                If TextBox68.Text <> "" Then
-                    arr(10) = TextBox68.Text
-                    sd += 1
-                End If
-                If TextBox75.Text <> "" Then
-                    arr(11) = TextBox75.Text
-                    sd += 1
-                End If
-                If TextBox74.Text <> "" Then
-                    arr(12) = TextBox74.Text
-                    sd = +1
-                End If
-                If TextBox77.Text <> "" Then
-                    arr(13) = TextBox77.Text
-                    sd += 1
-                End If
 
 
                 For i As Integer = 0 To sd - 1
@@ -6851,65 +6617,6 @@ Where Должность ='" & ComboBox22.Text & "' AND Клиент = '" & Comb
         End If
 
 
-
-
-
-        If TextBox64.Text <> "" Then
-            arr(0) = TextBox64.Text
-            sd += 1
-        End If
-        If TextBox65.Text <> "" Then
-            arr(1) = TextBox65.Text
-            sd += 1
-        End If
-        If TextBox66.Text <> "" Then
-            arr(2) = TextBox66.Text
-            sd += 1
-        End If
-        If TextBox67.Text <> "" Then
-            arr(3) = TextBox67.Text
-            sd += 1
-        End If
-        If TextBox73.Text <> "" Then
-            arr(4) = TextBox73.Text
-            sd += 1
-        End If
-        If TextBox72.Text <> "" Then
-            arr(5) = TextBox72.Text
-            sd += 1
-        End If
-        If TextBox76.Text <> "" Then
-            arr(6) = TextBox76.Text
-            sd += 1
-        End If
-        If TextBox71.Text <> "" Then
-            arr(7) = TextBox71.Text
-            sd += 1
-        End If
-        If TextBox70.Text <> "" Then
-            arr(8) = TextBox70.Text
-            sd += 1
-        End If
-        If TextBox69.Text <> "" Then
-            arr(9) = TextBox69.Text
-            sd += 1
-        End If
-        If TextBox68.Text <> "" Then
-            arr(10) = TextBox68.Text
-            sd += 1
-        End If
-        If TextBox75.Text <> "" Then
-            arr(11) = TextBox75.Text
-            sd += 1
-        End If
-        If TextBox74.Text <> "" Then
-            arr(12) = TextBox74.Text
-            sd = +1
-        End If
-        If TextBox77.Text <> "" Then
-            arr(13) = TextBox77.Text
-            sd += 1
-        End If
 
         'вставляем в базу должность
         Updates(stroka:="INSERT INTO ДогПодДолжн(Клиент,Должность) VALUES('" & ComboBox1.Text & "','" & Me.TextBox63.Text & "')")
@@ -6941,65 +6648,6 @@ Where Должность ='" & ComboBox22.Text & "' AND Клиент = '" & Comb
         РасчПер()
 
     End Sub
-
-    Private Sub TextBox65_TextChanged(sender As Object, e As EventArgs) Handles TextBox65.TextChanged
-        If TextBox65.Text <> "" Then
-            CheckBox11.Enabled = True
-        Else
-            CheckBox11.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox64_TextChanged(sender As Object, e As EventArgs) Handles TextBox64.TextChanged
-        If TextBox64.Text <> "" Then
-            CheckBox10.Enabled = True
-            Button3.Visible = True
-        Else
-            CheckBox10.Enabled = False
-            Button3.Visible = False
-        End If
-    End Sub
-
-    Private Sub TextBox66_TextChanged(sender As Object, e As EventArgs) Handles TextBox66.TextChanged
-        If TextBox66.Text <> "" Then
-            CheckBox20.Enabled = True
-        Else
-            CheckBox20.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox67_TextChanged(sender As Object, e As EventArgs) Handles TextBox67.TextChanged
-        If TextBox67.Text <> "" Then
-            CheckBox19.Enabled = True
-        Else
-            CheckBox19.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox73_TextChanged(sender As Object, e As EventArgs) Handles TextBox73.TextChanged
-        If TextBox73.Text <> "" Then
-            CheckBox18.Enabled = True
-        Else
-            CheckBox18.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox72_TextChanged(sender As Object, e As EventArgs) Handles TextBox72.TextChanged
-        If TextBox72.Text <> "" Then
-            CheckBox21.Enabled = True
-        Else
-            CheckBox21.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox76_TextChanged(sender As Object, e As EventArgs) Handles TextBox76.TextChanged
-        If TextBox76.Text <> "" Then
-            CheckBox14.Enabled = True
-        Else
-            CheckBox14.Enabled = False
-        End If
-    End Sub
-
     Private Sub ComboBox19_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox19.SelectedIndexChanged
 
 
@@ -7070,46 +6718,6 @@ Where Должность ='" & ComboBox22.Text & "' AND Клиент = '" & Comb
         End If
 
     End Sub
-    Private Sub TextBox71_TextChanged(sender As Object, e As EventArgs) Handles TextBox71.TextChanged
-        If TextBox71.Text <> "" Then
-            CheckBox13.Enabled = True
-        Else
-            CheckBox13.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox70_TextChanged(sender As Object, e As EventArgs) Handles TextBox70.TextChanged
-        If TextBox70.Text <> "" Then
-            CheckBox15.Enabled = True
-        Else
-            CheckBox15.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox69_TextChanged(sender As Object, e As EventArgs) Handles TextBox69.TextChanged
-        If TextBox69.Text <> "" Then
-            CheckBox12.Enabled = True
-        Else
-            CheckBox12.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox68_TextChanged(sender As Object, e As EventArgs) Handles TextBox68.TextChanged
-        If TextBox68.Text <> "" Then
-            CheckBox16.Enabled = True
-        Else
-            CheckBox16.Enabled = False
-        End If
-    End Sub
-
-    Private Sub TextBox75_TextChanged(sender As Object, e As EventArgs) Handles TextBox75.TextChanged
-        If TextBox75.Text <> "" Then
-            CheckBox17.Enabled = True
-        Else
-            CheckBox17.Enabled = False
-        End If
-    End Sub
-
     Private Sub TextBox34_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox34.KeyDown
         If e.KeyCode = Keys.Enter Then
             e.SuppressKeyPress = True
@@ -7493,13 +7101,7 @@ Where ШтОтделы.Отделы ='" & Отдел & "' AND ШтСвод.До�
         End If
     End Sub
 
-    Private Sub TextBox74_TextChanged(sender As Object, e As EventArgs) Handles TextBox74.TextChanged
-        If TextBox74.Text <> "" Then
-            CheckBox22.Enabled = True
-        Else
-            CheckBox22.Enabled = False
-        End If
-    End Sub
+
 
     Private Sub CheckBox25_CheckedChanged(sender As Object, e As EventArgs)
         'Dim IDLДогПодрОбяз2 As Integer
@@ -7782,55 +7384,13 @@ WHERE ШтОтделы.Клиент='" & Клиент & "' AND ШтОтделы.
     End Sub
     Private Sub refrdoljn()
         GroupBox19.Visible = False
-        TextBox64.Visible = False
-        TextBox65.Visible = False
-        TextBox66.Visible = False
-        TextBox67.Visible = False
-        TextBox73.Visible = False
-        TextBox72.Visible = False
-        TextBox76.Visible = False
-        TextBox71.Visible = False
-        TextBox70.Visible = False
-        TextBox69.Visible = False
-        TextBox68.Visible = False
-        TextBox75.Visible = False
-        TextBox74.Visible = False
-        TextBox77.Visible = False
 
-
-        TextBox64.Text = ""
-        TextBox65.Text = ""
-        TextBox66.Text = ""
-        TextBox67.Text = ""
-        TextBox73.Text = ""
-        TextBox72.Text = ""
-        TextBox76.Text = ""
-        TextBox71.Text = ""
-        TextBox70.Text = ""
-        TextBox69.Text = ""
-        TextBox68.Text = ""
-        TextBox75.Text = ""
-        TextBox74.Text = ""
-        TextBox77.Text = ""
 
         'If CheckBox25.Checked = True Then
         '    ComboBox22.Text = ""
         'End If
 
-        CheckBox9.Checked = False
-        CheckBox10.Checked = False
-        CheckBox11.Checked = False
-        CheckBox20.Checked = False
-        CheckBox19.Checked = False
-        CheckBox18.Checked = False
-        CheckBox21.Checked = False
-        CheckBox14.Checked = False
-        CheckBox13.Checked = False
-        CheckBox15.Checked = False
-        CheckBox12.Checked = False
-        CheckBox16.Checked = False
-        CheckBox17.Checked = False
-        CheckBox22.Checked = False
+
 
         CheckBox24.Checked = False
         'CheckBox8.Checked = False
@@ -7879,50 +7439,23 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
         If CheckBox24.Checked = True Then
             'CheckBox8.Checked = False
             GroupBox19.Visible = True
-            Label75.Visible = False
-            TextBox63.Visible = False
+            'Label75.Visible = False
+            'TextBox63.Visible = False
             Button3.Enabled = False
             Button2.Visible = True
         Else
             GroupBox19.Visible = False
-            Label75.Visible = True
-            TextBox63.Visible = True
+            'Label75.Visible = True
+            'TextBox63.Visible = True
             Button3.Enabled = True
             Button2.Visible = False
 
-            TextBox64.Text = ""
-            TextBox65.Text = ""
-            TextBox66.Text = ""
-            TextBox67.Text = ""
-            TextBox73.Text = ""
-            TextBox72.Text = ""
-            TextBox76.Text = ""
-            TextBox71.Text = ""
-            TextBox70.Text = ""
-            TextBox69.Text = ""
-            TextBox68.Text = ""
-            TextBox75.Text = ""
-            TextBox74.Text = ""
-            TextBox77.Text = ""
+
             Exit Sub
 
         End If
-        TextBox64.Text = ""
-        TextBox65.Text = ""
-        TextBox66.Text = ""
-        TextBox67.Text = ""
-        TextBox73.Text = ""
-        TextBox72.Text = ""
-        TextBox76.Text = ""
-        TextBox71.Text = ""
-        TextBox70.Text = ""
-        TextBox69.Text = ""
-        TextBox68.Text = ""
-        TextBox75.Text = ""
-        TextBox74.Text = ""
-        TextBox77.Text = ""
 
-
+        Exit Sub
         'Соед(0)
 
         Dim ds As DataTable = Selects(StrSql:="SELECT ДогПодрОбязан.Обязанности, ДогПодрОбязан.ID, ДогПодрОбязан.Код
@@ -7934,63 +7467,16 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
         'Соед(0)
 
 
-        Try
-            TextBox64.Text = ds.Rows(0).Item(0).ToString
-            TextBox65.Text = ds.Rows(1).Item(0).ToString
-            TextBox66.Text = ds.Rows(2).Item(0).ToString
-            TextBox67.Text = ds.Rows(3).Item(0).ToString
-            TextBox73.Text = ds.Rows(4).Item(0).ToString
-            TextBox72.Text = ds.Rows(5).Item(0).ToString
-            TextBox76.Text = ds.Rows(6).Item(0).ToString
-            TextBox71.Text = ds.Rows(7).Item(0).ToString
-            TextBox70.Text = ds.Rows(8).Item(0).ToString
-            TextBox69.Text = ds.Rows(9).Item(0).ToString
-            TextBox68.Text = ds.Rows(10).Item(0).ToString
-            TextBox75.Text = ds.Rows(11).Item(0).ToString
-            TextBox74.Text = ds.Rows(12).Item(0).ToString
-            TextBox77.Text = ds.Rows(13).Item(0).ToString
-        Catch ex As Exception
 
-        End Try
-        TextBox64.Visible = True
-        TextBox65.Visible = True
-        TextBox66.Visible = True
-        TextBox67.Visible = True
-        TextBox73.Visible = True
-        TextBox72.Visible = True
-        TextBox76.Visible = True
-        TextBox71.Visible = True
-        TextBox70.Visible = True
-        TextBox69.Visible = True
-        TextBox68.Visible = True
-        TextBox75.Visible = True
-        TextBox74.Visible = True
-        TextBox77.Visible = True
-
-        Dim HS1 As New HashSet(Of String)
-
-        HS1.Add(TextBox64.Text)
-        HS1.Add(TextBox65.Text)
-        HS1.Add(TextBox66.Text)
-        HS1.Add(TextBox67.Text)
-        HS1.Add(TextBox73.Text)
-        HS1.Add(TextBox72.Text)
-        HS1.Add(TextBox71.Text)
-        HS1.Add(TextBox70.Text)
-        HS1.Add(TextBox69.Text)
-        HS1.Add(TextBox68.Text)
-        HS1.Add(TextBox75.Text)
-        HS1.Add(TextBox74.Text)
-        HS1.Add(TextBox77.Text)
 
         'hscol = HS1.LongCount
         'For ia As Integer = 0 To HS.Count - 1
         '    Console.WriteLine(a(ia))
         'Next
         'hscol2 = hscol + 0
-
-        Dim ms() As String = {TextBox64.Text, TextBox65.Text, TextBox66.Text, TextBox67.Text, TextBox73.Text, TextBox72.Text, TextBox71.Text, TextBox70.Text,
-            TextBox69.Text, TextBox68.Text, TextBox75.Text, TextBox74.Text, TextBox77.Text}
+        Dim ms() As String
+        'Dim ms() As String = {TextBox64.Text, TextBox65.Text, TextBox66.Text, TextBox67.Text, TextBox73.Text, TextBox72.Text, TextBox71.Text, TextBox70.Text,
+        '    TextBox69.Text, TextBox68.Text, TextBox75.Text, TextBox74.Text, TextBox77.Text}
 
         For i As Integer = 0 To ms.Length - 1
             If ms(i) = "" Then
@@ -8021,8 +7507,9 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
         Dim IDLДогПодрОбяз2 As Integer = ds.Rows(0).Item(0)
 
         Dim hscol3 As Integer
-        Dim ms2() As String = {TextBox64.Text, TextBox65.Text, TextBox66.Text, TextBox67.Text, TextBox73.Text, TextBox72.Text, TextBox75.Text, TextBox71.Text, TextBox70.Text,
-            TextBox69.Text, TextBox68.Text, TextBox75.Text, TextBox74.Text, TextBox77.Text}
+        Dim ms2() As String
+        '{TextBox64.Text, TextBox65.Text, TextBox66.Text, TextBox67.Text, TextBox73.Text, TextBox72.Text, TextBox75.Text, TextBox71.Text, TextBox70.Text,
+        'TextBox69.Text, TextBox68.Text, TextBox75.Text, TextBox74.Text, TextBox77.Text}
         hscol2 = 0
         For i As Integer = 0 To ms2.Length - 1
             If ms2(i) = "" Then
@@ -8507,16 +7994,6 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
         If e.KeyCode = Keys.Enter Then
             e.SuppressKeyPress = True
             Me.TextBox62.Focus()
-        End If
-    End Sub
-
-
-
-    Private Sub TextBox63_TextChanged(sender As Object, e As EventArgs) Handles TextBox63.TextChanged
-        If TextBox63.Text <> "" Then
-            CheckBox9.Visible = True
-        Else
-            CheckBox9.Visible = False
         End If
     End Sub
 

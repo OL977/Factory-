@@ -22,6 +22,7 @@ Partial Class Прием
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Прием))
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -38,38 +39,21 @@ Partial Class Прием
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.RichTextBox2 = New System.Windows.Forms.RichTextBox()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Button15 = New System.Windows.Forms.Button()
+        Me.Button14 = New System.Windows.Forms.Button()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.ComboBox29 = New System.Windows.Forms.ComboBox()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.Button18 = New System.Windows.Forms.Button()
+        Me.Button19 = New System.Windows.Forms.Button()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Grid1 = New System.Windows.Forms.DataGridView()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.CheckBox22 = New System.Windows.Forms.CheckBox()
-        Me.TextBox77 = New System.Windows.Forms.TextBox()
-        Me.CheckBox21 = New System.Windows.Forms.CheckBox()
-        Me.TextBox76 = New System.Windows.Forms.TextBox()
-        Me.CheckBox18 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox16 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox19 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox17 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox20 = New System.Windows.Forms.CheckBox()
-        Me.TextBox74 = New System.Windows.Forms.TextBox()
-        Me.TextBox72 = New System.Windows.Forms.TextBox()
-        Me.TextBox75 = New System.Windows.Forms.TextBox()
-        Me.TextBox73 = New System.Windows.Forms.TextBox()
-        Me.CheckBox15 = New System.Windows.Forms.CheckBox()
-        Me.TextBox67 = New System.Windows.Forms.TextBox()
-        Me.CheckBox12 = New System.Windows.Forms.CheckBox()
-        Me.TextBox66 = New System.Windows.Forms.TextBox()
-        Me.CheckBox13 = New System.Windows.Forms.CheckBox()
-        Me.TextBox65 = New System.Windows.Forms.TextBox()
-        Me.CheckBox14 = New System.Windows.Forms.CheckBox()
-        Me.TextBox68 = New System.Windows.Forms.TextBox()
-        Me.TextBox64 = New System.Windows.Forms.TextBox()
-        Me.TextBox69 = New System.Windows.Forms.TextBox()
-        Me.CheckBox11 = New System.Windows.Forms.CheckBox()
-        Me.TextBox70 = New System.Windows.Forms.TextBox()
-        Me.CheckBox10 = New System.Windows.Forms.CheckBox()
-        Me.TextBox71 = New System.Windows.Forms.TextBox()
-        Me.CheckBox9 = New System.Windows.Forms.CheckBox()
-        Me.Label75 = New System.Windows.Forms.Label()
-        Me.TextBox63 = New System.Windows.Forms.TextBox()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
         Me.Label97 = New System.Windows.Forms.Label()
         Me.ComboBox27 = New System.Windows.Forms.ComboBox()
@@ -82,6 +66,8 @@ Partial Class Прием
         Me.Label43 = New System.Windows.Forms.Label()
         Me.TextBox61 = New System.Windows.Forms.TextBox()
         Me.GroupBox16 = New System.Windows.Forms.GroupBox()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Button13 = New System.Windows.Forms.Button()
         Me.TextBox39 = New System.Windows.Forms.TextBox()
         Me.GroupBox24 = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -287,6 +273,10 @@ Partial Class Прием
         Me.GroupBox13.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox19.SuspendLayout()
+        Me.TabControl2.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        CType(Me.Grid1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox17.SuspendLayout()
         Me.GroupBox16.SuspendLayout()
         Me.GroupBox24.SuspendLayout()
@@ -475,38 +465,10 @@ Partial Class Прием
         'GroupBox19
         '
         Me.GroupBox19.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.GroupBox19.Controls.Add(Me.TabControl2)
+        Me.GroupBox19.Controls.Add(Me.Grid1)
         Me.GroupBox19.Controls.Add(Me.Button2)
         Me.GroupBox19.Controls.Add(Me.Button3)
-        Me.GroupBox19.Controls.Add(Me.CheckBox22)
-        Me.GroupBox19.Controls.Add(Me.TextBox77)
-        Me.GroupBox19.Controls.Add(Me.CheckBox21)
-        Me.GroupBox19.Controls.Add(Me.TextBox76)
-        Me.GroupBox19.Controls.Add(Me.CheckBox18)
-        Me.GroupBox19.Controls.Add(Me.CheckBox16)
-        Me.GroupBox19.Controls.Add(Me.CheckBox19)
-        Me.GroupBox19.Controls.Add(Me.CheckBox17)
-        Me.GroupBox19.Controls.Add(Me.CheckBox20)
-        Me.GroupBox19.Controls.Add(Me.TextBox74)
-        Me.GroupBox19.Controls.Add(Me.TextBox72)
-        Me.GroupBox19.Controls.Add(Me.TextBox75)
-        Me.GroupBox19.Controls.Add(Me.TextBox73)
-        Me.GroupBox19.Controls.Add(Me.CheckBox15)
-        Me.GroupBox19.Controls.Add(Me.TextBox67)
-        Me.GroupBox19.Controls.Add(Me.CheckBox12)
-        Me.GroupBox19.Controls.Add(Me.TextBox66)
-        Me.GroupBox19.Controls.Add(Me.CheckBox13)
-        Me.GroupBox19.Controls.Add(Me.TextBox65)
-        Me.GroupBox19.Controls.Add(Me.CheckBox14)
-        Me.GroupBox19.Controls.Add(Me.TextBox68)
-        Me.GroupBox19.Controls.Add(Me.TextBox64)
-        Me.GroupBox19.Controls.Add(Me.TextBox69)
-        Me.GroupBox19.Controls.Add(Me.CheckBox11)
-        Me.GroupBox19.Controls.Add(Me.TextBox70)
-        Me.GroupBox19.Controls.Add(Me.CheckBox10)
-        Me.GroupBox19.Controls.Add(Me.TextBox71)
-        Me.GroupBox19.Controls.Add(Me.CheckBox9)
-        Me.GroupBox19.Controls.Add(Me.Label75)
-        Me.GroupBox19.Controls.Add(Me.TextBox63)
         Me.GroupBox19.Location = New System.Drawing.Point(12, 294)
         Me.GroupBox19.Name = "GroupBox19"
         Me.GroupBox19.Size = New System.Drawing.Size(1277, 294)
@@ -515,15 +477,160 @@ Partial Class Прием
         Me.GroupBox19.Text = "Добавление"
         Me.GroupBox19.Visible = False
         '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage4)
+        Me.TabControl2.Controls.Add(Me.TabPage5)
+        Me.TabControl2.Location = New System.Drawing.Point(18, 24)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(506, 250)
+        Me.TabControl2.TabIndex = 107
+        '
+        'TabPage4
+        '
+        Me.TabPage4.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.TabPage4.Controls.Add(Me.RichTextBox2)
+        Me.TabPage4.Controls.Add(Me.Button16)
+        Me.TabPage4.Controls.Add(Me.Button15)
+        Me.TabPage4.Controls.Add(Me.Button14)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 26)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(498, 220)
+        Me.TabPage4.TabIndex = 0
+        Me.TabPage4.Text = "Должность"
+        '
+        'RichTextBox2
+        '
+        Me.RichTextBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox2.Location = New System.Drawing.Point(6, 6)
+        Me.RichTextBox2.Name = "RichTextBox2"
+        Me.RichTextBox2.Size = New System.Drawing.Size(486, 46)
+        Me.RichTextBox2.TabIndex = 73
+        Me.RichTextBox2.Text = ""
+        '
+        'Button16
+        '
+        Me.Button16.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button16.Location = New System.Drawing.Point(102, 67)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(90, 30)
+        Me.Button16.TabIndex = 72
+        Me.Button16.Text = "Изменить"
+        Me.Button16.UseVisualStyleBackColor = False
+        '
+        'Button15
+        '
+        Me.Button15.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button15.Location = New System.Drawing.Point(198, 67)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(90, 30)
+        Me.Button15.TabIndex = 71
+        Me.Button15.Text = "Удалить"
+        Me.Button15.UseVisualStyleBackColor = False
+        '
+        'Button14
+        '
+        Me.Button14.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button14.Location = New System.Drawing.Point(6, 67)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(90, 30)
+        Me.Button14.TabIndex = 70
+        Me.Button14.Text = "Добавить"
+        Me.Button14.UseVisualStyleBackColor = False
+        '
+        'TabPage5
+        '
+        Me.TabPage5.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.TabPage5.Controls.Add(Me.ComboBox29)
+        Me.TabPage5.Controls.Add(Me.Button17)
+        Me.TabPage5.Controls.Add(Me.Button18)
+        Me.TabPage5.Controls.Add(Me.Button19)
+        Me.TabPage5.Controls.Add(Me.RichTextBox1)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 26)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage5.Size = New System.Drawing.Size(498, 220)
+        Me.TabPage5.TabIndex = 1
+        Me.TabPage5.Text = "Обязанность"
+        '
+        'ComboBox29
+        '
+        Me.ComboBox29.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox29.FormattingEnabled = True
+        Me.ComboBox29.Location = New System.Drawing.Point(8, 15)
+        Me.ComboBox29.Name = "ComboBox29"
+        Me.ComboBox29.Size = New System.Drawing.Size(484, 25)
+        Me.ComboBox29.TabIndex = 110
+        '
+        'Button17
+        '
+        Me.Button17.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button17.Location = New System.Drawing.Point(107, 177)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(90, 30)
+        Me.Button17.TabIndex = 109
+        Me.Button17.Text = "Изменить"
+        Me.Button17.UseVisualStyleBackColor = False
+        '
+        'Button18
+        '
+        Me.Button18.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button18.Location = New System.Drawing.Point(203, 177)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(90, 30)
+        Me.Button18.TabIndex = 108
+        Me.Button18.Text = "Удалить"
+        Me.Button18.UseVisualStyleBackColor = False
+        '
+        'Button19
+        '
+        Me.Button19.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button19.Location = New System.Drawing.Point(11, 177)
+        Me.Button19.Name = "Button19"
+        Me.Button19.Size = New System.Drawing.Size(90, 30)
+        Me.Button19.TabIndex = 107
+        Me.Button19.Text = "Добавить"
+        Me.Button19.UseVisualStyleBackColor = False
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox1.Location = New System.Drawing.Point(6, 46)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(486, 125)
+        Me.RichTextBox1.TabIndex = 106
+        Me.RichTextBox1.Text = ""
+        '
+        'Grid1
+        '
+        Me.Grid1.AllowUserToAddRows = False
+        Me.Grid1.AllowUserToDeleteRows = False
+        Me.Grid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Grid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.Grid1.BackgroundColor = System.Drawing.SystemColors.InactiveBorder
+        Me.Grid1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Grid1.Location = New System.Drawing.Point(530, 50)
+        Me.Grid1.Name = "Grid1"
+        Me.Grid1.ReadOnly = True
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.Grid1.Size = New System.Drawing.Size(481, 224)
+        Me.Grid1.TabIndex = 103
+        '
         'Button2
         '
         Me.Button2.AutoSize = True
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Button2.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Button2.Location = New System.Drawing.Point(360, 21)
+        Me.Button2.Location = New System.Drawing.Point(714, 12)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(153, 28)
+        Me.Button2.Size = New System.Drawing.Size(153, 31)
         Me.Button2.TabIndex = 66
         Me.Button2.Text = "Сохранить изменение"
         Me.Button2.UseVisualStyleBackColor = False
@@ -534,357 +641,14 @@ Partial Class Прием
         Me.Button3.AutoSize = True
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Button3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Button3.Location = New System.Drawing.Point(521, 21)
+        Me.Button3.Location = New System.Drawing.Point(904, 15)
         Me.Button3.Margin = New System.Windows.Forms.Padding(4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(97, 28)
+        Me.Button3.Size = New System.Drawing.Size(78, 28)
         Me.Button3.TabIndex = 65
         Me.Button3.Text = "Добавить"
         Me.Button3.UseVisualStyleBackColor = False
         Me.Button3.Visible = False
-        '
-        'CheckBox22
-        '
-        Me.CheckBox22.AutoSize = True
-        Me.CheckBox22.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox22.Location = New System.Drawing.Point(1158, 251)
-        Me.CheckBox22.Name = "CheckBox22"
-        Me.CheckBox22.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox22.TabIndex = 102
-        Me.CheckBox22.Text = "Обязанности"
-        Me.CheckBox22.UseVisualStyleBackColor = True
-        Me.CheckBox22.Visible = False
-        '
-        'TextBox77
-        '
-        Me.TextBox77.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox77.Location = New System.Drawing.Point(642, 247)
-        Me.TextBox77.Multiline = True
-        Me.TextBox77.Name = "TextBox77"
-        Me.TextBox77.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox77.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox77.TabIndex = 101
-        Me.TextBox77.Visible = False
-        '
-        'CheckBox21
-        '
-        Me.CheckBox21.AutoSize = True
-        Me.CheckBox21.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox21.Location = New System.Drawing.Point(521, 252)
-        Me.CheckBox21.Name = "CheckBox21"
-        Me.CheckBox21.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox21.TabIndex = 100
-        Me.CheckBox21.Text = "Обязанности"
-        Me.CheckBox21.UseVisualStyleBackColor = True
-        Me.CheckBox21.Visible = False
-        '
-        'TextBox76
-        '
-        Me.TextBox76.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox76.Location = New System.Drawing.Point(9, 249)
-        Me.TextBox76.Multiline = True
-        Me.TextBox76.Name = "TextBox76"
-        Me.TextBox76.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox76.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox76.TabIndex = 99
-        Me.TextBox76.Visible = False
-        '
-        'CheckBox18
-        '
-        Me.CheckBox18.AutoSize = True
-        Me.CheckBox18.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox18.Location = New System.Drawing.Point(521, 221)
-        Me.CheckBox18.Name = "CheckBox18"
-        Me.CheckBox18.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox18.TabIndex = 98
-        Me.CheckBox18.Text = "Обязанности"
-        Me.CheckBox18.UseVisualStyleBackColor = True
-        Me.CheckBox18.Visible = False
-        '
-        'CheckBox16
-        '
-        Me.CheckBox16.AutoSize = True
-        Me.CheckBox16.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox16.Location = New System.Drawing.Point(1158, 190)
-        Me.CheckBox16.Name = "CheckBox16"
-        Me.CheckBox16.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox16.TabIndex = 95
-        Me.CheckBox16.Text = "Обязанности"
-        Me.CheckBox16.UseVisualStyleBackColor = True
-        Me.CheckBox16.Visible = False
-        '
-        'CheckBox19
-        '
-        Me.CheckBox19.AutoSize = True
-        Me.CheckBox19.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox19.Location = New System.Drawing.Point(521, 190)
-        Me.CheckBox19.Name = "CheckBox19"
-        Me.CheckBox19.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox19.TabIndex = 97
-        Me.CheckBox19.Text = "Обязанности"
-        Me.CheckBox19.UseVisualStyleBackColor = True
-        Me.CheckBox19.Visible = False
-        '
-        'CheckBox17
-        '
-        Me.CheckBox17.AutoSize = True
-        Me.CheckBox17.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox17.Location = New System.Drawing.Point(1158, 220)
-        Me.CheckBox17.Name = "CheckBox17"
-        Me.CheckBox17.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox17.TabIndex = 94
-        Me.CheckBox17.Text = "Обязанности"
-        Me.CheckBox17.UseVisualStyleBackColor = True
-        Me.CheckBox17.Visible = False
-        '
-        'CheckBox20
-        '
-        Me.CheckBox20.AutoSize = True
-        Me.CheckBox20.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox20.Location = New System.Drawing.Point(521, 159)
-        Me.CheckBox20.Name = "CheckBox20"
-        Me.CheckBox20.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox20.TabIndex = 96
-        Me.CheckBox20.Text = "Обязанности"
-        Me.CheckBox20.UseVisualStyleBackColor = True
-        Me.CheckBox20.Visible = False
-        '
-        'TextBox74
-        '
-        Me.TextBox74.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox74.Location = New System.Drawing.Point(642, 218)
-        Me.TextBox74.Multiline = True
-        Me.TextBox74.Name = "TextBox74"
-        Me.TextBox74.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox74.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox74.TabIndex = 93
-        Me.TextBox74.Visible = False
-        '
-        'TextBox72
-        '
-        Me.TextBox72.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox72.Location = New System.Drawing.Point(9, 218)
-        Me.TextBox72.Multiline = True
-        Me.TextBox72.Name = "TextBox72"
-        Me.TextBox72.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox72.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox72.TabIndex = 87
-        Me.TextBox72.Visible = False
-        '
-        'TextBox75
-        '
-        Me.TextBox75.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox75.Location = New System.Drawing.Point(642, 189)
-        Me.TextBox75.Multiline = True
-        Me.TextBox75.Name = "TextBox75"
-        Me.TextBox75.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox75.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox75.TabIndex = 92
-        Me.TextBox75.Visible = False
-        '
-        'TextBox73
-        '
-        Me.TextBox73.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox73.Location = New System.Drawing.Point(9, 187)
-        Me.TextBox73.Multiline = True
-        Me.TextBox73.Name = "TextBox73"
-        Me.TextBox73.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox73.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox73.TabIndex = 86
-        Me.TextBox73.Visible = False
-        '
-        'CheckBox15
-        '
-        Me.CheckBox15.AutoSize = True
-        Me.CheckBox15.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox15.Location = New System.Drawing.Point(1158, 125)
-        Me.CheckBox15.Name = "CheckBox15"
-        Me.CheckBox15.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox15.TabIndex = 91
-        Me.CheckBox15.Text = "Обязанности"
-        Me.CheckBox15.UseVisualStyleBackColor = True
-        Me.CheckBox15.Visible = False
-        '
-        'TextBox67
-        '
-        Me.TextBox67.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox67.Location = New System.Drawing.Point(9, 156)
-        Me.TextBox67.Multiline = True
-        Me.TextBox67.Name = "TextBox67"
-        Me.TextBox67.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox67.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox67.TabIndex = 81
-        Me.TextBox67.Visible = False
-        '
-        'CheckBox12
-        '
-        Me.CheckBox12.AutoSize = True
-        Me.CheckBox12.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox12.Location = New System.Drawing.Point(1158, 156)
-        Me.CheckBox12.Name = "CheckBox12"
-        Me.CheckBox12.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox12.TabIndex = 90
-        Me.CheckBox12.Text = "Обязанности"
-        Me.CheckBox12.UseVisualStyleBackColor = True
-        Me.CheckBox12.Visible = False
-        '
-        'TextBox66
-        '
-        Me.TextBox66.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox66.Location = New System.Drawing.Point(9, 125)
-        Me.TextBox66.Multiline = True
-        Me.TextBox66.Name = "TextBox66"
-        Me.TextBox66.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox66.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox66.TabIndex = 80
-        Me.TextBox66.Visible = False
-        '
-        'CheckBox13
-        '
-        Me.CheckBox13.AutoSize = True
-        Me.CheckBox13.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox13.Location = New System.Drawing.Point(1158, 98)
-        Me.CheckBox13.Name = "CheckBox13"
-        Me.CheckBox13.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox13.TabIndex = 89
-        Me.CheckBox13.Text = "Обязанности"
-        Me.CheckBox13.UseVisualStyleBackColor = True
-        Me.CheckBox13.Visible = False
-        '
-        'TextBox65
-        '
-        Me.TextBox65.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox65.Location = New System.Drawing.Point(9, 94)
-        Me.TextBox65.Multiline = True
-        Me.TextBox65.Name = "TextBox65"
-        Me.TextBox65.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox65.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox65.TabIndex = 79
-        Me.TextBox65.Visible = False
-        '
-        'CheckBox14
-        '
-        Me.CheckBox14.AutoSize = True
-        Me.CheckBox14.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox14.Location = New System.Drawing.Point(1158, 67)
-        Me.CheckBox14.Name = "CheckBox14"
-        Me.CheckBox14.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox14.TabIndex = 88
-        Me.CheckBox14.Text = "Обязанности"
-        Me.CheckBox14.UseVisualStyleBackColor = True
-        Me.CheckBox14.Visible = False
-        '
-        'TextBox68
-        '
-        Me.TextBox68.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox68.Location = New System.Drawing.Point(642, 158)
-        Me.TextBox68.Multiline = True
-        Me.TextBox68.Name = "TextBox68"
-        Me.TextBox68.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox68.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox68.TabIndex = 85
-        Me.TextBox68.Visible = False
-        '
-        'TextBox64
-        '
-        Me.TextBox64.AllowDrop = True
-        Me.TextBox64.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox64.Location = New System.Drawing.Point(9, 63)
-        Me.TextBox64.Multiline = True
-        Me.TextBox64.Name = "TextBox64"
-        Me.TextBox64.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox64.Size = New System.Drawing.Size(506, 25)
-        Me.TextBox64.TabIndex = 78
-        Me.TextBox64.Visible = False
-        '
-        'TextBox69
-        '
-        Me.TextBox69.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox69.Location = New System.Drawing.Point(642, 127)
-        Me.TextBox69.Multiline = True
-        Me.TextBox69.Name = "TextBox69"
-        Me.TextBox69.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox69.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox69.TabIndex = 84
-        Me.TextBox69.Visible = False
-        '
-        'CheckBox11
-        '
-        Me.CheckBox11.AutoSize = True
-        Me.CheckBox11.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox11.Location = New System.Drawing.Point(521, 128)
-        Me.CheckBox11.Name = "CheckBox11"
-        Me.CheckBox11.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox11.TabIndex = 77
-        Me.CheckBox11.Text = "Обязанности"
-        Me.CheckBox11.UseVisualStyleBackColor = True
-        Me.CheckBox11.Visible = False
-        '
-        'TextBox70
-        '
-        Me.TextBox70.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox70.Location = New System.Drawing.Point(642, 96)
-        Me.TextBox70.Multiline = True
-        Me.TextBox70.Name = "TextBox70"
-        Me.TextBox70.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox70.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox70.TabIndex = 83
-        Me.TextBox70.Visible = False
-        '
-        'CheckBox10
-        '
-        Me.CheckBox10.AutoSize = True
-        Me.CheckBox10.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox10.Location = New System.Drawing.Point(521, 98)
-        Me.CheckBox10.Name = "CheckBox10"
-        Me.CheckBox10.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox10.TabIndex = 76
-        Me.CheckBox10.Text = "Обязанности"
-        Me.CheckBox10.UseVisualStyleBackColor = True
-        Me.CheckBox10.Visible = False
-        '
-        'TextBox71
-        '
-        Me.TextBox71.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox71.Location = New System.Drawing.Point(642, 65)
-        Me.TextBox71.Multiline = True
-        Me.TextBox71.Name = "TextBox71"
-        Me.TextBox71.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox71.Size = New System.Drawing.Size(510, 25)
-        Me.TextBox71.TabIndex = 82
-        Me.TextBox71.Visible = False
-        '
-        'CheckBox9
-        '
-        Me.CheckBox9.AutoSize = True
-        Me.CheckBox9.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox9.Location = New System.Drawing.Point(521, 67)
-        Me.CheckBox9.Name = "CheckBox9"
-        Me.CheckBox9.Size = New System.Drawing.Size(108, 21)
-        Me.CheckBox9.TabIndex = 75
-        Me.CheckBox9.Text = "Обязанности"
-        Me.CheckBox9.UseVisualStyleBackColor = True
-        Me.CheckBox9.Visible = False
-        '
-        'Label75
-        '
-        Me.Label75.AutoSize = True
-        Me.Label75.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label75.Location = New System.Drawing.Point(12, 28)
-        Me.Label75.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label75.Name = "Label75"
-        Me.Label75.Size = New System.Drawing.Size(84, 17)
-        Me.Label75.TabIndex = 64
-        Me.Label75.Text = "Должность"
-        '
-        'TextBox63
-        '
-        Me.TextBox63.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.TextBox63.Location = New System.Drawing.Point(100, 24)
-        Me.TextBox63.MaxLength = 15000
-        Me.TextBox63.Name = "TextBox63"
-        Me.TextBox63.Size = New System.Drawing.Size(232, 25)
-        Me.TextBox63.TabIndex = 64
         '
         'GroupBox17
         '
@@ -1008,6 +772,8 @@ Partial Class Прием
         'GroupBox16
         '
         Me.GroupBox16.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.GroupBox16.Controls.Add(Me.Button12)
+        Me.GroupBox16.Controls.Add(Me.Button13)
         Me.GroupBox16.Controls.Add(Me.TextBox39)
         Me.GroupBox16.Controls.Add(Me.GroupBox24)
         Me.GroupBox16.Controls.Add(Me.MaskedTextBox6)
@@ -1019,6 +785,26 @@ Partial Class Прием
         Me.GroupBox16.Size = New System.Drawing.Size(465, 197)
         Me.GroupBox16.TabIndex = 73
         Me.GroupBox16.TabStop = False
+        '
+        'Button12
+        '
+        Me.Button12.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button12.Location = New System.Drawing.Point(360, 78)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(90, 30)
+        Me.Button12.TabIndex = 72
+        Me.Button12.Text = "Удалить"
+        Me.Button12.UseVisualStyleBackColor = False
+        '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button13.Location = New System.Drawing.Point(264, 77)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(90, 30)
+        Me.Button13.TabIndex = 71
+        Me.Button13.Text = "Должность"
+        Me.Button13.UseVisualStyleBackColor = False
         '
         'TextBox39
         '
@@ -1057,7 +843,7 @@ Partial Class Прием
         'Button9
         '
         Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button9.Location = New System.Drawing.Point(256, 57)
+        Me.Button9.Location = New System.Drawing.Point(256, 56)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(90, 30)
         Me.Button9.TabIndex = 69
@@ -1080,7 +866,7 @@ Partial Class Прием
         '
         Me.Label92.AutoSize = True
         Me.Label92.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Label92.Location = New System.Drawing.Point(7, 69)
+        Me.Label92.Location = New System.Drawing.Point(15, 63)
         Me.Label92.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label92.Name = "Label92"
         Me.Label92.Size = New System.Drawing.Size(74, 17)
@@ -1091,7 +877,7 @@ Partial Class Прием
         '
         Me.CheckBox24.AutoSize = True
         Me.CheckBox24.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox24.Location = New System.Drawing.Point(88, 71)
+        Me.CheckBox24.Location = New System.Drawing.Point(96, 65)
         Me.CheckBox24.Name = "CheckBox24"
         Me.CheckBox24.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox24.TabIndex = 65
@@ -3401,6 +3187,10 @@ Partial Class Прием
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox19.ResumeLayout(False)
         Me.GroupBox19.PerformLayout()
+        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage5.ResumeLayout(False)
+        CType(Me.Grid1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox17.ResumeLayout(False)
         Me.GroupBox17.PerformLayout()
         Me.GroupBox16.ResumeLayout(False)
@@ -3476,34 +3266,6 @@ Partial Class Прием
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents GroupBox19 As GroupBox
     Friend WithEvents Button3 As Button
-    Friend WithEvents CheckBox22 As CheckBox
-    Friend WithEvents TextBox77 As TextBox
-    Friend WithEvents CheckBox21 As CheckBox
-    Friend WithEvents TextBox76 As TextBox
-    Friend WithEvents CheckBox18 As CheckBox
-    Friend WithEvents CheckBox16 As CheckBox
-    Friend WithEvents CheckBox19 As CheckBox
-    Friend WithEvents CheckBox17 As CheckBox
-    Friend WithEvents CheckBox20 As CheckBox
-    Friend WithEvents TextBox74 As TextBox
-    Friend WithEvents TextBox72 As TextBox
-    Friend WithEvents TextBox75 As TextBox
-    Friend WithEvents TextBox73 As TextBox
-    Friend WithEvents CheckBox15 As CheckBox
-    Friend WithEvents TextBox67 As TextBox
-    Friend WithEvents CheckBox12 As CheckBox
-    Friend WithEvents TextBox66 As TextBox
-    Friend WithEvents CheckBox13 As CheckBox
-    Friend WithEvents TextBox65 As TextBox
-    Friend WithEvents CheckBox14 As CheckBox
-    Friend WithEvents TextBox68 As TextBox
-    Friend WithEvents TextBox64 As TextBox
-    Friend WithEvents TextBox69 As TextBox
-    Friend WithEvents CheckBox11 As CheckBox
-    Friend WithEvents TextBox70 As TextBox
-    Friend WithEvents CheckBox10 As CheckBox
-    Friend WithEvents TextBox71 As TextBox
-    Friend WithEvents CheckBox9 As CheckBox
     Friend WithEvents Label75 As Label
     Friend WithEvents TextBox63 As TextBox
     Friend WithEvents GroupBox17 As GroupBox
@@ -3723,4 +3485,19 @@ Partial Class Прием
     Friend WithEvents Button10 As Button
     Private WithEvents GroupBox24 As GroupBox
     Friend WithEvents Button11 As Button
+    Friend WithEvents Grid1 As DataGridView
+    Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents RichTextBox2 As RichTextBox
+    Friend WithEvents Button16 As Button
+    Friend WithEvents Button15 As Button
+    Friend WithEvents Button14 As Button
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents ComboBox29 As ComboBox
+    Friend WithEvents Button17 As Button
+    Friend WithEvents Button18 As Button
+    Friend WithEvents Button19 As Button
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Button12 As Button
+    Friend WithEvents Button13 As Button
 End Class
