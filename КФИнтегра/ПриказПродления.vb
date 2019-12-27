@@ -434,7 +434,7 @@ Where Сотрудники.КодСотрудники =@ID", list)
 
         Me.Cursor = Cursors.Default
 
-        Статистика(ComboBox19.Text, "Оформление приказа продления контракта", ComboBox1.Text)
+        Статистика1(ComboBox19.Text, "Оформление приказа продления контракта", ComboBox1.Text)
 
         ComboBox1.Text = ""
         ComboBox19.Items.Clear()

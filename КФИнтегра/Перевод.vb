@@ -925,7 +925,7 @@ VALUES('" & ComboBox5.Text & "','" & MaskedTextBox3.Text & "','" & MaskedTextBox
         WHERE ИДСотр=@ИДСотр", list, "Штатное")
 
 
-        Статистика(ComboBox2.Text, "Перевод сотрудника на другую должность", ComboBox1.Text)
+        Статистика1(ComboBox2.Text, "Перевод сотрудника на другую должность", ComboBox1.Text)
 
     End Sub
     Function Проверка() As Integer
@@ -1041,7 +1041,7 @@ WHERE IDСотр=@IDСотр", list2)
         СотрФИОРод = ds(0).Item("ФИОРодПод").ToString
 
 
-        Статистика(ComboBox2.Text, "Перевод сотрудника на другую ставку", ComboBox1.Text)
+        Статистика1(ComboBox2.Text, "Перевод сотрудника на другую ставку", ComboBox1.Text)
 
 
 

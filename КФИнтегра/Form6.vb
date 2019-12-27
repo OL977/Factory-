@@ -49,7 +49,7 @@ Public Class Банк
             Контрагент.ComboBox3.Items.Add(r(0).ToString)
         Next
 
-        Статистика("Нет", "Добавление банка", "Нет")
+        Статистика1("Нет", "Добавление банка", "Нет")
         RichTextBox1.Text = ""
         RichTextBox2.Text = ""
         RichTextBox3.Text = ""

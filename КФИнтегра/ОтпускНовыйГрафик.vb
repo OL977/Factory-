@@ -79,7 +79,7 @@
         StrSql = "SELECT НаГод, Номер, Составлен, Утвержден FROM Отпуск WHERE Орг='" & Отпуск.ComboBox2.Text & "'"
         dt = Selects(StrSql)
         Отпуск.Grid1.DataSource = dt
-        Статистика("Нет", "Создание нового графика отпусков", Отпуск.ComboBox2.Text)
+        Статистика1("Нет", "Создание нового графика отпусков", Отпуск.ComboBox2.Text)
         Me.Close()
     End Sub
 

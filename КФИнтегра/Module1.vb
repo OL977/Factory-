@@ -42,6 +42,7 @@ Module Module1
     Public connДоработчик As SqlConnection
     Public Logger = LogManager.GetCurrentClassLogger()
     Public ПодтверждПароляУдаление As Boolean = False
+    Public dbcx As New DbAllDataContext()
 
     Public Sub COMxt(ByVal form As Form, ByVal strsql As String, ByVal c As ComboBox)
         'Dim strsql As String = "SELECT DISTINCT Страна FROM Страна ORDER BY Страна"
@@ -703,7 +704,7 @@ Module Module1
             p.WaitForExit()
         Next
     End Sub
-    Public Async Sub Статистика(ByVal ФИО As String, ByVal Событие As String, ByVal Организ As String)
+    Public Async Sub Статистика1(ByVal ФИО As String, ByVal Событие As String, ByVal Организ As String)
         Await Task.Run(Sub() Статистика2(ФИО, Событие, Организ))
     End Sub
     Private Sub Статистика2(ByVal ФИО As String, ByVal Событие As String, ByVal Организ As String)
@@ -743,7 +744,7 @@ Module Module1
         'End If
     End Sub
 
-    Public Function InputName(ByVal ФИО As String, ByVal DOC As String) As String
+    Public Function InputName1(ByVal ФИО As String, ByVal DOC As String) As String
         Dim inp As String
         Dim strsql As String = "SELECT " & DOC & " FROM InputName WHERE ФИООриганл='" & ФИО & "'"
         Dim ds As DataTable = Selects(strsql)

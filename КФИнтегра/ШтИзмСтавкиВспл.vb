@@ -53,7 +53,7 @@ WHERE Код=" & Grid1.Rows(i).Cells(0).Value & ""
             Next
         End If
         MessageBox.Show("Данные изменены!", Рик)
-        Штатное.ВыборСтавкиПоДате()
+        ШтатноеКласс1.ВыборСтавкиПоДате()
     End Sub
 
     Private Sub Grid1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles Grid1.DataError
@@ -74,6 +74,6 @@ WHERE Код=" & Grid1.Rows(i).Cells(0).Value & ""
         Dim strsql As String = "DELETE FROM ШтСводИзмСтавка WHERE Код=" & Grid1.CurrentRow.Cells(0).Value & ""
         Updates(strsql)
         MessageBox.Show("Данные удалены!", Рик)
-        Штатное.ВыборСтавкиПоДате()
+        ШтатноеКласс1.ВыборСтавкиПоДате()
     End Sub
 End Class

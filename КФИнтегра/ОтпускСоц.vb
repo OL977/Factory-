@@ -279,7 +279,7 @@ WHERE Сотрудники.КодСотрудники=@КодСотрудник�
             End If
             .Item("ПОс3").Range.Text = ComboBox2.Text
             .Item("ПОс4").Range.Text = ComboBox2.Text
-            .Item("ПОс5").Range.Text = InputName(ComboBox19.Text, "ОтпускСоц")
+            .Item("ПОс5").Range.Text = InputName1(ComboBox19.Text, "ОтпускСоц")
             If dssotr.Rows(0).Item(4).ToString <> "" And Not dssotr.Rows(0).Item(4).ToString = "-" Then
                 .Item("ПОс6").Range.Text = Strings.LCase(ДолжРодПадежФункц(dssotr.Rows(0).Item(3).ToString)) & " " & разрядстрока(CType(dssotr.Rows(0).Item(4).ToString, Integer))
             Else
@@ -452,7 +452,7 @@ WHERE Сотрудники.КодСотрудники=@КодСотрудник�
 
         СборДаннОрганиз()
         Доки()
-        Статистика(ComboBox19.Text, "Отправка сотрудника в соц.отпуск", ComboBox1.Text)
+        Статистика1(ComboBox19.Text, "Отправка сотрудника в соц.отпуск", ComboBox1.Text)
         If hg = 0 Then
             If MessageBox.Show("Приказ оформлен! Распечатать? ", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.None) = DialogResult.OK Then
                 ПечатьДоковFTP(massFTP)

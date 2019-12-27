@@ -325,8 +325,8 @@ Public Class MDIParent1
 
     Private Sub ШтатноеToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
-        Штатное.Show()
-        Штатное.WindowState = FormWindowState.Maximized
+        ШтатноеКласс1.Show()
+        ШтатноеКласс1.WindowState = FormWindowState.Maximized
     End Sub
 
 
@@ -339,8 +339,8 @@ Public Class MDIParent1
     End Sub
 
     Private Sub ШтатноеToolStripMenuItem1_Click(sender As Object, e As EventArgs)
-        Штатное.Show()
-        Штатное.WindowState = FormWindowState.Maximized
+        ШтатноеКласс1.Show()
+        ШтатноеКласс1.WindowState = FormWindowState.Maximized
     End Sub
 
     Private Sub УвольнениеToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles УвольнениеToolStripMenuItem1.Click
@@ -555,9 +555,9 @@ Public Class MDIParent1
         Catch ex As Exception
 
         End Try
-        Штатное.WindowState = FormWindowState.Maximized
+        ШтатноеКласс1.WindowState = FormWindowState.Maximized
         'AddHandler Штатное.FormClosing, AddressOf запускзакрытия
-        Штатное.Show()
+        ШтатноеКласс1.Show()
     End Sub
 
     Private Sub ПоискToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ПоискToolStripMenuItem.Click

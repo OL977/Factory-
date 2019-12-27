@@ -54,6 +54,6 @@ Public Class Примечание
             'НеподпДокументы.ПоискПоСотр()
             Me.Close()
         End If
-        Статистика(TextBox2.Text, "Примечение при приеме", "Примечение - " & RichTextBox1.Text)
+        Статистика1(TextBox2.Text, "Примечение при приеме", "Примечение - " & RichTextBox1.Text)
     End Sub
 End Class

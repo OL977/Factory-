@@ -473,9 +473,9 @@ VALUES('" & Клиент & "','" & Trim(MosiFF(2, i)) & "','" & Trim(MosiFF(3, i
         'ДобОбОбщеп()
         'If Fh = 1 Then Exit Sub
         If CheckBox6.Checked = True Then
-            Статистика("Нет", "Создание новой организации", Trim(TextBox1.Text))
+            Статистика1("Нет", "Создание новой организации", Trim(TextBox1.Text))
         Else
-            Статистика("Нет", "Изменение данных организации", ComboBox1.Text)
+            Статистика1("Нет", "Изменение данных организации", ComboBox1.Text)
         End If
 
         RichTextBox1.Enabled = True
@@ -1073,7 +1073,7 @@ WHERE НазвОрг = '" & Клиент & "'")
 
         Dim strsql As String = "delete FROM Клиент WHERE НазвОрг='" & ComboBox1.Text & "'"
         Updates(strsql)
-        Статистика("Нет", "Удаление организации", ComboBox1.Text)
+        Статистика1("Нет", "Удаление организации", ComboBox1.Text)
         refresh2()
         MessageBox.Show("Организация удалена!", Рик)
 

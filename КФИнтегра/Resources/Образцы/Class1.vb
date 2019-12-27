@@ -12,7 +12,65 @@
     'Dim f2 As Double = 38.5
     'Dim f1 As String = Format(f2, "f") 'форматирует 
 
+    'Dim ds2 = (From x In dtDogovorPadriadaAll.AsEnumerable
+    '           Join y In dtDogPodrAktInoeAll.AsEnumerable On x.Field(Of Integer)("Код") Equals
+    '              y.Field(Of Integer)("IDДогПодряда")
+    '           Where Not x.IsNull("ID") AndAlso x.Item("ID") = j _
+    '              AndAlso Not x.IsNull("НомерДогПодр") AndAlso x.Item("НомерДогПодр") = ComboBox3.Text _
+    '              AndAlso Not y.IsNull("ПорНомерАктаИное") AndAlso y.Item("ПорНомерАктаИное") = ComboBox5.Text
+    '           Select New With {.Наименование = y.Item("ВыпРаб1"), .Единица = y.Item("ЕдИзмерАктИное"),
+    '              .Стоимость2 = y.Item("СтоимЕдРаботыАктИное"), .Объем = y.Item("ОбъемВыпРаботАктИное"),
+    '              .Стоимость = y.Item("ОбщСтоимРаботАктИное"), .Код = y.Item("ID")}).ToList()
 
 
+
+
+    'LINQ
+
+    'Private void button1_Click(Object sender, EventArgs e)  //insert
+    '    {
+    '        DataClasses1DataContext db = New DataClasses1DataContext();
+    '        tblKisiler yenikisi = New tblKisiler();
+    '        yenikisi.ad = textBox2.Text;
+    '        yenikisi.soyad = textBox3.Text;
+    '        yenikisi.telefon = textBox4.Text;
+    '        db.tblKisilers.InsertOnSubmit(yenikisi);
+    '        db.SubmitChanges();
+    '        dataGridView1.DataSource = db.tblKisilers;
+    '    }
+
+    '    Private void button2_Click(Object sender, EventArgs e)  //update
+    '    {
+    '        db = New DataClasses1DataContext();
+    '        int sayi = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+    '        var guncelle = db.tblKisilers.Where(w =& gt; w.id == sayi).FirstOrDefault();
+    '        guncelle.ad = textBox2.Text;
+    '        guncelle.soyad = textBox3.Text;
+    '        guncelle.telefon = textBox4.Text;
+    '        db.SubmitChanges();
+    '        dataGridView1.DataSource = db.tblKisilers;
+    '    }
+    'Private void button3_Click(Object sender, EventArgs e) //delete
+    '    {
+    '        db = New DataClasses1DataContext();
+    '        int sayi = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+    '        var sil = db.tblKisilers.Where(w =& gt; w.id == sayi).FirstOrDefault();
+    '        db.tblKisilers.DeleteOnSubmit(sil);
+    '        db.SubmitChanges();
+    '        dataGridView1.DataSource = db.tblKisilers;
+
+    '    }
+
+
+
+
+
+    'Dim db As New ДогПодрядаДолжнИОбязанDataContext() 'мой insert
+    'Dim f As New ДогПодДолжн()
+    '    f.Клиент = ComboBox1.Text
+    '    f.Должность = RichTextBox2.Text
+    '    db.GetTable(Of ДогПодДолжн).InsertOnSubmit(f)
+    '    db.SubmitChanges()
+    '    idДолжность = f.Код
 
 End Class

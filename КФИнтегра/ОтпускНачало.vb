@@ -194,7 +194,7 @@ WHERE Код=" & Отпуск.idgr3cod & ""
 
         Доки()
 
-        Статистика(TextBox1.Text, "Отправка сотрудника в отпуск", Отпуск.ComboBox2.Text)
+        Статистика1(TextBox1.Text, "Отправка сотрудника в отпуск", Отпуск.ComboBox2.Text)
         hg = 0
         Отпуск.grcellclick()
         Отпуск.grid3activ()
@@ -268,7 +268,7 @@ WHERE Код=" & Отпуск.idgr3cod & ""
         With oWordDoc.Bookmarks
             .Item("П1").Range.Text = MaskedTextBox3.Text
             .Item("П2").Range.Text = TextBox5.Text & " - отп"
-            .Item("П3").Range.Text = Trim(InputName(TextBox1.Text, "ОтпускТруд"))
+            .Item("П3").Range.Text = Trim(InputName1(TextBox1.Text, "ОтпускТруд"))
             If Int = 1 Then
                 .Item("П4").Range.Text = TextBox2.Text
                 .Item("П5").Range.Text = MaskedTextBox1.Text

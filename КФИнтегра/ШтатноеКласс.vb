@@ -1,48 +1,23 @@
 ﻿Option Explicit On
 Imports System.Data.OleDb
 
-Public Class Штатное
+Public Class ШтатноеКласс
     Public Da As New OleDbDataAdapter 'Адаптер
     'Public Ds As New DataSet 'Пустой набор записей
     Dim tbl As New DataTable
     Dim ds As DataTable
     Dim cb As OleDb.OleDbCommandBuilder
     Dim Рик As String = "ООО РикКонсалтинг"
-    Dim Год, Организ, Должность, Отдел, Разряд, Процент, ТарСтавка, thb0, thb, StrSql As String
+    Dim Год, Организ, Процент, ТарСтавка, thb0, thb, StrSql As String 'Разряд,Отдел, Должность,
     Dim s, s2, se, ip, mas, изменен, srt, КодDBC, ГлКод, КодДолжн As Integer
     Dim Отд, Дол, Раз, ТСтавка, ПовышПроц As String
     Public v As Boolean = False
     Public FT As Boolean = False
     Dim СумНов As String
     Dim fnm9 As Integer
-    Dim btnclick As Integer = 0
+    Dim btnclick As Integer
     Dim timtick As String
 
-    Private Sub TextBox4_SelectedIndexChanged(sender As Object, e As EventArgs)
-        '        Чист()
-        '        StrSql = "SELECT DISTINCT ШтСвод.Должность FROM ШтОтделы INNER JOIN ШтСвод ON ШтОтделы.Код = ШтСвод.Отдел
-        'WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "' AND ШтОтделы.Отделы='" & TextBox4.Text & "'"
-        '        ds = Selects(StrSql)
-
-        '        TextBox5.Text = ""
-        '        Me.TextBox5.AutoCompleteCustomSource.Clear()
-        '        Me.TextBox5.Items.Clear()
-        '        For Each r As DataRow In ds.Rows
-        '            Me.TextBox5.AutoCompleteCustomSource.Add(r.Item(0).ToString())
-        '            Me.TextBox5.Items.Add(r(0).ToString)
-        '        Next
-
-        '        Чист()
-        '        StrSql = "SELECT Код FROM ШтОтделы WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "' AND ШтОтделы.Отделы='" & TextBox4.Text & "'"
-        '        ds = Selects(StrSql)
-        '        ГлКод = Nothing
-        '        ГлКод = ds.Rows(0).Item(0)
-
-    End Sub
-
-    Private Sub TextBox5_SelectedIndexChanged(sender As Object, e As EventArgs)
-        'ЗагрПроцОклРазр()
-    End Sub
 
     Private Sub ВставкаВШтСводИзмСтавка(ByVal idsotr As Integer)
 
@@ -126,7 +101,7 @@ VALUES(" & idsotr & ",'" & Trim(TextBox5.Text) & "','" & Trim(TextBox3.Text) & "
             MessageBox.Show("Данные добавлены!", Рик)
         End Try
         Dim gf As String = TextBox5.Text & ". Разряд" & TextBox3.Text & ".Отдел " & TextBox4.Text
-        Статистика("Должность " & gf, "Данные добавлены", ComboBox1.Text)
+        Статистика1("Должность " & gf, "Данные добавлены", ComboBox1.Text)
 
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -224,7 +199,7 @@ WHERE ШтСвод.КодШтСвод =@КодШтСвод", list, "ШтСвод
         End Try
         Dim gf As String = TextBox4.Text & " " & TextBox5.Text & " " & TextBox3.Text
 
-        Статистика("Изменение " & gf, "Изменены данные в должности или отеделе или разряде", ComboBox1.Text)
+        Статистика1("Изменение " & gf, "Изменены данные в должности или отеделе или разряде", ComboBox1.Text)
 
 
         'ОбнВСтавкеИстория()
@@ -543,7 +518,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
         Чист()
         StrSql = "DELETE FROM ШтОтделы WHERE Код =" & ГлКод & ""
         Updates(StrSql)
-        Статистика("Отдел " & TextBox4.Text, "Удаление отдела", ComboBox1.Text)
+        Статистика1("Отдел " & TextBox4.Text, "Удаление отдела", ComboBox1.Text)
         MessageBox.Show("Данные удалены!", Рик)
     End Sub
 
@@ -583,7 +558,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
 
             MessageBox.Show("Данные удалены!", Рик)
         End If
-        Статистика("Должность " & TextBox5.Text, "Удаление должности", ComboBox1.Text)
+        Статистика1("Должность " & TextBox5.Text, "Удаление должности", ComboBox1.Text)
     End Sub
 
     Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
@@ -813,7 +788,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
     End Sub
     Private Sub обнов(ByVal f As String)
         Dim gf As String = "False"
-        Статистика("Должностная инструкция" & gf, "Удаление инструкции", f)
+        Статистика1("Должностная инструкция" & gf, "Удаление инструкции", f)
     End Sub
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
 
@@ -851,7 +826,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
 
         ДокиИзмен()
         Me.Cursor = Cursors.Default
-        Статистика("Должностная инструкция" & TextBox5.Text, "Изменение инструкции", ComboBox1.Text)
+        Статистика1("Должностная инструкция" & TextBox5.Text, "Изменение инструкции", ComboBox1.Text)
 
 
 
@@ -1095,11 +1070,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
         Dim StrSql2 As String = "UPDATE ШтОтделы INNER JOIN ШтСвод ON ШтОтделы.Код = ШтСвод.Отдел SET Отделы= '" & ОтдDBC & "'
             WHERE Код=" & srt & " AND КодШтСвод=" & КодDBC & ""
 
-        '        Dim StrSql2 As String = "INSERT INTO ШтОтделы"
-        '        Select Case ШтОтделы.Код, ШтСвод.КодШтСвод, ШтОтделы.Клиент, ШтОтделы.Отделы, ШтСвод.Должность
-        'From ШтОтделы INNER Join ШтСвод On ШтОтделы.Код = ШтСвод.Отдел
-        'Where (((ШтОтделы.Код) = 67) And ((ШтСвод.КодШтСвод) = 127));
-
+        ' 
         Dim c2 As New OleDbCommand
         c2.Connection = conn
         c2.CommandText = StrSql2
@@ -1131,19 +1102,21 @@ Where Сотрудники.НазвОрганиз = '" & ComboBox1.Text & "' And
 
     Dim mas2, mas3
 
-    Private Sub Штатное_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ШтатноеКласс_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Me.MdiParent = MDIParent1
-        Me.WindowState = FormWindowState.Maximized
+        WindowState = FormWindowState.Maximized
 
 
         Год = Year(Now)
         'If Me.Прием_Load = vbTrue Then Form1.Load = False
 
+        'If Not ComboBox1.Items Is Nothing Or ComboBox1.Items.Count > 0 Then
+        '    ComboBox1.Items.Clear()
+        'End If
 
-        Me.ComboBox1.Items.Clear()
         For Each r As DataRow In СписокКлиентовОсновной.Rows
-            Me.ComboBox1.Items.Add(r(0).ToString)
+            ComboBox1.Items.Add(r(0).ToString)
         Next
         'MaskedTextBox1.Text = DateTime.Now.ToString("dd.MM.yyyy")
 
@@ -1263,50 +1236,9 @@ WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "' AND ШтОтдел�
         'ЗагрОтделов()
 
         ВыборСтавкиПоДате()
-        'Refreshgrid()
-
-
-
-        '        Dim StrSql As String
-        '        StrSql = "SELECT ШтОтделы.Отделы
-        'FROM Клиент INNER JOIN ШтОтделы ON Клиент.НазвОрг = ШтОтделы.Клиент
-        'WHERE Клиент.НазвОрг='" & Организ & "'"
-        '        Dim c1 As New OleDbCommand With {
-        '                .Connection = conn,
-        '                .CommandText = StrSql
-        '            }
-        '        Dim ds1 As New DataTable
-        '        Dim da1 As New OleDbDataAdapter(c1)
-        '        da1.Fill(ds1)
-        '        Me.TextBox4.Items.Clear()
-
-        '        For Each r As DataRow In ds1.Rows
-        '            Me.TextBox4.Items.Add(r(0).ToString)
-        '        Next
 
     End Sub
 
-    Private Sub ЗагрОтделов()
-
-        'StrSql = ""
-        'StrSql = "SELECT DISTINCT ШтОтделы.Отделы From ШтОтделы WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "'"
-        'ds = Selects(StrSql)
-        'TextBox4.Text = ""
-        'Me.TextBox4.AutoCompleteCustomSource.Clear()
-        'Me.TextBox4.Items.Clear()
-        'For Each r As DataRow In ds.Rows
-        '    Me.TextBox4.AutoCompleteCustomSource.Add(r.Item(0).ToString())
-        '    Me.TextBox4.Items.Add(r(0).ToString)
-        'Next
-        'TextBox5.Text = ""
-        'Me.TextBox5.AutoCompleteCustomSource.Clear()
-        'Me.TextBox5.Items.Clear()
-
-        'TextBox1.Text = ""
-        'TextBox2.Text = ""
-        'TextBox3.Text = ""
-
-    End Sub
     Private Sub Чист()
         StrSql = ""
         Try
@@ -1611,33 +1543,7 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
 
 Конец:
         ВыборСтавкиПоДате()
-        'Refreshgrid()
-        ''        Разряд = TextBox3.Text
-        ''        Процент = TextBox2.Text
-        ''        ТарСтавка = TextBox1.Text
 
-        ''        Dim StrSql As String
-        ''        StrSql = "SELECT ШтОтделы.Отделы
-        ''FROM Клиент INNER JOIN ШтОтделы ON Клиент.НазвОрг = ШтОтделы.Клиент
-        ''WHERE Клиент.НазвОрг='" & Организ & "'"
-        ''        Dim c1 As New OleDbCommand With {
-        ''                .Connection = conn,
-        ''                .CommandText = StrSql
-        ''            }
-        ''        Dim ds1 As New DataSet
-        ''        Dim da1 As New OleDbDataAdapter(c1)
-        ''        da1.Fill(ds1, "Customers")
-        ''        Dim foundRows() As Data.DataRow
-
-        ''        'Dim foundRows() As Data.DataRow Образец выборки из ДатаСет
-        ''        'foundRows = DataSet1.Tables("Customers").Select("CompanyName Like 'A%'")
-
-
-        ''        foundRows = ds1.Tables("Customers").Select("Отделы Like '" & Отдел & "'")
-        ''        If foundRows.Length = 1 Then
-
-        ''            MsgBox("ok")
-        ''        End If
     End Sub
 
     Private Sub Grid1_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles Grid1.CellBeginEdit
@@ -1646,15 +1552,7 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
                 e.Cancel = True
         End Select
 
-        'ОтдDBC = Grid1.CurrentRow.Cells("Отделы").Value.ToString
-        'ДолDBC = Grid1.CurrentRow.Cells("Должность").Value.ToString
-        'РазDBC = Grid1.CurrentRow.Cells("Разряд").Value.ToString
-        'ТСтавкаDBC = Grid1.CurrentRow.Cells("ТарифнаяСтавка").Value.ToString
-        'ПовышПроцDBC = Grid1.CurrentRow.Cells("ПовышениеПроц").Value.ToString
-        'КодDBC = Grid1.CurrentRow.Cells("КодШтСвод").Value
 
-        'mas2 = Grid1.CurrentCellAddress.X
-        'mas3 = Grid1.CurrentCellAddress.Y
     End Sub
 
 
@@ -1679,35 +1577,7 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
 
 
 
-        'srt = Grid1.CurrentRow.Cells("Код").Value
-        'Отд = Grid1.CurrentRow.Cells("Отделы").Value.ToString
-        'Дол = Grid1.CurrentRow.Cells("Должность").Value.ToString
-        'Раз = Grid1.CurrentRow.Cells("Разряд").Value.ToString
-        'ТСтавка = Grid1.CurrentRow.Cells("ТарифнаяСтавка").Value.ToString
-        'ПовышПроц = Grid1.CurrentRow.Cells("ПовышениеПроц").Value.ToString
 
-        'Dim StrSql As String = "UPDATE ШтСвод  SET ТарифнаяСтавка= '" & ТСтавка & "',ПовышениеПроц='" & ПовышПроц & "',Должность= '" & Дол & "',Разряд='" & Раз & "'
-        '    WHERE ШтСвод.Код=" & srt & ""
-        'Dim c As New OleDbCommand
-        'c.Connection = conn
-        'c.CommandText = StrSql
-        'Try
-        '    c.ExecuteNonQuery()
-        'Catch ex As Exception
-        '    Exit Sub
-        'End Try
-
-        'Dim StrSql2 As String = "UPDATE ШтОтделы  SET Отделы= '" & Отд & "'
-        '    WHERE ШтСвод.Код=" & srt & ""
-        'Dim c2 As New OleDbCommand
-        'c2.Connection = conn
-        'c2.CommandText = StrSql2
-        'Try
-        '    c2.ExecuteNonQuery()
-        '    MessageBox.Show("Данные изменены!", Рик)
-        'Catch ex As Exception
-        '    Exit Sub
-        'End Try
 
 
     End Sub
@@ -1719,9 +1589,6 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
 
         изменен = Grid1.CurrentCellAddress.Y
         изменен += 1
-        'If Grid1.CurrentRow.Cells("Код").Value.ToString <> "" Then
-        '    MsgBox(Grid1.CurrentRow.Cells("Код").Value.ToString)
-        'End If
 
     End Sub
 
@@ -1734,85 +1601,9 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
         mast2.AddRange({IDсвод, ComboBox1.Text})
         ШтИзмСтавкиВспл.ShowDialog()
 
-
-
-        'ОтдDBC = Grid1.CurrentRow.Cells("Отделы").Value.ToString
-        'ДолDBC = Grid1.CurrentRow.Cells("Должность").Value.ToString
-        'РазDBC = Grid1.CurrentRow.Cells("Разряд").Value.ToString
-        'ТСтавкаDBC = Grid1.CurrentRow.Cells("ТарифнаяСтавка").Value.ToString
-        'ПовышПроцDBC = Grid1.CurrentRow.Cells("ПовышениеПроц").Value.ToString
-
-        'Dim s As String = sender.ToString
-        'MsgBox(s)
-
-        '        TextBox4.Text = Grid1.CurrentRow.Cells("Отделы").Value.ToString()
-        '        TextBox5.Text = Grid1.CurrentRow.Cells("Должность").Value.ToString
-        '        TextBox3.Text = Grid1.CurrentRow.Cells("Разряд").Value.ToString
-        '        TextBox1.Text = Grid1.CurrentRow.Cells("ТарифнаяСтавка").Value.ToString
-        '        TextBox2.Text = Grid1.CurrentRow.Cells("ПовышениеПроц").Value.ToString
-
-
-        '        '        StrSql = "SELECT ШтОтделы.Код FROM ШтОтделы WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "' AND ШтСвод.Должность='" & TextBox5.Text & "'
-        '        'AND ШтСвод.Разряд ='" & TextBox3.Text & "'  AND ШтСвод.ТарифнаяСтавка='" & TextBox1.Text & "'
-        '        'AND ШтСвод.ПовышениеПроц='" & TextBox2.Text & "' AND ШтОтделы.Отделы ='" & TextBox4.Text & "'"
-
-
-        '        StrSql = "SELECT ШтСвод.КодШтСвод, ШтОтделы.Код FROM ШтОтделы INNER JOIN ШтСвод ON ШтОтделы.Код = ШтСвод.Отдел
-        'WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "' AND ШтСвод.Должность='" & TextBox5.Text & "'
-        'AND ШтСвод.Разряд ='" & TextBox3.Text & "'  AND ШтСвод.ТарифнаяСтавка='" & TextBox1.Text & "'
-        'AND ШтСвод.ПовышениеПроц='" & TextBox2.Text & "' AND ШтОтделы.Отделы ='" & TextBox4.Text & "'"
-
-        '        ds = Selects(StrSql)
-        '        ГлКод = Nothing
-        '        ГлКод = ds.Rows(0).Item(1)
-        '        КодДолжн = Nothing
-        '        КодДолжн = ds.Rows(0).Item(0)
-
-
     End Sub
 
-    Private Sub Grid1_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid1.KeyDown
-        'Try
-        '    srt = Grid1.CurrentRow.Cells("Код").Value
-        '    Отд = Grid1.CurrentRow.Cells("Отделы").Value.ToString
-        '    Дол = Grid1.CurrentRow.Cells("Должность").Value.ToString
-        '    Раз = Grid1.CurrentRow.Cells("Разряд").Value.ToString
-        '    ТСтавка = Grid1.CurrentRow.Cells("ТарифнаяСтавка").Value.ToString
-        '    ПовышПроц = Grid1.CurrentRow.Cells("ПовышениеПроц").Value.ToString
-        'Catch ex As Exception
-        '    Exit Sub
-        'End Try
 
-
-
-        'If e.KeyCode = Keys.Enter Then
-        '    e.SuppressKeyPress = True
-
-
-        '    Dim StrSql As String = "UPDATE ШтСвод  Set ТарифнаяСтавка= '" & ТСтавка & "',ПовышениеПроц='" & ПовышПроц & "',Должность= '" & Дол & "',Разряд='" & Раз & "'
-        '    WHERE ШтСвод.Код=" & srt & ""
-        '    Dim c As New OleDbCommand
-        '    c.Connection = conn
-        '    c.CommandText = StrSql
-        '    Try
-        '        c.ExecuteNonQuery()
-        '    Catch ex As Exception
-        '        Exit Sub
-        '    End Try
-
-        '    Dim StrSql2 As String = "UPDATE ШтОтделы  SET Отделы= '" & Отд & "'
-        '    WHERE Код=" & srt & ""
-        '    Dim c2 As New OleDbCommand
-        '    c2.Connection = conn
-        '    c2.CommandText = StrSql2
-        '    Try
-        '        c2.ExecuteNonQuery()
-        '        MessageBox.Show("Данные изменены!", Рик)
-        '    Catch ex As Exception
-        '        Exit Sub
-        '    End Try
-        'End If
-    End Sub
     Private Sub Acti()
         Try
             TextBox4.Text = Grid1.CurrentRow.Cells("Отделы").Value.ToString()
@@ -1826,21 +1617,7 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
         End Try
 
 
-        '        StrSql = "SELECT ШтСвод.КодШтСвод, ШтОтделы.Код, ШтСвод.ДолжИнструкция FROM ШтОтделы INNER JOIN ШтСвод ON ШтОтделы.Код = ШтСвод.Отдел
-        '        WHERE ШтОтделы.Клиент='" & ComboBox1.Text & "' AND ШтСвод.Должность='" & TextBox5.Text & "'
-        '        AND ШтСвод.Разряд ='" & TextBox3.Text & "'  AND ШтСвод.ТарифнаяСтавка='" & TextBox1.Text & "'
-        '        AND ШтСвод.ПовышениеПроц='" & TextBox2.Text & "' AND ШтОтделы.Отделы ='" & TextBox4.Text & "'"
 
-        '        ds = Selects(StrSql)
-        '        If errds = 1 Then
-        '            ds.Clear()
-        '            StrSql = "SELECT ШтСвод.КодШтСвод, ШтОтделы.Код, ШтСвод.ДолжИнструкция
-        '            FROM(ШтОтделы INNER JOIN ШтСвод On ШтОтделы.Код = ШтСвод.Отдел) INNER JOIN ШтСводИзмСтавка On ШтСвод.КодШтСвод = ШтСводИзмСтавка.КодШтСвод
-        '            WHERE ШтОтделы.Клиент = '" & ComboBox1.Text & "' And ШтСвод.Должность = '" & TextBox5.Text & "'
-        'And ШтСвод.Разряд = '" & TextBox3.Text & "' And ШтСводИзмСтавка.Ставка = '" & Grid1.CurrentRow.Cells("Ставка").Value.ToString & "'
-        'And ШтСвод.ПовышениеПроц = '" & TextBox2.Text & "' And ШтОтделы.Отделы = '" & TextBox4.Text & "'"
-        '            ds = Selects(StrSql)
-        '        End If
 
         ГлКод = Nothing
         'ГлКод = ds.Rows(0).Item(1)

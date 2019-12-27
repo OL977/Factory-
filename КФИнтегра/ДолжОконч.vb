@@ -10,7 +10,7 @@ Module ДолжОконч
     Public Com19ForДогПодр As String
     'Public dуеrs As Task = New Task(AddressOf Поиск.Работники)
     'Public dуеrs1 As Task = New Task(AddressOf Поиск.Организ)
-    Public Function окончание(ByVal должность As String, ByVal номер As Integer) As String
+    Public Function окончание1(ByVal должность As String, ByVal номер As Integer) As String
         Dim пров As Integer
         Dim вопрос, вопрос2 As String
         'conn = New OleDbConnection
@@ -47,9 +47,9 @@ Module ДолжОконч
         Dim ds As DataTable = Selects(StrSql:="SELECT " & вопрос & " FROM Окончание WHERE Должность='" & должность & "'")
 
         Try
-            окончание = ds.Rows(0).Item(0).ToString
-            If окончание <> "" Then
-                Return окончание
+            окончание1 = ds.Rows(0).Item(0).ToString
+            If окончание1 <> "" Then
+                Return окончание1
             End If
 
 
@@ -58,14 +58,14 @@ Module ДолжОконч
         End Try
 
         Do
-            окончание = InputBox("Введите должность " & должность & " в соотвествующем падеже!" & vbCrLf & "Вопрос - " & вопрос & "?", Рик, должность)
-        Loop Until окончание <> ""
+            окончание1 = InputBox("Введите должность " & должность & " в соотвествующем падеже!" & vbCrLf & "Вопрос - " & вопрос & "?", Рик, должность)
+        Loop Until окончание1 <> ""
 
-        Dim inr As Integer = окончание.Length - 1
-        окончание = StrConv(Strings.Left(окончание, 1), VbStrConv.ProperCase) & Strings.Right(окончание, inr)
+        Dim inr As Integer = окончание1.Length - 1
+        окончание1 = StrConv(Strings.Left(окончание1, 1), VbStrConv.ProperCase) & Strings.Right(окончание1, inr)
         Dim conn As SqlConnection
         If проверка = "" Then
-            Dim StrSql5 As String = "INSERT INTO Окончание(Должность, " & вопрос & ") VALUES('" & должность & "','" & окончание & "')"
+            Dim StrSql5 As String = "INSERT INTO Окончание(Должность, " & вопрос & ") VALUES('" & должность & "','" & окончание1 & "')"
 
             conn = New SqlConnection(ConString)
             If conn.State = ConnectionState.Closed Then
@@ -80,7 +80,7 @@ Module ДолжОконч
                 MessageBox.Show("Что то пошло не так, добавьте должность через форму!", Рик)
             End Try
         Else
-            Dim StrSql7 As String = "UPDATE Окончание SET " & вопрос & "='" & окончание & "' WHERE Должность='" & должность & "'"
+            Dim StrSql7 As String = "UPDATE Окончание SET " & вопрос & "='" & окончание1 & "' WHERE Должность='" & должность & "'"
 
             conn = New SqlConnection(ConString)
             If conn.State = ConnectionState.Closed Then
@@ -103,7 +103,7 @@ Module ДолжОконч
         dtOkonchanie()
 
 
-        Return окончание
+        Return окончание1
 
 
     End Function

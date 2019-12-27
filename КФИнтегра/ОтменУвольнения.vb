@@ -57,7 +57,7 @@ Public Class ОтменУвол
         Уволенные.Идент = 1
 
         Dim ds3 = dtSotrudnikiAll.Select("КодСотрудники=" & CType(Label6.Text, Integer) & "")
-        Статистика(TextBox2.Text, "Отмена увольнения", ds3(0).Item("НазвОрганиз").ToString)
+        Статистика1(TextBox2.Text, "Отмена увольнения", ds3(0).Item("НазвОрганиз").ToString)
         Me.Cursor = Cursors.Default
 
 

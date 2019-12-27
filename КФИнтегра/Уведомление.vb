@@ -885,7 +885,7 @@ FROM ПродлКонтракта WHERE IDСотр=" & i & ""
 Set " & ColProd(0) & " = '" & dt1.ToShortDateString & "', " & ColProd(1) & " = '" & dt2.ToShortDateString & "', " & ColProd(2) & "= '" & TextBox8.Text & "', " & ColProd(3) & "= '" & TextBox7.Text & "'
 Where IDСотр =@ID", list)
 
-            Статистика(TextBox3.Text, "Уведомление о продлении контракта", ComboBox1.Text)
+            Статистика1(TextBox3.Text, "Уведомление о продлении контракта", ComboBox1.Text)
         Else
 
             Updates(stroka:="UPDATE КарточкаСотрудника  Set КарточкаСотрудника.НомерУведомлПродКонтр = '" & TextBox7.Text & "',
@@ -1183,7 +1183,7 @@ VALUES(" & MosiFF(0, i) & ",'" & MosiFF(2, i) & "','" & MosiFF(3, i) & "','" & f
 
 
             End Select
-            Статистика(MosiFF(2, i), "Уведомление о продлении контракта", ComboBox1.Text)
+            Статистика1(MosiFF(2, i), "Уведомление о продлении контракта", ComboBox1.Text)
 
         Next
 

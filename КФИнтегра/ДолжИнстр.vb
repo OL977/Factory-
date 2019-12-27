@@ -82,13 +82,13 @@ Public Class ДолжИнстр
         Else
             Me.Close()
         End If
-        Штатное.v = True
+        ШтатноеКласс1.v = True
         Прием.v = True
         TextBox1.Text = ""
         MaskedTextBox1.Text = Now.ToShortDateString
         RichTextBox1.Text = ""
 
-        Статистика("Нет", "Создание должностной инструкции", Штатное.ComboBox1.Text)
+        Статистика1("Нет", "Создание должностной инструкции", ШтатноеКласс1.ComboBox1.Text)
     End Sub
 
     Private Sub ДолжИнстр_Closed(sender As Object, e As EventArgs) Handles Me.Closed

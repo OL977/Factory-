@@ -12,7 +12,7 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         l += 1
-        Статистика("Ввод логина - " & TextBox1.Text, "Ввод пароля - " & TextBox2.Text, "Попытка входа № " & l)
+        Статистика1("Ввод логина - " & TextBox1.Text, "Ввод пароля - " & TextBox2.Text, "Попытка входа № " & l)
 
         If TextBox1.Text = login Then
             If TextBox2.Text = Password Then

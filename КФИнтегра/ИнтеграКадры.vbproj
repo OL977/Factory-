@@ -339,6 +339,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Async.vb" />
+    <Compile Include="DbAll.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbAll.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DbAll.vb">
+      <DependentUpon>DbAll.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -740,10 +748,10 @@
     <Compile Include="Уволенные.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Штатное.Designer.vb">
-      <DependentUpon>Штатное.vb</DependentUpon>
+    <Compile Include="ШтатноеКласс1.Designer.vb">
+      <DependentUpon>ШтатноеКласс1.vb</DependentUpon>
     </Compile>
-    <Compile Include="Штатное.vb">
+    <Compile Include="ШтатноеКласс1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ШтатноеПослеИзменения.Designer.vb">
@@ -979,8 +987,8 @@
     <EmbeddedResource Include="Уволенные.resx">
       <DependentUpon>Уволенные.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Штатное.resx">
-      <DependentUpon>Штатное.vb</DependentUpon>
+    <EmbeddedResource Include="ШтатноеКласс1.resx">
+      <DependentUpon>ШтатноеКласс1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ШтатноеПослеИзменения.resx">
       <DependentUpon>ШтатноеПослеИзменения.vb</DependentUpon>
@@ -996,11 +1004,20 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="DbAll.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DbAll.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DbAll.dbml.layout">
+      <DependentUpon>DbAll.dbml</DependentUpon>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\ДогПодрядаДолжнИОбязанDataContext.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -1014,14 +1031,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Resources\Уведомление.doc" />
     <None Include="Resources\Уволенные.xlsx" />
     <None Include="Resources\Штатное.xlsx" />
     <None Include="WindowsApp3_TemporaryKey.pfx" />
     <None Include="Zidium.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="АктПодряда.doc" />
     <None Include="ИнтеграКадры_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -1049,6 +1064,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Эмблема.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\WinSCP.5.15.5\build\WinSCP.targets" Condition="Exists('..\packages\WinSCP.5.15.5\build\WinSCP.targets')" />
