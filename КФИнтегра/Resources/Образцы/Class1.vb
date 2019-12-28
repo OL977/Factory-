@@ -62,15 +62,65 @@
     '    }
 
 
+    'Using dbcx = New DbAllDataContext  'мой insert
+    'Dim f As New ДогПодрОбязан()
+    '        f.Обязанности = ComboBox1.Text
+    '        f.ID = RichTextBox2.Text
+    '        dbcx.ДогПодрОбязан.InsertOnSubmit(f)
+    '        dbcx.SubmitChanges()
+    '        idДолжность = f.Код
+    '    End Using
 
 
 
-    'Dim db As New ДогПодрядаДолжнИОбязанDataContext() 'мой insert
-    'Dim f As New ДогПодДолжн()
-    '    f.Клиент = ComboBox1.Text
-    '    f.Должность = RichTextBox2.Text
-    '    db.GetTable(Of ДогПодДолжн).InsertOnSubmit(f)
-    '    db.SubmitChanges()
-    '    idДолжность = f.Код
+    'Using dbcx = New DbAllDataContext() 'мой update
+    'Dim var = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.Код = idОбязанность Select x).Single
+    'If var IsNot Nothing Then
+    '            var.Обязанности = RichTextBox1.Text
+    '            dbcx.SubmitChanges()
+    '        End If
+    'End Using
+
+
+    'Using dbcx = New DbAllDataContext() 'мой update2
+    'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = idДолжность)
+    'If var IsNot Nothing Then
+    '            var.Должность = RichTextBox2.Text
+    '            dbcx.SubmitChanges()
+    '        End If
+    'End Using
+
+
+    'Using dbcx = New DbAllDataContext() 'мой delete
+    'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = ComboBox22.SelectedValue)
+    'If var IsNot Nothing Then
+    '            dbcx.ДогПодДолжн.DeleteOnSubmit(var)
+    '            dbcx.SubmitChanges()
+
+    '        End If
+    'End Using
+
+
+
+
+
+
+
+
+    'Dim ds1   'комбобокс с id
+    '    dbcx = New DbAllDataContext
+    '    ds1 = From x In dbcx.ДогПодДолжн Where x.Клиент = ComboBox1.Text
+    '          Order By x.Должность
+    '          Select x.Должность, x.Код
+
+    '    ComboBox22.DataSource = ds1
+    '    ComboBox22.DisplayMember = "Должность"
+    '    ComboBox22.ValueMember = "Код"
+
+
+
+
+
+
 
 End Class

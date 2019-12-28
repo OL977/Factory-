@@ -42,7 +42,7 @@ Module Module1
     Public connДоработчик As SqlConnection
     Public Logger = LogManager.GetCurrentClassLogger()
     Public ПодтверждПароляУдаление As Boolean = False
-    Public dbcx As New DbAllDataContext()
+    Public dbcx As DbAllDataContext
 
     Public Sub COMxt(ByVal form As Form, ByVal strsql As String, ByVal c As ComboBox)
         'Dim strsql As String = "SELECT DISTINCT Страна FROM Страна ORDER BY Страна"

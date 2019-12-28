@@ -74,7 +74,7 @@ Public Class Прием
     Dim Поток1 As New Thread(AddressOf НалогиИОбязанДогПодряда)
     Public РазрИзменКонтр
     Dim Решение As String
-    Dim idДолжность As Integer
+    Dim idДолжность, idОбязанность As Integer
 
 
     Private Sub ДанИзБазы()
@@ -5569,21 +5569,26 @@ FROM СоставСемьи"
 
         End If
 
-        If CheckBox7.Checked = True Then
-            ComboBox22.Text = String.Empty
-            ComboBox23.Text = String.Empty
-            ComboBox25.Text = String.Empty
-            ComboBox24.Text = String.Empty
-            TextBox55.Text = ""
-            MaskedTextBox6.Text = ""
-            MaskedTextBox7.Text = ""
-            MaskedTextBox8.Text = ""
-            TextBox61.Text = ""
-            TextBox62.Text = ""
-            TextBox63.Text = ""
-            ListBox1.Items.Clear()
-            TextBox39.Text = ""
-        End If
+        Try
+            If CheckBox7.Checked = True Then
+                ComboBox22.Text = String.Empty
+                ComboBox23.Text = String.Empty
+                ComboBox25.Text = String.Empty
+                ComboBox24.Text = String.Empty
+                TextBox55.Text = ""
+                MaskedTextBox6.Text = ""
+                MaskedTextBox7.Text = ""
+                MaskedTextBox8.Text = ""
+                TextBox61.Text = ""
+                TextBox62.Text = ""
+                ListBox1.Items.Clear()
+                TextBox39.Text = ""
+                TextBox63.Text = ""
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
 
 
@@ -5594,18 +5599,32 @@ FROM СоставСемьи"
         End If
     End Sub
     Private Sub Comb22Update()
+
+        dbcx = New DbAllDataContext()
         Dim ds1 = From x In dbcx.ДогПодДолжн
                   Where x.Клиент = ComboBox1.Text
-                  Select x
+                  Order By x.Должность
+                  Select x.Должность, x.Код
 
         'Dim ds1 = dtDogPodrDoljnostAll.Select("Клиент='" & ComboBox1.Text & "'")
 
-        Me.ComboBox22.AutoCompleteCustomSource.Clear()
-        Me.ComboBox22.Items.Clear()
-        For Each r In ds1
-            Me.ComboBox22.AutoCompleteCustomSource.Add(r.Должность.ToString())
-            Me.ComboBox22.Items.Add(r.Должность.ToString)
-        Next
+
+
+
+        'ComboBox22.AutoCompleteCustomSource.Clear()
+        'ComboBox22.DataSource.Clear()
+
+        'ComboBox22.AutoCompleteMode = AutoCompleteMode.Suggest
+        'ComboBox22.AutoCompleteCustomSource = AutoCompleteSource.ListItems(ds1)
+        ComboBox22.DataSource = ds1
+        ComboBox22.DisplayMember = "Должность"
+        ComboBox22.ValueMember = "Код"
+
+
+        'For Each r In ds1
+        '    Me.ComboBox22.AutoCompleteCustomSource.Add(r.Должность.ToString())
+        '    Me.ComboBox22.Items.Add(r.Должность.ToString)
+        'Next
     End Sub
 
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
@@ -5613,13 +5632,22 @@ FROM СоставСемьи"
             MessageBox.Show("Введите должность!", Рик)
             Exit Sub
         End If
-        Dim ds = dtDogPodrDoljnostAll.Select("Клиент='" & ComboBox1.Text & "' And Должность ='" & RichTextBox2.Text & "'")
-        If ds.Length > 0 Then
-            If MessageBox.Show("Должность " & RichTextBox2.Text & " уже существует!" & vbCrLf & "Содать новую?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+
+        Using dbcx = New DbAllDataContext
+            Dim ds = From x In dbcx.ДогПодДолжн.AsEnumerable Where x.Клиент = ComboBox1.Text And x.Должность = RichTextBox2.Text Select x
+            If ds.Count > 0 Then
+                MessageBox.Show("Должность " & RichTextBox2.Text & " уже существует!", Рик)
                 Exit Sub
             End If
-        End If
+        End Using
 
+        'Dim ds = dtDogPodrDoljnostAll.Select("Клиент='" & ComboBox1.Text & "' And Должность ='" & RichTextBox2.Text & "'")
+        'If ds.Length > 0 Then
+        '    If MessageBox.Show("Должность " & RichTextBox2.Text & " уже существует!" & vbCrLf & "Содать новую?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        '        Exit Sub
+        '    End If
+        'End If
+        Dim f2 As String = RichTextBox2.Text
         Dim db As New DbAllDataContext() 'добавление в базу datacontext
         Dim f As New ДогПодДолжн()
         f.Клиент = ComboBox1.Text
@@ -5628,23 +5656,17 @@ FROM СоставСемьи"
         db.SubmitChanges()
         idДолжность = f.Код
 
-
-
-
-
-
-
-
         '        Dim list As New Dictionary(Of String, Object)
         '        list.Add("@Клиент", ComboBox1.Text)
         '        list.Add("@Должность", RichTextBox2.Text)
         '        'Содаем новую должность
         '        idДолжность = Updates(stroka:="INSERT INTO ДогПодДолжн(Клиент,Должность)
         'VALUES(@Клиент,@Должность);SELECT SCOPE_IDENTITY()", list, "ДогПодДолжн", 1)
-        RichTextBox2.Text = ""
-        MessageBox.Show("Должность добавлена!", Рик)
         Comb22Update()
         checkbx24()
+        MessageBox.Show("Должность добавлена!", Рик)
+        ComboBox22.SelectedItem = f2
+
     End Sub
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
@@ -5652,14 +5674,35 @@ FROM СоставСемьи"
             MessageBox.Show("Выберите должность для изменения!", Рик)
             Exit Sub
         End If
-        Dim list As New Dictionary(Of String, Object)
-        list.Add("@Код", idДолжность)
-        list.Add("@Должность", RichTextBox2.Text)
-        'Содаем новую должность
-        Updates(stroka:="UPDATE ДогПодДолжн SET Должность=@Должность WHERE Код=@Код", list, "ДогПодДолжн")
-        MessageBox.Show("Должность изменена!", Рик)
-    End Sub
 
+
+
+
+        Using dbcx = New DbAllDataContext()
+            'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = ComboBox22.SelectedValue)
+            Dim var = (From x In dbcx.ДогПодДолжн.AsEnumerable Where x.Код = ComboBox22.SelectedValue Select x).Single()
+            If var IsNot Nothing Then
+                var.Должность = RichTextBox2.Text
+                dbcx.SubmitChanges()
+            End If
+        End Using
+
+        Dim f As String = RichTextBox2.Text
+
+        'Dim list As New Dictionary(Of String, Object)
+        'list.Add("@Код", idДолжность)
+        'list.Add("@Должность", RichTextBox2.Text)
+        ''Содаем новую должность
+        'Updates(stroka:="UPDATE ДогПодДолжн SET Должность=@Должность WHERE Код=@Код", list, "ДогПодДолжн")
+
+        Parallel.Invoke(Sub() Comb22Update())
+        Parallel.Invoke(Sub() checkbx24())
+        ComboBox22.SelectedItem = f
+
+
+        MessageBox.Show("Должность изменена!", Рик)
+
+    End Sub
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
         If RichTextBox2.Text = "" Then
             MessageBox.Show("Выберите должность для удаления!", Рик)
@@ -5669,12 +5712,33 @@ FROM СоставСемьи"
         If MessageBox.Show("Удалить должность " & RichTextBox2.Text & " и её обязанности?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
             Exit Sub
         End If
-        Dim list As New Dictionary(Of String, Object)
-        list.Add("@Код", idДолжность)
 
-        'Содаем новую должность
-        Updates(stroka:="DELETE ДогПодДолжн WHERE Код=@Код", list, "ДогПодДолжн")
+
+        Using dbcx = New DbAllDataContext() 'мой delete
+            'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = ComboBox22.SelectedValue)
+            Dim var = (From x In dbcx.ДогПодДолжн.AsEnumerable Where x.Код = ComboBox22.SelectedValue Select x).FirstOrDefault
+            If var IsNot Nothing Then
+                dbcx.ДогПодДолжн.DeleteOnSubmit(var)
+                dbcx.SubmitChanges()
+            End If
+        End Using
+
+
+        Parallel.Invoke(Sub() Comb22Update())
+        Parallel.Invoke(Sub() checkbx24())
+
+
+
         MessageBox.Show("Должность удалена!", Рик)
+
+
+
+        'Dim list As New Dictionary(Of String, Object)
+        'list.Add("@Код", idДолжность)
+
+        ''Содаем новую должность
+        'Updates(stroka:="DELETE ДогПодДолжн WHERE Код=@Код", list, "ДогПодДолжн")
+
     End Sub
 
     Private Sub Grid1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles Grid1.CellClick
@@ -5685,8 +5749,18 @@ FROM СоставСемьи"
         RichTextBox2.Text = Grid1.CurrentRow.Cells(2).Value
         idДолжность = Grid1.CurrentRow.Cells(0).Value
         RichTextBox1.Text = Grid1.CurrentRow.Cells(3).Value
-
-
+        idОбязAsync(ComboBox22.SelectedValue)
+    End Sub
+    Private Sub idОбяз(ByVal d As Integer)
+        Using dbcx = New DbAllDataContext
+            idОбязанность = (From x In dbcx.ДогПодрОбязан.AsEnumerable
+                             Join y In dbcx.ДогПодДолжн On x.ID Equals y.Код
+                             Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = d
+                             Select x.Код).FirstOrDefault()
+        End Using
+    End Sub
+    Private Async Sub idОбязAsync(ByVal d As Integer)
+        Await Task.Run(Sub() idОбяз(d))
     End Sub
 
     Private Sub УскорИзменСотр()
@@ -5774,6 +5848,110 @@ FROM СоставСемьи"
         Catch ex As Exception
             'MessageBox.Show("Некоторые данные не зарегистрированы в системе!", Рик, MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         End Try
+
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        If RichTextBox1.Text = "" Then
+            MessageBox.Show("Выберите объект для изменения!", Рик)
+            Exit Sub
+        End If
+
+        Using dbcx = New DbAllDataContext
+            Dim v = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.ID = ComboBox22.SelectedValue Select x.Обязанности).ToList
+            If v.Contains(RichTextBox1.Text) Then
+                MessageBox.Show("Внесите изменения!", Рик)
+                Exit Sub
+            End If
+        End Using
+
+
+
+        Using dbcx = New DbAllDataContext() 'мой update
+            Dim idob = (From x In dbcx.ДогПодрОбязан.AsEnumerable
+                        Join y In dbcx.ДогПодДолжн.AsEnumerable On x.ID Equals y.Код
+                        Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = ComboBox22.SelectedValue
+                        Select x.Код).FirstOrDefault()
+
+            Dim var = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.Код = idob Select x).Single
+            If var IsNot Nothing Then
+                var.Обязанности = RichTextBox1.Text
+                dbcx.SubmitChanges()
+            End If
+        End Using
+
+
+        Parallel.Invoke(Sub() checkbx24())
+
+
+        ListBox1.DataSource = list1Update(ComboBox1.Text, ComboBox22.Text)
+
+        MessageBox.Show("Обязанность изменена!", Рик)
+
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        If RichTextBox2.Text = "" Then
+            MessageBox.Show("Выберите объект для удаления!", Рик)
+            Exit Sub
+        End If
+
+        If MessageBox.Show("Удалить обязанность?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+            Exit Sub
+        End If
+
+        Using dbcx = New DbAllDataContext() 'мой удаление
+            Dim idob = (From x In dbcx.ДогПодрОбязан.AsEnumerable
+                        Join y In dbcx.ДогПодДолжн.AsEnumerable On x.ID Equals y.Код
+                        Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = ComboBox22.SelectedValue
+                        Select x.Код).FirstOrDefault()
+
+            Dim var = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.Код = idob Select x).Single
+            If var IsNot Nothing Then
+                dbcx.ДогПодрОбязан.DeleteOnSubmit(var)
+                dbcx.SubmitChanges()
+            End If
+        End Using
+        Parallel.Invoke(Sub() checkbx24())
+        RichTextBox1.Text = ""
+
+        ListBox1.DataSource = list1Update(ComboBox1.Text, ComboBox22.Text)
+        MessageBox.Show("Данные удалены!", Рик)
+
+    End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        If RichTextBox1.Text = "" Then
+            MessageBox.Show("Заполните обязанность!", Рик)
+            Exit Sub
+        End If
+
+
+        Using dbcx = New DbAllDataContext
+            Dim v = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.ID = ComboBox22.SelectedValue Select x.Обязанности).ToList
+            If v.Contains(RichTextBox1.Text) Then
+                MessageBox.Show("Обязанность '" & RichTextBox1.Text & "'" & vbCrLf & "уже создана!", Рик)
+                Exit Sub
+            End If
+        End Using
+
+        'мой insert
+        Using dbcx = New DbAllDataContext
+            Dim f As New ДогПодрОбязан()
+            f.Обязанности = RichTextBox1.Text
+            f.ID = ComboBox22.SelectedValue
+            dbcx.ДогПодрОбязан.InsertOnSubmit(f)
+            dbcx.SubmitChanges()
+            idДолжность = f.Код
+        End Using
+
+
+
+        Parallel.Invoke(Sub() checkbx24())
+        ListBox1.DataSource = list1Update(ComboBox1.Text, ComboBox22.Text)
+        'listbx1Saync(ComboBox1.Text, ComboBox22.Text)
+
+        MessageBox.Show("Обязанность добавлена!", Рик)
 
     End Sub
 
@@ -5895,6 +6073,24 @@ FROM СоставСемьи"
 
 
     End Sub
+    Private Sub dtn2Click()
+        If GroupBox19.Visible = True Then
+            GroupBox19.Visible = False
+            For Each gh In GroupBox19.Controls.OfType(Of RichTextBox)
+                gh.Text = ""
+            Next
+            Dim dt As New DataTable
+            Grid1.DataSource = dt
+        End If
+    End Sub
+    Private Async Sub dtn2ClickAsyns()
+        Await Task.Run(Sub() dtn2Click())
+    End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+        dtn2Click()
+    End Sub
+
     Private Function УскорИзменСотрДог() As Boolean
 
 
@@ -6320,21 +6516,31 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             CheckBox23.Enabled = False
         Else
             CheckBox23.Enabled = True
+            GroupBox19.Visible = False
+            dtn2ClickAsyns()
         End If
         'Соед(0)
 
         'Чист()
         'StrSql = "SELECT Должность FROM ДогПодДолжн WHERE Клиент='" & ComboBox1.Text & "'"
         'ds = Selects(StrSql)
+        Dim ds1
+        dbcx = New DbAllDataContext
+        ds1 = From x In dbcx.ДогПодДолжн Where x.Клиент = ComboBox1.Text
+              Order By x.Должность
+              Select x.Должность, x.Код
 
-        Dim ds1 = dtDogPodrDoljnostAll.Select("Клиент='" & ComboBox1.Text & "'")
+        ComboBox22.DataSource = ds1
+        ComboBox22.DisplayMember = "Должность"
+        ComboBox22.ValueMember = "Код"
+        'Dim ds1 = dtDogPodrDoljnostAll.Select("Клиент='" & ComboBox1.Text & "'")
 
-        Me.ComboBox22.AutoCompleteCustomSource.Clear()
-        Me.ComboBox22.Items.Clear()
-        For Each r As DataRow In ds1
-            Me.ComboBox22.AutoCompleteCustomSource.Add(r.Item("Должность").ToString())
-            Me.ComboBox22.Items.Add(r("Должность").ToString)
-        Next
+        'Me.ComboBox22.AutoCompleteCustomSource.Clear()
+        'Me.ComboBox22.Items.Clear()
+        'For Each r As DataRow In ds1
+        '    Me.ComboBox22.AutoCompleteCustomSource.Add(r.Item("Должность").ToString())
+        '    Me.ComboBox22.Items.Add(r("Должность").ToString)
+        'Next
 
         'Чист()
         'StrSql = "SELECT АдресОбъекта FROM ОбъектОбщепита WHERE НазвОрг='" & ComboBox1.Text & "'"
@@ -6512,56 +6718,16 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         End If
     End Sub
 
-
-
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        'If CheckBox8.Checked = True Then
-        GroupBox19.Visible = True
-        CheckBox24.Checked = False
-        Button2.Visible = False
-        TextBox63.Text = ""
-        'Else
-        '    GroupBox19.Visible = False
-        '    Button2.Visible = True
-        'End If
-    End Sub
-
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
-        Dim IDLДогПодрОбяз2 As Integer
-        'Dim ds = "SELECT Код FROM ДогПодДолжн WHERE Клиент='" & ComboBox1.Text & "' AND Должность= '" & ComboBox22.Text & "'"
+        GroupBox19.Visible = True
+        Dim db As New DbAllDataContext
 
-        Dim ds = From x In dtDogPodrDoljnostAll.AsEnumerable Where x.Item("Клиент") = ComboBox1.Text And x.Item("Должность") = ComboBox22.Text Select x.Item("Код")
-
-        If ds.Count > 0 Then
-            IDLДогПодрОбяз2 = ds.FirstOrDefault
-        Else
-            MessageBox.Show("Выберите должность!", Рик)
-            Exit Sub
-        End If
-        'Dim ds As New DataSet
-        'Dim da As SqlDataAdapter = Доработчик(StrSql)
-        'Try
-        '    '    da.Fill(ds, "Cn")
-        '    IDLДогПодрОбяз2 = ds.Tables("cn").Rows(0).Item(0)
-        'Catch ex As Exception
-        '    MessageBox.Show("Выберите должность!", Рик)
-        '        'Соед(0)
-
-        '        Exit Sub
-        '    End Try
-
-        Dim list As New Dictionary(Of String, Object)
-        list.Add("@Код", IDLДогПодрОбяз2)
-
-        If MessageBox.Show("Удалить должность " & ComboBox22.Text & " ?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
-
-            Updates(stroka:="delete FROM ДогПодДолжн WHERE Код=@Код", list)
-            MessageBox.Show("Должность удалена!", Рик)
-            RunMoving23()
-            refrdoljn()
-            ComboBox22.Text = ""
-        End If
-
+            Dim dt = (From x In db.ДогПодДолжн
+                      From y In db.ДогПодрОбязан
+                      Where x.Должность = ComboBox22.Text And x.Клиент = ComboBox1.Text And y.ID = x.Код
+                      Select New With {.Идентификатор = x.Код, .Организация = x.Клиент, x.Должность, y.Обязанности}).ToList()
+            Grid1.DataSource = dt
+            GridView(Grid1)
 
     End Sub
 
@@ -6614,7 +6780,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             End If
         End If
     End Sub
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
         Dim Err As String = ""
         Dim StrSql2 As String = "Select Клиент, Должность From ДогПодДолжн Where Должность ='" & Me.TextBox63.Text & "' AND Клиент = '" & ComboBox1.Text & "'"
         Dim ds2 As New DataSet
@@ -7437,7 +7603,7 @@ WHERE ШтОтделы.Клиент='" & Клиент & "' AND ШтОтделы.
 
 
 
-        CheckBox24.Checked = False
+
         'CheckBox8.Checked = False
         'CheckBox25.Checked = False
 
@@ -7463,96 +7629,86 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
 
 
     End Sub
+    Private Function list1Update(ByVal _Клиент As String, ByVal _Должность As String) As List(Of String)
+        Dim ds As List(Of String)
+        Using db As New DbAllDataContext
+            ds = (From x In db.ДогПодДолжн.AsEnumerable
+                  Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
+                  Where x.Клиент = _Клиент And x.Должность = _Должность
+                  Select y.Обязанности).ToList()
+        End Using
+        Return ds
 
-    Private Sub ComboBox22_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox22.SelectedIndexChanged
 
+    End Function
+    Private Sub listbx1(ByVal t As String, ByVal d As String)
         Dim db As New DbAllDataContext
         Dim ds = (From x In db.ДогПодДолжн.AsEnumerable
                   Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
-                  Where x.Клиент = ComboBox1.Text And x.Должность = ComboBox22.Text
+                  Where x.Клиент = t And x.Должность = d
+                  Order By y.Обязанности
                   Select y.Обязанности).ToList()
 
         '        Dim ds = Selects(StrSql:="SELECT ДогПодрОбязан.Обязанности
         'FROM ДогПодДолжн INNER JOIN ДогПодрОбязан ON ДогПодДолжн.Код = ДогПодрОбязан.ID
         'WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогПодДолжн.Должность= '" & ComboBox22.Text & "'")
 
-        ListBox1.Items.Clear()
-        For Each r In ds
-            ListBox1.Items.Add(r.ToString)
-        Next
+        ListBox1.DataSource = ds
+    End Sub
+    Private Async Sub listbx1Saync(ByVal t As String, ByVal d As String)
+        Await Task.Run(Sub() listbx1(t, d))
+    End Sub
+
+    Private Sub ComboBox22_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox22.SelectedIndexChanged
+
         If GroupBox19.Visible = True Then
-            Parallel.Invoke(Sub() checkbx24())
+            listbx1(ComboBox1.Text, ComboBox22.Text)
+            checkbx24()
+        Else
+            listbx1Saync(ComboBox1.Text, ComboBox22.Text)
         End If
 
+        'Dim db As New DbAllDataContext
+        'Dim ds = (From x In db.ДогПодДолжн.AsEnumerable
+        '          Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
+        '          Where x.Клиент = ComboBox1.Text And x.Должность = ComboBox22.Text
+        '          Order By y.Обязанности
+        '          Select y.Обязанности).ToList()
 
+        ''        Dim ds = Selects(StrSql:="SELECT ДогПодрОбязан.Обязанности
+        ''FROM ДогПодДолжн INNER JOIN ДогПодрОбязан ON ДогПодДолжн.Код = ДогПодрОбязан.ID
+        ''WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогПодДолжн.Должность= '" & ComboBox22.Text & "'")
+
+        'ListBox1.DataSource = ds
+
+
+        'ListBox1.Items.Clear()
+        'For Each r In ds
+        '    ListBox1.Items.Add(r.ToString)
+        'Next
+
+        RichTextBox1.Text = ""
         RichTextBox2.Text = ComboBox22.Text
     End Sub
 
     Private Sub checkbx24()
+        Using dbcx = New DbAllDataContext()
+            Dim dt = From x In dbcx.ДогПодДолжн.AsEnumerable
+                     Join y In dbcx.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
+                     Where x.Код = ComboBox22.SelectedValue And x.Клиент = ComboBox1.Text
+                     Select New With {.Идентификатор = x.Код, .Организация = x.Клиент, x.Должность, y.Обязанности}
 
-        Dim dt = (From x In dbcx.ДогПодДолжн
-                  From y In dbcx.ДогПодрОбязан
-                  Where x.Должность = ComboBox22.Text And x.Клиент = ComboBox1.Text And y.ID = x.Код
-                  Select New With {.Идентификатор = x.Код, .Организация = x.Клиент, x.Должность, y.Обязанности}).ToList()
+            Grid1.DataSource = dt.ToList()
+            'Grid1.Columns("Код").DividerWidth = 80
 
-        Grid1.DataSource = dt
-        'Grid1.Columns("Код").DividerWidth = 80
+        End Using
         GridView(Grid1)
 
-
-
-        If CheckBox24.Checked = True Then
-            'CheckBox8.Checked = False
-            GroupBox19.Visible = True
-            'Label75.Visible = False
-            'TextBox63.Visible = False
-            Button3.Enabled = False
-            Button2.Visible = True
-        Else
-            GroupBox19.Visible = False
-            'Label75.Visible = True
-            'TextBox63.Visible = True
-            Button3.Enabled = True
-            Button2.Visible = False
-
-
-            Exit Sub
-
-        End If
     End Sub
 
-    Private Sub CheckBox24_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox24.CheckedChanged
-        Dim db As New DbAllDataContext
+    Private Sub CheckBox24_CheckedChanged(sender As Object, e As EventArgs)
 
-        Dim dt = (From x In db.ДогПодДолжн
-                  From y In db.ДогПодрОбязан
-                  Where x.Должность = ComboBox22.Text And x.Клиент = ComboBox1.Text And y.ID = x.Код
-                  Select New With {.Идентификатор = x.Код, .Организация = x.Клиент, x.Должность, y.Обязанности}).ToList()
-
-        Grid1.DataSource = dt
-        'Grid1.Columns("Код").DividerWidth = 80
-        GridView(Grid1)
-
-
-
-        If CheckBox24.Checked = True Then
-            'CheckBox8.Checked = False
-            GroupBox19.Visible = True
-            'Label75.Visible = False
-            'TextBox63.Visible = False
-            Button3.Enabled = False
-            Button2.Visible = True
-        Else
-            GroupBox19.Visible = False
-            'Label75.Visible = True
-            'TextBox63.Visible = True
-            Button3.Enabled = True
-            Button2.Visible = False
-
-
-            Exit Sub
-
-        End If
+        'Старые данные до 27.12.19                                     
 
         Exit Sub
         'Соед(0)
@@ -7600,7 +7756,7 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
         'Соед(0)
         Dim ds = Selects(StrSql:="SELECT Код FROM ДогПодДолжн WHERE Клиент='" & ComboBox1.Text & "' AND Должность= '" & ComboBox22.Text & "'")
         Dim IDLДогПодрОбяз2 As Integer = ds.Rows(0).Item(0)
