@@ -281,10 +281,8 @@ Public Class MDIParent1
         End Try
         Exit Sub
     End Sub
-
-
     Private Sub MDIParent1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'loggers()
+
         Загрузка()
     End Sub
     Sub GetFindSub(ByVal d As String, ByVal f As String)
@@ -709,5 +707,15 @@ Public Class MDIParent1
 
     Private Sub СоздатьToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СоздатьToolStripMenuItem.Click
         ДогПодрядаАктИноеСоздать.ShowDialog()
+    End Sub
+
+    Private Sub ДобавитьToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ДобавитьToolStripMenuItem.Click
+        СправочникСотрудники.BtnClick = "Добавить"
+        СправочникСотрудники.ShowDialog()
+    End Sub
+
+    Private Sub ИзменитьToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ИзменитьToolStripMenuItem2.Click
+        СправочникСотрудники.BtnClick = "Изменить"
+        СправочникСотрудники.ShowDialog()
     End Sub
 End Class

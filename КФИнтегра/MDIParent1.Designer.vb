@@ -71,13 +71,17 @@ Partial Class MDIParent1
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.СправочникToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.СотрудникиToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ДобавитьToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ИзменитьToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ВводДанныхToolStripMenuItem, Me.ОтчетыToolStripMenuItem, Me.СпискиToolStripMenuItem, Me.ПечатьToolStripMenuItem, Me.ПоискToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ВводДанныхToolStripMenuItem, Me.ОтчетыToolStripMenuItem, Me.СпискиToolStripMenuItem, Me.ПечатьToolStripMenuItem, Me.ПоискToolStripMenuItem, Me.СправочникToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(8, 3, 0, 3)
@@ -236,32 +240,32 @@ Partial Class MDIParent1
         '
         Me.ДоговорПодрядаToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ПоЧасамToolStripMenuItem, Me.ИноеToolStripMenuItem})
         Me.ДоговорПодрядаToolStripMenuItem2.Name = "ДоговорПодрядаToolStripMenuItem2"
-        Me.ДоговорПодрядаToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
+        Me.ДоговорПодрядаToolStripMenuItem2.Size = New System.Drawing.Size(169, 22)
         Me.ДоговорПодрядаToolStripMenuItem2.Text = "Договор подряда"
         '
         'ПоЧасамToolStripMenuItem
         '
         Me.ПоЧасамToolStripMenuItem.Name = "ПоЧасамToolStripMenuItem"
-        Me.ПоЧасамToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ПоЧасамToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.ПоЧасамToolStripMenuItem.Text = "По часам"
         '
         'ИноеToolStripMenuItem
         '
         Me.ИноеToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.СоздатьToolStripMenuItem, Me.ИзменитьToolStripMenuItem1})
         Me.ИноеToolStripMenuItem.Name = "ИноеToolStripMenuItem"
-        Me.ИноеToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ИноеToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.ИноеToolStripMenuItem.Text = "Иное"
         '
         'СоздатьToolStripMenuItem
         '
         Me.СоздатьToolStripMenuItem.Name = "СоздатьToolStripMenuItem"
-        Me.СоздатьToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.СоздатьToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.СоздатьToolStripMenuItem.Text = "Создать"
         '
         'ИзменитьToolStripMenuItem1
         '
         Me.ИзменитьToolStripMenuItem1.Name = "ИзменитьToolStripMenuItem1"
-        Me.ИзменитьToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ИзменитьToolStripMenuItem1.Size = New System.Drawing.Size(128, 22)
         Me.ИзменитьToolStripMenuItem1.Text = "Изменить"
         '
         'СпискиToolStripMenuItem
@@ -369,6 +373,32 @@ Partial Class MDIParent1
         'ToolTip
         '
         '
+        'СправочникToolStripMenuItem
+        '
+        Me.СправочникToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.СотрудникиToolStripMenuItem1})
+        Me.СправочникToolStripMenuItem.Name = "СправочникToolStripMenuItem"
+        Me.СправочникToolStripMenuItem.Size = New System.Drawing.Size(87, 19)
+        Me.СправочникToolStripMenuItem.Text = "Справочник"
+        '
+        'СотрудникиToolStripMenuItem1
+        '
+        Me.СотрудникиToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ДобавитьToolStripMenuItem, Me.ИзменитьToolStripMenuItem2})
+        Me.СотрудникиToolStripMenuItem1.Name = "СотрудникиToolStripMenuItem1"
+        Me.СотрудникиToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.СотрудникиToolStripMenuItem1.Text = "Сотрудники"
+        '
+        'ДобавитьToolStripMenuItem
+        '
+        Me.ДобавитьToolStripMenuItem.Name = "ДобавитьToolStripMenuItem"
+        Me.ДобавитьToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ДобавитьToolStripMenuItem.Text = "Добавить"
+        '
+        'ИзменитьToolStripMenuItem2
+        '
+        Me.ИзменитьToolStripMenuItem2.Name = "ИзменитьToolStripMenuItem2"
+        Me.ИзменитьToolStripMenuItem2.Size = New System.Drawing.Size(180, 22)
+        Me.ИзменитьToolStripMenuItem2.Text = "Изменить"
+        '
         'MDIParent1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -439,4 +469,8 @@ Partial Class MDIParent1
     Friend WithEvents СотрудникиToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents СоздатьToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ИзменитьToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents СправочникToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents СотрудникиToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ДобавитьToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ИзменитьToolStripMenuItem2 As ToolStripMenuItem
 End Class

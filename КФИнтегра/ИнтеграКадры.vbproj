@@ -723,6 +723,12 @@
     <Compile Include="СправкаПоЗарплате.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="СправочникСотрудники.Designer.vb">
+      <DependentUpon>СправочникСотрудники.vb</DependentUpon>
+    </Compile>
+    <Compile Include="СправочникСотрудники.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Статистикас.Designer.vb">
       <DependentUpon>Статистикас.vb</DependentUpon>
     </Compile>
@@ -974,6 +980,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="СправкаПоЗарплате.resx">
       <DependentUpon>СправкаПоЗарплате.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="СправочникСотрудники.resx">
+      <DependentUpon>СправочникСотрудники.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Статистикас.resx">
       <DependentUpon>Статистикас.vb</DependentUpon>

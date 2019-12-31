@@ -181,18 +181,6 @@ Partial Public Class DbAllDataContext
     End Sub
   Partial Private Sub DeleteПутиДокументов(instance As ПутиДокументов)
     End Sub
-  Partial Private Sub InsertСоставСемьи(instance As СоставСемьи)
-    End Sub
-  Partial Private Sub UpdateСоставСемьи(instance As СоставСемьи)
-    End Sub
-  Partial Private Sub DeleteСоставСемьи(instance As СоставСемьи)
-    End Sub
-  Partial Private Sub InsertСотрудники(instance As Сотрудники)
-    End Sub
-  Partial Private Sub UpdateСотрудники(instance As Сотрудники)
-    End Sub
-  Partial Private Sub DeleteСотрудники(instance As Сотрудники)
-    End Sub
   Partial Private Sub InsertСтатистика(instance As Статистика)
     End Sub
   Partial Private Sub UpdateСтатистика(instance As Статистика)
@@ -234,6 +222,24 @@ Partial Public Class DbAllDataContext
   Partial Private Sub UpdateШтСводИзмСтавка(instance As ШтСводИзмСтавка)
     End Sub
   Partial Private Sub DeleteШтСводИзмСтавка(instance As ШтСводИзмСтавка)
+    End Sub
+  Partial Private Sub InsertДети(instance As Дети)
+    End Sub
+  Partial Private Sub UpdateДети(instance As Дети)
+    End Sub
+  Partial Private Sub DeleteДети(instance As Дети)
+    End Sub
+  Partial Private Sub InsertСотрудники(instance As Сотрудники)
+    End Sub
+  Partial Private Sub UpdateСотрудники(instance As Сотрудники)
+    End Sub
+  Partial Private Sub DeleteСотрудники(instance As Сотрудники)
+    End Sub
+  Partial Private Sub InsertСоставСемьи(instance As СоставСемьи)
+    End Sub
+  Partial Private Sub UpdateСоставСемьи(instance As СоставСемьи)
+    End Sub
+  Partial Private Sub DeleteСоставСемьи(instance As СоставСемьи)
     End Sub
   #End Region
 	
@@ -412,18 +418,6 @@ Partial Public Class DbAllDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property СоставСемьи() As System.Data.Linq.Table(Of СоставСемьи)
-		Get
-			Return Me.GetTable(Of СоставСемьи)
-		End Get
-	End Property
-	
-	Public ReadOnly Property Сотрудники() As System.Data.Linq.Table(Of Сотрудники)
-		Get
-			Return Me.GetTable(Of Сотрудники)
-		End Get
-	End Property
-	
 	Public ReadOnly Property Статистика() As System.Data.Linq.Table(Of Статистика)
 		Get
 			Return Me.GetTable(Of Статистика)
@@ -463,6 +457,24 @@ Partial Public Class DbAllDataContext
 	Public ReadOnly Property ШтСводИзмСтавка() As System.Data.Linq.Table(Of ШтСводИзмСтавка)
 		Get
 			Return Me.GetTable(Of ШтСводИзмСтавка)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Дети() As System.Data.Linq.Table(Of Дети)
+		Get
+			Return Me.GetTable(Of Дети)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Сотрудники() As System.Data.Linq.Table(Of Сотрудники)
+		Get
+			Return Me.GetTable(Of Сотрудники)
+		End Get
+	End Property
+	
+	Public ReadOnly Property СоставСемьи() As System.Data.Linq.Table(Of СоставСемьи)
+		Get
+			Return Me.GetTable(Of СоставСемьи)
 		End Get
 	End Property
 End Class
@@ -8518,1667 +8530,6 @@ Partial Public Class ПутиДокументов
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.СоставСемьи")>  _
-Partial Public Class СоставСемьи
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _Код As Integer
-	
-	Private _IDСотр As System.Nullable(Of Integer)
-	
-	Private _КолДетей As String
-	
-	Private _ФИО As String
-	
-	Private _МестоРаботы As String
-	
-	Private _Телефон As String
-	
-	Private _ДетиПол1 As String
-	
-	Private _ФИО1 As String
-	
-	Private _ДатаРождения1 As String
-	
-	Private _ДетиПол2 As String
-	
-	Private _ФИО2 As String
-	
-	Private _ДатаРождения2 As String
-	
-	Private _ДетиПол3 As String
-	
-	Private _ФИО3 As String
-	
-	Private _ДатаРождения3 As String
-	
-	Private _ДетиПол4 As String
-	
-	Private _ФИО4 As String
-	
-	Private _ДатаРождения4 As String
-	
-	Private _ДетиПол5 As String
-	
-	Private _ФИО5 As String
-	
-	Private _ДатаРождения5 As String
-	
-	Private _Сотрудники As EntityRef(Of Сотрудники)
-	
-    #Region "Определения метода расширяемости"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnКодChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnКодChanged()
-    End Sub
-    Partial Private Sub OnIDСотрChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnIDСотрChanged()
-    End Sub
-    Partial Private Sub OnКолДетейChanging(value As String)
-    End Sub
-    Partial Private Sub OnКолДетейChanged()
-    End Sub
-    Partial Private Sub OnФИОChanging(value As String)
-    End Sub
-    Partial Private Sub OnФИОChanged()
-    End Sub
-    Partial Private Sub OnМестоРаботыChanging(value As String)
-    End Sub
-    Partial Private Sub OnМестоРаботыChanged()
-    End Sub
-    Partial Private Sub OnТелефонChanging(value As String)
-    End Sub
-    Partial Private Sub OnТелефонChanged()
-    End Sub
-    Partial Private Sub OnДетиПол1Changing(value As String)
-    End Sub
-    Partial Private Sub OnДетиПол1Changed()
-    End Sub
-    Partial Private Sub OnФИО1Changing(value As String)
-    End Sub
-    Partial Private Sub OnФИО1Changed()
-    End Sub
-    Partial Private Sub OnДатаРождения1Changing(value As String)
-    End Sub
-    Partial Private Sub OnДатаРождения1Changed()
-    End Sub
-    Partial Private Sub OnДетиПол2Changing(value As String)
-    End Sub
-    Partial Private Sub OnДетиПол2Changed()
-    End Sub
-    Partial Private Sub OnФИО2Changing(value As String)
-    End Sub
-    Partial Private Sub OnФИО2Changed()
-    End Sub
-    Partial Private Sub OnДатаРождения2Changing(value As String)
-    End Sub
-    Partial Private Sub OnДатаРождения2Changed()
-    End Sub
-    Partial Private Sub OnДетиПол3Changing(value As String)
-    End Sub
-    Partial Private Sub OnДетиПол3Changed()
-    End Sub
-    Partial Private Sub OnФИО3Changing(value As String)
-    End Sub
-    Partial Private Sub OnФИО3Changed()
-    End Sub
-    Partial Private Sub OnДатаРождения3Changing(value As String)
-    End Sub
-    Partial Private Sub OnДатаРождения3Changed()
-    End Sub
-    Partial Private Sub OnДетиПол4Changing(value As String)
-    End Sub
-    Partial Private Sub OnДетиПол4Changed()
-    End Sub
-    Partial Private Sub OnФИО4Changing(value As String)
-    End Sub
-    Partial Private Sub OnФИО4Changed()
-    End Sub
-    Partial Private Sub OnДатаРождения4Changing(value As String)
-    End Sub
-    Partial Private Sub OnДатаРождения4Changed()
-    End Sub
-    Partial Private Sub OnДетиПол5Changing(value As String)
-    End Sub
-    Partial Private Sub OnДетиПол5Changed()
-    End Sub
-    Partial Private Sub OnФИО5Changing(value As String)
-    End Sub
-    Partial Private Sub OnФИО5Changed()
-    End Sub
-    Partial Private Sub OnДатаРождения5Changing(value As String)
-    End Sub
-    Partial Private Sub OnДатаРождения5Changed()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._Сотрудники = CType(Nothing, EntityRef(Of Сотрудники))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Код", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property Код() As Integer
-		Get
-			Return Me._Код
-		End Get
-		Set
-			If ((Me._Код = value)  _
-						= false) Then
-				Me.OnКодChanging(value)
-				Me.SendPropertyChanging
-				Me._Код = value
-				Me.SendPropertyChanged("Код")
-				Me.OnКодChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDСотр", DbType:="Int")>  _
-	Public Property IDСотр() As System.Nullable(Of Integer)
-		Get
-			Return Me._IDСотр
-		End Get
-		Set
-			If (Me._IDСотр.Equals(value) = false) Then
-				If Me._Сотрудники.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnIDСотрChanging(value)
-				Me.SendPropertyChanging
-				Me._IDСотр = value
-				Me.SendPropertyChanged("IDСотр")
-				Me.OnIDСотрChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КолДетей", DbType:="NVarChar(255)")>  _
-	Public Property КолДетей() As String
-		Get
-			Return Me._КолДетей
-		End Get
-		Set
-			If (String.Equals(Me._КолДетей, value) = false) Then
-				Me.OnКолДетейChanging(value)
-				Me.SendPropertyChanging
-				Me._КолДетей = value
-				Me.SendPropertyChanged("КолДетей")
-				Me.OnКолДетейChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО", DbType:="NVarChar(255)")>  _
-	Public Property ФИО() As String
-		Get
-			Return Me._ФИО
-		End Get
-		Set
-			If (String.Equals(Me._ФИО, value) = false) Then
-				Me.OnФИОChanging(value)
-				Me.SendPropertyChanging
-				Me._ФИО = value
-				Me.SendPropertyChanged("ФИО")
-				Me.OnФИОChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_МестоРаботы", DbType:="NVarChar(255)")>  _
-	Public Property МестоРаботы() As String
-		Get
-			Return Me._МестоРаботы
-		End Get
-		Set
-			If (String.Equals(Me._МестоРаботы, value) = false) Then
-				Me.OnМестоРаботыChanging(value)
-				Me.SendPropertyChanging
-				Me._МестоРаботы = value
-				Me.SendPropertyChanged("МестоРаботы")
-				Me.OnМестоРаботыChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Телефон", DbType:="NVarChar(255)")>  _
-	Public Property Телефон() As String
-		Get
-			Return Me._Телефон
-		End Get
-		Set
-			If (String.Equals(Me._Телефон, value) = false) Then
-				Me.OnТелефонChanging(value)
-				Me.SendPropertyChanging
-				Me._Телефон = value
-				Me.SendPropertyChanged("Телефон")
-				Me.OnТелефонChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол1", DbType:="NVarChar(255)")>  _
-	Public Property ДетиПол1() As String
-		Get
-			Return Me._ДетиПол1
-		End Get
-		Set
-			If (String.Equals(Me._ДетиПол1, value) = false) Then
-				Me.OnДетиПол1Changing(value)
-				Me.SendPropertyChanging
-				Me._ДетиПол1 = value
-				Me.SendPropertyChanged("ДетиПол1")
-				Me.OnДетиПол1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО1", DbType:="NVarChar(255)")>  _
-	Public Property ФИО1() As String
-		Get
-			Return Me._ФИО1
-		End Get
-		Set
-			If (String.Equals(Me._ФИО1, value) = false) Then
-				Me.OnФИО1Changing(value)
-				Me.SendPropertyChanging
-				Me._ФИО1 = value
-				Me.SendPropertyChanged("ФИО1")
-				Me.OnФИО1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения1", DbType:="NVarChar(255)")>  _
-	Public Property ДатаРождения1() As String
-		Get
-			Return Me._ДатаРождения1
-		End Get
-		Set
-			If (String.Equals(Me._ДатаРождения1, value) = false) Then
-				Me.OnДатаРождения1Changing(value)
-				Me.SendPropertyChanging
-				Me._ДатаРождения1 = value
-				Me.SendPropertyChanged("ДатаРождения1")
-				Me.OnДатаРождения1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол2", DbType:="NVarChar(255)")>  _
-	Public Property ДетиПол2() As String
-		Get
-			Return Me._ДетиПол2
-		End Get
-		Set
-			If (String.Equals(Me._ДетиПол2, value) = false) Then
-				Me.OnДетиПол2Changing(value)
-				Me.SendPropertyChanging
-				Me._ДетиПол2 = value
-				Me.SendPropertyChanged("ДетиПол2")
-				Me.OnДетиПол2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО2", DbType:="NVarChar(255)")>  _
-	Public Property ФИО2() As String
-		Get
-			Return Me._ФИО2
-		End Get
-		Set
-			If (String.Equals(Me._ФИО2, value) = false) Then
-				Me.OnФИО2Changing(value)
-				Me.SendPropertyChanging
-				Me._ФИО2 = value
-				Me.SendPropertyChanged("ФИО2")
-				Me.OnФИО2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения2", DbType:="NVarChar(255)")>  _
-	Public Property ДатаРождения2() As String
-		Get
-			Return Me._ДатаРождения2
-		End Get
-		Set
-			If (String.Equals(Me._ДатаРождения2, value) = false) Then
-				Me.OnДатаРождения2Changing(value)
-				Me.SendPropertyChanging
-				Me._ДатаРождения2 = value
-				Me.SendPropertyChanged("ДатаРождения2")
-				Me.OnДатаРождения2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол3", DbType:="NVarChar(255)")>  _
-	Public Property ДетиПол3() As String
-		Get
-			Return Me._ДетиПол3
-		End Get
-		Set
-			If (String.Equals(Me._ДетиПол3, value) = false) Then
-				Me.OnДетиПол3Changing(value)
-				Me.SendPropertyChanging
-				Me._ДетиПол3 = value
-				Me.SendPropertyChanged("ДетиПол3")
-				Me.OnДетиПол3Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО3", DbType:="NVarChar(255)")>  _
-	Public Property ФИО3() As String
-		Get
-			Return Me._ФИО3
-		End Get
-		Set
-			If (String.Equals(Me._ФИО3, value) = false) Then
-				Me.OnФИО3Changing(value)
-				Me.SendPropertyChanging
-				Me._ФИО3 = value
-				Me.SendPropertyChanged("ФИО3")
-				Me.OnФИО3Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения3", DbType:="NVarChar(255)")>  _
-	Public Property ДатаРождения3() As String
-		Get
-			Return Me._ДатаРождения3
-		End Get
-		Set
-			If (String.Equals(Me._ДатаРождения3, value) = false) Then
-				Me.OnДатаРождения3Changing(value)
-				Me.SendPropertyChanging
-				Me._ДатаРождения3 = value
-				Me.SendPropertyChanged("ДатаРождения3")
-				Me.OnДатаРождения3Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол4", DbType:="NVarChar(255)")>  _
-	Public Property ДетиПол4() As String
-		Get
-			Return Me._ДетиПол4
-		End Get
-		Set
-			If (String.Equals(Me._ДетиПол4, value) = false) Then
-				Me.OnДетиПол4Changing(value)
-				Me.SendPropertyChanging
-				Me._ДетиПол4 = value
-				Me.SendPropertyChanged("ДетиПол4")
-				Me.OnДетиПол4Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО4", DbType:="NVarChar(255)")>  _
-	Public Property ФИО4() As String
-		Get
-			Return Me._ФИО4
-		End Get
-		Set
-			If (String.Equals(Me._ФИО4, value) = false) Then
-				Me.OnФИО4Changing(value)
-				Me.SendPropertyChanging
-				Me._ФИО4 = value
-				Me.SendPropertyChanged("ФИО4")
-				Me.OnФИО4Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения4", DbType:="NVarChar(255)")>  _
-	Public Property ДатаРождения4() As String
-		Get
-			Return Me._ДатаРождения4
-		End Get
-		Set
-			If (String.Equals(Me._ДатаРождения4, value) = false) Then
-				Me.OnДатаРождения4Changing(value)
-				Me.SendPropertyChanging
-				Me._ДатаРождения4 = value
-				Me.SendPropertyChanged("ДатаРождения4")
-				Me.OnДатаРождения4Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол5", DbType:="NVarChar(255)")>  _
-	Public Property ДетиПол5() As String
-		Get
-			Return Me._ДетиПол5
-		End Get
-		Set
-			If (String.Equals(Me._ДетиПол5, value) = false) Then
-				Me.OnДетиПол5Changing(value)
-				Me.SendPropertyChanging
-				Me._ДетиПол5 = value
-				Me.SendPropertyChanged("ДетиПол5")
-				Me.OnДетиПол5Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО5", DbType:="NVarChar(255)")>  _
-	Public Property ФИО5() As String
-		Get
-			Return Me._ФИО5
-		End Get
-		Set
-			If (String.Equals(Me._ФИО5, value) = false) Then
-				Me.OnФИО5Changing(value)
-				Me.SendPropertyChanging
-				Me._ФИО5 = value
-				Me.SendPropertyChanged("ФИО5")
-				Me.OnФИО5Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения5", DbType:="NVarChar(255)")>  _
-	Public Property ДатаРождения5() As String
-		Get
-			Return Me._ДатаРождения5
-		End Get
-		Set
-			If (String.Equals(Me._ДатаРождения5, value) = false) Then
-				Me.OnДатаРождения5Changing(value)
-				Me.SendPropertyChanging
-				Me._ДатаРождения5 = value
-				Me.SendPropertyChanged("ДатаРождения5")
-				Me.OnДатаРождения5Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_СоставСемьи", Storage:="_Сотрудники", ThisKey:="IDСотр", OtherKey:="КодСотрудники", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
-	Public Property Сотрудники() As Сотрудники
-		Get
-			Return Me._Сотрудники.Entity
-		End Get
-		Set
-			Dim previousValue As Сотрудники = Me._Сотрудники.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Сотрудники.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Сотрудники.Entity = Nothing
-					previousValue.СоставСемьи.Remove(Me)
-				End If
-				Me._Сотрудники.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.СоставСемьи.Add(Me)
-					Me._IDСотр = value.КодСотрудники
-				Else
-					Me._IDСотр = CType(Nothing, Nullable(Of Integer))
-				End If
-				Me.SendPropertyChanged("Сотрудники")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Сотрудники")>  _
-Partial Public Class Сотрудники
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _КодСотрудники As Integer
-	
-	Private _НазвОрганиз As String
-	
-	Private _Фамилия As String
-	
-	Private _Имя As String
-	
-	Private _Отчество As String
-	
-	Private _ФИОСборное As String
-	
-	Private _ФамилияРодПад As String
-	
-	Private _ИмяРодПад As String
-	
-	Private _ОтчествоРодПад As String
-	
-	Private _ФИОРодПод As String
-	
-	Private _ПаспортСерия As String
-	
-	Private _ПаспортНомер As String
-	
-	Private _ПаспортКогдаВыдан As String
-	
-	Private _ДоКакогоДейств As String
-	
-	Private _ПаспортКемВыдан As String
-	
-	Private _ИДНомер As String
-	
-	Private _Регистрация As String
-	
-	Private _МестоПрожив As String
-	
-	Private _КонтТелГор As String
-	
-	Private _КонтТелефон As String
-	
-	Private _ФамилияДляУвольнения As String
-	
-	Private _СтраховойПолис As String
-	
-	Private _НаличеДогПодряда As String
-	
-	Private _ФамилияДляЗаявления As String
-	
-	Private _ИмяДляЗаявления As String
-	
-	Private _ОтчествоДляЗаявления As String
-	
-	Private _Пол As String
-	
-	Private _ФИОДатПадКому As String
-	
-	Private _ДатаРожд As String
-	
-	Private _Гражданин As String
-	
-	Private _ПровДатыКонтр As String
-	
-	Private _Иностранец As String
-	
-	Private _ФамилияСтар As String
-	
-	Private _ИмяСтар As String
-	
-	Private _ОтчествоСтар As String
-	
-	Private _ФИОСборноеСтар As String
-	
-	Private _ФамилияРодПадСтар As String
-	
-	Private _ИмяРодПадСтар As String
-	
-	Private _ОтчествоРодПадСтар As String
-	
-	Private _ФИОРодПодСтар As String
-	
-	Private _ДатаИзменения As System.Nullable(Of Date)
-	
-	Private _ТипОтношения As String
-	
-	Private _ДогПодряда As EntitySet(Of ДогПодряда)
-	
-	Private _ДогСотрудн As EntitySet(Of ДогСотрудн)
-	
-	Private _КарточкаСотрудника As EntitySet(Of КарточкаСотрудника)
-	
-	Private _ПродлКонтракта As EntitySet(Of ПродлКонтракта)
-	
-	Private _ПутиДокументов As EntitySet(Of ПутиДокументов)
-	
-	Private _СоставСемьи As EntitySet(Of СоставСемьи)
-	
-	Private _Штатное As EntitySet(Of Штатное)
-	
-    #Region "Определения метода расширяемости"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnКодСотрудникиChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnКодСотрудникиChanged()
-    End Sub
-    Partial Private Sub OnНазвОрганизChanging(value As String)
-    End Sub
-    Partial Private Sub OnНазвОрганизChanged()
-    End Sub
-    Partial Private Sub OnФамилияChanging(value As String)
-    End Sub
-    Partial Private Sub OnФамилияChanged()
-    End Sub
-    Partial Private Sub OnИмяChanging(value As String)
-    End Sub
-    Partial Private Sub OnИмяChanged()
-    End Sub
-    Partial Private Sub OnОтчествоChanging(value As String)
-    End Sub
-    Partial Private Sub OnОтчествоChanged()
-    End Sub
-    Partial Private Sub OnФИОСборноеChanging(value As String)
-    End Sub
-    Partial Private Sub OnФИОСборноеChanged()
-    End Sub
-    Partial Private Sub OnФамилияРодПадChanging(value As String)
-    End Sub
-    Partial Private Sub OnФамилияРодПадChanged()
-    End Sub
-    Partial Private Sub OnИмяРодПадChanging(value As String)
-    End Sub
-    Partial Private Sub OnИмяРодПадChanged()
-    End Sub
-    Partial Private Sub OnОтчествоРодПадChanging(value As String)
-    End Sub
-    Partial Private Sub OnОтчествоРодПадChanged()
-    End Sub
-    Partial Private Sub OnФИОРодПодChanging(value As String)
-    End Sub
-    Partial Private Sub OnФИОРодПодChanged()
-    End Sub
-    Partial Private Sub OnПаспортСерияChanging(value As String)
-    End Sub
-    Partial Private Sub OnПаспортСерияChanged()
-    End Sub
-    Partial Private Sub OnПаспортНомерChanging(value As String)
-    End Sub
-    Partial Private Sub OnПаспортНомерChanged()
-    End Sub
-    Partial Private Sub OnПаспортКогдаВыданChanging(value As String)
-    End Sub
-    Partial Private Sub OnПаспортКогдаВыданChanged()
-    End Sub
-    Partial Private Sub OnДоКакогоДействChanging(value As String)
-    End Sub
-    Partial Private Sub OnДоКакогоДействChanged()
-    End Sub
-    Partial Private Sub OnПаспортКемВыданChanging(value As String)
-    End Sub
-    Partial Private Sub OnПаспортКемВыданChanged()
-    End Sub
-    Partial Private Sub OnИДНомерChanging(value As String)
-    End Sub
-    Partial Private Sub OnИДНомерChanged()
-    End Sub
-    Partial Private Sub OnРегистрацияChanging(value As String)
-    End Sub
-    Partial Private Sub OnРегистрацияChanged()
-    End Sub
-    Partial Private Sub OnМестоПроживChanging(value As String)
-    End Sub
-    Partial Private Sub OnМестоПроживChanged()
-    End Sub
-    Partial Private Sub OnКонтТелГорChanging(value As String)
-    End Sub
-    Partial Private Sub OnКонтТелГорChanged()
-    End Sub
-    Partial Private Sub OnКонтТелефонChanging(value As String)
-    End Sub
-    Partial Private Sub OnКонтТелефонChanged()
-    End Sub
-    Partial Private Sub OnФамилияДляУвольненияChanging(value As String)
-    End Sub
-    Partial Private Sub OnФамилияДляУвольненияChanged()
-    End Sub
-    Partial Private Sub OnСтраховойПолисChanging(value As String)
-    End Sub
-    Partial Private Sub OnСтраховойПолисChanged()
-    End Sub
-    Partial Private Sub OnНаличеДогПодрядаChanging(value As String)
-    End Sub
-    Partial Private Sub OnНаличеДогПодрядаChanged()
-    End Sub
-    Partial Private Sub OnФамилияДляЗаявленияChanging(value As String)
-    End Sub
-    Partial Private Sub OnФамилияДляЗаявленияChanged()
-    End Sub
-    Partial Private Sub OnИмяДляЗаявленияChanging(value As String)
-    End Sub
-    Partial Private Sub OnИмяДляЗаявленияChanged()
-    End Sub
-    Partial Private Sub OnОтчествоДляЗаявленияChanging(value As String)
-    End Sub
-    Partial Private Sub OnОтчествоДляЗаявленияChanged()
-    End Sub
-    Partial Private Sub OnПолChanging(value As String)
-    End Sub
-    Partial Private Sub OnПолChanged()
-    End Sub
-    Partial Private Sub OnФИОДатПадКомуChanging(value As String)
-    End Sub
-    Partial Private Sub OnФИОДатПадКомуChanged()
-    End Sub
-    Partial Private Sub OnДатаРождChanging(value As String)
-    End Sub
-    Partial Private Sub OnДатаРождChanged()
-    End Sub
-    Partial Private Sub OnГражданинChanging(value As String)
-    End Sub
-    Partial Private Sub OnГражданинChanged()
-    End Sub
-    Partial Private Sub OnПровДатыКонтрChanging(value As String)
-    End Sub
-    Partial Private Sub OnПровДатыКонтрChanged()
-    End Sub
-    Partial Private Sub OnИностранецChanging(value As String)
-    End Sub
-    Partial Private Sub OnИностранецChanged()
-    End Sub
-    Partial Private Sub OnФамилияСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnФамилияСтарChanged()
-    End Sub
-    Partial Private Sub OnИмяСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnИмяСтарChanged()
-    End Sub
-    Partial Private Sub OnОтчествоСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnОтчествоСтарChanged()
-    End Sub
-    Partial Private Sub OnФИОСборноеСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnФИОСборноеСтарChanged()
-    End Sub
-    Partial Private Sub OnФамилияРодПадСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnФамилияРодПадСтарChanged()
-    End Sub
-    Partial Private Sub OnИмяРодПадСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnИмяРодПадСтарChanged()
-    End Sub
-    Partial Private Sub OnОтчествоРодПадСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnОтчествоРодПадСтарChanged()
-    End Sub
-    Partial Private Sub OnФИОРодПодСтарChanging(value As String)
-    End Sub
-    Partial Private Sub OnФИОРодПодСтарChanged()
-    End Sub
-    Partial Private Sub OnДатаИзмененияChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnДатаИзмененияChanged()
-    End Sub
-    Partial Private Sub OnТипОтношенияChanging(value As String)
-    End Sub
-    Partial Private Sub OnТипОтношенияChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._ДогПодряда = New EntitySet(Of ДогПодряда)(AddressOf Me.attach_ДогПодряда, AddressOf Me.detach_ДогПодряда)
-		Me._ДогСотрудн = New EntitySet(Of ДогСотрудн)(AddressOf Me.attach_ДогСотрудн, AddressOf Me.detach_ДогСотрудн)
-		Me._КарточкаСотрудника = New EntitySet(Of КарточкаСотрудника)(AddressOf Me.attach_КарточкаСотрудника, AddressOf Me.detach_КарточкаСотрудника)
-		Me._ПродлКонтракта = New EntitySet(Of ПродлКонтракта)(AddressOf Me.attach_ПродлКонтракта, AddressOf Me.detach_ПродлКонтракта)
-		Me._ПутиДокументов = New EntitySet(Of ПутиДокументов)(AddressOf Me.attach_ПутиДокументов, AddressOf Me.detach_ПутиДокументов)
-		Me._СоставСемьи = New EntitySet(Of СоставСемьи)(AddressOf Me.attach_СоставСемьи, AddressOf Me.detach_СоставСемьи)
-		Me._Штатное = New EntitySet(Of Штатное)(AddressOf Me.attach_Штатное, AddressOf Me.detach_Штатное)
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КодСотрудники", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property КодСотрудники() As Integer
-		Get
-			Return Me._КодСотрудники
-		End Get
-		Set
-			If ((Me._КодСотрудники = value)  _
-						= false) Then
-				Me.OnКодСотрудникиChanging(value)
-				Me.SendPropertyChanging
-				Me._КодСотрудники = value
-				Me.SendPropertyChanged("КодСотрудники")
-				Me.OnКодСотрудникиChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_НазвОрганиз", DbType:="NVarChar(255)")>  _
-	Public Property НазвОрганиз() As String
-		Get
-			Return Me._НазвОрганиз
-		End Get
-		Set
-			If (String.Equals(Me._НазвОрганиз, value) = false) Then
-				Me.OnНазвОрганизChanging(value)
-				Me.SendPropertyChanging
-				Me._НазвОрганиз = value
-				Me.SendPropertyChanged("НазвОрганиз")
-				Me.OnНазвОрганизChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Фамилия", DbType:="NVarChar(255)")>  _
-	Public Property Фамилия() As String
-		Get
-			Return Me._Фамилия
-		End Get
-		Set
-			If (String.Equals(Me._Фамилия, value) = false) Then
-				Me.OnФамилияChanging(value)
-				Me.SendPropertyChanging
-				Me._Фамилия = value
-				Me.SendPropertyChanged("Фамилия")
-				Me.OnФамилияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Имя", DbType:="NVarChar(255)")>  _
-	Public Property Имя() As String
-		Get
-			Return Me._Имя
-		End Get
-		Set
-			If (String.Equals(Me._Имя, value) = false) Then
-				Me.OnИмяChanging(value)
-				Me.SendPropertyChanging
-				Me._Имя = value
-				Me.SendPropertyChanged("Имя")
-				Me.OnИмяChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Отчество", DbType:="NVarChar(255)")>  _
-	Public Property Отчество() As String
-		Get
-			Return Me._Отчество
-		End Get
-		Set
-			If (String.Equals(Me._Отчество, value) = false) Then
-				Me.OnОтчествоChanging(value)
-				Me.SendPropertyChanging
-				Me._Отчество = value
-				Me.SendPropertyChanged("Отчество")
-				Me.OnОтчествоChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОСборное", DbType:="NVarChar(MAX)")>  _
-	Public Property ФИОСборное() As String
-		Get
-			Return Me._ФИОСборное
-		End Get
-		Set
-			If (String.Equals(Me._ФИОСборное, value) = false) Then
-				Me.OnФИОСборноеChanging(value)
-				Me.SendPropertyChanging
-				Me._ФИОСборное = value
-				Me.SendPropertyChanged("ФИОСборное")
-				Me.OnФИОСборноеChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияРодПад", DbType:="NVarChar(255)")>  _
-	Public Property ФамилияРодПад() As String
-		Get
-			Return Me._ФамилияРодПад
-		End Get
-		Set
-			If (String.Equals(Me._ФамилияРодПад, value) = false) Then
-				Me.OnФамилияРодПадChanging(value)
-				Me.SendPropertyChanging
-				Me._ФамилияРодПад = value
-				Me.SendPropertyChanged("ФамилияРодПад")
-				Me.OnФамилияРодПадChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяРодПад", DbType:="NVarChar(255)")>  _
-	Public Property ИмяРодПад() As String
-		Get
-			Return Me._ИмяРодПад
-		End Get
-		Set
-			If (String.Equals(Me._ИмяРодПад, value) = false) Then
-				Me.OnИмяРодПадChanging(value)
-				Me.SendPropertyChanging
-				Me._ИмяРодПад = value
-				Me.SendPropertyChanged("ИмяРодПад")
-				Me.OnИмяРодПадChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоРодПад", DbType:="NVarChar(255)")>  _
-	Public Property ОтчествоРодПад() As String
-		Get
-			Return Me._ОтчествоРодПад
-		End Get
-		Set
-			If (String.Equals(Me._ОтчествоРодПад, value) = false) Then
-				Me.OnОтчествоРодПадChanging(value)
-				Me.SendPropertyChanging
-				Me._ОтчествоРодПад = value
-				Me.SendPropertyChanged("ОтчествоРодПад")
-				Me.OnОтчествоРодПадChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОРодПод", DbType:="NVarChar(MAX)")>  _
-	Public Property ФИОРодПод() As String
-		Get
-			Return Me._ФИОРодПод
-		End Get
-		Set
-			If (String.Equals(Me._ФИОРодПод, value) = false) Then
-				Me.OnФИОРодПодChanging(value)
-				Me.SendPropertyChanging
-				Me._ФИОРодПод = value
-				Me.SendPropertyChanged("ФИОРодПод")
-				Me.OnФИОРодПодChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортСерия", DbType:="NVarChar(255)")>  _
-	Public Property ПаспортСерия() As String
-		Get
-			Return Me._ПаспортСерия
-		End Get
-		Set
-			If (String.Equals(Me._ПаспортСерия, value) = false) Then
-				Me.OnПаспортСерияChanging(value)
-				Me.SendPropertyChanging
-				Me._ПаспортСерия = value
-				Me.SendPropertyChanged("ПаспортСерия")
-				Me.OnПаспортСерияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортНомер", DbType:="NVarChar(255)")>  _
-	Public Property ПаспортНомер() As String
-		Get
-			Return Me._ПаспортНомер
-		End Get
-		Set
-			If (String.Equals(Me._ПаспортНомер, value) = false) Then
-				Me.OnПаспортНомерChanging(value)
-				Me.SendPropertyChanging
-				Me._ПаспортНомер = value
-				Me.SendPropertyChanged("ПаспортНомер")
-				Me.OnПаспортНомерChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортКогдаВыдан", DbType:="NVarChar(255)")>  _
-	Public Property ПаспортКогдаВыдан() As String
-		Get
-			Return Me._ПаспортКогдаВыдан
-		End Get
-		Set
-			If (String.Equals(Me._ПаспортКогдаВыдан, value) = false) Then
-				Me.OnПаспортКогдаВыданChanging(value)
-				Me.SendPropertyChanging
-				Me._ПаспортКогдаВыдан = value
-				Me.SendPropertyChanged("ПаспортКогдаВыдан")
-				Me.OnПаспортКогдаВыданChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДоКакогоДейств", DbType:="NVarChar(255)")>  _
-	Public Property ДоКакогоДейств() As String
-		Get
-			Return Me._ДоКакогоДейств
-		End Get
-		Set
-			If (String.Equals(Me._ДоКакогоДейств, value) = false) Then
-				Me.OnДоКакогоДействChanging(value)
-				Me.SendPropertyChanging
-				Me._ДоКакогоДейств = value
-				Me.SendPropertyChanged("ДоКакогоДейств")
-				Me.OnДоКакогоДействChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортКемВыдан", DbType:="NVarChar(255)")>  _
-	Public Property ПаспортКемВыдан() As String
-		Get
-			Return Me._ПаспортКемВыдан
-		End Get
-		Set
-			If (String.Equals(Me._ПаспортКемВыдан, value) = false) Then
-				Me.OnПаспортКемВыданChanging(value)
-				Me.SendPropertyChanging
-				Me._ПаспортКемВыдан = value
-				Me.SendPropertyChanged("ПаспортКемВыдан")
-				Me.OnПаспортКемВыданChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИДНомер", DbType:="NVarChar(255)")>  _
-	Public Property ИДНомер() As String
-		Get
-			Return Me._ИДНомер
-		End Get
-		Set
-			If (String.Equals(Me._ИДНомер, value) = false) Then
-				Me.OnИДНомерChanging(value)
-				Me.SendPropertyChanging
-				Me._ИДНомер = value
-				Me.SendPropertyChanged("ИДНомер")
-				Me.OnИДНомерChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Регистрация", DbType:="NVarChar(255)")>  _
-	Public Property Регистрация() As String
-		Get
-			Return Me._Регистрация
-		End Get
-		Set
-			If (String.Equals(Me._Регистрация, value) = false) Then
-				Me.OnРегистрацияChanging(value)
-				Me.SendPropertyChanging
-				Me._Регистрация = value
-				Me.SendPropertyChanged("Регистрация")
-				Me.OnРегистрацияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_МестоПрожив", DbType:="NVarChar(255)")>  _
-	Public Property МестоПрожив() As String
-		Get
-			Return Me._МестоПрожив
-		End Get
-		Set
-			If (String.Equals(Me._МестоПрожив, value) = false) Then
-				Me.OnМестоПроживChanging(value)
-				Me.SendPropertyChanging
-				Me._МестоПрожив = value
-				Me.SendPropertyChanged("МестоПрожив")
-				Me.OnМестоПроживChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КонтТелГор", DbType:="NVarChar(255)")>  _
-	Public Property КонтТелГор() As String
-		Get
-			Return Me._КонтТелГор
-		End Get
-		Set
-			If (String.Equals(Me._КонтТелГор, value) = false) Then
-				Me.OnКонтТелГорChanging(value)
-				Me.SendPropertyChanging
-				Me._КонтТелГор = value
-				Me.SendPropertyChanged("КонтТелГор")
-				Me.OnКонтТелГорChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КонтТелефон", DbType:="NVarChar(255)")>  _
-	Public Property КонтТелефон() As String
-		Get
-			Return Me._КонтТелефон
-		End Get
-		Set
-			If (String.Equals(Me._КонтТелефон, value) = false) Then
-				Me.OnКонтТелефонChanging(value)
-				Me.SendPropertyChanging
-				Me._КонтТелефон = value
-				Me.SendPropertyChanged("КонтТелефон")
-				Me.OnКонтТелефонChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияДляУвольнения", DbType:="NVarChar(255)")>  _
-	Public Property ФамилияДляУвольнения() As String
-		Get
-			Return Me._ФамилияДляУвольнения
-		End Get
-		Set
-			If (String.Equals(Me._ФамилияДляУвольнения, value) = false) Then
-				Me.OnФамилияДляУвольненияChanging(value)
-				Me.SendPropertyChanging
-				Me._ФамилияДляУвольнения = value
-				Me.SendPropertyChanged("ФамилияДляУвольнения")
-				Me.OnФамилияДляУвольненияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_СтраховойПолис", DbType:="NVarChar(255)")>  _
-	Public Property СтраховойПолис() As String
-		Get
-			Return Me._СтраховойПолис
-		End Get
-		Set
-			If (String.Equals(Me._СтраховойПолис, value) = false) Then
-				Me.OnСтраховойПолисChanging(value)
-				Me.SendPropertyChanging
-				Me._СтраховойПолис = value
-				Me.SendPropertyChanged("СтраховойПолис")
-				Me.OnСтраховойПолисChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_НаличеДогПодряда", DbType:="NVarChar(255)")>  _
-	Public Property НаличеДогПодряда() As String
-		Get
-			Return Me._НаличеДогПодряда
-		End Get
-		Set
-			If (String.Equals(Me._НаличеДогПодряда, value) = false) Then
-				Me.OnНаличеДогПодрядаChanging(value)
-				Me.SendPropertyChanging
-				Me._НаличеДогПодряда = value
-				Me.SendPropertyChanged("НаличеДогПодряда")
-				Me.OnНаличеДогПодрядаChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияДляЗаявления", DbType:="NVarChar(255)")>  _
-	Public Property ФамилияДляЗаявления() As String
-		Get
-			Return Me._ФамилияДляЗаявления
-		End Get
-		Set
-			If (String.Equals(Me._ФамилияДляЗаявления, value) = false) Then
-				Me.OnФамилияДляЗаявленияChanging(value)
-				Me.SendPropertyChanging
-				Me._ФамилияДляЗаявления = value
-				Me.SendPropertyChanged("ФамилияДляЗаявления")
-				Me.OnФамилияДляЗаявленияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяДляЗаявления", DbType:="NVarChar(255)")>  _
-	Public Property ИмяДляЗаявления() As String
-		Get
-			Return Me._ИмяДляЗаявления
-		End Get
-		Set
-			If (String.Equals(Me._ИмяДляЗаявления, value) = false) Then
-				Me.OnИмяДляЗаявленияChanging(value)
-				Me.SendPropertyChanging
-				Me._ИмяДляЗаявления = value
-				Me.SendPropertyChanged("ИмяДляЗаявления")
-				Me.OnИмяДляЗаявленияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоДляЗаявления", DbType:="NVarChar(255)")>  _
-	Public Property ОтчествоДляЗаявления() As String
-		Get
-			Return Me._ОтчествоДляЗаявления
-		End Get
-		Set
-			If (String.Equals(Me._ОтчествоДляЗаявления, value) = false) Then
-				Me.OnОтчествоДляЗаявленияChanging(value)
-				Me.SendPropertyChanging
-				Me._ОтчествоДляЗаявления = value
-				Me.SendPropertyChanged("ОтчествоДляЗаявления")
-				Me.OnОтчествоДляЗаявленияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Пол", DbType:="NVarChar(2)")>  _
-	Public Property Пол() As String
-		Get
-			Return Me._Пол
-		End Get
-		Set
-			If (String.Equals(Me._Пол, value) = false) Then
-				Me.OnПолChanging(value)
-				Me.SendPropertyChanging
-				Me._Пол = value
-				Me.SendPropertyChanged("Пол")
-				Me.OnПолChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОДатПадКому", DbType:="NVarChar(255)")>  _
-	Public Property ФИОДатПадКому() As String
-		Get
-			Return Me._ФИОДатПадКому
-		End Get
-		Set
-			If (String.Equals(Me._ФИОДатПадКому, value) = false) Then
-				Me.OnФИОДатПадКомуChanging(value)
-				Me.SendPropertyChanging
-				Me._ФИОДатПадКому = value
-				Me.SendPropertyChanged("ФИОДатПадКому")
-				Me.OnФИОДатПадКомуChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРожд", DbType:="NVarChar(255)")>  _
-	Public Property ДатаРожд() As String
-		Get
-			Return Me._ДатаРожд
-		End Get
-		Set
-			If (String.Equals(Me._ДатаРожд, value) = false) Then
-				Me.OnДатаРождChanging(value)
-				Me.SendPropertyChanging
-				Me._ДатаРожд = value
-				Me.SendPropertyChanged("ДатаРожд")
-				Me.OnДатаРождChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Гражданин", DbType:="NVarChar(255)")>  _
-	Public Property Гражданин() As String
-		Get
-			Return Me._Гражданин
-		End Get
-		Set
-			If (String.Equals(Me._Гражданин, value) = false) Then
-				Me.OnГражданинChanging(value)
-				Me.SendPropertyChanging
-				Me._Гражданин = value
-				Me.SendPropertyChanged("Гражданин")
-				Me.OnГражданинChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПровДатыКонтр", DbType:="NVarChar(255)")>  _
-	Public Property ПровДатыКонтр() As String
-		Get
-			Return Me._ПровДатыКонтр
-		End Get
-		Set
-			If (String.Equals(Me._ПровДатыКонтр, value) = false) Then
-				Me.OnПровДатыКонтрChanging(value)
-				Me.SendPropertyChanging
-				Me._ПровДатыКонтр = value
-				Me.SendPropertyChanged("ПровДатыКонтр")
-				Me.OnПровДатыКонтрChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Иностранец", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
-	Public Property Иностранец() As String
-		Get
-			Return Me._Иностранец
-		End Get
-		Set
-			If (String.Equals(Me._Иностранец, value) = false) Then
-				Me.OnИностранецChanging(value)
-				Me.SendPropertyChanging
-				Me._Иностранец = value
-				Me.SendPropertyChanged("Иностранец")
-				Me.OnИностранецChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияСтар", DbType:="NVarChar(255)")>  _
-	Public Property ФамилияСтар() As String
-		Get
-			Return Me._ФамилияСтар
-		End Get
-		Set
-			If (String.Equals(Me._ФамилияСтар, value) = false) Then
-				Me.OnФамилияСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ФамилияСтар = value
-				Me.SendPropertyChanged("ФамилияСтар")
-				Me.OnФамилияСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяСтар", DbType:="NVarChar(255)")>  _
-	Public Property ИмяСтар() As String
-		Get
-			Return Me._ИмяСтар
-		End Get
-		Set
-			If (String.Equals(Me._ИмяСтар, value) = false) Then
-				Me.OnИмяСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ИмяСтар = value
-				Me.SendPropertyChanged("ИмяСтар")
-				Me.OnИмяСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоСтар", DbType:="NVarChar(255)")>  _
-	Public Property ОтчествоСтар() As String
-		Get
-			Return Me._ОтчествоСтар
-		End Get
-		Set
-			If (String.Equals(Me._ОтчествоСтар, value) = false) Then
-				Me.OnОтчествоСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ОтчествоСтар = value
-				Me.SendPropertyChanged("ОтчествоСтар")
-				Me.OnОтчествоСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОСборноеСтар", DbType:="NVarChar(MAX)")>  _
-	Public Property ФИОСборноеСтар() As String
-		Get
-			Return Me._ФИОСборноеСтар
-		End Get
-		Set
-			If (String.Equals(Me._ФИОСборноеСтар, value) = false) Then
-				Me.OnФИОСборноеСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ФИОСборноеСтар = value
-				Me.SendPropertyChanged("ФИОСборноеСтар")
-				Me.OnФИОСборноеСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияРодПадСтар", DbType:="NVarChar(255)")>  _
-	Public Property ФамилияРодПадСтар() As String
-		Get
-			Return Me._ФамилияРодПадСтар
-		End Get
-		Set
-			If (String.Equals(Me._ФамилияРодПадСтар, value) = false) Then
-				Me.OnФамилияРодПадСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ФамилияРодПадСтар = value
-				Me.SendPropertyChanged("ФамилияРодПадСтар")
-				Me.OnФамилияРодПадСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяРодПадСтар", DbType:="NVarChar(255)")>  _
-	Public Property ИмяРодПадСтар() As String
-		Get
-			Return Me._ИмяРодПадСтар
-		End Get
-		Set
-			If (String.Equals(Me._ИмяРодПадСтар, value) = false) Then
-				Me.OnИмяРодПадСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ИмяРодПадСтар = value
-				Me.SendPropertyChanged("ИмяРодПадСтар")
-				Me.OnИмяРодПадСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоРодПадСтар", DbType:="NVarChar(255)")>  _
-	Public Property ОтчествоРодПадСтар() As String
-		Get
-			Return Me._ОтчествоРодПадСтар
-		End Get
-		Set
-			If (String.Equals(Me._ОтчествоРодПадСтар, value) = false) Then
-				Me.OnОтчествоРодПадСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ОтчествоРодПадСтар = value
-				Me.SendPropertyChanged("ОтчествоРодПадСтар")
-				Me.OnОтчествоРодПадСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОРодПодСтар", DbType:="NVarChar(MAX)")>  _
-	Public Property ФИОРодПодСтар() As String
-		Get
-			Return Me._ФИОРодПодСтар
-		End Get
-		Set
-			If (String.Equals(Me._ФИОРодПодСтар, value) = false) Then
-				Me.OnФИОРодПодСтарChanging(value)
-				Me.SendPropertyChanging
-				Me._ФИОРодПодСтар = value
-				Me.SendPropertyChanged("ФИОРодПодСтар")
-				Me.OnФИОРодПодСтарChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаИзменения", DbType:="DateTime")>  _
-	Public Property ДатаИзменения() As System.Nullable(Of Date)
-		Get
-			Return Me._ДатаИзменения
-		End Get
-		Set
-			If (Me._ДатаИзменения.Equals(value) = false) Then
-				Me.OnДатаИзмененияChanging(value)
-				Me.SendPropertyChanging
-				Me._ДатаИзменения = value
-				Me.SendPropertyChanged("ДатаИзменения")
-				Me.OnДатаИзмененияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ТипОтношения", DbType:="NVarChar(50)")>  _
-	Public Property ТипОтношения() As String
-		Get
-			Return Me._ТипОтношения
-		End Get
-		Set
-			If (String.Equals(Me._ТипОтношения, value) = false) Then
-				Me.OnТипОтношенияChanging(value)
-				Me.SendPropertyChanging
-				Me._ТипОтношения = value
-				Me.SendPropertyChanged("ТипОтношения")
-				Me.OnТипОтношенияChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ДогПодряда", Storage:="_ДогПодряда", ThisKey:="КодСотрудники", OtherKey:="ID")>  _
-	Public Property ДогПодряда() As EntitySet(Of ДогПодряда)
-		Get
-			Return Me._ДогПодряда
-		End Get
-		Set
-			Me._ДогПодряда.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ДогСотрудн", Storage:="_ДогСотрудн", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
-	Public Property ДогСотрудн() As EntitySet(Of ДогСотрудн)
-		Get
-			Return Me._ДогСотрудн
-		End Get
-		Set
-			Me._ДогСотрудн.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_КарточкаСотрудника", Storage:="_КарточкаСотрудника", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
-	Public Property КарточкаСотрудника() As EntitySet(Of КарточкаСотрудника)
-		Get
-			Return Me._КарточкаСотрудника
-		End Get
-		Set
-			Me._КарточкаСотрудника.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ПродлКонтракта", Storage:="_ПродлКонтракта", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
-	Public Property ПродлКонтракта() As EntitySet(Of ПродлКонтракта)
-		Get
-			Return Me._ПродлКонтракта
-		End Get
-		Set
-			Me._ПродлКонтракта.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ПутиДокументов", Storage:="_ПутиДокументов", ThisKey:="КодСотрудники", OtherKey:="IDСотрудник")>  _
-	Public Property ПутиДокументов() As EntitySet(Of ПутиДокументов)
-		Get
-			Return Me._ПутиДокументов
-		End Get
-		Set
-			Me._ПутиДокументов.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_СоставСемьи", Storage:="_СоставСемьи", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
-	Public Property СоставСемьи() As EntitySet(Of СоставСемьи)
-		Get
-			Return Me._СоставСемьи
-		End Get
-		Set
-			Me._СоставСемьи.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_Штатное", Storage:="_Штатное", ThisKey:="КодСотрудники", OtherKey:="ИДСотр")>  _
-	Public Property Штатное() As EntitySet(Of Штатное)
-		Get
-			Return Me._Штатное
-		End Get
-		Set
-			Me._Штатное.Assign(value)
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_ДогПодряда(ByVal entity As ДогПодряда)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_ДогПодряда(ByVal entity As ДогПодряда)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-	
-	Private Sub attach_ДогСотрудн(ByVal entity As ДогСотрудн)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_ДогСотрудн(ByVal entity As ДогСотрудн)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-	
-	Private Sub attach_КарточкаСотрудника(ByVal entity As КарточкаСотрудника)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_КарточкаСотрудника(ByVal entity As КарточкаСотрудника)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-	
-	Private Sub attach_ПродлКонтракта(ByVal entity As ПродлКонтракта)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_ПродлКонтракта(ByVal entity As ПродлКонтракта)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-	
-	Private Sub attach_ПутиДокументов(ByVal entity As ПутиДокументов)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_ПутиДокументов(ByVal entity As ПутиДокументов)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-	
-	Private Sub attach_СоставСемьи(ByVal entity As СоставСемьи)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_СоставСемьи(ByVal entity As СоставСемьи)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-	
-	Private Sub attach_Штатное(ByVal entity As Штатное)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Me
-	End Sub
-	
-	Private Sub detach_Штатное(ByVal entity As Штатное)
-		Me.SendPropertyChanging
-		entity.Сотрудники = Nothing
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Статистика")>  _
 Partial Public Class Статистика
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -10509,9 +8860,9 @@ Partial Public Class Штатное
 	
 	Private _ЧасоваяТарифСтавка As System.Nullable(Of Single)
 	
-	Private _Сотрудники As EntityRef(Of Сотрудники)
-	
 	Private _Клиент1 As EntityRef(Of Клиент)
+	
+	Private _Сотрудники As EntityRef(Of Сотрудники)
 	
     #Region "Определения метода расширяемости"
     Partial Private Sub OnLoaded()
@@ -10572,8 +8923,8 @@ Partial Public Class Штатное
 	
 	Public Sub New()
 		MyBase.New
-		Me._Сотрудники = CType(Nothing, EntityRef(Of Сотрудники))
 		Me._Клиент1 = CType(Nothing, EntityRef(Of Клиент))
+		Me._Сотрудники = CType(Nothing, EntityRef(Of Сотрудники))
 		OnCreated
 	End Sub
 	
@@ -10777,34 +9128,6 @@ Partial Public Class Штатное
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_Штатное", Storage:="_Сотрудники", ThisKey:="ИДСотр", OtherKey:="КодСотрудники", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
-	Public Property Сотрудники() As Сотрудники
-		Get
-			Return Me._Сотрудники.Entity
-		End Get
-		Set
-			Dim previousValue As Сотрудники = Me._Сотрудники.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Сотрудники.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Сотрудники.Entity = Nothing
-					previousValue.Штатное.Remove(Me)
-				End If
-				Me._Сотрудники.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.Штатное.Add(Me)
-					Me._ИДСотр = value.КодСотрудники
-				Else
-					Me._ИДСотр = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("Сотрудники")
-			End If
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Клиент_Штатное", Storage:="_Клиент1", ThisKey:="Клиент", OtherKey:="НазвОрг", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
 	Public Property Клиент1() As Клиент
 		Get
@@ -10829,6 +9152,34 @@ Partial Public Class Штатное
 					Me._Клиент = CType(Nothing, String)
 				End If
 				Me.SendPropertyChanged("Клиент1")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_Штатное", Storage:="_Сотрудники", ThisKey:="ИДСотр", OtherKey:="КодСотрудники", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
+	Public Property Сотрудники() As Сотрудники
+		Get
+			Return Me._Сотрудники.Entity
+		End Get
+		Set
+			Dim previousValue As Сотрудники = Me._Сотрудники.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Сотрудники.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Сотрудники.Entity = Nothing
+					previousValue.Штатное.Remove(Me)
+				End If
+				Me._Сотрудники.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Штатное.Add(Me)
+					Me._ИДСотр = value.КодСотрудники
+				Else
+					Me._ИДСотр = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("Сотрудники")
 			End If
 		End Set
 	End Property
@@ -11699,6 +10050,1984 @@ Partial Public Class ШтСводИзмСтавка
 					Me._IDКодШтСвод = CType(Nothing, Nullable(Of Integer))
 				End If
 				Me.SendPropertyChanged("ШтСвод")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Дети")>  _
+Partial Public Class Дети
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _Код As Integer
+	
+	Private _IDСотр As System.Nullable(Of Integer)
+	
+	Private _ФИО As String
+	
+	Private _Пол As String
+	
+	Private _ДатаРождения As System.Nullable(Of Date)
+	
+	Private _Сотрудники As EntityRef(Of Сотрудники)
+	
+    #Region "Определения метода расширяемости"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnКодChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnКодChanged()
+    End Sub
+    Partial Private Sub OnIDСотрChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnIDСотрChanged()
+    End Sub
+    Partial Private Sub OnФИОChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОChanged()
+    End Sub
+    Partial Private Sub OnПолChanging(value As String)
+    End Sub
+    Partial Private Sub OnПолChanged()
+    End Sub
+    Partial Private Sub OnДатаРожденияChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnДатаРожденияChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Сотрудники = CType(Nothing, EntityRef(Of Сотрудники))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Код", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Код() As Integer
+		Get
+			Return Me._Код
+		End Get
+		Set
+			If ((Me._Код = value)  _
+						= false) Then
+				Me.OnКодChanging(value)
+				Me.SendPropertyChanging
+				Me._Код = value
+				Me.SendPropertyChanged("Код")
+				Me.OnКодChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDСотр", DbType:="Int")>  _
+	Public Property IDСотр() As System.Nullable(Of Integer)
+		Get
+			Return Me._IDСотр
+		End Get
+		Set
+			If (Me._IDСотр.Equals(value) = false) Then
+				If Me._Сотрудники.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnIDСотрChanging(value)
+				Me.SendPropertyChanging
+				Me._IDСотр = value
+				Me.SendPropertyChanged("IDСотр")
+				Me.OnIDСотрChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО", DbType:="NVarChar(255)")>  _
+	Public Property ФИО() As String
+		Get
+			Return Me._ФИО
+		End Get
+		Set
+			If (String.Equals(Me._ФИО, value) = false) Then
+				Me.OnФИОChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИО = value
+				Me.SendPropertyChanged("ФИО")
+				Me.OnФИОChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Пол", DbType:="NVarChar(1)")>  _
+	Public Property Пол() As String
+		Get
+			Return Me._Пол
+		End Get
+		Set
+			If (String.Equals(Me._Пол, value) = false) Then
+				Me.OnПолChanging(value)
+				Me.SendPropertyChanging
+				Me._Пол = value
+				Me.SendPropertyChanged("Пол")
+				Me.OnПолChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения", DbType:="DateTime")>  _
+	Public Property ДатаРождения() As System.Nullable(Of Date)
+		Get
+			Return Me._ДатаРождения
+		End Get
+		Set
+			If (Me._ДатаРождения.Equals(value) = false) Then
+				Me.OnДатаРожденияChanging(value)
+				Me.SendPropertyChanging
+				Me._ДатаРождения = value
+				Me.SendPropertyChanged("ДатаРождения")
+				Me.OnДатаРожденияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_Дети", Storage:="_Сотрудники", ThisKey:="IDСотр", OtherKey:="КодСотрудники", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property Сотрудники() As Сотрудники
+		Get
+			Return Me._Сотрудники.Entity
+		End Get
+		Set
+			Dim previousValue As Сотрудники = Me._Сотрудники.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Сотрудники.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Сотрудники.Entity = Nothing
+					previousValue.Дети.Remove(Me)
+				End If
+				Me._Сотрудники.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Дети.Add(Me)
+					Me._IDСотр = value.КодСотрудники
+				Else
+					Me._IDСотр = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Сотрудники")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Сотрудники")>  _
+Partial Public Class Сотрудники
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _КодСотрудники As Integer
+	
+	Private _НазвОрганиз As String
+	
+	Private _Фамилия As String
+	
+	Private _Имя As String
+	
+	Private _Отчество As String
+	
+	Private _ФИОСборное As String
+	
+	Private _ФамилияРодПад As String
+	
+	Private _ИмяРодПад As String
+	
+	Private _ОтчествоРодПад As String
+	
+	Private _ФИОРодПод As String
+	
+	Private _ПаспортСерия As String
+	
+	Private _ПаспортНомер As String
+	
+	Private _ПаспортКогдаВыдан As String
+	
+	Private _ДоКакогоДейств As String
+	
+	Private _ПаспортКемВыдан As String
+	
+	Private _ИДНомер As String
+	
+	Private _Регистрация As String
+	
+	Private _МестоПрожив As String
+	
+	Private _КонтТелГор As String
+	
+	Private _КонтТелефон As String
+	
+	Private _ФамилияДляУвольнения As String
+	
+	Private _СтраховойПолис As String
+	
+	Private _НаличеДогПодряда As String
+	
+	Private _ФамилияДляЗаявления As String
+	
+	Private _ИмяДляЗаявления As String
+	
+	Private _ОтчествоДляЗаявления As String
+	
+	Private _Пол As String
+	
+	Private _ФИОДатПадКому As String
+	
+	Private _ДатаРожд As String
+	
+	Private _Гражданин As String
+	
+	Private _ПровДатыКонтр As String
+	
+	Private _Иностранец As String
+	
+	Private _ФамилияСтар As String
+	
+	Private _ИмяСтар As String
+	
+	Private _ОтчествоСтар As String
+	
+	Private _ФИОСборноеСтар As String
+	
+	Private _ФамилияРодПадСтар As String
+	
+	Private _ИмяРодПадСтар As String
+	
+	Private _ОтчествоРодПадСтар As String
+	
+	Private _ФИОРодПодСтар As String
+	
+	Private _ДатаИзменения As System.Nullable(Of Date)
+	
+	Private _ТипОтношения As String
+	
+	Private _ДанныеИзСправочника As String
+	
+	Private _ДогПодряда As EntitySet(Of ДогПодряда)
+	
+	Private _ДогСотрудн As EntitySet(Of ДогСотрудн)
+	
+	Private _КарточкаСотрудника As EntitySet(Of КарточкаСотрудника)
+	
+	Private _ПродлКонтракта As EntitySet(Of ПродлКонтракта)
+	
+	Private _ПутиДокументов As EntitySet(Of ПутиДокументов)
+	
+	Private _Штатное As EntitySet(Of Штатное)
+	
+	Private _Дети As EntitySet(Of Дети)
+	
+	Private _СоставСемьи As EntitySet(Of СоставСемьи)
+	
+    #Region "Определения метода расширяемости"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnКодСотрудникиChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnКодСотрудникиChanged()
+    End Sub
+    Partial Private Sub OnНазвОрганизChanging(value As String)
+    End Sub
+    Partial Private Sub OnНазвОрганизChanged()
+    End Sub
+    Partial Private Sub OnФамилияChanging(value As String)
+    End Sub
+    Partial Private Sub OnФамилияChanged()
+    End Sub
+    Partial Private Sub OnИмяChanging(value As String)
+    End Sub
+    Partial Private Sub OnИмяChanged()
+    End Sub
+    Partial Private Sub OnОтчествоChanging(value As String)
+    End Sub
+    Partial Private Sub OnОтчествоChanged()
+    End Sub
+    Partial Private Sub OnФИОСборноеChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОСборноеChanged()
+    End Sub
+    Partial Private Sub OnФамилияРодПадChanging(value As String)
+    End Sub
+    Partial Private Sub OnФамилияРодПадChanged()
+    End Sub
+    Partial Private Sub OnИмяРодПадChanging(value As String)
+    End Sub
+    Partial Private Sub OnИмяРодПадChanged()
+    End Sub
+    Partial Private Sub OnОтчествоРодПадChanging(value As String)
+    End Sub
+    Partial Private Sub OnОтчествоРодПадChanged()
+    End Sub
+    Partial Private Sub OnФИОРодПодChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОРодПодChanged()
+    End Sub
+    Partial Private Sub OnПаспортСерияChanging(value As String)
+    End Sub
+    Partial Private Sub OnПаспортСерияChanged()
+    End Sub
+    Partial Private Sub OnПаспортНомерChanging(value As String)
+    End Sub
+    Partial Private Sub OnПаспортНомерChanged()
+    End Sub
+    Partial Private Sub OnПаспортКогдаВыданChanging(value As String)
+    End Sub
+    Partial Private Sub OnПаспортКогдаВыданChanged()
+    End Sub
+    Partial Private Sub OnДоКакогоДействChanging(value As String)
+    End Sub
+    Partial Private Sub OnДоКакогоДействChanged()
+    End Sub
+    Partial Private Sub OnПаспортКемВыданChanging(value As String)
+    End Sub
+    Partial Private Sub OnПаспортКемВыданChanged()
+    End Sub
+    Partial Private Sub OnИДНомерChanging(value As String)
+    End Sub
+    Partial Private Sub OnИДНомерChanged()
+    End Sub
+    Partial Private Sub OnРегистрацияChanging(value As String)
+    End Sub
+    Partial Private Sub OnРегистрацияChanged()
+    End Sub
+    Partial Private Sub OnМестоПроживChanging(value As String)
+    End Sub
+    Partial Private Sub OnМестоПроживChanged()
+    End Sub
+    Partial Private Sub OnКонтТелГорChanging(value As String)
+    End Sub
+    Partial Private Sub OnКонтТелГорChanged()
+    End Sub
+    Partial Private Sub OnКонтТелефонChanging(value As String)
+    End Sub
+    Partial Private Sub OnКонтТелефонChanged()
+    End Sub
+    Partial Private Sub OnФамилияДляУвольненияChanging(value As String)
+    End Sub
+    Partial Private Sub OnФамилияДляУвольненияChanged()
+    End Sub
+    Partial Private Sub OnСтраховойПолисChanging(value As String)
+    End Sub
+    Partial Private Sub OnСтраховойПолисChanged()
+    End Sub
+    Partial Private Sub OnНаличеДогПодрядаChanging(value As String)
+    End Sub
+    Partial Private Sub OnНаличеДогПодрядаChanged()
+    End Sub
+    Partial Private Sub OnФамилияДляЗаявленияChanging(value As String)
+    End Sub
+    Partial Private Sub OnФамилияДляЗаявленияChanged()
+    End Sub
+    Partial Private Sub OnИмяДляЗаявленияChanging(value As String)
+    End Sub
+    Partial Private Sub OnИмяДляЗаявленияChanged()
+    End Sub
+    Partial Private Sub OnОтчествоДляЗаявленияChanging(value As String)
+    End Sub
+    Partial Private Sub OnОтчествоДляЗаявленияChanged()
+    End Sub
+    Partial Private Sub OnПолChanging(value As String)
+    End Sub
+    Partial Private Sub OnПолChanged()
+    End Sub
+    Partial Private Sub OnФИОДатПадКомуChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОДатПадКомуChanged()
+    End Sub
+    Partial Private Sub OnДатаРождChanging(value As String)
+    End Sub
+    Partial Private Sub OnДатаРождChanged()
+    End Sub
+    Partial Private Sub OnГражданинChanging(value As String)
+    End Sub
+    Partial Private Sub OnГражданинChanged()
+    End Sub
+    Partial Private Sub OnПровДатыКонтрChanging(value As String)
+    End Sub
+    Partial Private Sub OnПровДатыКонтрChanged()
+    End Sub
+    Partial Private Sub OnИностранецChanging(value As String)
+    End Sub
+    Partial Private Sub OnИностранецChanged()
+    End Sub
+    Partial Private Sub OnФамилияСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnФамилияСтарChanged()
+    End Sub
+    Partial Private Sub OnИмяСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnИмяСтарChanged()
+    End Sub
+    Partial Private Sub OnОтчествоСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnОтчествоСтарChanged()
+    End Sub
+    Partial Private Sub OnФИОСборноеСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОСборноеСтарChanged()
+    End Sub
+    Partial Private Sub OnФамилияРодПадСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnФамилияРодПадСтарChanged()
+    End Sub
+    Partial Private Sub OnИмяРодПадСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnИмяРодПадСтарChanged()
+    End Sub
+    Partial Private Sub OnОтчествоРодПадСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnОтчествоРодПадСтарChanged()
+    End Sub
+    Partial Private Sub OnФИОРодПодСтарChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОРодПодСтарChanged()
+    End Sub
+    Partial Private Sub OnДатаИзмененияChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnДатаИзмененияChanged()
+    End Sub
+    Partial Private Sub OnТипОтношенияChanging(value As String)
+    End Sub
+    Partial Private Sub OnТипОтношенияChanged()
+    End Sub
+    Partial Private Sub OnДанныеИзСправочникаChanging(value As String)
+    End Sub
+    Partial Private Sub OnДанныеИзСправочникаChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._ДогПодряда = New EntitySet(Of ДогПодряда)(AddressOf Me.attach_ДогПодряда, AddressOf Me.detach_ДогПодряда)
+		Me._ДогСотрудн = New EntitySet(Of ДогСотрудн)(AddressOf Me.attach_ДогСотрудн, AddressOf Me.detach_ДогСотрудн)
+		Me._КарточкаСотрудника = New EntitySet(Of КарточкаСотрудника)(AddressOf Me.attach_КарточкаСотрудника, AddressOf Me.detach_КарточкаСотрудника)
+		Me._ПродлКонтракта = New EntitySet(Of ПродлКонтракта)(AddressOf Me.attach_ПродлКонтракта, AddressOf Me.detach_ПродлКонтракта)
+		Me._ПутиДокументов = New EntitySet(Of ПутиДокументов)(AddressOf Me.attach_ПутиДокументов, AddressOf Me.detach_ПутиДокументов)
+		Me._Штатное = New EntitySet(Of Штатное)(AddressOf Me.attach_Штатное, AddressOf Me.detach_Штатное)
+		Me._Дети = New EntitySet(Of Дети)(AddressOf Me.attach_Дети, AddressOf Me.detach_Дети)
+		Me._СоставСемьи = New EntitySet(Of СоставСемьи)(AddressOf Me.attach_СоставСемьи, AddressOf Me.detach_СоставСемьи)
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КодСотрудники", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property КодСотрудники() As Integer
+		Get
+			Return Me._КодСотрудники
+		End Get
+		Set
+			If ((Me._КодСотрудники = value)  _
+						= false) Then
+				Me.OnКодСотрудникиChanging(value)
+				Me.SendPropertyChanging
+				Me._КодСотрудники = value
+				Me.SendPropertyChanged("КодСотрудники")
+				Me.OnКодСотрудникиChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_НазвОрганиз", DbType:="NVarChar(255)")>  _
+	Public Property НазвОрганиз() As String
+		Get
+			Return Me._НазвОрганиз
+		End Get
+		Set
+			If (String.Equals(Me._НазвОрганиз, value) = false) Then
+				Me.OnНазвОрганизChanging(value)
+				Me.SendPropertyChanging
+				Me._НазвОрганиз = value
+				Me.SendPropertyChanged("НазвОрганиз")
+				Me.OnНазвОрганизChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Фамилия", DbType:="NVarChar(255)")>  _
+	Public Property Фамилия() As String
+		Get
+			Return Me._Фамилия
+		End Get
+		Set
+			If (String.Equals(Me._Фамилия, value) = false) Then
+				Me.OnФамилияChanging(value)
+				Me.SendPropertyChanging
+				Me._Фамилия = value
+				Me.SendPropertyChanged("Фамилия")
+				Me.OnФамилияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Имя", DbType:="NVarChar(255)")>  _
+	Public Property Имя() As String
+		Get
+			Return Me._Имя
+		End Get
+		Set
+			If (String.Equals(Me._Имя, value) = false) Then
+				Me.OnИмяChanging(value)
+				Me.SendPropertyChanging
+				Me._Имя = value
+				Me.SendPropertyChanged("Имя")
+				Me.OnИмяChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Отчество", DbType:="NVarChar(255)")>  _
+	Public Property Отчество() As String
+		Get
+			Return Me._Отчество
+		End Get
+		Set
+			If (String.Equals(Me._Отчество, value) = false) Then
+				Me.OnОтчествоChanging(value)
+				Me.SendPropertyChanging
+				Me._Отчество = value
+				Me.SendPropertyChanged("Отчество")
+				Me.OnОтчествоChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОСборное", DbType:="NVarChar(MAX)")>  _
+	Public Property ФИОСборное() As String
+		Get
+			Return Me._ФИОСборное
+		End Get
+		Set
+			If (String.Equals(Me._ФИОСборное, value) = false) Then
+				Me.OnФИОСборноеChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИОСборное = value
+				Me.SendPropertyChanged("ФИОСборное")
+				Me.OnФИОСборноеChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияРодПад", DbType:="NVarChar(255)")>  _
+	Public Property ФамилияРодПад() As String
+		Get
+			Return Me._ФамилияРодПад
+		End Get
+		Set
+			If (String.Equals(Me._ФамилияРодПад, value) = false) Then
+				Me.OnФамилияРодПадChanging(value)
+				Me.SendPropertyChanging
+				Me._ФамилияРодПад = value
+				Me.SendPropertyChanged("ФамилияРодПад")
+				Me.OnФамилияРодПадChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяРодПад", DbType:="NVarChar(255)")>  _
+	Public Property ИмяРодПад() As String
+		Get
+			Return Me._ИмяРодПад
+		End Get
+		Set
+			If (String.Equals(Me._ИмяРодПад, value) = false) Then
+				Me.OnИмяРодПадChanging(value)
+				Me.SendPropertyChanging
+				Me._ИмяРодПад = value
+				Me.SendPropertyChanged("ИмяРодПад")
+				Me.OnИмяРодПадChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоРодПад", DbType:="NVarChar(255)")>  _
+	Public Property ОтчествоРодПад() As String
+		Get
+			Return Me._ОтчествоРодПад
+		End Get
+		Set
+			If (String.Equals(Me._ОтчествоРодПад, value) = false) Then
+				Me.OnОтчествоРодПадChanging(value)
+				Me.SendPropertyChanging
+				Me._ОтчествоРодПад = value
+				Me.SendPropertyChanged("ОтчествоРодПад")
+				Me.OnОтчествоРодПадChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОРодПод", DbType:="NVarChar(MAX)")>  _
+	Public Property ФИОРодПод() As String
+		Get
+			Return Me._ФИОРодПод
+		End Get
+		Set
+			If (String.Equals(Me._ФИОРодПод, value) = false) Then
+				Me.OnФИОРодПодChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИОРодПод = value
+				Me.SendPropertyChanged("ФИОРодПод")
+				Me.OnФИОРодПодChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортСерия", DbType:="NVarChar(255)")>  _
+	Public Property ПаспортСерия() As String
+		Get
+			Return Me._ПаспортСерия
+		End Get
+		Set
+			If (String.Equals(Me._ПаспортСерия, value) = false) Then
+				Me.OnПаспортСерияChanging(value)
+				Me.SendPropertyChanging
+				Me._ПаспортСерия = value
+				Me.SendPropertyChanged("ПаспортСерия")
+				Me.OnПаспортСерияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортНомер", DbType:="NVarChar(255)")>  _
+	Public Property ПаспортНомер() As String
+		Get
+			Return Me._ПаспортНомер
+		End Get
+		Set
+			If (String.Equals(Me._ПаспортНомер, value) = false) Then
+				Me.OnПаспортНомерChanging(value)
+				Me.SendPropertyChanging
+				Me._ПаспортНомер = value
+				Me.SendPropertyChanged("ПаспортНомер")
+				Me.OnПаспортНомерChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортКогдаВыдан", DbType:="NVarChar(255)")>  _
+	Public Property ПаспортКогдаВыдан() As String
+		Get
+			Return Me._ПаспортКогдаВыдан
+		End Get
+		Set
+			If (String.Equals(Me._ПаспортКогдаВыдан, value) = false) Then
+				Me.OnПаспортКогдаВыданChanging(value)
+				Me.SendPropertyChanging
+				Me._ПаспортКогдаВыдан = value
+				Me.SendPropertyChanged("ПаспортКогдаВыдан")
+				Me.OnПаспортКогдаВыданChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДоКакогоДейств", DbType:="NVarChar(255)")>  _
+	Public Property ДоКакогоДейств() As String
+		Get
+			Return Me._ДоКакогоДейств
+		End Get
+		Set
+			If (String.Equals(Me._ДоКакогоДейств, value) = false) Then
+				Me.OnДоКакогоДействChanging(value)
+				Me.SendPropertyChanging
+				Me._ДоКакогоДейств = value
+				Me.SendPropertyChanged("ДоКакогоДейств")
+				Me.OnДоКакогоДействChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПаспортКемВыдан", DbType:="NVarChar(255)")>  _
+	Public Property ПаспортКемВыдан() As String
+		Get
+			Return Me._ПаспортКемВыдан
+		End Get
+		Set
+			If (String.Equals(Me._ПаспортКемВыдан, value) = false) Then
+				Me.OnПаспортКемВыданChanging(value)
+				Me.SendPropertyChanging
+				Me._ПаспортКемВыдан = value
+				Me.SendPropertyChanged("ПаспортКемВыдан")
+				Me.OnПаспортКемВыданChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИДНомер", DbType:="NVarChar(255)")>  _
+	Public Property ИДНомер() As String
+		Get
+			Return Me._ИДНомер
+		End Get
+		Set
+			If (String.Equals(Me._ИДНомер, value) = false) Then
+				Me.OnИДНомерChanging(value)
+				Me.SendPropertyChanging
+				Me._ИДНомер = value
+				Me.SendPropertyChanged("ИДНомер")
+				Me.OnИДНомерChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Регистрация", DbType:="NVarChar(255)")>  _
+	Public Property Регистрация() As String
+		Get
+			Return Me._Регистрация
+		End Get
+		Set
+			If (String.Equals(Me._Регистрация, value) = false) Then
+				Me.OnРегистрацияChanging(value)
+				Me.SendPropertyChanging
+				Me._Регистрация = value
+				Me.SendPropertyChanged("Регистрация")
+				Me.OnРегистрацияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_МестоПрожив", DbType:="NVarChar(255)")>  _
+	Public Property МестоПрожив() As String
+		Get
+			Return Me._МестоПрожив
+		End Get
+		Set
+			If (String.Equals(Me._МестоПрожив, value) = false) Then
+				Me.OnМестоПроживChanging(value)
+				Me.SendPropertyChanging
+				Me._МестоПрожив = value
+				Me.SendPropertyChanged("МестоПрожив")
+				Me.OnМестоПроживChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КонтТелГор", DbType:="NVarChar(255)")>  _
+	Public Property КонтТелГор() As String
+		Get
+			Return Me._КонтТелГор
+		End Get
+		Set
+			If (String.Equals(Me._КонтТелГор, value) = false) Then
+				Me.OnКонтТелГорChanging(value)
+				Me.SendPropertyChanging
+				Me._КонтТелГор = value
+				Me.SendPropertyChanged("КонтТелГор")
+				Me.OnКонтТелГорChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КонтТелефон", DbType:="NVarChar(255)")>  _
+	Public Property КонтТелефон() As String
+		Get
+			Return Me._КонтТелефон
+		End Get
+		Set
+			If (String.Equals(Me._КонтТелефон, value) = false) Then
+				Me.OnКонтТелефонChanging(value)
+				Me.SendPropertyChanging
+				Me._КонтТелефон = value
+				Me.SendPropertyChanged("КонтТелефон")
+				Me.OnКонтТелефонChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияДляУвольнения", DbType:="NVarChar(255)")>  _
+	Public Property ФамилияДляУвольнения() As String
+		Get
+			Return Me._ФамилияДляУвольнения
+		End Get
+		Set
+			If (String.Equals(Me._ФамилияДляУвольнения, value) = false) Then
+				Me.OnФамилияДляУвольненияChanging(value)
+				Me.SendPropertyChanging
+				Me._ФамилияДляУвольнения = value
+				Me.SendPropertyChanged("ФамилияДляУвольнения")
+				Me.OnФамилияДляУвольненияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_СтраховойПолис", DbType:="NVarChar(255)")>  _
+	Public Property СтраховойПолис() As String
+		Get
+			Return Me._СтраховойПолис
+		End Get
+		Set
+			If (String.Equals(Me._СтраховойПолис, value) = false) Then
+				Me.OnСтраховойПолисChanging(value)
+				Me.SendPropertyChanging
+				Me._СтраховойПолис = value
+				Me.SendPropertyChanged("СтраховойПолис")
+				Me.OnСтраховойПолисChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_НаличеДогПодряда", DbType:="NVarChar(255)")>  _
+	Public Property НаличеДогПодряда() As String
+		Get
+			Return Me._НаличеДогПодряда
+		End Get
+		Set
+			If (String.Equals(Me._НаличеДогПодряда, value) = false) Then
+				Me.OnНаличеДогПодрядаChanging(value)
+				Me.SendPropertyChanging
+				Me._НаличеДогПодряда = value
+				Me.SendPropertyChanged("НаличеДогПодряда")
+				Me.OnНаличеДогПодрядаChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияДляЗаявления", DbType:="NVarChar(255)")>  _
+	Public Property ФамилияДляЗаявления() As String
+		Get
+			Return Me._ФамилияДляЗаявления
+		End Get
+		Set
+			If (String.Equals(Me._ФамилияДляЗаявления, value) = false) Then
+				Me.OnФамилияДляЗаявленияChanging(value)
+				Me.SendPropertyChanging
+				Me._ФамилияДляЗаявления = value
+				Me.SendPropertyChanged("ФамилияДляЗаявления")
+				Me.OnФамилияДляЗаявленияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяДляЗаявления", DbType:="NVarChar(255)")>  _
+	Public Property ИмяДляЗаявления() As String
+		Get
+			Return Me._ИмяДляЗаявления
+		End Get
+		Set
+			If (String.Equals(Me._ИмяДляЗаявления, value) = false) Then
+				Me.OnИмяДляЗаявленияChanging(value)
+				Me.SendPropertyChanging
+				Me._ИмяДляЗаявления = value
+				Me.SendPropertyChanged("ИмяДляЗаявления")
+				Me.OnИмяДляЗаявленияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоДляЗаявления", DbType:="NVarChar(255)")>  _
+	Public Property ОтчествоДляЗаявления() As String
+		Get
+			Return Me._ОтчествоДляЗаявления
+		End Get
+		Set
+			If (String.Equals(Me._ОтчествоДляЗаявления, value) = false) Then
+				Me.OnОтчествоДляЗаявленияChanging(value)
+				Me.SendPropertyChanging
+				Me._ОтчествоДляЗаявления = value
+				Me.SendPropertyChanged("ОтчествоДляЗаявления")
+				Me.OnОтчествоДляЗаявленияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Пол", DbType:="NVarChar(2)")>  _
+	Public Property Пол() As String
+		Get
+			Return Me._Пол
+		End Get
+		Set
+			If (String.Equals(Me._Пол, value) = false) Then
+				Me.OnПолChanging(value)
+				Me.SendPropertyChanging
+				Me._Пол = value
+				Me.SendPropertyChanged("Пол")
+				Me.OnПолChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОДатПадКому", DbType:="NVarChar(255)")>  _
+	Public Property ФИОДатПадКому() As String
+		Get
+			Return Me._ФИОДатПадКому
+		End Get
+		Set
+			If (String.Equals(Me._ФИОДатПадКому, value) = false) Then
+				Me.OnФИОДатПадКомуChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИОДатПадКому = value
+				Me.SendPropertyChanged("ФИОДатПадКому")
+				Me.OnФИОДатПадКомуChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРожд", DbType:="NVarChar(255)")>  _
+	Public Property ДатаРожд() As String
+		Get
+			Return Me._ДатаРожд
+		End Get
+		Set
+			If (String.Equals(Me._ДатаРожд, value) = false) Then
+				Me.OnДатаРождChanging(value)
+				Me.SendPropertyChanging
+				Me._ДатаРожд = value
+				Me.SendPropertyChanged("ДатаРожд")
+				Me.OnДатаРождChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Гражданин", DbType:="NVarChar(255)")>  _
+	Public Property Гражданин() As String
+		Get
+			Return Me._Гражданин
+		End Get
+		Set
+			If (String.Equals(Me._Гражданин, value) = false) Then
+				Me.OnГражданинChanging(value)
+				Me.SendPropertyChanging
+				Me._Гражданин = value
+				Me.SendPropertyChanged("Гражданин")
+				Me.OnГражданинChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПровДатыКонтр", DbType:="NVarChar(255)")>  _
+	Public Property ПровДатыКонтр() As String
+		Get
+			Return Me._ПровДатыКонтр
+		End Get
+		Set
+			If (String.Equals(Me._ПровДатыКонтр, value) = false) Then
+				Me.OnПровДатыКонтрChanging(value)
+				Me.SendPropertyChanging
+				Me._ПровДатыКонтр = value
+				Me.SendPropertyChanged("ПровДатыКонтр")
+				Me.OnПровДатыКонтрChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Иностранец", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property Иностранец() As String
+		Get
+			Return Me._Иностранец
+		End Get
+		Set
+			If (String.Equals(Me._Иностранец, value) = false) Then
+				Me.OnИностранецChanging(value)
+				Me.SendPropertyChanging
+				Me._Иностранец = value
+				Me.SendPropertyChanged("Иностранец")
+				Me.OnИностранецChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияСтар", DbType:="NVarChar(255)")>  _
+	Public Property ФамилияСтар() As String
+		Get
+			Return Me._ФамилияСтар
+		End Get
+		Set
+			If (String.Equals(Me._ФамилияСтар, value) = false) Then
+				Me.OnФамилияСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ФамилияСтар = value
+				Me.SendPropertyChanged("ФамилияСтар")
+				Me.OnФамилияСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяСтар", DbType:="NVarChar(255)")>  _
+	Public Property ИмяСтар() As String
+		Get
+			Return Me._ИмяСтар
+		End Get
+		Set
+			If (String.Equals(Me._ИмяСтар, value) = false) Then
+				Me.OnИмяСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ИмяСтар = value
+				Me.SendPropertyChanged("ИмяСтар")
+				Me.OnИмяСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоСтар", DbType:="NVarChar(255)")>  _
+	Public Property ОтчествоСтар() As String
+		Get
+			Return Me._ОтчествоСтар
+		End Get
+		Set
+			If (String.Equals(Me._ОтчествоСтар, value) = false) Then
+				Me.OnОтчествоСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ОтчествоСтар = value
+				Me.SendPropertyChanged("ОтчествоСтар")
+				Me.OnОтчествоСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОСборноеСтар", DbType:="NVarChar(MAX)")>  _
+	Public Property ФИОСборноеСтар() As String
+		Get
+			Return Me._ФИОСборноеСтар
+		End Get
+		Set
+			If (String.Equals(Me._ФИОСборноеСтар, value) = false) Then
+				Me.OnФИОСборноеСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИОСборноеСтар = value
+				Me.SendPropertyChanged("ФИОСборноеСтар")
+				Me.OnФИОСборноеСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФамилияРодПадСтар", DbType:="NVarChar(255)")>  _
+	Public Property ФамилияРодПадСтар() As String
+		Get
+			Return Me._ФамилияРодПадСтар
+		End Get
+		Set
+			If (String.Equals(Me._ФамилияРодПадСтар, value) = false) Then
+				Me.OnФамилияРодПадСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ФамилияРодПадСтар = value
+				Me.SendPropertyChanged("ФамилияРодПадСтар")
+				Me.OnФамилияРодПадСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ИмяРодПадСтар", DbType:="NVarChar(255)")>  _
+	Public Property ИмяРодПадСтар() As String
+		Get
+			Return Me._ИмяРодПадСтар
+		End Get
+		Set
+			If (String.Equals(Me._ИмяРодПадСтар, value) = false) Then
+				Me.OnИмяРодПадСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ИмяРодПадСтар = value
+				Me.SendPropertyChanged("ИмяРодПадСтар")
+				Me.OnИмяРодПадСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ОтчествоРодПадСтар", DbType:="NVarChar(255)")>  _
+	Public Property ОтчествоРодПадСтар() As String
+		Get
+			Return Me._ОтчествоРодПадСтар
+		End Get
+		Set
+			If (String.Equals(Me._ОтчествоРодПадСтар, value) = false) Then
+				Me.OnОтчествоРодПадСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ОтчествоРодПадСтар = value
+				Me.SendPropertyChanged("ОтчествоРодПадСтар")
+				Me.OnОтчествоРодПадСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОРодПодСтар", DbType:="NVarChar(MAX)")>  _
+	Public Property ФИОРодПодСтар() As String
+		Get
+			Return Me._ФИОРодПодСтар
+		End Get
+		Set
+			If (String.Equals(Me._ФИОРодПодСтар, value) = false) Then
+				Me.OnФИОРодПодСтарChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИОРодПодСтар = value
+				Me.SendPropertyChanged("ФИОРодПодСтар")
+				Me.OnФИОРодПодСтарChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаИзменения", DbType:="DateTime")>  _
+	Public Property ДатаИзменения() As System.Nullable(Of Date)
+		Get
+			Return Me._ДатаИзменения
+		End Get
+		Set
+			If (Me._ДатаИзменения.Equals(value) = false) Then
+				Me.OnДатаИзмененияChanging(value)
+				Me.SendPropertyChanging
+				Me._ДатаИзменения = value
+				Me.SendPropertyChanged("ДатаИзменения")
+				Me.OnДатаИзмененияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ТипОтношения", DbType:="NVarChar(50)")>  _
+	Public Property ТипОтношения() As String
+		Get
+			Return Me._ТипОтношения
+		End Get
+		Set
+			If (String.Equals(Me._ТипОтношения, value) = false) Then
+				Me.OnТипОтношенияChanging(value)
+				Me.SendPropertyChanging
+				Me._ТипОтношения = value
+				Me.SendPropertyChanged("ТипОтношения")
+				Me.OnТипОтношенияChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДанныеИзСправочника", DbType:="NVarChar(50)")>  _
+	Public Property ДанныеИзСправочника() As String
+		Get
+			Return Me._ДанныеИзСправочника
+		End Get
+		Set
+			If (String.Equals(Me._ДанныеИзСправочника, value) = false) Then
+				Me.OnДанныеИзСправочникаChanging(value)
+				Me.SendPropertyChanging
+				Me._ДанныеИзСправочника = value
+				Me.SendPropertyChanged("ДанныеИзСправочника")
+				Me.OnДанныеИзСправочникаChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ДогПодряда", Storage:="_ДогПодряда", ThisKey:="КодСотрудники", OtherKey:="ID")>  _
+	Public Property ДогПодряда() As EntitySet(Of ДогПодряда)
+		Get
+			Return Me._ДогПодряда
+		End Get
+		Set
+			Me._ДогПодряда.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ДогСотрудн", Storage:="_ДогСотрудн", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
+	Public Property ДогСотрудн() As EntitySet(Of ДогСотрудн)
+		Get
+			Return Me._ДогСотрудн
+		End Get
+		Set
+			Me._ДогСотрудн.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_КарточкаСотрудника", Storage:="_КарточкаСотрудника", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
+	Public Property КарточкаСотрудника() As EntitySet(Of КарточкаСотрудника)
+		Get
+			Return Me._КарточкаСотрудника
+		End Get
+		Set
+			Me._КарточкаСотрудника.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ПродлКонтракта", Storage:="_ПродлКонтракта", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
+	Public Property ПродлКонтракта() As EntitySet(Of ПродлКонтракта)
+		Get
+			Return Me._ПродлКонтракта
+		End Get
+		Set
+			Me._ПродлКонтракта.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_ПутиДокументов", Storage:="_ПутиДокументов", ThisKey:="КодСотрудники", OtherKey:="IDСотрудник")>  _
+	Public Property ПутиДокументов() As EntitySet(Of ПутиДокументов)
+		Get
+			Return Me._ПутиДокументов
+		End Get
+		Set
+			Me._ПутиДокументов.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_Штатное", Storage:="_Штатное", ThisKey:="КодСотрудники", OtherKey:="ИДСотр")>  _
+	Public Property Штатное() As EntitySet(Of Штатное)
+		Get
+			Return Me._Штатное
+		End Get
+		Set
+			Me._Штатное.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_Дети", Storage:="_Дети", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
+	Public Property Дети() As EntitySet(Of Дети)
+		Get
+			Return Me._Дети
+		End Get
+		Set
+			Me._Дети.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_СоставСемьи", Storage:="_СоставСемьи", ThisKey:="КодСотрудники", OtherKey:="IDСотр")>  _
+	Public Property СоставСемьи() As EntitySet(Of СоставСемьи)
+		Get
+			Return Me._СоставСемьи
+		End Get
+		Set
+			Me._СоставСемьи.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_ДогПодряда(ByVal entity As ДогПодряда)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_ДогПодряда(ByVal entity As ДогПодряда)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_ДогСотрудн(ByVal entity As ДогСотрудн)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_ДогСотрудн(ByVal entity As ДогСотрудн)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_КарточкаСотрудника(ByVal entity As КарточкаСотрудника)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_КарточкаСотрудника(ByVal entity As КарточкаСотрудника)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_ПродлКонтракта(ByVal entity As ПродлКонтракта)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_ПродлКонтракта(ByVal entity As ПродлКонтракта)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_ПутиДокументов(ByVal entity As ПутиДокументов)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_ПутиДокументов(ByVal entity As ПутиДокументов)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_Штатное(ByVal entity As Штатное)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_Штатное(ByVal entity As Штатное)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_Дети(ByVal entity As Дети)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_Дети(ByVal entity As Дети)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+	
+	Private Sub attach_СоставСемьи(ByVal entity As СоставСемьи)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Me
+	End Sub
+	
+	Private Sub detach_СоставСемьи(ByVal entity As СоставСемьи)
+		Me.SendPropertyChanging
+		entity.Сотрудники = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.СоставСемьи")>  _
+Partial Public Class СоставСемьи
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _Код As Integer
+	
+	Private _IDСотр As System.Nullable(Of Integer)
+	
+	Private _КолДетей As String
+	
+	Private _ФИО As String
+	
+	Private _МестоРаботы As String
+	
+	Private _Телефон As String
+	
+	Private _ДетиПол1 As String
+	
+	Private _ФИО1 As String
+	
+	Private _ДатаРождения1 As String
+	
+	Private _ДетиПол2 As String
+	
+	Private _ФИО2 As String
+	
+	Private _ДатаРождения2 As String
+	
+	Private _ДетиПол3 As String
+	
+	Private _ФИО3 As String
+	
+	Private _ДатаРождения3 As String
+	
+	Private _ДетиПол4 As String
+	
+	Private _ФИО4 As String
+	
+	Private _ДатаРождения4 As String
+	
+	Private _ДетиПол5 As String
+	
+	Private _ФИО5 As String
+	
+	Private _ДатаРождения5 As String
+	
+	Private _ФИОРебенка As String
+	
+	Private _ПолРебенка As String
+	
+	Private _ДатаРожденияРебенка As System.Nullable(Of Date)
+	
+	Private _Справочник As String
+	
+	Private _Сотрудники As EntityRef(Of Сотрудники)
+	
+    #Region "Определения метода расширяемости"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnКодChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnКодChanged()
+    End Sub
+    Partial Private Sub OnIDСотрChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnIDСотрChanged()
+    End Sub
+    Partial Private Sub OnКолДетейChanging(value As String)
+    End Sub
+    Partial Private Sub OnКолДетейChanged()
+    End Sub
+    Partial Private Sub OnФИОChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОChanged()
+    End Sub
+    Partial Private Sub OnМестоРаботыChanging(value As String)
+    End Sub
+    Partial Private Sub OnМестоРаботыChanged()
+    End Sub
+    Partial Private Sub OnТелефонChanging(value As String)
+    End Sub
+    Partial Private Sub OnТелефонChanged()
+    End Sub
+    Partial Private Sub OnДетиПол1Changing(value As String)
+    End Sub
+    Partial Private Sub OnДетиПол1Changed()
+    End Sub
+    Partial Private Sub OnФИО1Changing(value As String)
+    End Sub
+    Partial Private Sub OnФИО1Changed()
+    End Sub
+    Partial Private Sub OnДатаРождения1Changing(value As String)
+    End Sub
+    Partial Private Sub OnДатаРождения1Changed()
+    End Sub
+    Partial Private Sub OnДетиПол2Changing(value As String)
+    End Sub
+    Partial Private Sub OnДетиПол2Changed()
+    End Sub
+    Partial Private Sub OnФИО2Changing(value As String)
+    End Sub
+    Partial Private Sub OnФИО2Changed()
+    End Sub
+    Partial Private Sub OnДатаРождения2Changing(value As String)
+    End Sub
+    Partial Private Sub OnДатаРождения2Changed()
+    End Sub
+    Partial Private Sub OnДетиПол3Changing(value As String)
+    End Sub
+    Partial Private Sub OnДетиПол3Changed()
+    End Sub
+    Partial Private Sub OnФИО3Changing(value As String)
+    End Sub
+    Partial Private Sub OnФИО3Changed()
+    End Sub
+    Partial Private Sub OnДатаРождения3Changing(value As String)
+    End Sub
+    Partial Private Sub OnДатаРождения3Changed()
+    End Sub
+    Partial Private Sub OnДетиПол4Changing(value As String)
+    End Sub
+    Partial Private Sub OnДетиПол4Changed()
+    End Sub
+    Partial Private Sub OnФИО4Changing(value As String)
+    End Sub
+    Partial Private Sub OnФИО4Changed()
+    End Sub
+    Partial Private Sub OnДатаРождения4Changing(value As String)
+    End Sub
+    Partial Private Sub OnДатаРождения4Changed()
+    End Sub
+    Partial Private Sub OnДетиПол5Changing(value As String)
+    End Sub
+    Partial Private Sub OnДетиПол5Changed()
+    End Sub
+    Partial Private Sub OnФИО5Changing(value As String)
+    End Sub
+    Partial Private Sub OnФИО5Changed()
+    End Sub
+    Partial Private Sub OnДатаРождения5Changing(value As String)
+    End Sub
+    Partial Private Sub OnДатаРождения5Changed()
+    End Sub
+    Partial Private Sub OnФИОРебенкаChanging(value As String)
+    End Sub
+    Partial Private Sub OnФИОРебенкаChanged()
+    End Sub
+    Partial Private Sub OnПолРебенкаChanging(value As String)
+    End Sub
+    Partial Private Sub OnПолРебенкаChanged()
+    End Sub
+    Partial Private Sub OnДатаРожденияРебенкаChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnДатаРожденияРебенкаChanged()
+    End Sub
+    Partial Private Sub OnСправочникChanging(value As String)
+    End Sub
+    Partial Private Sub OnСправочникChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Сотрудники = CType(Nothing, EntityRef(Of Сотрудники))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Код", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Код() As Integer
+		Get
+			Return Me._Код
+		End Get
+		Set
+			If ((Me._Код = value)  _
+						= false) Then
+				Me.OnКодChanging(value)
+				Me.SendPropertyChanging
+				Me._Код = value
+				Me.SendPropertyChanged("Код")
+				Me.OnКодChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IDСотр", DbType:="Int")>  _
+	Public Property IDСотр() As System.Nullable(Of Integer)
+		Get
+			Return Me._IDСотр
+		End Get
+		Set
+			If (Me._IDСотр.Equals(value) = false) Then
+				If Me._Сотрудники.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnIDСотрChanging(value)
+				Me.SendPropertyChanging
+				Me._IDСотр = value
+				Me.SendPropertyChanged("IDСотр")
+				Me.OnIDСотрChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_КолДетей", DbType:="NVarChar(255)")>  _
+	Public Property КолДетей() As String
+		Get
+			Return Me._КолДетей
+		End Get
+		Set
+			If (String.Equals(Me._КолДетей, value) = false) Then
+				Me.OnКолДетейChanging(value)
+				Me.SendPropertyChanging
+				Me._КолДетей = value
+				Me.SendPropertyChanged("КолДетей")
+				Me.OnКолДетейChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО", DbType:="NVarChar(255)")>  _
+	Public Property ФИО() As String
+		Get
+			Return Me._ФИО
+		End Get
+		Set
+			If (String.Equals(Me._ФИО, value) = false) Then
+				Me.OnФИОChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИО = value
+				Me.SendPropertyChanged("ФИО")
+				Me.OnФИОChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_МестоРаботы", DbType:="NVarChar(255)")>  _
+	Public Property МестоРаботы() As String
+		Get
+			Return Me._МестоРаботы
+		End Get
+		Set
+			If (String.Equals(Me._МестоРаботы, value) = false) Then
+				Me.OnМестоРаботыChanging(value)
+				Me.SendPropertyChanging
+				Me._МестоРаботы = value
+				Me.SendPropertyChanged("МестоРаботы")
+				Me.OnМестоРаботыChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Телефон", DbType:="NVarChar(255)")>  _
+	Public Property Телефон() As String
+		Get
+			Return Me._Телефон
+		End Get
+		Set
+			If (String.Equals(Me._Телефон, value) = false) Then
+				Me.OnТелефонChanging(value)
+				Me.SendPropertyChanging
+				Me._Телефон = value
+				Me.SendPropertyChanged("Телефон")
+				Me.OnТелефонChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол1", DbType:="NVarChar(255)")>  _
+	Public Property ДетиПол1() As String
+		Get
+			Return Me._ДетиПол1
+		End Get
+		Set
+			If (String.Equals(Me._ДетиПол1, value) = false) Then
+				Me.OnДетиПол1Changing(value)
+				Me.SendPropertyChanging
+				Me._ДетиПол1 = value
+				Me.SendPropertyChanged("ДетиПол1")
+				Me.OnДетиПол1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО1", DbType:="NVarChar(255)")>  _
+	Public Property ФИО1() As String
+		Get
+			Return Me._ФИО1
+		End Get
+		Set
+			If (String.Equals(Me._ФИО1, value) = false) Then
+				Me.OnФИО1Changing(value)
+				Me.SendPropertyChanging
+				Me._ФИО1 = value
+				Me.SendPropertyChanged("ФИО1")
+				Me.OnФИО1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения1", DbType:="NVarChar(255)")>  _
+	Public Property ДатаРождения1() As String
+		Get
+			Return Me._ДатаРождения1
+		End Get
+		Set
+			If (String.Equals(Me._ДатаРождения1, value) = false) Then
+				Me.OnДатаРождения1Changing(value)
+				Me.SendPropertyChanging
+				Me._ДатаРождения1 = value
+				Me.SendPropertyChanged("ДатаРождения1")
+				Me.OnДатаРождения1Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол2", DbType:="NVarChar(255)")>  _
+	Public Property ДетиПол2() As String
+		Get
+			Return Me._ДетиПол2
+		End Get
+		Set
+			If (String.Equals(Me._ДетиПол2, value) = false) Then
+				Me.OnДетиПол2Changing(value)
+				Me.SendPropertyChanging
+				Me._ДетиПол2 = value
+				Me.SendPropertyChanged("ДетиПол2")
+				Me.OnДетиПол2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО2", DbType:="NVarChar(255)")>  _
+	Public Property ФИО2() As String
+		Get
+			Return Me._ФИО2
+		End Get
+		Set
+			If (String.Equals(Me._ФИО2, value) = false) Then
+				Me.OnФИО2Changing(value)
+				Me.SendPropertyChanging
+				Me._ФИО2 = value
+				Me.SendPropertyChanged("ФИО2")
+				Me.OnФИО2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения2", DbType:="NVarChar(255)")>  _
+	Public Property ДатаРождения2() As String
+		Get
+			Return Me._ДатаРождения2
+		End Get
+		Set
+			If (String.Equals(Me._ДатаРождения2, value) = false) Then
+				Me.OnДатаРождения2Changing(value)
+				Me.SendPropertyChanging
+				Me._ДатаРождения2 = value
+				Me.SendPropertyChanged("ДатаРождения2")
+				Me.OnДатаРождения2Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол3", DbType:="NVarChar(255)")>  _
+	Public Property ДетиПол3() As String
+		Get
+			Return Me._ДетиПол3
+		End Get
+		Set
+			If (String.Equals(Me._ДетиПол3, value) = false) Then
+				Me.OnДетиПол3Changing(value)
+				Me.SendPropertyChanging
+				Me._ДетиПол3 = value
+				Me.SendPropertyChanged("ДетиПол3")
+				Me.OnДетиПол3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО3", DbType:="NVarChar(255)")>  _
+	Public Property ФИО3() As String
+		Get
+			Return Me._ФИО3
+		End Get
+		Set
+			If (String.Equals(Me._ФИО3, value) = false) Then
+				Me.OnФИО3Changing(value)
+				Me.SendPropertyChanging
+				Me._ФИО3 = value
+				Me.SendPropertyChanged("ФИО3")
+				Me.OnФИО3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения3", DbType:="NVarChar(255)")>  _
+	Public Property ДатаРождения3() As String
+		Get
+			Return Me._ДатаРождения3
+		End Get
+		Set
+			If (String.Equals(Me._ДатаРождения3, value) = false) Then
+				Me.OnДатаРождения3Changing(value)
+				Me.SendPropertyChanging
+				Me._ДатаРождения3 = value
+				Me.SendPropertyChanged("ДатаРождения3")
+				Me.OnДатаРождения3Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол4", DbType:="NVarChar(255)")>  _
+	Public Property ДетиПол4() As String
+		Get
+			Return Me._ДетиПол4
+		End Get
+		Set
+			If (String.Equals(Me._ДетиПол4, value) = false) Then
+				Me.OnДетиПол4Changing(value)
+				Me.SendPropertyChanging
+				Me._ДетиПол4 = value
+				Me.SendPropertyChanged("ДетиПол4")
+				Me.OnДетиПол4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО4", DbType:="NVarChar(255)")>  _
+	Public Property ФИО4() As String
+		Get
+			Return Me._ФИО4
+		End Get
+		Set
+			If (String.Equals(Me._ФИО4, value) = false) Then
+				Me.OnФИО4Changing(value)
+				Me.SendPropertyChanging
+				Me._ФИО4 = value
+				Me.SendPropertyChanged("ФИО4")
+				Me.OnФИО4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения4", DbType:="NVarChar(255)")>  _
+	Public Property ДатаРождения4() As String
+		Get
+			Return Me._ДатаРождения4
+		End Get
+		Set
+			If (String.Equals(Me._ДатаРождения4, value) = false) Then
+				Me.OnДатаРождения4Changing(value)
+				Me.SendPropertyChanging
+				Me._ДатаРождения4 = value
+				Me.SendPropertyChanged("ДатаРождения4")
+				Me.OnДатаРождения4Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДетиПол5", DbType:="NVarChar(255)")>  _
+	Public Property ДетиПол5() As String
+		Get
+			Return Me._ДетиПол5
+		End Get
+		Set
+			If (String.Equals(Me._ДетиПол5, value) = false) Then
+				Me.OnДетиПол5Changing(value)
+				Me.SendPropertyChanging
+				Me._ДетиПол5 = value
+				Me.SendPropertyChanged("ДетиПол5")
+				Me.OnДетиПол5Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИО5", DbType:="NVarChar(255)")>  _
+	Public Property ФИО5() As String
+		Get
+			Return Me._ФИО5
+		End Get
+		Set
+			If (String.Equals(Me._ФИО5, value) = false) Then
+				Me.OnФИО5Changing(value)
+				Me.SendPropertyChanging
+				Me._ФИО5 = value
+				Me.SendPropertyChanged("ФИО5")
+				Me.OnФИО5Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРождения5", DbType:="NVarChar(255)")>  _
+	Public Property ДатаРождения5() As String
+		Get
+			Return Me._ДатаРождения5
+		End Get
+		Set
+			If (String.Equals(Me._ДатаРождения5, value) = false) Then
+				Me.OnДатаРождения5Changing(value)
+				Me.SendPropertyChanging
+				Me._ДатаРождения5 = value
+				Me.SendPropertyChanged("ДатаРождения5")
+				Me.OnДатаРождения5Changed
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ФИОРебенка", DbType:="NVarChar(255)")>  _
+	Public Property ФИОРебенка() As String
+		Get
+			Return Me._ФИОРебенка
+		End Get
+		Set
+			If (String.Equals(Me._ФИОРебенка, value) = false) Then
+				Me.OnФИОРебенкаChanging(value)
+				Me.SendPropertyChanging
+				Me._ФИОРебенка = value
+				Me.SendPropertyChanged("ФИОРебенка")
+				Me.OnФИОРебенкаChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ПолРебенка", DbType:="NVarChar(2)")>  _
+	Public Property ПолРебенка() As String
+		Get
+			Return Me._ПолРебенка
+		End Get
+		Set
+			If (String.Equals(Me._ПолРебенка, value) = false) Then
+				Me.OnПолРебенкаChanging(value)
+				Me.SendPropertyChanging
+				Me._ПолРебенка = value
+				Me.SendPropertyChanged("ПолРебенка")
+				Me.OnПолРебенкаChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ДатаРожденияРебенка", DbType:="DateTime")>  _
+	Public Property ДатаРожденияРебенка() As System.Nullable(Of Date)
+		Get
+			Return Me._ДатаРожденияРебенка
+		End Get
+		Set
+			If (Me._ДатаРожденияРебенка.Equals(value) = false) Then
+				Me.OnДатаРожденияРебенкаChanging(value)
+				Me.SendPropertyChanging
+				Me._ДатаРожденияРебенка = value
+				Me.SendPropertyChanged("ДатаРожденияРебенка")
+				Me.OnДатаРожденияРебенкаChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Справочник", DbType:="NVarChar(10)")>  _
+	Public Property Справочник() As String
+		Get
+			Return Me._Справочник
+		End Get
+		Set
+			If (String.Equals(Me._Справочник, value) = false) Then
+				Me.OnСправочникChanging(value)
+				Me.SendPropertyChanging
+				Me._Справочник = value
+				Me.SendPropertyChanged("Справочник")
+				Me.OnСправочникChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Сотрудники_СоставСемьи", Storage:="_Сотрудники", ThisKey:="IDСотр", OtherKey:="КодСотрудники", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property Сотрудники() As Сотрудники
+		Get
+			Return Me._Сотрудники.Entity
+		End Get
+		Set
+			Dim previousValue As Сотрудники = Me._Сотрудники.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Сотрудники.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Сотрудники.Entity = Nothing
+					previousValue.СоставСемьи.Remove(Me)
+				End If
+				Me._Сотрудники.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.СоставСемьи.Add(Me)
+					Me._IDСотр = value.КодСотрудники
+				Else
+					Me._IDСотр = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Сотрудники")
 			End If
 		End Set
 	End Property

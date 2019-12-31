@@ -522,8 +522,8 @@ WHERE Код=" & Отпуск.idgr3cod & ""
     End Function
     Private Sub СборДаннОрганиз()
 
-
-        Dim dh = dtSotrudnikiAll.Select("ФИОСборное='" & TextBox1.Text & "' and НазвОрганиз='" & Отпуск.ComboBox2.Text & "'")
+        Dim догПод As String = "Нет"
+        Dim dh = dtSotrudnikiAll.Select("ФИОСборное='" & TextBox1.Text & "' and НазвОрганиз='" & Отпуск.ComboBox2.Text & "' and НаличеДогПодряда='" & догПод & "'")
 
         'Dim strsql3 As String = "SELECT КодСотрудники FROM Сотрудники WHERE ФИОСборное='" & TextBox1.Text & "' and НазвОрганиз='" & Отпуск.ComboBox2.Text & "'"
         'Dim dh As DataTable = Selects(strsql3)
@@ -620,7 +620,8 @@ WHERE Сотрудники.КодСотрудники=@КодСотрудник�
 
         '        Dim df = Selects(StrSql:="SELECT Сотрудники.КодСотрудники 
         'FROM Сотрудники WHERE НазвОрганиз =@НазвОрганиз and ФИОСборное=@ФИОСборное", list)
-        Dim df = dtSotrudnikiAll.Select("НазвОрганиз ='" & NameOrg & "' and ФИОСборное='" & TextBox1.Text & "'")
+        Dim ДогПод2 As String = "Нет"
+        Dim df = dtSotrudnikiAll.Select("НазвОрганиз ='" & NameOrg & "' and ФИОСборное='" & TextBox1.Text & "' and НаличеДогПодряда='" & ДогПод2 & "'")
 
         Try
             idcn = df(0).Item("КодСотрудники")

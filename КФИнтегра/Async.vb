@@ -250,10 +250,7 @@ VALUES(" & id & ",'" & Path & "', '" & Name & "', '" & Other & "','" & Org & "',
         dtDogPodrRabotyInoeAll = Selects(StrSql:="SELECT * FROM ДогПодрядаРаботыИное")
     End Sub
 
-    Public Async Sub allFilesAsync() 'Карточка сотрудника
 
-        'Await Task.Run((Sub() allFiles2()))
-    End Sub
     Private Sub allFiles() 'выборка всех файлов в папках
         Dim sw As New Stopwatch 'вычисление выполнения метода
         sw.Start()

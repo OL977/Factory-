@@ -2977,7 +2977,7 @@ Partial Class Прием
         Me.Label32.Location = New System.Drawing.Point(9, 36)
         Me.Label32.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(107, 41)
+        Me.Label32.Size = New System.Drawing.Size(116, 41)
         Me.Label32.TabIndex = 3
         Me.Label32.Text = "ФИО (Супруга/Жены)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
