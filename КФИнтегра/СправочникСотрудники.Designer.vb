@@ -24,8 +24,8 @@ Partial Class СправочникСотрудники
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(СправочникСотрудники))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle59 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle60 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label94 = New System.Windows.Forms.Label()
@@ -1008,17 +1008,17 @@ Partial Class СправочникСотрудники
         '
         Me.Grid1.AllowUserToAddRows = False
         Me.Grid1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.Grid1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle59.NullValue = Nothing
+        Me.Grid1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle59
         Me.Grid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.Grid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.Grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Grid1.Location = New System.Drawing.Point(9, 24)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
-        DataGridViewCellStyle2.NullValue = Nothing
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle60.NullValue = Nothing
+        DataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle60
         Me.Grid1.RowTemplate.DefaultCellStyle.NullValue = Nothing
         Me.Grid1.Size = New System.Drawing.Size(504, 133)
         Me.Grid1.TabIndex = 17
@@ -1127,7 +1127,7 @@ Partial Class СправочникСотрудники
         '
         'ComboBox3
         '
-        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FormattingEnabled = True

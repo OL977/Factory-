@@ -428,6 +428,7 @@ Partial Class ШтатноеКласс1
         'ШтатноеКласс1
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1358, 598)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.Label8)

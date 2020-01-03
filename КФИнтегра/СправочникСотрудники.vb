@@ -89,7 +89,7 @@
 
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+    Private Sub Btn6()
         For Each tc In TabControl1.Controls.OfType(Of TabPage)
             For Each tb In tc.Controls.OfType(Of TextBox)
                 tb.Text = ""
@@ -111,6 +111,9 @@
 
         Next 'таб1
         CheckBox1.Checked = False
+    End Sub
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Btn6()
 
     End Sub
 
@@ -197,7 +200,7 @@
 
         If CheckBox1.Checked = False Then
             TextBox11.MaxLength = 14
-            If TextBox11.MaxLength < 14 Then
+            If TextBox11.Text.Length < 14 Then
                 TextBox11.ForeColor = Color.Red
             Else
                 TextBox11.ForeColor = Color.Green
@@ -360,6 +363,7 @@
             Return 1
         End If
 
+
         If TextBox21.Text = "" Or TextBox20.Text = "" Then
             MessageBox.Show("Заполните поля 'Прописка' и 'Проживание'!", Рик)
             Return 1
@@ -391,7 +395,7 @@
             Return 1
         End If
 
-        If TextBox11.Text = "" Or TextBox45.Text = "" Then
+        If TextBox11.Text = "" Or TextBox45.Text = "" Or TextBox11.ForeColor = Color.Red Then
             MessageBox.Show("Заполните корректно раздел Паспорт " & vbCrLf & "поле 'Идентификационный номер' или 'Страховой номер'!", Рик)
             Return 1
         End If
@@ -476,11 +480,116 @@
                 End Using
             Next
         End If
-
+        Btn6()
         MessageBox.Show("Данные внесены!", Рик)
 
     End Sub
     Private Sub UpdateInfo()
+
+        Using dbcx = New DbAllDataContext              'мой insert
+            Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                       Where x.КодСотрудники = ComboBox3.SelectedValue
+                       Select x).Single
+
+            If var IsNot Nothing Then
+                With var
+                    .НазвОрганиз = ComboBox2.Text
+                    .Фамилия = Trim(TextBox1.Text)
+                    .Имя = Trim(TextBox2.Text)
+                    .Отчество = Trim(TextBox3.Text)
+                    .ДанныеИзСправочника = "True"
+                    .Пол = ComboBox28.Text
+                    .ФИОСборное = Trim(TextBox1.Text) & " " & Trim(TextBox2.Text) & " " & Trim(TextBox3.Text)
+                    .ФамилияРодПад = Trim(TextBox6.Text)
+                    .ИмяРодПад = Trim(TextBox5.Text)
+                    .ОтчествоРодПад = Trim(TextBox4.Text)
+                    .ФИОРодПод = Trim(TextBox6.Text) & " " & Trim(TextBox5.Text) & " " & Trim(TextBox4.Text)
+                    .ФамилияДляЗаявления = Trim(TextBox9.Text)
+                    .ИмяДляЗаявления = Trim(TextBox8.Text)
+                    .ОтчествоДляЗаявления = Trim(TextBox7.Text)
+                    .Гражданин = Trim(TextBox51.Text)
+                    .Регистрация = Trim(TextBox21.Text)
+                    .МестоПрожив = Trim(TextBox20.Text)
+                    .КонтТелГор = Trim(TextBox37.Text)
+                    .КонтТелефон = MaskedTextBox10.Text
+                    If CheckBox1.Checked = False Then
+                        .Иностранец = "False"
+                    Else
+                        .Иностранец = "True"
+                    End If
+                    .ПаспортСерия = Trim(TextBox13.Text)
+                    .ПаспортНомер = Trim(TextBox10.Text)
+                    .ПаспортКогдаВыдан = MaskedTextBox1.Text
+                    .ДоКакогоДейств = MaskedTextBox2.Text
+                    .ПаспортКемВыдан = RichTextBox1.Text
+                    .ИДНомер = Trim(TextBox11.Text)
+                    .СтраховойПолис = Trim(TextBox45.Text)
+                    .ДатаРожд = MaskedTextBox9.Text
+                    dbcx.SubmitChanges()
+                End With
+            End If
+        End Using
+
+        Using dbcx = New DbAllDataContext 'мой update
+            Dim var = (From x In dbcx.СоставСемьи.AsEnumerable
+                       Where x.IDСотр = ComboBox3.SelectedValue
+                       Select x).Single
+            If var IsNot Nothing Then
+                With var
+                    .ФИО = Trim(TextBox24.Text)
+                    .МестоРаботы = Trim(TextBox23.Text)
+                    .Телефон = Trim(TextBox19.Text)
+                    If Grid1.Rows.Count > 0 Then
+                        .КолДетей = Grid1.Rows.Count
+                    Else
+                        .КолДетей = "Нет"
+                    End If
+                End With
+                dbcx.SubmitChanges()
+            End If
+        End Using
+
+
+        Using dbcx = New DbAllDataContext  'удаляем старые данные из таблицы дети
+            Dim var = From x In dbcx.Дети.AsEnumerable
+                      Where x.IDСотр = ComboBox3.SelectedValue
+                      Select x
+            If var.Count > 0 Then
+                dbcx.Дети.DeleteOnSubmit(var)
+                dbcx.SubmitChanges()
+            End If
+            'If var Is Nothing Then
+
+            'End If
+
+        End Using
+
+
+
+
+
+        If Grid1.Rows.Count > 0 Then 'вставляем данные в таблицу дети
+            For x As Integer = 0 To Grid1.Rows.Count - 1
+                Using dbcx = New DbAllDataContext 'мой insert
+                    Dim v As New Дети()
+                    With v
+                        .ФИО = Grid1.Rows(x).Cells(0).Value
+                        .Пол = Grid1.Rows(x).Cells(1).Value
+                        .ДатаРождения = CDate(Grid1.Rows(x).Cells(2).Value)
+                    End With
+                    dbcx.Дети.InsertOnSubmit(v)
+                    dbcx.SubmitChanges()
+                End Using
+            Next
+        End If
+        Btn6()
+        MessageBox.Show("Данные внесены!", Рик)
+
+
+
+
+
+
 
     End Sub
 
@@ -494,6 +603,283 @@
         Else
             UpdateInfo()
         End If
+    End Sub
+
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox2.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox2_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox2.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox3.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox3_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox3.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            ComboBox28.Focus()
+        End If
+    End Sub
+
+    Private Sub ComboBox28_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBox28.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox6.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox5_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox5.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox4.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox6_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox6.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox5.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox4_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox4.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox9.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox9_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox9.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox8.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox8_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox8.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox7.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox7_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox7.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox21.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox21_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox21.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox20.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox20_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox20.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox37.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox37_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox37.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            MaskedTextBox10.Focus()
+        End If
+    End Sub
+
+    Private Sub MaskedTextBox10_KeyDown(sender As Object, e As KeyEventArgs) Handles MaskedTextBox10.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox51.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox51_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox51.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox13.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox13_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox13.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Me.TextBox10.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox10_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox10.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            MaskedTextBox1.Focus()
+        End If
+    End Sub
+
+    Private Sub MaskedTextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles MaskedTextBox1.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            MaskedTextBox2.Focus()
+        End If
+    End Sub
+
+    Private Sub MaskedTextBox2_KeyDown(sender As Object, e As KeyEventArgs) Handles MaskedTextBox2.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            RichTextBox1.Focus()
+        End If
+    End Sub
+
+    Private Sub RichTextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles RichTextBox1.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TextBox11.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox11_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox11.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TextBox45.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox45_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox45.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            MaskedTextBox9.Focus()
+        End If
+    End Sub
+
+    Private Sub MaskedTextBox9_KeyDown(sender As Object, e As KeyEventArgs) Handles MaskedTextBox9.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TextBox24.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox24_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox24.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TextBox23.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox23_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox23.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TextBox19.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox19_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox19.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TextBox12.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBox12_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox12.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            MaskedTextBox3.Focus()
+        End If
+    End Sub
+
+    Private Sub MaskedTextBox3_KeyDown(sender As Object, e As KeyEventArgs) Handles MaskedTextBox3.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            ComboBox1.Focus()
+        End If
+    End Sub
+
+    Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
+
+        Dim fd = sender
+        Dim fd1 = e
+
+        If Not ComboBox3.ValueMember <> "" Then
+            Exit Sub
+        End If
+
+        Dim dbc As New DbAllDataContext
+        Dim var = (From x In dbc.Сотрудники.AsEnumerable
+                   Where CType(x.КодСотрудники.ToString, Integer) = ComboBox3.SelectedValue
+                   Select x).FirstOrDefault()
+
+
+
+
+        TextBox1.Text = var.Фамилия
+        TextBox2.Text = var.Имя
+        TextBox3.Text = var.Отчество
+        ComboBox28.Text = var.Пол
+
+        TextBox4.Text = var.ОтчествоРодПад
+        TextBox5.Text = var.ИмяРодПад
+        TextBox6.Text = var.ФамилияРодПад
+
+        TextBox7.Text = var.ОтчествоДляЗаявления
+        TextBox8.Text = var.ИмяДляЗаявления
+        TextBox9.Text = var.ФамилияДляЗаявления
+
+        TextBox21.Text = var.Регистрация
+        TextBox20.Text = var.МестоПрожив
+        TextBox37.Text = var.КонтТелГор
+        MaskedTextBox10.Text = var.КонтТелефон
+        TextBox51.Text = var.Гражданин
+
+        If var.Иностранец = True Then
+            CheckBox1.Checked = True
+        Else
+            CheckBox1.Checked = False
+        End If
+
+        TextBox13.Text = var.ПаспортСерия
+        TextBox10.Text = var.ПаспортНомер
+        MaskedTextBox1.Text = var.ПаспортКогдаВыдан
+        MaskedTextBox2.Text = var.ДоКакогоДейств
+        RichTextBox1.Text = var.ПаспортКемВыдан
+        TextBox11.Text = var.ИДНомер
+        TextBox45.Text = var.СтраховойПолис
+        MaskedTextBox9.Text = var.ДатаРожд
+
+
+
+        Dim dbcx As New DbAllDataContext
+        Dim var1 = (From x In dbc.СоставСемьи.AsEnumerable
+                    Where x.IDСотр = ComboBox3.SelectedValue
+                    Select x).FirstOrDefault()
+        If var1 IsNot Nothing Then
+            TextBox24.Text = var1.ФИО
+            TextBox23.Text = var1.МестоРаботы
+            TextBox19.Text = var1.Телефон
+        End If
+
+
+
+        Dim dbcx1 As New DbAllDataContext
+        Dim var2 = From x In dbc.Дети.AsEnumerable
+                   Where x.IDСотр = ComboBox3.SelectedValue
+                   Select x.ФИО, x.Пол, x.ДатаРождения
+
+        If var2 IsNot Nothing Then
+            Grid1.DataSource = var2.ToList()
+            GridView(Grid1)
+        End If
+
+
+
+
+
     End Sub
 
 
