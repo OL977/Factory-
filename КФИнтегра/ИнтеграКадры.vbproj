@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS64\</PublishUrl>
+    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://rikconsulting.by/IS64/</InstallUrl>
-    <UpdateUrl>http://rikconsulting.by/IS64/</UpdateUrl>
+    <InstallUrl>http://rikconsulting.by/IS/</InstallUrl>
+    <UpdateUrl>http://rikconsulting.by/IS/</UpdateUrl>
     <SupportUrl>http://rikconsulting.by</SupportUrl>
     <ProductName>КФ Интегра - Кадры</ProductName>
     <PublisherName>ООО Рикманс</PublisherName>
@@ -36,8 +36,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>56</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -482,6 +482,12 @@
     <Compile Include="ДогПодВыборНомДоговора.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ДогПодрИноеВсплывФорма.Designer.vb">
+      <DependentUpon>ДогПодрИноеВсплывФорма.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ДогПодрИноеВсплывФорма.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ДогПодрядаАктИноеСоздать.Designer.vb">
       <DependentUpon>ДогПодрядаАктИноеСоздать.vb</DependentUpon>
     </Compile>
@@ -853,6 +859,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ДогПодВыборНомДоговора.resx">
       <DependentUpon>ДогПодВыборНомДоговора.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ДогПодрИноеВсплывФорма.resx">
+      <DependentUpon>ДогПодрИноеВсплывФорма.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ДогПодрядаАктИноеСоздать.resx">
       <DependentUpon>ДогПодрядаАктИноеСоздать.vb</DependentUpon>

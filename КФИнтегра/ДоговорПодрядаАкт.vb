@@ -365,18 +365,27 @@ WHERE ДогПодряда.ID=@ID", list)
     End Sub
     Private Sub ТолькоДоговора(ByVal int As Integer)
 
-        Dim ds1 = From x In dtDogovorPadriadaAll Where x.Item("ID") = int Select x.Item("НомерДогПодр") Distinct
+        Dim ds1
+        Using dbcx As New DbAllDataContext
+            ds1 = (From x In dbcx.ДогПодряда.AsEnumerable
+                   Where x.ID = int
+                   Select x.НомерДогПодр Distinct).ToList
+        End Using
+        'Dim ds1 = From x In dtDogovorPadriadaAll Where x.Item("ID") = int Select x.Item("НомерДогПодр") Distinct
+
+
+
 
         '        Dim strsql1 As String = "SELECT DISTINCT ДогПодряда.НомерДогПодр 
         'FROM ДогПодряда WHERE ДогПодряда.ID=" & int & " ORDER BY НомерДогПодр"
         '        Dim ds1 As DataTable = Selects(strsql1)
 
-        ComboBox3.Items.Clear()
-        For Each r In ds1
-            Me.ComboBox3.Items.Add(r.ToString)
-        Next
+        'ComboBox3.Items.Clear()
+        'For Each r In ds1
+        '    Me.ComboBox3.Items.Add(r.ToString)
+        'Next
 
-
+        ComboBox3.DataSource = ds1
 
     End Sub
     Private Sub Com1Sel9()
@@ -916,7 +925,7 @@ WHERE ДогПодрядаАкт.Код=@Код", list)
         ComboBox19.Text = ""
         ComboBox19.Items.Clear()
         ComboBox3.Text = ""
-        ComboBox3.Items.Clear()
+        'ComboBox3.Items.Clear()
         ComboBox2.Text = ""
         ComboBox2.Items.Clear()
         TextBox4.Text = ""

@@ -111,6 +111,12 @@
 
         Next 'таб1
         CheckBox1.Checked = False
+        Dim dt As New DataTable
+        dt.Columns.Add("ФИО")
+        dt.Columns.Add("Пол")
+        dt.Columns.Add("Дата рождения")
+        Grid1.DataSource = dt
+
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         Btn6()
@@ -233,6 +239,11 @@
 
 
         If Grid1.Rows.Count = 0 Then
+
+            'Grid1.Columns.Add("_ФИО", "ФИО")
+            'Grid1.Columns.Add("_Пол", "Пол")
+            'Grid1.Columns.Add("_Дата рождения", "Дата рождения")
+
             Dim dt As New DataTable
             dt.Columns.Add("ФИО")
             dt.Columns.Add("Пол")
@@ -245,36 +256,54 @@
                 MessageBox.Show("Введите правильно дату!", Рик)
                 Exit Sub
             Else
+                'Grid1.Rows.Add(txt12, ComboBox1.Text, MaskedTextBox3.Text)
                 row("Дата рождения") = MaskedTextBox3.Text
             End If
             dt.Rows.Add(row)
-            _bs.DataSource = dt
+            '_bs.DataSource = dt
 
-            Grid1.DataSource = _bs
-            BindingNavigator1.BindingSource = _bs
+            Grid1.DataSource = dt
+            'BindingNavigator1.BindingSource = _bs
 
             GridView(Grid1)
             Grid1.Columns(0).Width = 250
         Else
-            Dim _bs1 As New BindingSource()
+            'Dim _bs1 As New BindingSource()
             Dim f As New DataTable
-            _bs1 = Grid1.DataSource
-            f = _bs1.DataSource
+            f.Columns.Add("ФИО")
+            f.Columns.Add("Пол")
+            f.Columns.Add("Дата рождения")
+
+            For Each row1 As DataGridViewRow In Grid1.Rows
+                Dim rw As DataRow = f.NewRow
+                For Each cell As DataGridViewCell In row1.Cells
+                    If cell.ColumnIndex = 2 Then
+                        rw(cell.ColumnIndex) = Strings.Left(cell.Value, 10)
+                    Else
+                        rw(cell.ColumnIndex) = cell.Value
+                    End If
+
+                Next
+                f.Rows.Add(rw)
+            Next
+
+            'f = DirectCast(Grid1.DataSource, DataTable)
+            'f = _bs1.DataSource
             Dim row As DataRow = f.NewRow
             row("ФИО") = txt12
             row("Пол") = ComboBox1.Text
             If MaskedTextBox3.MaskCompleted = False Then
-                MessageBox.Show("Введите правильно дату!", Рик)
+                MessageBox.Show("Введите правильно дату рождения!", Рик)
                 Exit Sub
             Else
                 row("Дата рождения") = MaskedTextBox3.Text
             End If
             f.Rows.Add(row)
 
-            _bs.DataSource = f
+            '_bs.DataSource = f
 
-            Grid1.DataSource = _bs
-            BindingNavigator1.BindingSource = _bs
+            Grid1.DataSource = f
+            'BindingNavigator1.BindingSource = _bs
 
             GridView(Grid1)
             Grid1.Columns(0).Width = 250
@@ -533,7 +562,7 @@
         Using dbcx = New DbAllDataContext 'мой update
             Dim var = (From x In dbcx.СоставСемьи.AsEnumerable
                        Where x.IDСотр = ComboBox3.SelectedValue
-                       Select x).Single
+                       Select x).SingleOrDefault
             If var IsNot Nothing Then
                 With var
                     .ФИО = Trim(TextBox24.Text)
@@ -546,17 +575,38 @@
                     End If
                 End With
                 dbcx.SubmitChanges()
+            Else
+                Using dbx As New DbAllDataContext
+                    Dim var2 As New СоставСемьи()
+                    With var2
+                        .IDСотр = ComboBox3.SelectedValue
+                        .ФИО = Trim(TextBox24.Text)
+                        .МестоРаботы = Trim(TextBox23.Text)
+                        .Телефон = Trim(TextBox19.Text)
+                        If Grid1.Rows.Count > 0 Then
+                            .КолДетей = Grid1.Rows.Count
+                        Else
+                            .КолДетей = "Нет"
+                        End If
+                    End With
+
+                    dbcx.СоставСемьи.InsertOnSubmit(var2)
+                    dbcx.SubmitChanges()
+                End Using
             End If
         End Using
 
 
         Using dbcx = New DbAllDataContext  'удаляем старые данные из таблицы дети
-            Dim var = From x In dbcx.Дети.AsEnumerable
-                      Where x.IDСотр = ComboBox3.SelectedValue
-                      Select x
+            Dim var = (From x In dbcx.Дети.AsEnumerable
+                       Where x.IDСотр = ComboBox3.SelectedValue
+                       Select x).ToList
             If var.Count > 0 Then
-                dbcx.Дети.DeleteOnSubmit(var)
-                dbcx.SubmitChanges()
+                For Each item In var
+                    dbcx.Дети.DeleteOnSubmit(item)
+                    dbcx.SubmitChanges()
+                Next
+
             End If
             'If var Is Nothing Then
 
@@ -573,6 +623,7 @@
                 Using dbcx = New DbAllDataContext 'мой insert
                     Dim v As New Дети()
                     With v
+                        .IDСотр = ComboBox3.SelectedValue
                         .ФИО = Grid1.Rows(x).Cells(0).Value
                         .Пол = Grid1.Rows(x).Cells(1).Value
                         .ДатаРождения = CDate(Grid1.Rows(x).Cells(2).Value)

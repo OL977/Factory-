@@ -77,6 +77,7 @@ Public Class Прием
     Dim idДолжность, idОбязанность As Integer
 
 
+
     Private Sub ДанИзБазы()
         If ComboBox20.InvokeRequired Or ComboBox21.InvokeRequired Then
             Me.Invoke(New comb38(AddressOf ДанИзБазы))
@@ -134,6 +135,7 @@ Public Class Прием
 
 
         TabControl1.TabPages.Remove(TabPage3)
+        TabControl1.TabPages.Remove(TabPage4)
         'Com1()
 
         CheckBox26.Visible = False
@@ -1792,14 +1794,14 @@ WHERE ОбъектОбщепита.АдресОбъекта='" & arrtcom("ComboB
             Else
                 ДПодНом = Me.TextBox55.Text
             End If
-
+            Dim _ВидДоговора As String = "час"
             If MessageBox.Show("Если изменить действующий договор подряда" & vbCrLf & "выберите - Да'" & vbCrLf & "Если создать новый" & vbCrLf & "выберите - Нет'", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 ОбнДогПодр()
             ElseIf ComboBox27.Text = "час" Then
                 Чист()
-                StrSql = "INSERT INTO ДогПодряда(ID,НомерДогПодр,ДатаДогПодр,Должность,ДатаНачала,ДатаОконч,СтоимЧасаРуб,СтоимЧасаКоп,ОбъекОбщепита,Примечание)
+                StrSql = "INSERT INTO ДогПодряда(ID,НомерДогПодр,ДатаДогПодр,Должность,ДатаНачала,ДатаОконч,СтоимЧасаРуб,СтоимЧасаКоп,ОбъекОбщепита,Примечание,ВидДоговора)
 VALUES(" & IDСотрудника & ",'" & ДПодНом & "','" & Me.MaskedTextBox6.Text & "','" & Me.ComboBox22.Text & "','" & Me.MaskedTextBox7.Text & "',
-'" & Me.MaskedTextBox8.Text & "','" & Me.TextBox61.Text & "','" & Me.TextBox62.Text & "','" & Me.ComboBox25.Text & "','" & Примечани & "')"
+'" & Me.MaskedTextBox8.Text & "','" & Me.TextBox61.Text & "','" & Me.TextBox62.Text & "','" & Me.ComboBox25.Text & "','" & Примечани & "','" & _ВидДоговора & "')"
                 Updates(StrSql)
 
             ElseIf ComboBox27.Text = "иное" Then
@@ -1818,9 +1820,10 @@ VALUES(" & IDСотрудника & ",'" & ДПодНом & "','" & Me.MaskedTex
         End If
 
         If (CheckBox5.Checked = False Or Решение = "Подряд") And ComboBox27.Text = "час" Then
-            Dim strsql = "INSERT INTO ДогПодряда(ID,НомерДогПодр,ДатаДогПодр,Должность,ДатаНачала,ДатаОконч,СтоимЧасаРуб,СтоимЧасаКоп,ОбъекОбщепита,Примечание)
+            Dim _ВидДоговора As String = "час"
+            Dim strsql = "INSERT INTO ДогПодряда(ID,НомерДогПодр,ДатаДогПодр,Должность,ДатаНачала,ДатаОконч,СтоимЧасаРуб,СтоимЧасаКоп,ОбъекОбщепита,Примечание,ВидДоговора)
 VALUES(" & IDСотрудника & ",'" & ДПодНом & "','" & Me.MaskedTextBox6.Text & "','" & Me.ComboBox22.Text & "','" & Me.MaskedTextBox7.Text & "',
-'" & Me.MaskedTextBox8.Text & "','" & Me.TextBox61.Text & "','" & Me.TextBox62.Text & "','" & Me.ComboBox25.Text & "','" & Примечани & "')"
+'" & Me.MaskedTextBox8.Text & "','" & Me.TextBox61.Text & "','" & Me.TextBox62.Text & "','" & Me.ComboBox25.Text & "','" & Примечани & "','" & _ВидДоговора & "')"
             Updates(strsql)
         ElseIf CheckBox5.Checked = False And ComboBox27.Text = "иное" Then
             For i As Integer = 0 To ДогПодрВыпРаб.Count - 1
@@ -5035,7 +5038,12 @@ VALUES(@ИДСотр,'" & surNameAll & "','" & arrtmask("MaskedTextBox4") & "','
         list4.Add("@ДатаАванса", arrtbox("TextBox56"))
         list4.Add("@ПоСовмест", _ПоСовмест)
         list4.Add("@СуммирУчет", _СуммирУчет)
-        list4.Add("@Примечание", Примечани)
+        If Примечани = "" Or Примечани Is Nothing Then
+            list4.Add("@Примечание", "")
+        Else
+            list4.Add("@Примечание", Примечани)
+        End If
+
 
 
         'Вставляем в таблицу Карточкасотрудника данные контракта и обновляем таблицу.
@@ -6091,7 +6099,7 @@ FROM СоставСемьи"
         dtn2Click()
     End Sub
 
-    Private Function УскорИзменСотрДог() As Boolean
+    Private Function УскорИзменСотрДог() As Integer
 
 
         'Заполняем из ДогСотрудн
@@ -6111,10 +6119,16 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             Me.TextBox41.Text = Strings.Left(ds.Rows(0).Item(2).ToString, 3)
             Me.MaskedTextBox3.Text = ds.Rows(0).Item(3).ToString
 
+            If (TabControl1.TabPages.Contains(TabPage1) = False) Then
+                TabControl1.TabPages.Insert(0, TabPage1)
+                TabControl1.SelectTab(TabPage1)
+            End If
+
         Catch ex As Exception
             Dim strsql4 As String = "SELECT Должность FROM ДогПодряда WHERE ID=" & КодСотрудника & ""
             Dim ds4 As DataTable = Selects(strsql4)
             If errds = 1 Then
+
                 MessageBox.Show("Сотрудник не зарегистрирован в системе!", Рик, MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
                 Return 1
             End If
@@ -6196,14 +6210,412 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         Return 0
 
     End Function
+    Private Function ПроверкаДоговорИлиПодрядЧерезСправочник(ByVal _КодСотр As Integer) As String
+
+        Dim var As List(Of ДогСотрудн)
+        Using dbcx As New DbAllDataContext
+
+            var = (From x In dbcx.ДогСотрудн.AsEnumerable
+                   Where x.IDСотр = _КодСотр
+                   Select x).ToList
+        End Using
+
+        If var.Count > 0 Then  'вставляем данные во вкладку контракт
+            'ДогСотрудн.Контракт, ДогСотрудн.СрокОкончКонтр, ДогСотрудн.Приказ, ДогСотрудн.ДатаКонтракта
+            TextBox38.Text = var(0).Контракт
+            MaskedTextBox5.Text = var(0).СрокОкончКонтр
+            TextBox41.Text = Strings.Left(var(0).Приказ, 3)
+            MaskedTextBox3.Text = var(0).ДатаКонтракта
+
+
+            Dim var1 As Штатное
+            Using dbcx1 As New DbAllDataContext 'штатное
+                var1 = (From x In dbcx1.Штатное.AsEnumerable
+                        Where x.ИДСотр = _КодСотр
+                        Select x).FirstOrDefault()
+            End Using
+
+            If var1 IsNot Nothing Then
+                'Штатное.Отдел, Штатное.Должность, Штатное.Разряд, Штатное.ТарифнаяСтавка, Штатное.ПовышОклПроц, Штатное.РасчДолжностнОклад
+                Label48.Text = ""
+                If var1.Разряд <> "" Then
+                    Label48.Text = var1.Должность & " " & combxS19 & " работает в отделе " & var1.Отдел & ", разряд " & var1.Разряд
+                Else
+                    Label48.Text = var1.Должность & " " & combxS19 & " работает в отделе " & var1.Отдел
+                End If
+
+
+                combx7 = var1.Разряд ' перепроверить
+                Dim ВхДан As String = var1.ТарифнаяСтавка
+                Dim ВхданКол As Integer = ВхДан.Length
+
+
+                Dim cela As Double = Replace(var1.ТарифнаяСтавка, ".", ",")
+                Dim cel As Double = Math.Floor(cela)
+                TextBox33.Text = CType(cel, String)
+
+                If cela - cel = 0 Then
+                    TextBox44.Text = "00"
+                Else
+                    cela = Math.Round((cela - cel), 2)
+                    Dim Окон As String = CType(cela, String)
+                    If Окон.Length > 3 Then
+                        TextBox44.Text = Strings.Right(Окон, 2)
+                    Else
+                        Окон = Strings.Right(Окон, 1)
+                        TextBox44.Text = Окон & "0"
+                    End If
+
+                End If
+
+                TextBox46.Text = var1.ПовышОклПроц
+                Dim proc As Double = Replace(var1.ПовышОклПроц, ".", ",")
+
+                If CType(var1.РасчДолжностнОклад, String) = "" Then
+                    TextBox48.Text = CType(Math.Round((cela + (cela * proc / 100)), 2), String)
+                Else
+                    TextBox48.Text = var1.РасчДолжностнОклад
+                End If
+
+            End If
+
+
+
+            Dim var2 As КарточкаСотрудника
+            Using dbc As New DbAllDataContext 'адрес обьекта общепита 
+                var2 = (From x In dbc.КарточкаСотрудника.AsEnumerable
+                        Where x.IDСотр = _КодСотр
+                        Select x).FirstOrDefault()
+            End Using
+
+            If var2 IsNot Nothing Then
+
+                combx18 = var2.АдресОбъектаОбщепита
+
+                With Me
+                    .MaskedTextBox4.Text = var2.ДатаПриема
+                    .ComboBox11.Text = var2.СрокКонтракта
+                    .ComboBox15.Text = var2.ТипРаботы
+                    Dim s As String
+                    If var2.Ставка = "1" Then
+                        ComboBox10.Text = var2.Ставка & ".0"
+                    Else
+                        s = var2.Ставка
+                        s = Replace(s, ",", ".")
+                        ComboBox10.Text = s.ToString
+                    End If
+
+                    .ComboBox12.Text = var2.ВремяНачРаботы
+                    .ComboBox16.Text = var2.ПродолРабДня
+                    .ComboBox18.Text = var2.АдресОбъектаОбщепита
+                    .TextBox40.Text = var2.ДатаЗарплаты
+                    .TextBox56.Text = var2.ДатаАванса
+                    If var2.ПоСовмест = "по совместительству" Then
+                        CheckBox2.Checked = True
+                    End If
+                    If var2.СуммирУчет = "Да" Then
+                        CheckBox4.Checked = True
+                    End If
+
+                End With
+
+            End If
+
+            Return "Контракт"
+        End If
+
+
+        'проверяем на договор подряда час//
+
+        Dim var3 As List(Of ДогПодряда)
+        Using dbcx As New DbAllDataContext
+
+            var3 = (From x In dbcx.ДогПодряда.AsEnumerable
+                    Join y In dbcx.Сотрудники.AsEnumerable On y.КодСотрудники Equals x.ID
+                    Where x.ID = _КодСотр And x.ВидДоговора = "час" And y.НаличеДогПодряда = "Да"
+                    Select x).ToList()
+        End Using
+
+        If var3.Count > 0 Then
+            Dim f As New ДогПодВыборНомДоговора
+            f.var3 = var3
+            f.Flag = True
+            f.Label2.Text = ComboBox19.Text
+            f.ListBox1.DataSource = (From x In var3.AsEnumerable Select x.НомерДогПодр Distinct).ToList()
+            f.ShowDialog()
+
+            'выбарнный договор
+            Dim lis = f.ВыборНомера
+
+            'выбираем данные по выбранному договору из таблицы догподряда
+            Dim var4 = (From x In var3.AsEnumerable Where x.НомерДогПодр = f.ВыборНомера Select x).FirstOrDefault()
+
+            'выбираем недостающие данные для заполнения данных во вкладку договор подряда (час)
+            Dim var5
+            Using dbcxc As New DbAllDataContext
+                var5 = (From x In dbcxc.Клиент.AsEnumerable
+                        Join y In dbcxc.ДогПодДолжн.AsEnumerable On x.НазвОрг Equals y.Клиент
+                        Join c In dbcxc.ДогПодрОбязан.AsEnumerable On y.Код Equals c.ID
+                        Where x.НазвОрг = ComboBox1.Text And y.Должность = var4.Должность
+                        Select c).ToList()
+            End Using
+
+            'Вставляем данные в форму договор подряда (час)
+
+            With Me
+
+                Dim n, d As String
+                If var4.НомерДогПодр.Contains(".") Then
+                    'n = Mid(var4.НомерДогПодр, 1, InStr(var4.НомерДогПодр, ".")) 'значение слева до точки
+                    n = var4.НомерДогПодр.Substring(0, var4.НомерДогПодр.IndexOf(".")) 'значение слева до точки
+                    d = Strings.Right(var4.НомерДогПодр, var4.НомерДогПодр.Length - (n.Length + 1)) 'значение после точки
+                Else
+                    n = var4.НомерДогПодр
+                    d = ""
+                End If
+                .TextBox55.Text = n
+                .TextBox39.Text = d
+                .ComboBox22.Text = var4.Должность
+                .MaskedTextBox6.Text = var4.ДатаДогПодр
+                .MaskedTextBox7.Text = var4.ДатаНачала
+                .MaskedTextBox8.Text = var4.ДатаОконч
+                .ComboBox27.Text = "час"
+                .TextBox61.Text = var4.СтоимЧасаРуб
+                .TextBox62.Text = var4.СтоимЧасаКоп
+                .ListBox1.DataSource = var5
+            End With
+
+
+
+
+
+
+
+
+            'ДогПодВыборНомДоговора.var3 = var3
+            'ДогПодВыборНомДоговора.Flag = True
+            'ДогПодВыборНомДоговора.ShowDialog()
+
+            'Чист()
+            'StrSql = "Select * From ДогПодряда Where ID = " & ID & " and НомерДогПодр='" & ДогПодномДогПодНомДог & "'"
+            'ds = Selects(StrSql)
+
+
+            'подумать как заполнить форму договороа подряда час
+
+
+            Return "Подряд(час)"
+        End If
+
+
+
+
+
+
+
+
+
+        Return "No"
+
+
+
+
+
+
+
+
+
+    End Function
+
+    Private Sub ДоговорПодрядаИноеЗаполенениеФормы()
+        'года 
+        Dim com32 = listFluentFTP(ComboBox1.Text & "/Договор подряда/")
+        ComboBox32.DataSource = com32
+        'Объект общепита, единицы измерения из списка
+        Dim list3
+        Using dbcx As New DbAllDataContext
+            ComboBox31.DataSource = (From x In dbcx.ОбъектОбщепита.AsEnumerable
+                                     Where x.НазвОрг = ComboBox1.Text
+                                     Select x.АдресОбъекта).ToList()
+
+            list3 = (From x In dbcx.ДогПодОсобен.AsEnumerable
+                     Where x.Организация = ComboBox1.Text
+                     Select x.ЕденицаИзм Distinct).ToList()
+        End Using
+        'даты
+        MaskedTextBox11.Text = Now.ToShortDateString
+        MaskedTextBox12.Text = Now.ToShortDateString
+        MaskedTextBox13.Text = Now.ToShortDateString
+
+        'заполняем единицы измерения
+        For Each item In list3
+            ListBox3.Items.Add(item)
+        Next
+
+        Dim _grid5 As List(Of ДогПодОсобен)
+        Using dbcx As New DbAllDataContext
+            _grid5 = (From x In dbcx.ДогПодОсобен.AsEnumerable
+                      Where x.Организация = ComboBox1.Text
+                      Select x).ToList()
+        End Using
+        If _grid5.Count > 0 Then
+            Grid5.DataSource = _grid5
+            Grid5.Columns(1).Name = "Единица измерения"
+            Grid5.Columns(2).Name = "Выполняемая работа"
+            Grid5.Columns(0).Visible = False
+            Grid5.Columns(3).Visible = False
+            Grid5.Columns(4).Visible = False
+            GridView(Grid5)
+        Else
+            Dim dt As New DataTable
+            dt.Columns.Add("Единица измерения")
+            dt.Columns.Add("Выполняемая работа")
+            Grid5.DataSource = dt
+            GridView(Grid5)
+        End If
+
+
+
+
+    End Sub
+
+
+    Private Sub CheckBox9_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox9.CheckedChanged
+
+        If CheckBox9.Checked = False Then Exit Sub 'временная мера
+        If ComboBox1.Text = "" Then
+            MessageBox.Show("Выберите организацию!")
+            CheckBox9.Checked = False
+            Exit Sub
+        End If
+
+
+
+
+        If CheckBox9.Checked = True Then
+
+            TabControl1.TabPages.Remove(TabPage1)
+            TabControl1.TabPages.Remove(TabPage2)
+            TabControl1.TabPages.Remove(TabPage3)
+            TabControl1.TabPages.Remove(TabPage4)
+            TabControl1.TabPages.Add(TabPage4)
+            ДоговорПодрядаИноеЗаполенениеФормы()
+
+        Else
+            TabControl1.TabPages.Remove(TabPage4)
+            TabControl1.TabPages.Add(TabPage1)
+            TabControl1.TabPages.Add(TabPage2)
+        End If
+
+    End Sub
+
+    Private Sub ComboBox32_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox32.SelectedIndexChanged
+        ComboBox33.Items.Clear()
+        ComboBox33.Text = ""
+
+        Dim listCombo3 As Object = listFluentFTP(ComboBox1.Text & "/Договор подряда/" & ComboBox32.Text & "/")
+
+        For Each item In listCombo3
+            ComboBox33.Items.Add(Replace(item, FTPString & ComboBox1.Text & "/Договор подряда/" & ComboBox32.Text & "/", ""))
+        Next
+    End Sub
+
+    Private Sub RichTextBox3_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox3.TextChanged
+        RichTextBox6.Text = RichTextBox3.Text
+    End Sub
+
+    Private Sub Button25_Click(sender As Object, e As EventArgs) Handles Button25.Click
+        Dim f As New ДогПодрИноеВсплывФорма
+        f.ShowDialog()
+        Dim fl = f.ЕдИзм
+        If fl <> "" Then
+            ListBox3.Items.Add(f.ЕдИзм)
+        End If
+
+
+    End Sub
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
+        If ListBox3.SelectedIndex = -1 Then
+            MessageBox.Show("Выберите элемент для удаления!", Рик)
+            Exit Sub
+        End If
+
+        ListBox3.Items.RemoveAt(ListBox3.SelectedIndex)
+
+
+    End Sub
+
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        If ListBox3.SelectedIndex = -1 Then
+            MessageBox.Show("Выберите единицу измерения!", Рик)
+            Exit Sub
+        End If
+
+        If RichTextBox3.Text = "" Then
+            MessageBox.Show("Заполните поле 'Выполняемая работа'!", Рик)
+            Exit Sub
+        End If
+        If RichTextBox6.Text = "" Then
+            MessageBox.Show("Заполните поле 'Выполняемая работа (в именительном падеже)'!", Рик)
+            Exit Sub
+        End If
+
+        Using dbcx As New DbAllDataContext
+
+        End Using
+
+    End Sub
+
+    Private Function ПроверкаОформенСотрудникЧерезСправочник(ByVal _КодСотр As Integer) As Boolean
+        Using dbcx As New DbAllDataContext  'определяем, оформлен ли сотрудник через справочник
+
+            Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                       Where x.КодСотрудники = _КодСотр
+                       Select x.ДанныеИзСправочника).FirstOrDefault()
+            If Not var = "True" Then
+                Return False
+            End If
+        End Using
+
+        Dim f As String = ПроверкаДоговорИлиПодрядЧерезСправочник(_КодСотр)
+        If f = "Контракт" Then
+            TabControl1.TabPages.Remove(TabPage3)
+            TabControl1.TabPages.Remove(TabPage1)
+            TabControl1.SelectTab(TabPage2)
+            Return True
+        ElseIf f = "Подряд(час)" Then
+            TabControl1.TabPages.Remove(TabPage2)
+            TabControl1.TabPages.Remove(TabPage1)
+            TabControl1.TabPages.Add(TabPage3)
+            TabControl1.SelectTab(TabPage3)
+            CheckBox8.Checked = True
+            Return True
+        End If
+
+
+
+    End Function
+
+
     Private Sub Com19sel()
         ClAll()
-        ''Соед(0)
+
+
+
+
+
         ComboBox26.Visible = False
         Label96.Text = ComboBox26.Items.Item(ComboBox19.SelectedIndex)
         'Label96.Text = ComboBox19.Items.Item(ComboBox19.SelectedIndex)
         combxS19 = ComboBox19.SelectedItem.ToString
         CheckBox26.Checked = False
+
+        'проверка контракт или дог подряда по справочнику
+        If ПроверкаОформенСотрудникЧерезСправочник(ComboBox26.Items.Item(ComboBox19.SelectedIndex)) = True Then
+            Exit Sub
+        End If
+
         'Заполняем сотрудника, паспорт и прописку
         загрПрил()
         Try
@@ -6212,10 +6624,19 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             MessageBox.Show("Нет в базе идентификатора данного сотрудника", Рик)
             Exit Sub
         End Try
-        Dim РазрИзменКонтр1 = From x In dtKartochkaSotrudnikaAll.AsEnumerable Where Not IsDBNull(x.Item("IDСотр")) Select x
-        РазрИзменКонтр = (From x In РазрИзменКонтр1.AsEnumerable Where x.Item("IDСотр") = КодСотрудника Select x.Item("Ставка")).LastOrDefault
 
-        Dim f As Boolean = УскорИзменСотрДог()
+
+
+
+        Dim РазрИзменКонтр = (From x In dtKartochkaSotrudnikaAll.AsEnumerable Where Not IsDBNull(x.Item("IDСотр")) _
+                                                                             AndAlso x.Item("IDСотр") = КодСотрудника
+                              Select x.Item("Ставка")).LastOrDefault
+        'РазрИзменКонтр = (From x In РазрИзменКонтр1.AsEnumerable Where x.Item("IDСотр") = КодСотрудника Select x.Item("Ставка")).LastOrDefault
+
+
+
+
+        Dim f As Integer = УскорИзменСотрДог()
         If f = 1 Then Exit Sub
         УскорИзменСотр()
         УскорИзменСотрКарт() 'асинхрон
@@ -6321,6 +6742,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         StrSql = "Select DISTINCT НомерДогПодр From ДогПодряда Where ID = " & ID & ""
         Dim ds1 As DataTable = Selects(StrSql)
         Dim ds As DataTable
+
         If ds1.Rows.Count > 1 Then
             ДогПодномДогПод = ID
             ДогПодВыборНомДоговора.Flag = True
@@ -6562,10 +6984,17 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         End If
 
         If CheckBox7.Checked = True Then
+
+
             TabControl1.TabPages.Add(TabPage3)
             TabControl1.TabPages.Remove(TabPage2)
             'TabControl1.SelectedTab = TabControl1.TabPages("Договор подряда")
-            TabControl1.SelectTab(TabPage1)
+
+            If (TabControl1.TabPages.Contains(TabPage1) = False) Then
+                TabControl1.TabPages.Insert(0, TabPage1)
+                TabControl1.SelectTab(TabPage1)
+            End If
+            'TabControl1.SelectTab(TabPage1) Then
 
 
             СозданиепапкиНаСервере(ComboBox1.Text & "/Договор подряда/" & Now.Year & "/")   'создание папки (если вдруг нет)
@@ -6722,12 +7151,12 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         GroupBox19.Visible = True
         Dim db As New DbAllDataContext
 
-            Dim dt = (From x In db.ДогПодДолжн
-                      From y In db.ДогПодрОбязан
-                      Where x.Должность = ComboBox22.Text And x.Клиент = ComboBox1.Text And y.ID = x.Код
-                      Select New With {.Идентификатор = x.Код, .Организация = x.Клиент, x.Должность, y.Обязанности}).ToList()
-            Grid1.DataSource = dt
-            GridView(Grid1)
+        Dim dt = (From x In db.ДогПодДолжн
+                  From y In db.ДогПодрОбязан
+                  Where x.Должность = ComboBox22.Text And x.Клиент = ComboBox1.Text And y.ID = x.Код
+                  Select New With {.Идентификатор = x.Код, .Организация = x.Клиент, x.Должность, y.Обязанности}).ToList()
+        Grid1.DataSource = dt
+        GridView(Grid1)
 
     End Sub
 
@@ -6781,78 +7210,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         End If
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs)
-        Dim Err As String = ""
-        Dim StrSql2 As String = "Select Клиент, Должность From ДогПодДолжн Where Должность ='" & Me.TextBox63.Text & "' AND Клиент = '" & ComboBox1.Text & "'"
-        Dim ds2 As New DataSet
-        Dim da2 As SqlDataAdapter = Доработчик(StrSql2)
-        Try
-            da2.Fill(ds2, "Ставка2")
-            Err = ds2.Tables("Ставка2").Rows(0).Item(0)
-        Catch ex As Exception
 
-        End Try
-
-        If connДоработчик.State = ConnectionState.Open Then
-            connДоработчик.Close()
-        End If
-
-
-
-
-
-        Dim sd As Integer = 0
-        Dim arr(13) As String
-
-        Dim StrSql61, StrSql62 As String
-        If Err <> "" Then
-            If MessageBox.Show("Должность " & TextBox63.Text & " клиента " & ComboBox1.Text & " уже существует!" & vbCrLf & "Заменить старую должность, новыми данными?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Hand) = DialogResult.OK Then
-
-
-                Dim ds63 As DataTable = Selects(StrSql:="Select Код From ДогПодДолжн
-Where Должность ='" & ComboBox22.Text & "' AND Клиент = '" & ComboBox1.Text & "'")
-                Dim IDsotr2 As Integer = ds63.Rows(0).Item(0)
-
-                Updates(stroka:="DELETE Обязанности FROM ДогПодрОбязан WHERE ДогПодрОбязан.ID=" & IDsotr2 & "")
-
-
-
-                For i As Integer = 0 To sd - 1
-                    Updates(stroka:="INSERT INTO ДогПодрОбязан(ID, Обязанности) VALUES(" & IDsotr2 & ",'" & arr(i) & "')")
-                Next
-                MessageBox.Show("Изменения внесены в базу!", Рик)
-                refrdoljn()
-                Exit Sub
-            Else
-                Exit Sub
-            End If
-        End If
-
-
-
-        'вставляем в базу должность
-        Updates(stroka:="INSERT INTO ДогПодДолжн(Клиент,Должность) VALUES('" & ComboBox1.Text & "','" & Me.TextBox63.Text & "')")
-
-        'обновляем dtDogPodrDoljnost
-        RunMoving23() '16/12/19
-
-        'выюираем ид номер
-        '        Dim ds As DataTable = Selects(StrSql:="Select Код From ДогПодДолжн
-        'Where Должность ='" & Me.TextBox63.Text & "' AND Клиент = '" & ComboBox1.Text & "'")
-        '        Dim IDsotr As Integer = ds.Rows(0).Item(0)
-
-        Dim ds = From x In dtDogPodrDoljnostAll Where x.Item("Должность") = TextBox63.Text And x.Item("Клиент") = ComboBox1.Text Select x.Item("Код") '16/12/19
-        Dim IDsotr As Integer = ds.FirstOrDefault '16/12/19
-        'вставляем циклом данные должнсоти в таблицу
-        For i As Integer = 0 To sd - 1
-
-            Updates(stroka:="INSERT INTO ДогПодрОбязан(ID,Обязанности) VALUES(" & IDsotr & ",'" & arr(i) & "')")
-        Next
-
-        MessageBox.Show("Должность и обязанности успешно добавлены в базу!", Рик, MessageBoxButtons.OK)
-        GroupBox19.Visible = False
-
-        RunMoving23() '16/12/19
-        refrdoljn()
     End Sub
 
     Private Sub ComboBox16_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox16.SelectedIndexChanged
@@ -6951,10 +7309,7 @@ Where Должность ='" & ComboBox22.Text & "' AND Клиент = '" & Comb
     End Sub
 
     Private Sub ComboBox19_KeyDown(sender As Object, e As KeyEventArgs) Handles ComboBox19.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            e.SuppressKeyPress = True
-            Com19sel()
-        End If
+
     End Sub
 
     Private Sub TextBox9_TextChanged(sender As Object, e As EventArgs)
@@ -7295,7 +7650,8 @@ Where ШтОтделы.Отделы ='" & Отдел & "' AND ШтСвод.До�
             Прим = 1
             Примечание.ShowDialog()
         Else
-            Прим = 1
+
+            Прим = 0
             Примечание.ShowDialog()
         End If
 
@@ -7642,12 +7998,13 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
 
     End Function
     Private Sub listbx1(ByVal t As String, ByVal d As String)
+        Dim ds
         Dim db As New DbAllDataContext
-        Dim ds = (From x In db.ДогПодДолжн.AsEnumerable
-                  Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
-                  Where x.Клиент = t And x.Должность = d
-                  Order By y.Обязанности
-                  Select y.Обязанности).ToList()
+        ds = (From x In db.ДогПодДолжн.AsEnumerable
+              Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
+              Where x.Клиент = t And x.Должность = d
+              Order By y.Обязанности
+              Select y.Обязанности).ToList()
 
         '        Dim ds = Selects(StrSql:="SELECT ДогПодрОбязан.Обязанности
         'FROM ДогПодДолжн INNER JOIN ДогПодрОбязан ON ДогПодДолжн.Код = ДогПодрОбязан.ID
@@ -7665,7 +8022,8 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
             listbx1(ComboBox1.Text, ComboBox22.Text)
             checkbx24()
         Else
-            listbx1Saync(ComboBox1.Text, ComboBox22.Text)
+            'listbx1Saync(ComboBox1.Text, ComboBox22.Text)
+            listbx1(ComboBox1.Text, ComboBox22.Text)
         End If
 
         'Dim db As New DbAllDataContext
@@ -7757,31 +8115,6 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
-        'Соед(0)
-        Dim ds = Selects(StrSql:="SELECT Код FROM ДогПодДолжн WHERE Клиент='" & ComboBox1.Text & "' AND Должность= '" & ComboBox22.Text & "'")
-        Dim IDLДогПодрОбяз2 As Integer = ds.Rows(0).Item(0)
-
-        Dim hscol3 As Integer
-        Dim ms2() As String
-        '{TextBox64.Text, TextBox65.Text, TextBox66.Text, TextBox67.Text, TextBox73.Text, TextBox72.Text, TextBox75.Text, TextBox71.Text, TextBox70.Text,
-        'TextBox69.Text, TextBox68.Text, TextBox75.Text, TextBox74.Text, TextBox77.Text}
-        hscol2 = 0
-        For i As Integer = 0 To ms2.Length - 1
-            If ms2(i) = "" Then
-                hscol2 = hscol2 + 1
-            End If
-        Next
-        hscol3 = ms2.Length - hscol2
-
-        Updates(stroka:="delete FROM ДогПодрОбязан WHERE ID=" & IDLДогПодрОбяз2 & "")
-
-        For iu As Integer = 0 To hscol3 - 1
-            Updates(stroka:="INSERT INTO ДогПодрОбязан(Обязанности, ID) VALUES('" & ms2(iu) & "', " & IDLДогПодрОбяз2 & ")")
-        Next
-        MessageBox.Show("Данные внесены", Рик)
-        refrdoljn()
-
-        'Соед(0)
 
     End Sub
 

@@ -101,6 +101,19 @@
     'End Using
 
 
+    '(удаляем старые данные из таблицы несколько записей)
+    'Using dbcx = New DbAllDataContext  
+    'Dim var = (From x In dbcx.Дети.AsEnumerable
+    '           Where x.IDСотр = ComboBox3.SelectedValue
+    '           Select x).ToList
+    'If var.Count > 0 Then
+    'For Each item In var
+    '                dbcx.Дети.DeleteOnSubmit(item)
+    '                dbcx.SubmitChanges()
+    'Next
+
+    'End If
+    'End Using
 
 
 

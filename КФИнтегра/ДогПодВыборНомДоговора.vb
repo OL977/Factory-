@@ -3,8 +3,12 @@ Imports System.Data.OleDb
 Public Class ДогПодВыборНомДоговора
     Friend f As Integer
     Public Flag As Boolean = True
+    Public var3
+    Public ФИО As String
+    Public Property ВыборНомера() As String
     Private Sub ДогПодВыборНомДоговора_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ВстДанВДогВЫб(ДогПодномДогПод)
+        'ВстДанВДогВЫб(ДогПодномДогПод)
+        'ЗаполнЛист()
     End Sub
     Public Sub ВстДанВДогВЫб(ByVal d As Integer)
         Dim strsql As String = "SELECT DISTINCT НомерДогПодр FROM ДогПодряда WHERE ID=" & d & ""
@@ -31,6 +35,7 @@ Public Class ДогПодВыборНомДоговора
         ДогПодномДогПодСтДог = ListBox1.SelectedItem.ToString
         Label2.Text = ""
         Flag = False
+        ВыборНомера = ListBox1.SelectedItem.ToString
         Me.Close()
     End Sub
 
@@ -40,4 +45,10 @@ Public Class ДогПодВыборНомДоговора
             MessageBox.Show("Выберите номер договора!", Рик)
         End If
     End Sub
+
+    'Private Sub ЗаполнЛист()
+    '    Label2.Text = var3(0).ФИОСборное
+    'End Sub
+
+
 End Class

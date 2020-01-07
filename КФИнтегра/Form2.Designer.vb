@@ -24,6 +24,8 @@ Partial Class Прием
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Прием))
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox42 = New System.Windows.Forms.TextBox()
@@ -37,6 +39,7 @@ Partial Class Прием
         Me.CheckBox7 = New System.Windows.Forms.CheckBox()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Label57 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
         Me.GroupBox18 = New System.Windows.Forms.GroupBox()
@@ -256,11 +259,56 @@ Partial Class Прием
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.GroupBox32 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox29 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox30 = New System.Windows.Forms.GroupBox()
+        Me.Button22 = New System.Windows.Forms.Button()
+        Me.Button25 = New System.Windows.Forms.Button()
+        Me.GroupBox36 = New System.Windows.Forms.GroupBox()
+        Me.RichTextBox5 = New System.Windows.Forms.RichTextBox()
+        Me.GroupBox34 = New System.Windows.Forms.GroupBox()
+        Me.RichTextBox4 = New System.Windows.Forms.RichTextBox()
+        Me.GroupBox31 = New System.Windows.Forms.GroupBox()
+        Me.RichTextBox3 = New System.Windows.Forms.RichTextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Grid5 = New System.Windows.Forms.DataGridView()
+        Me.GroupBox33 = New System.Windows.Forms.GroupBox()
+        Me.MaskedTextBox11 = New System.Windows.Forms.MaskedTextBox()
+        Me.TextBox53 = New System.Windows.Forms.TextBox()
+        Me.MaskedTextBox12 = New System.Windows.Forms.MaskedTextBox()
+        Me.Label100 = New System.Windows.Forms.Label()
+        Me.MaskedTextBox13 = New System.Windows.Forms.MaskedTextBox()
+        Me.Label101 = New System.Windows.Forms.Label()
+        Me.Label103 = New System.Windows.Forms.Label()
+        Me.Label104 = New System.Windows.Forms.Label()
+        Me.TextBox54 = New System.Windows.Forms.TextBox()
+        Me.GroupBox35 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox40 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox31 = New System.Windows.Forms.ComboBox()
+        Me.GroupBox39 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox33 = New System.Windows.Forms.ComboBox()
+        Me.Button24 = New System.Windows.Forms.Button()
+        Me.GroupBox38 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox32 = New System.Windows.Forms.ComboBox()
         Me.CheckBox27 = New System.Windows.Forms.CheckBox()
         Me.ComboBox26 = New System.Windows.Forms.ComboBox()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.CheckBox28 = New System.Windows.Forms.CheckBox()
         Me.Button11 = New System.Windows.Forms.Button()
+        Me.CheckBox8 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox9 = New System.Windows.Forms.CheckBox()
+        Me.RichTextBox6 = New System.Windows.Forms.RichTextBox()
+        Me.GroupBox41 = New System.Windows.Forms.GroupBox()
+        Me.Button20 = New System.Windows.Forms.Button()
+        Me.Button21 = New System.Windows.Forms.Button()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.GroupBox43 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox30 = New System.Windows.Forms.ComboBox()
+        Me.GroupBox42 = New System.Windows.Forms.GroupBox()
+        Me.Grid6 = New System.Windows.Forms.DataGridView()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -293,6 +341,23 @@ Partial Class Прием
         Me.GroupBox26.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.GroupBox32.SuspendLayout()
+        Me.GroupBox29.SuspendLayout()
+        Me.GroupBox30.SuspendLayout()
+        Me.GroupBox36.SuspendLayout()
+        Me.GroupBox34.SuspendLayout()
+        Me.GroupBox31.SuspendLayout()
+        CType(Me.Grid5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox33.SuspendLayout()
+        Me.GroupBox35.SuspendLayout()
+        Me.GroupBox40.SuspendLayout()
+        Me.GroupBox39.SuspendLayout()
+        Me.GroupBox38.SuspendLayout()
+        Me.GroupBox41.SuspendLayout()
+        Me.GroupBox43.SuspendLayout()
+        Me.GroupBox42.SuspendLayout()
+        CType(Me.Grid6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBox1
@@ -430,6 +495,7 @@ Partial Class Прием
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.Color.Snow
+        Me.TabPage3.Controls.Add(Me.Label57)
         Me.TabPage3.Controls.Add(Me.ListBox1)
         Me.TabPage3.Controls.Add(Me.GroupBox19)
         Me.TabPage3.Controls.Add(Me.GroupBox17)
@@ -439,7 +505,18 @@ Partial Class Прием
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Size = New System.Drawing.Size(1303, 627)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Договор подряда"
+        Me.TabPage3.Text = "Договор подряда(цена)"
+        '
+        'Label57
+        '
+        Me.Label57.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label57.Location = New System.Drawing.Point(886, 88)
+        Me.Label57.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(89, 19)
+        Me.Label57.TabIndex = 77
+        Me.Label57.Text = "Обязанности"
+        Me.Label57.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ListBox1
         '
@@ -447,10 +524,10 @@ Partial Class Прием
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.HorizontalScrollbar = True
         Me.ListBox1.ItemHeight = 15
-        Me.ListBox1.Location = New System.Drawing.Point(882, 91)
+        Me.ListBox1.Location = New System.Drawing.Point(882, 107)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.ListBox1.Size = New System.Drawing.Size(404, 199)
+        Me.ListBox1.Size = New System.Drawing.Size(404, 184)
         Me.ListBox1.TabIndex = 100
         '
         'GroupBox19
@@ -2699,6 +2776,7 @@ Partial Class Прием
         Me.GroupBox6.Size = New System.Drawing.Size(1187, 216)
         Me.GroupBox6.TabIndex = 23
         Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Visible = False
         '
         'ComboBox14
         '
@@ -2996,6 +3074,7 @@ Partial Class Прием
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(13, 103)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
@@ -3003,6 +3082,390 @@ Partial Class Прием
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1311, 657)
         Me.TabControl1.TabIndex = 53
+        '
+        'TabPage4
+        '
+        Me.TabPage4.BackColor = System.Drawing.Color.Snow
+        Me.TabPage4.Controls.Add(Me.GroupBox32)
+        Me.TabPage4.Controls.Add(Me.GroupBox29)
+        Me.TabPage4.Controls.Add(Me.GroupBox33)
+        Me.TabPage4.Controls.Add(Me.GroupBox35)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 26)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Size = New System.Drawing.Size(1303, 627)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "Договор подряда(иное)"
+        '
+        'GroupBox32
+        '
+        Me.GroupBox32.BackColor = System.Drawing.Color.Tan
+        Me.GroupBox32.Controls.Add(Me.Grid6)
+        Me.GroupBox32.Controls.Add(Me.GroupBox42)
+        Me.GroupBox32.Controls.Add(Me.Button20)
+        Me.GroupBox32.Controls.Add(Me.Button21)
+        Me.GroupBox32.Controls.Add(Me.GroupBox36)
+        Me.GroupBox32.Controls.Add(Me.GroupBox34)
+        Me.GroupBox32.Location = New System.Drawing.Point(410, 90)
+        Me.GroupBox32.Name = "GroupBox32"
+        Me.GroupBox32.Size = New System.Drawing.Size(876, 145)
+        Me.GroupBox32.TabIndex = 107
+        Me.GroupBox32.TabStop = False
+        Me.GroupBox32.Text = "Список выбранных работ для договора подряда."
+        '
+        'GroupBox29
+        '
+        Me.GroupBox29.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.GroupBox29.Controls.Add(Me.GroupBox30)
+        Me.GroupBox29.Controls.Add(Me.Grid5)
+        Me.GroupBox29.Location = New System.Drawing.Point(9, 241)
+        Me.GroupBox29.Name = "GroupBox29"
+        Me.GroupBox29.Size = New System.Drawing.Size(1277, 347)
+        Me.GroupBox29.TabIndex = 105
+        Me.GroupBox29.TabStop = False
+        Me.GroupBox29.Text = "Работы"
+        '
+        'GroupBox30
+        '
+        Me.GroupBox30.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox30.BackColor = System.Drawing.Color.DarkKhaki
+        Me.GroupBox30.Controls.Add(Me.GroupBox43)
+        Me.GroupBox30.Controls.Add(Me.GroupBox31)
+        Me.GroupBox30.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.GroupBox30.Location = New System.Drawing.Point(582, 15)
+        Me.GroupBox30.Name = "GroupBox30"
+        Me.GroupBox30.Size = New System.Drawing.Size(689, 326)
+        Me.GroupBox30.TabIndex = 108
+        Me.GroupBox30.TabStop = False
+        Me.GroupBox30.Text = "Данные"
+        '
+        'Button22
+        '
+        Me.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button22.Image = CType(resources.GetObject("Button22.Image"), System.Drawing.Image)
+        Me.Button22.Location = New System.Drawing.Point(76, 242)
+        Me.Button22.Name = "Button22"
+        Me.Button22.Size = New System.Drawing.Size(32, 30)
+        Me.Button22.TabIndex = 105
+        Me.Button22.UseVisualStyleBackColor = True
+        '
+        'Button25
+        '
+        Me.Button25.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button25.Image = CType(resources.GetObject("Button25.Image"), System.Drawing.Image)
+        Me.Button25.Location = New System.Drawing.Point(38, 242)
+        Me.Button25.Name = "Button25"
+        Me.Button25.Size = New System.Drawing.Size(32, 31)
+        Me.Button25.TabIndex = 103
+        Me.Button25.UseVisualStyleBackColor = True
+        '
+        'GroupBox36
+        '
+        Me.GroupBox36.Controls.Add(Me.RichTextBox5)
+        Me.GroupBox36.Location = New System.Drawing.Point(122, 79)
+        Me.GroupBox36.Name = "GroupBox36"
+        Me.GroupBox36.Size = New System.Drawing.Size(88, 56)
+        Me.GroupBox36.TabIndex = 75
+        Me.GroupBox36.TabStop = False
+        Me.GroupBox36.Text = "Копейки"
+        '
+        'RichTextBox5
+        '
+        Me.RichTextBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox5.Location = New System.Drawing.Point(6, 24)
+        Me.RichTextBox5.Name = "RichTextBox5"
+        Me.RichTextBox5.Size = New System.Drawing.Size(76, 25)
+        Me.RichTextBox5.TabIndex = 73
+        Me.RichTextBox5.Text = ""
+        '
+        'GroupBox34
+        '
+        Me.GroupBox34.Controls.Add(Me.RichTextBox4)
+        Me.GroupBox34.Location = New System.Drawing.Point(9, 79)
+        Me.GroupBox34.Name = "GroupBox34"
+        Me.GroupBox34.Size = New System.Drawing.Size(88, 56)
+        Me.GroupBox34.TabIndex = 74
+        Me.GroupBox34.TabStop = False
+        Me.GroupBox34.Text = "Рубли"
+        '
+        'RichTextBox4
+        '
+        Me.RichTextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox4.Location = New System.Drawing.Point(6, 24)
+        Me.RichTextBox4.Name = "RichTextBox4"
+        Me.RichTextBox4.Size = New System.Drawing.Size(76, 25)
+        Me.RichTextBox4.TabIndex = 73
+        Me.RichTextBox4.Text = ""
+        '
+        'GroupBox31
+        '
+        Me.GroupBox31.Controls.Add(Me.RichTextBox3)
+        Me.GroupBox31.Controls.Add(Me.Button3)
+        Me.GroupBox31.Controls.Add(Me.GroupBox41)
+        Me.GroupBox31.Controls.Add(Me.Button9)
+        Me.GroupBox31.Controls.Add(Me.Button12)
+        Me.GroupBox31.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.GroupBox31.Location = New System.Drawing.Point(174, 24)
+        Me.GroupBox31.Name = "GroupBox31"
+        Me.GroupBox31.Size = New System.Drawing.Size(498, 279)
+        Me.GroupBox31.TabIndex = 0
+        Me.GroupBox31.TabStop = False
+        Me.GroupBox31.Text = "Выполныемая работа"
+        '
+        'RichTextBox3
+        '
+        Me.RichTextBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox3.Location = New System.Drawing.Point(6, 24)
+        Me.RichTextBox3.Name = "RichTextBox3"
+        Me.RichTextBox3.Size = New System.Drawing.Size(486, 79)
+        Me.RichTextBox3.TabIndex = 106
+        Me.RichTextBox3.Text = ""
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button3.Location = New System.Drawing.Point(112, 242)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(90, 30)
+        Me.Button3.TabIndex = 109
+        Me.Button3.Text = "Изменить"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button9.Location = New System.Drawing.Point(203, 242)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(90, 30)
+        Me.Button9.TabIndex = 108
+        Me.Button9.Text = "Удалить"
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'Button12
+        '
+        Me.Button12.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button12.Location = New System.Drawing.Point(16, 242)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(90, 30)
+        Me.Button12.TabIndex = 107
+        Me.Button12.Text = "Добавить"
+        Me.Button12.UseVisualStyleBackColor = False
+        '
+        'Grid5
+        '
+        Me.Grid5.AllowUserToAddRows = False
+        Me.Grid5.AllowUserToDeleteRows = False
+        Me.Grid5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Grid5.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.Grid5.BackgroundColor = System.Drawing.SystemColors.InactiveBorder
+        Me.Grid5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Grid5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Grid5.Location = New System.Drawing.Point(13, 24)
+        Me.Grid5.Name = "Grid5"
+        Me.Grid5.ReadOnly = True
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.Grid5.Size = New System.Drawing.Size(559, 317)
+        Me.Grid5.TabIndex = 103
+        '
+        'GroupBox33
+        '
+        Me.GroupBox33.BackColor = System.Drawing.Color.Tan
+        Me.GroupBox33.Controls.Add(Me.MaskedTextBox11)
+        Me.GroupBox33.Controls.Add(Me.TextBox53)
+        Me.GroupBox33.Controls.Add(Me.MaskedTextBox12)
+        Me.GroupBox33.Controls.Add(Me.Label100)
+        Me.GroupBox33.Controls.Add(Me.MaskedTextBox13)
+        Me.GroupBox33.Controls.Add(Me.Label101)
+        Me.GroupBox33.Controls.Add(Me.Label103)
+        Me.GroupBox33.Controls.Add(Me.Label104)
+        Me.GroupBox33.Controls.Add(Me.TextBox54)
+        Me.GroupBox33.Location = New System.Drawing.Point(8, 91)
+        Me.GroupBox33.Name = "GroupBox33"
+        Me.GroupBox33.Size = New System.Drawing.Size(396, 144)
+        Me.GroupBox33.TabIndex = 102
+        Me.GroupBox33.TabStop = False
+        '
+        'MaskedTextBox11
+        '
+        Me.MaskedTextBox11.Location = New System.Drawing.Point(279, 107)
+        Me.MaskedTextBox11.Mask = "00/00/0000"
+        Me.MaskedTextBox11.Name = "MaskedTextBox11"
+        Me.MaskedTextBox11.Size = New System.Drawing.Size(92, 25)
+        Me.MaskedTextBox11.TabIndex = 76
+        Me.MaskedTextBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MaskedTextBox11.ValidatingType = GetType(Date)
+        '
+        'TextBox53
+        '
+        Me.TextBox53.Location = New System.Drawing.Point(203, 24)
+        Me.TextBox53.MaxLength = 3
+        Me.TextBox53.Name = "TextBox53"
+        Me.TextBox53.Size = New System.Drawing.Size(26, 25)
+        Me.TextBox53.TabIndex = 70
+        Me.TextBox53.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'MaskedTextBox12
+        '
+        Me.MaskedTextBox12.Location = New System.Drawing.Point(278, 74)
+        Me.MaskedTextBox12.Mask = "00/00/0000"
+        Me.MaskedTextBox12.Name = "MaskedTextBox12"
+        Me.MaskedTextBox12.Size = New System.Drawing.Size(92, 25)
+        Me.MaskedTextBox12.TabIndex = 65
+        Me.MaskedTextBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MaskedTextBox12.ValidatingType = GetType(Date)
+        '
+        'Label100
+        '
+        Me.Label100.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label100.Location = New System.Drawing.Point(13, 104)
+        Me.Label100.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label100.Name = "Label100"
+        Me.Label100.Size = New System.Drawing.Size(242, 35)
+        Me.Label100.TabIndex = 66
+        Me.Label100.Text = "Конечный срок выполнения работ"
+        Me.Label100.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'MaskedTextBox13
+        '
+        Me.MaskedTextBox13.Location = New System.Drawing.Point(278, 24)
+        Me.MaskedTextBox13.Mask = "00/00/0000"
+        Me.MaskedTextBox13.Name = "MaskedTextBox13"
+        Me.MaskedTextBox13.Size = New System.Drawing.Size(92, 25)
+        Me.MaskedTextBox13.TabIndex = 64
+        Me.MaskedTextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MaskedTextBox13.ValidatingType = GetType(Date)
+        '
+        'Label101
+        '
+        Me.Label101.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label101.Location = New System.Drawing.Point(13, 69)
+        Me.Label101.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label101.Name = "Label101"
+        Me.Label101.Size = New System.Drawing.Size(242, 35)
+        Me.Label101.TabIndex = 62
+        Me.Label101.Text = "Начальный срок выполнения работ"
+        Me.Label101.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label103
+        '
+        Me.Label103.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label103.Location = New System.Drawing.Point(236, 30)
+        Me.Label103.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label103.Name = "Label103"
+        Me.Label103.Size = New System.Drawing.Size(27, 19)
+        Me.Label103.TabIndex = 58
+        Me.Label103.Text = "от"
+        Me.Label103.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label104
+        '
+        Me.Label104.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Label104.Location = New System.Drawing.Point(20, 19)
+        Me.Label104.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label104.Name = "Label104"
+        Me.Label104.Size = New System.Drawing.Size(120, 35)
+        Me.Label104.TabIndex = 57
+        Me.Label104.Text = "Номер и дата договора подряда"
+        Me.Label104.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TextBox54
+        '
+        Me.TextBox54.Location = New System.Drawing.Point(146, 24)
+        Me.TextBox54.MaxLength = 3
+        Me.TextBox54.Name = "TextBox54"
+        Me.TextBox54.Size = New System.Drawing.Size(51, 25)
+        Me.TextBox54.TabIndex = 56
+        Me.TextBox54.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'GroupBox35
+        '
+        Me.GroupBox35.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.GroupBox35.Controls.Add(Me.GroupBox40)
+        Me.GroupBox35.Controls.Add(Me.GroupBox39)
+        Me.GroupBox35.Controls.Add(Me.Button24)
+        Me.GroupBox35.Controls.Add(Me.GroupBox38)
+        Me.GroupBox35.Location = New System.Drawing.Point(9, 13)
+        Me.GroupBox35.Name = "GroupBox35"
+        Me.GroupBox35.Size = New System.Drawing.Size(1277, 72)
+        Me.GroupBox35.TabIndex = 101
+        Me.GroupBox35.TabStop = False
+        '
+        'GroupBox40
+        '
+        Me.GroupBox40.Controls.Add(Me.ComboBox31)
+        Me.GroupBox40.Location = New System.Drawing.Point(599, 15)
+        Me.GroupBox40.Name = "GroupBox40"
+        Me.GroupBox40.Size = New System.Drawing.Size(538, 49)
+        Me.GroupBox40.TabIndex = 12
+        Me.GroupBox40.TabStop = False
+        Me.GroupBox40.Text = "Объект общепита"
+        '
+        'ComboBox31
+        '
+        Me.ComboBox31.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.ComboBox31.FormattingEnabled = True
+        Me.ComboBox31.Location = New System.Drawing.Point(7, 17)
+        Me.ComboBox31.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboBox31.Name = "ComboBox31"
+        Me.ComboBox31.Size = New System.Drawing.Size(525, 25)
+        Me.ComboBox31.TabIndex = 7
+        '
+        'GroupBox39
+        '
+        Me.GroupBox39.Controls.Add(Me.ComboBox33)
+        Me.GroupBox39.Location = New System.Drawing.Point(117, 15)
+        Me.GroupBox39.Name = "GroupBox39"
+        Me.GroupBox39.Size = New System.Drawing.Size(464, 49)
+        Me.GroupBox39.TabIndex = 11
+        Me.GroupBox39.TabStop = False
+        Me.GroupBox39.Text = "Список договоров"
+        '
+        'ComboBox33
+        '
+        Me.ComboBox33.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.ComboBox33.FormattingEnabled = True
+        Me.ComboBox33.Location = New System.Drawing.Point(7, 17)
+        Me.ComboBox33.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboBox33.Name = "ComboBox33"
+        Me.ComboBox33.Size = New System.Drawing.Size(448, 25)
+        Me.ComboBox33.TabIndex = 2
+        '
+        'Button24
+        '
+        Me.Button24.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Button24.Location = New System.Drawing.Point(1157, 39)
+        Me.Button24.Name = "Button24"
+        Me.Button24.Size = New System.Drawing.Size(114, 25)
+        Me.Button24.TabIndex = 9
+        Me.Button24.Text = "Примечание"
+        Me.Button24.UseVisualStyleBackColor = True
+        '
+        'GroupBox38
+        '
+        Me.GroupBox38.Controls.Add(Me.ComboBox32)
+        Me.GroupBox38.Location = New System.Drawing.Point(6, 15)
+        Me.GroupBox38.Name = "GroupBox38"
+        Me.GroupBox38.Size = New System.Drawing.Size(98, 49)
+        Me.GroupBox38.TabIndex = 10
+        Me.GroupBox38.TabStop = False
+        Me.GroupBox38.Text = "Год"
+        '
+        'ComboBox32
+        '
+        Me.ComboBox32.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.ComboBox32.FormattingEnabled = True
+        Me.ComboBox32.Location = New System.Drawing.Point(9, 17)
+        Me.ComboBox32.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboBox32.Name = "ComboBox32"
+        Me.ComboBox32.Size = New System.Drawing.Size(81, 25)
+        Me.ComboBox32.TabIndex = 3
         '
         'CheckBox27
         '
@@ -3019,7 +3482,7 @@ Partial Class Прием
         'ComboBox26
         '
         Me.ComboBox26.FormattingEnabled = True
-        Me.ComboBox26.Location = New System.Drawing.Point(1040, 88)
+        Me.ComboBox26.Location = New System.Drawing.Point(1262, 62)
         Me.ComboBox26.Name = "ComboBox26"
         Me.ComboBox26.Size = New System.Drawing.Size(51, 25)
         Me.ComboBox26.TabIndex = 65
@@ -3059,12 +3522,140 @@ Partial Class Прием
         Me.Button11.Text = "Button11"
         Me.Button11.UseVisualStyleBackColor = True
         '
+        'CheckBox8
+        '
+        Me.CheckBox8.AutoSize = True
+        Me.CheckBox8.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.CheckBox8.Location = New System.Drawing.Point(1041, 89)
+        Me.CheckBox8.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckBox8.Name = "CheckBox8"
+        Me.CheckBox8.Size = New System.Drawing.Size(80, 19)
+        Me.CheckBox8.TabIndex = 69
+        Me.CheckBox8.Text = "ДП(Цена)"
+        Me.CheckBox8.UseVisualStyleBackColor = True
+        '
+        'CheckBox9
+        '
+        Me.CheckBox9.AutoSize = True
+        Me.CheckBox9.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.CheckBox9.Location = New System.Drawing.Point(1129, 89)
+        Me.CheckBox9.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckBox9.Name = "CheckBox9"
+        Me.CheckBox9.Size = New System.Drawing.Size(81, 19)
+        Me.CheckBox9.TabIndex = 70
+        Me.CheckBox9.Text = "ДП(Иное)"
+        Me.CheckBox9.UseVisualStyleBackColor = True
+        '
+        'RichTextBox6
+        '
+        Me.RichTextBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox6.Location = New System.Drawing.Point(6, 24)
+        Me.RichTextBox6.Name = "RichTextBox6"
+        Me.RichTextBox6.Size = New System.Drawing.Size(474, 76)
+        Me.RichTextBox6.TabIndex = 110
+        Me.RichTextBox6.Text = ""
+        '
+        'GroupBox41
+        '
+        Me.GroupBox41.Controls.Add(Me.RichTextBox6)
+        Me.GroupBox41.Location = New System.Drawing.Point(6, 109)
+        Me.GroupBox41.Name = "GroupBox41"
+        Me.GroupBox41.Size = New System.Drawing.Size(486, 107)
+        Me.GroupBox41.TabIndex = 111
+        Me.GroupBox41.TabStop = False
+        Me.GroupBox41.Text = "Выполняемая работа (в именительном падеже)"
+        '
+        'Button20
+        '
+        Me.Button20.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button20.Location = New System.Drawing.Point(335, 105)
+        Me.Button20.Name = "Button20"
+        Me.Button20.Size = New System.Drawing.Size(90, 30)
+        Me.Button20.TabIndex = 113
+        Me.Button20.Text = "Удалить"
+        Me.Button20.UseVisualStyleBackColor = False
+        '
+        'Button21
+        '
+        Me.Button21.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button21.Location = New System.Drawing.Point(239, 106)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(90, 30)
+        Me.Button21.TabIndex = 112
+        Me.Button21.Text = "Добавить"
+        Me.Button21.UseVisualStyleBackColor = False
+        '
+        'ListBox3
+        '
+        Me.ListBox3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.ListBox3.FormattingEnabled = True
+        Me.ListBox3.HorizontalScrollbar = True
+        Me.ListBox3.ItemHeight = 17
+        Me.ListBox3.Location = New System.Drawing.Point(6, 24)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
+        Me.ListBox3.Size = New System.Drawing.Size(136, 208)
+        Me.ListBox3.TabIndex = 114
+        '
+        'GroupBox43
+        '
+        Me.GroupBox43.Controls.Add(Me.Button22)
+        Me.GroupBox43.Controls.Add(Me.ListBox3)
+        Me.GroupBox43.Controls.Add(Me.Button25)
+        Me.GroupBox43.Location = New System.Drawing.Point(16, 24)
+        Me.GroupBox43.Name = "GroupBox43"
+        Me.GroupBox43.Size = New System.Drawing.Size(150, 279)
+        Me.GroupBox43.TabIndex = 115
+        Me.GroupBox43.TabStop = False
+        Me.GroupBox43.Text = "Единица измерения"
+        '
+        'ComboBox30
+        '
+        Me.ComboBox30.FormattingEnabled = True
+        Me.ComboBox30.Location = New System.Drawing.Point(6, 21)
+        Me.ComboBox30.Name = "ComboBox30"
+        Me.ComboBox30.Size = New System.Drawing.Size(404, 25)
+        Me.ComboBox30.TabIndex = 107
+        '
+        'GroupBox42
+        '
+        Me.GroupBox42.Controls.Add(Me.ComboBox30)
+        Me.GroupBox42.Location = New System.Drawing.Point(9, 21)
+        Me.GroupBox42.Name = "GroupBox42"
+        Me.GroupBox42.Size = New System.Drawing.Size(416, 52)
+        Me.GroupBox42.TabIndex = 108
+        Me.GroupBox42.TabStop = False
+        Me.GroupBox42.Text = "Выбор работы"
+        '
+        'Grid6
+        '
+        Me.Grid6.AllowUserToAddRows = False
+        Me.Grid6.AllowUserToDeleteRows = False
+        Me.Grid6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Grid6.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.Grid6.BackgroundColor = System.Drawing.SystemColors.InactiveBorder
+        Me.Grid6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Grid6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Grid6.Location = New System.Drawing.Point(431, 11)
+        Me.Grid6.Name = "Grid6"
+        Me.Grid6.ReadOnly = True
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.Grid6.Size = New System.Drawing.Size(439, 128)
+        Me.Grid6.TabIndex = 110
+        '
         'Прием
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1384, 765)
+        Me.Controls.Add(Me.CheckBox9)
+        Me.Controls.Add(Me.CheckBox8)
         Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.CheckBox28)
         Me.Controls.Add(Me.CheckBox3)
@@ -3133,6 +3724,24 @@ Partial Class Прием
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
+        Me.GroupBox32.ResumeLayout(False)
+        Me.GroupBox29.ResumeLayout(False)
+        Me.GroupBox30.ResumeLayout(False)
+        Me.GroupBox36.ResumeLayout(False)
+        Me.GroupBox34.ResumeLayout(False)
+        Me.GroupBox31.ResumeLayout(False)
+        CType(Me.Grid5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox33.ResumeLayout(False)
+        Me.GroupBox33.PerformLayout()
+        Me.GroupBox35.ResumeLayout(False)
+        Me.GroupBox40.ResumeLayout(False)
+        Me.GroupBox39.ResumeLayout(False)
+        Me.GroupBox38.ResumeLayout(False)
+        Me.GroupBox41.ResumeLayout(False)
+        Me.GroupBox43.ResumeLayout(False)
+        Me.GroupBox42.ResumeLayout(False)
+        CType(Me.Grid6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3391,4 +4000,50 @@ Partial Class Прием
     Friend WithEvents GroupBox18 As GroupBox
     Friend WithEvents GroupBox28 As GroupBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label57 As Label
+    Friend WithEvents CheckBox8 As CheckBox
+    Friend WithEvents CheckBox9 As CheckBox
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents GroupBox29 As GroupBox
+    Friend WithEvents GroupBox30 As GroupBox
+    Friend WithEvents GroupBox31 As GroupBox
+    Friend WithEvents RichTextBox3 As RichTextBox
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button12 As Button
+    Friend WithEvents RichTextBox4 As RichTextBox
+    Friend WithEvents Grid5 As DataGridView
+    Friend WithEvents MaskedTextBox11 As MaskedTextBox
+    Friend WithEvents MaskedTextBox12 As MaskedTextBox
+    Friend WithEvents Label100 As Label
+    Friend WithEvents Label101 As Label
+    Friend WithEvents GroupBox33 As GroupBox
+    Friend WithEvents TextBox53 As TextBox
+    Friend WithEvents MaskedTextBox13 As MaskedTextBox
+    Friend WithEvents Label103 As Label
+    Friend WithEvents Label104 As Label
+    Public WithEvents TextBox54 As TextBox
+    Friend WithEvents GroupBox35 As GroupBox
+    Friend WithEvents Button24 As Button
+    Friend WithEvents ComboBox31 As ComboBox
+    Friend WithEvents ComboBox32 As ComboBox
+    Friend WithEvents ComboBox33 As ComboBox
+    Friend WithEvents GroupBox32 As GroupBox
+    Friend WithEvents GroupBox36 As GroupBox
+    Friend WithEvents RichTextBox5 As RichTextBox
+    Friend WithEvents GroupBox34 As GroupBox
+    Friend WithEvents Button22 As Button
+    Friend WithEvents Button25 As Button
+    Friend WithEvents GroupBox40 As GroupBox
+    Friend WithEvents GroupBox39 As GroupBox
+    Friend WithEvents GroupBox38 As GroupBox
+    Friend WithEvents Button20 As Button
+    Friend WithEvents Button21 As Button
+    Friend WithEvents GroupBox43 As GroupBox
+    Friend WithEvents ListBox3 As ListBox
+    Friend WithEvents GroupBox41 As GroupBox
+    Friend WithEvents RichTextBox6 As RichTextBox
+    Friend WithEvents GroupBox42 As GroupBox
+    Friend WithEvents ComboBox30 As ComboBox
+    Friend WithEvents Grid6 As DataGridView
 End Class

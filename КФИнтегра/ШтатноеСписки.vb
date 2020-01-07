@@ -882,12 +882,20 @@ WHERE IDКодШтСвод=@IDКодШтСвод AND Дата <= @Дата ORDER
 
     End Sub
 
-    Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Me.Cursor = Cursors.WaitCursor
         If t = False Then
             SortGrid1()
         End If
         Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+        'Me.Cursor = Cursors.WaitCursor
+        'If t = False Then
+        '    SortGrid1()
+        'End If
+        'Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub SortGrid1()
