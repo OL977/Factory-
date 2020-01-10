@@ -511,7 +511,6 @@
         End If
         Btn6()
         MessageBox.Show("Данные внесены!", Рик)
-
     End Sub
     Private Sub UpdateInfo()
 

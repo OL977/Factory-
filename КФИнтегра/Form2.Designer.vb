@@ -22,10 +22,10 @@ Partial Class Прием
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Прием))
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox42 = New System.Windows.Forms.TextBox()
@@ -261,17 +261,22 @@ Partial Class Прием
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox32 = New System.Windows.Forms.GroupBox()
+        Me.Grid6 = New System.Windows.Forms.DataGridView()
+        Me.Button20 = New System.Windows.Forms.Button()
+        Me.Button21 = New System.Windows.Forms.Button()
+        Me.GroupBox36 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox34 = New System.Windows.Forms.GroupBox()
         Me.GroupBox29 = New System.Windows.Forms.GroupBox()
         Me.GroupBox30 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox43 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox29 = New System.Windows.Forms.ComboBox()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button25 = New System.Windows.Forms.Button()
-        Me.GroupBox36 = New System.Windows.Forms.GroupBox()
-        Me.RichTextBox5 = New System.Windows.Forms.RichTextBox()
-        Me.GroupBox34 = New System.Windows.Forms.GroupBox()
-        Me.RichTextBox4 = New System.Windows.Forms.RichTextBox()
         Me.GroupBox31 = New System.Windows.Forms.GroupBox()
         Me.RichTextBox3 = New System.Windows.Forms.RichTextBox()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.GroupBox41 = New System.Windows.Forms.GroupBox()
+        Me.RichTextBox6 = New System.Windows.Forms.RichTextBox()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Grid5 = New System.Windows.Forms.DataGridView()
@@ -300,15 +305,11 @@ Partial Class Прием
         Me.Button11 = New System.Windows.Forms.Button()
         Me.CheckBox8 = New System.Windows.Forms.CheckBox()
         Me.CheckBox9 = New System.Windows.Forms.CheckBox()
-        Me.RichTextBox6 = New System.Windows.Forms.RichTextBox()
-        Me.GroupBox41 = New System.Windows.Forms.GroupBox()
-        Me.Button20 = New System.Windows.Forms.Button()
-        Me.Button21 = New System.Windows.Forms.Button()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
-        Me.GroupBox43 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox30 = New System.Windows.Forms.ComboBox()
-        Me.GroupBox42 = New System.Windows.Forms.GroupBox()
-        Me.Grid6 = New System.Windows.Forms.DataGridView()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.TextBox22 = New System.Windows.Forms.TextBox()
+        Me.TextBox52 = New System.Windows.Forms.TextBox()
+        Me.Button23 = New System.Windows.Forms.Button()
+        Me.CheckBox10 = New System.Windows.Forms.CheckBox()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -343,21 +344,20 @@ Partial Class Прием
         Me.TabControl1.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.GroupBox32.SuspendLayout()
-        Me.GroupBox29.SuspendLayout()
-        Me.GroupBox30.SuspendLayout()
+        CType(Me.Grid6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox36.SuspendLayout()
         Me.GroupBox34.SuspendLayout()
+        Me.GroupBox29.SuspendLayout()
+        Me.GroupBox30.SuspendLayout()
+        Me.GroupBox43.SuspendLayout()
         Me.GroupBox31.SuspendLayout()
+        Me.GroupBox41.SuspendLayout()
         CType(Me.Grid5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox33.SuspendLayout()
         Me.GroupBox35.SuspendLayout()
         Me.GroupBox40.SuspendLayout()
         Me.GroupBox39.SuspendLayout()
         Me.GroupBox38.SuspendLayout()
-        Me.GroupBox41.SuspendLayout()
-        Me.GroupBox43.SuspendLayout()
-        Me.GroupBox42.SuspendLayout()
-        CType(Me.Grid6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboBox1
@@ -369,7 +369,7 @@ Partial Class Прием
         Me.ComboBox1.Location = New System.Drawing.Point(8, 23)
         Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(399, 25)
+        Me.ComboBox1.Size = New System.Drawing.Size(418, 25)
         Me.ComboBox1.TabIndex = 0
         '
         'Button1
@@ -403,7 +403,7 @@ Partial Class Прием
         Me.ComboBox19.Location = New System.Drawing.Point(8, 23)
         Me.ComboBox19.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox19.Name = "ComboBox19"
-        Me.ComboBox19.Size = New System.Drawing.Size(353, 25)
+        Me.ComboBox19.Size = New System.Drawing.Size(357, 25)
         Me.ComboBox19.TabIndex = 58
         '
         'CheckBox5
@@ -420,16 +420,17 @@ Partial Class Прием
         '
         'GroupBox12
         '
+        Me.GroupBox12.Controls.Add(Me.Button23)
         Me.GroupBox12.Controls.Add(Me.Label96)
         Me.GroupBox12.Controls.Add(Me.CheckBox23)
         Me.GroupBox12.Controls.Add(Me.ComboBox19)
         Me.GroupBox12.Controls.Add(Me.CheckBox5)
         Me.GroupBox12.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.GroupBox12.Location = New System.Drawing.Point(654, 13)
+        Me.GroupBox12.Location = New System.Drawing.Point(632, 13)
         Me.GroupBox12.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox12.Size = New System.Drawing.Size(379, 82)
+        Me.GroupBox12.Size = New System.Drawing.Size(401, 82)
         Me.GroupBox12.TabIndex = 61
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Сотрудники"
@@ -447,7 +448,7 @@ Partial Class Прием
         '
         Me.CheckBox23.AutoSize = True
         Me.CheckBox23.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox23.Location = New System.Drawing.Point(202, 55)
+        Me.CheckBox23.Location = New System.Drawing.Point(206, 54)
         Me.CheckBox23.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox23.Name = "CheckBox23"
         Me.CheckBox23.Size = New System.Drawing.Size(153, 19)
@@ -459,11 +460,11 @@ Partial Class Прием
         '
         Me.GroupBox13.Controls.Add(Me.ComboBox1)
         Me.GroupBox13.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.GroupBox13.Location = New System.Drawing.Point(220, 13)
+        Me.GroupBox13.Location = New System.Drawing.Point(193, 13)
         Me.GroupBox13.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox13.Size = New System.Drawing.Size(427, 81)
+        Me.GroupBox13.Size = New System.Drawing.Size(434, 81)
         Me.GroupBox13.TabIndex = 62
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Организация"
@@ -487,9 +488,9 @@ Partial Class Прием
         Me.CheckBox7.Location = New System.Drawing.Point(1041, 18)
         Me.CheckBox7.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox7.Name = "CheckBox7"
-        Me.CheckBox7.Size = New System.Drawing.Size(122, 19)
+        Me.CheckBox7.Size = New System.Drawing.Size(147, 19)
         Me.CheckBox7.TabIndex = 64
-        Me.CheckBox7.Text = "Договор подряда"
+        Me.CheckBox7.Text = "Договор подряда(old)"
         Me.CheckBox7.UseVisualStyleBackColor = True
         '
         'TabPage3
@@ -668,9 +669,9 @@ Partial Class Прием
         Me.Grid1.Location = New System.Drawing.Point(13, 24)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.Grid1.Size = New System.Drawing.Size(742, 253)
         Me.Grid1.TabIndex = 103
         '
@@ -3099,8 +3100,8 @@ Partial Class Прием
         'GroupBox32
         '
         Me.GroupBox32.BackColor = System.Drawing.Color.Tan
+        Me.GroupBox32.Controls.Add(Me.Button13)
         Me.GroupBox32.Controls.Add(Me.Grid6)
-        Me.GroupBox32.Controls.Add(Me.GroupBox42)
         Me.GroupBox32.Controls.Add(Me.Button20)
         Me.GroupBox32.Controls.Add(Me.Button21)
         Me.GroupBox32.Controls.Add(Me.GroupBox36)
@@ -3111,6 +3112,67 @@ Partial Class Прием
         Me.GroupBox32.TabIndex = 107
         Me.GroupBox32.TabStop = False
         Me.GroupBox32.Text = "Список выбранных работ для договора подряда."
+        '
+        'Grid6
+        '
+        Me.Grid6.AllowUserToAddRows = False
+        Me.Grid6.AllowUserToDeleteRows = False
+        Me.Grid6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Grid6.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.Grid6.BackgroundColor = System.Drawing.SystemColors.InactiveBorder
+        Me.Grid6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Grid6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Grid6.Location = New System.Drawing.Point(288, 20)
+        Me.Grid6.MultiSelect = False
+        Me.Grid6.Name = "Grid6"
+        Me.Grid6.ReadOnly = True
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle8
+        Me.Grid6.Size = New System.Drawing.Size(582, 119)
+        Me.Grid6.TabIndex = 110
+        '
+        'Button20
+        '
+        Me.Button20.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button20.Location = New System.Drawing.Point(194, 105)
+        Me.Button20.Name = "Button20"
+        Me.Button20.Size = New System.Drawing.Size(88, 28)
+        Me.Button20.TabIndex = 113
+        Me.Button20.Text = "Удалить"
+        Me.Button20.UseVisualStyleBackColor = False
+        '
+        'Button21
+        '
+        Me.Button21.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button21.Location = New System.Drawing.Point(6, 105)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(88, 29)
+        Me.Button21.TabIndex = 112
+        Me.Button21.Text = "Добавить"
+        Me.Button21.UseVisualStyleBackColor = False
+        '
+        'GroupBox36
+        '
+        Me.GroupBox36.Controls.Add(Me.TextBox52)
+        Me.GroupBox36.Location = New System.Drawing.Point(119, 31)
+        Me.GroupBox36.Name = "GroupBox36"
+        Me.GroupBox36.Size = New System.Drawing.Size(88, 56)
+        Me.GroupBox36.TabIndex = 75
+        Me.GroupBox36.TabStop = False
+        Me.GroupBox36.Text = "Копейки"
+        '
+        'GroupBox34
+        '
+        Me.GroupBox34.Controls.Add(Me.TextBox22)
+        Me.GroupBox34.Location = New System.Drawing.Point(6, 31)
+        Me.GroupBox34.Name = "GroupBox34"
+        Me.GroupBox34.Size = New System.Drawing.Size(88, 56)
+        Me.GroupBox34.TabIndex = 74
+        Me.GroupBox34.TabStop = False
+        Me.GroupBox34.Text = "Рубли"
         '
         'GroupBox29
         '
@@ -3132,18 +3194,38 @@ Partial Class Прием
         Me.GroupBox30.Controls.Add(Me.GroupBox43)
         Me.GroupBox30.Controls.Add(Me.GroupBox31)
         Me.GroupBox30.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.GroupBox30.Location = New System.Drawing.Point(582, 15)
+        Me.GroupBox30.Location = New System.Drawing.Point(705, 15)
         Me.GroupBox30.Name = "GroupBox30"
-        Me.GroupBox30.Size = New System.Drawing.Size(689, 326)
+        Me.GroupBox30.Size = New System.Drawing.Size(566, 326)
         Me.GroupBox30.TabIndex = 108
         Me.GroupBox30.TabStop = False
         Me.GroupBox30.Text = "Данные"
+        '
+        'GroupBox43
+        '
+        Me.GroupBox43.Controls.Add(Me.ComboBox29)
+        Me.GroupBox43.Controls.Add(Me.Button22)
+        Me.GroupBox43.Controls.Add(Me.Button25)
+        Me.GroupBox43.Location = New System.Drawing.Point(6, 24)
+        Me.GroupBox43.Name = "GroupBox43"
+        Me.GroupBox43.Size = New System.Drawing.Size(150, 103)
+        Me.GroupBox43.TabIndex = 115
+        Me.GroupBox43.TabStop = False
+        Me.GroupBox43.Text = "Единица измерения"
+        '
+        'ComboBox29
+        '
+        Me.ComboBox29.FormattingEnabled = True
+        Me.ComboBox29.Location = New System.Drawing.Point(11, 24)
+        Me.ComboBox29.Name = "ComboBox29"
+        Me.ComboBox29.Size = New System.Drawing.Size(121, 25)
+        Me.ComboBox29.TabIndex = 106
         '
         'Button22
         '
         Me.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button22.Image = CType(resources.GetObject("Button22.Image"), System.Drawing.Image)
-        Me.Button22.Location = New System.Drawing.Point(76, 242)
+        Me.Button22.Location = New System.Drawing.Point(77, 66)
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(32, 30)
         Me.Button22.TabIndex = 105
@@ -3153,51 +3235,11 @@ Partial Class Прием
         '
         Me.Button25.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button25.Image = CType(resources.GetObject("Button25.Image"), System.Drawing.Image)
-        Me.Button25.Location = New System.Drawing.Point(38, 242)
+        Me.Button25.Location = New System.Drawing.Point(39, 66)
         Me.Button25.Name = "Button25"
         Me.Button25.Size = New System.Drawing.Size(32, 31)
         Me.Button25.TabIndex = 103
         Me.Button25.UseVisualStyleBackColor = True
-        '
-        'GroupBox36
-        '
-        Me.GroupBox36.Controls.Add(Me.RichTextBox5)
-        Me.GroupBox36.Location = New System.Drawing.Point(122, 79)
-        Me.GroupBox36.Name = "GroupBox36"
-        Me.GroupBox36.Size = New System.Drawing.Size(88, 56)
-        Me.GroupBox36.TabIndex = 75
-        Me.GroupBox36.TabStop = False
-        Me.GroupBox36.Text = "Копейки"
-        '
-        'RichTextBox5
-        '
-        Me.RichTextBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox5.Location = New System.Drawing.Point(6, 24)
-        Me.RichTextBox5.Name = "RichTextBox5"
-        Me.RichTextBox5.Size = New System.Drawing.Size(76, 25)
-        Me.RichTextBox5.TabIndex = 73
-        Me.RichTextBox5.Text = ""
-        '
-        'GroupBox34
-        '
-        Me.GroupBox34.Controls.Add(Me.RichTextBox4)
-        Me.GroupBox34.Location = New System.Drawing.Point(9, 79)
-        Me.GroupBox34.Name = "GroupBox34"
-        Me.GroupBox34.Size = New System.Drawing.Size(88, 56)
-        Me.GroupBox34.TabIndex = 74
-        Me.GroupBox34.TabStop = False
-        Me.GroupBox34.Text = "Рубли"
-        '
-        'RichTextBox4
-        '
-        Me.RichTextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox4.Location = New System.Drawing.Point(6, 24)
-        Me.RichTextBox4.Name = "RichTextBox4"
-        Me.RichTextBox4.Size = New System.Drawing.Size(76, 25)
-        Me.RichTextBox4.TabIndex = 73
-        Me.RichTextBox4.Text = ""
         '
         'GroupBox31
         '
@@ -3207,9 +3249,9 @@ Partial Class Прием
         Me.GroupBox31.Controls.Add(Me.Button9)
         Me.GroupBox31.Controls.Add(Me.Button12)
         Me.GroupBox31.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.GroupBox31.Location = New System.Drawing.Point(174, 24)
+        Me.GroupBox31.Location = New System.Drawing.Point(162, 24)
         Me.GroupBox31.Name = "GroupBox31"
-        Me.GroupBox31.Size = New System.Drawing.Size(498, 279)
+        Me.GroupBox31.Size = New System.Drawing.Size(399, 279)
         Me.GroupBox31.TabIndex = 0
         Me.GroupBox31.TabStop = False
         Me.GroupBox31.Text = "Выполныемая работа"
@@ -3220,7 +3262,7 @@ Partial Class Прием
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RichTextBox3.Location = New System.Drawing.Point(6, 24)
         Me.RichTextBox3.Name = "RichTextBox3"
-        Me.RichTextBox3.Size = New System.Drawing.Size(486, 79)
+        Me.RichTextBox3.Size = New System.Drawing.Size(387, 79)
         Me.RichTextBox3.TabIndex = 106
         Me.RichTextBox3.Text = ""
         '
@@ -3229,17 +3271,39 @@ Partial Class Прием
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button3.Location = New System.Drawing.Point(112, 242)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(90, 30)
+        Me.Button3.Size = New System.Drawing.Size(94, 30)
         Me.Button3.TabIndex = 109
         Me.Button3.Text = "Изменить"
         Me.Button3.UseVisualStyleBackColor = False
         '
+        'GroupBox41
+        '
+        Me.GroupBox41.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox41.Controls.Add(Me.RichTextBox6)
+        Me.GroupBox41.Location = New System.Drawing.Point(6, 109)
+        Me.GroupBox41.Name = "GroupBox41"
+        Me.GroupBox41.Size = New System.Drawing.Size(385, 107)
+        Me.GroupBox41.TabIndex = 111
+        Me.GroupBox41.TabStop = False
+        Me.GroupBox41.Text = "Выполняемая работа (в именительном падеже)"
+        '
+        'RichTextBox6
+        '
+        Me.RichTextBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RichTextBox6.Location = New System.Drawing.Point(6, 24)
+        Me.RichTextBox6.Name = "RichTextBox6"
+        Me.RichTextBox6.Size = New System.Drawing.Size(373, 76)
+        Me.RichTextBox6.TabIndex = 110
+        Me.RichTextBox6.Text = ""
+        '
         'Button9
         '
         Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button9.Location = New System.Drawing.Point(203, 242)
+        Me.Button9.Location = New System.Drawing.Point(212, 242)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(90, 30)
+        Me.Button9.Size = New System.Drawing.Size(100, 30)
         Me.Button9.TabIndex = 108
         Me.Button9.Text = "Удалить"
         Me.Button9.UseVisualStyleBackColor = False
@@ -3266,12 +3330,13 @@ Partial Class Прием
         Me.Grid5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Grid5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Grid5.Location = New System.Drawing.Point(13, 24)
+        Me.Grid5.MultiSelect = False
         Me.Grid5.Name = "Grid5"
         Me.Grid5.ReadOnly = True
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.Grid5.Size = New System.Drawing.Size(559, 317)
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle9
+        Me.Grid5.Size = New System.Drawing.Size(677, 317)
         Me.Grid5.TabIndex = 103
         '
         'GroupBox33
@@ -3525,8 +3590,9 @@ Partial Class Прием
         'CheckBox8
         '
         Me.CheckBox8.AutoSize = True
+        Me.CheckBox8.Enabled = False
         Me.CheckBox8.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox8.Location = New System.Drawing.Point(1041, 89)
+        Me.CheckBox8.Location = New System.Drawing.Point(640, 94)
         Me.CheckBox8.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox8.Name = "CheckBox8"
         Me.CheckBox8.Size = New System.Drawing.Size(80, 19)
@@ -3537,8 +3603,9 @@ Partial Class Прием
         'CheckBox9
         '
         Me.CheckBox9.AutoSize = True
+        Me.CheckBox9.Enabled = False
         Me.CheckBox9.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox9.Location = New System.Drawing.Point(1129, 89)
+        Me.CheckBox9.Location = New System.Drawing.Point(728, 94)
         Me.CheckBox9.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox9.Name = "CheckBox9"
         Me.CheckBox9.Size = New System.Drawing.Size(81, 19)
@@ -3546,107 +3613,55 @@ Partial Class Прием
         Me.CheckBox9.Text = "ДП(Иное)"
         Me.CheckBox9.UseVisualStyleBackColor = True
         '
-        'RichTextBox6
+        'Button13
         '
-        Me.RichTextBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox6.Location = New System.Drawing.Point(6, 24)
-        Me.RichTextBox6.Name = "RichTextBox6"
-        Me.RichTextBox6.Size = New System.Drawing.Size(474, 76)
-        Me.RichTextBox6.TabIndex = 110
-        Me.RichTextBox6.Text = ""
+        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button13.Location = New System.Drawing.Point(100, 105)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(88, 28)
+        Me.Button13.TabIndex = 112
+        Me.Button13.Text = "Изменить"
+        Me.Button13.UseVisualStyleBackColor = False
         '
-        'GroupBox41
+        'TextBox22
         '
-        Me.GroupBox41.Controls.Add(Me.RichTextBox6)
-        Me.GroupBox41.Location = New System.Drawing.Point(6, 109)
-        Me.GroupBox41.Name = "GroupBox41"
-        Me.GroupBox41.Size = New System.Drawing.Size(486, 107)
-        Me.GroupBox41.TabIndex = 111
-        Me.GroupBox41.TabStop = False
-        Me.GroupBox41.Text = "Выполняемая работа (в именительном падеже)"
+        Me.TextBox22.Location = New System.Drawing.Point(6, 24)
+        Me.TextBox22.MaxLength = 25
+        Me.TextBox22.Name = "TextBox22"
+        Me.TextBox22.Size = New System.Drawing.Size(76, 25)
+        Me.TextBox22.TabIndex = 77
+        Me.TextBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'Button20
+        'TextBox52
         '
-        Me.Button20.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button20.Location = New System.Drawing.Point(335, 105)
-        Me.Button20.Name = "Button20"
-        Me.Button20.Size = New System.Drawing.Size(90, 30)
-        Me.Button20.TabIndex = 113
-        Me.Button20.Text = "Удалить"
-        Me.Button20.UseVisualStyleBackColor = False
+        Me.TextBox52.Location = New System.Drawing.Point(5, 24)
+        Me.TextBox52.MaxLength = 2
+        Me.TextBox52.Name = "TextBox52"
+        Me.TextBox52.Size = New System.Drawing.Size(76, 25)
+        Me.TextBox52.TabIndex = 78
+        Me.TextBox52.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'Button21
+        'Button23
         '
-        Me.Button21.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Button21.Location = New System.Drawing.Point(239, 106)
-        Me.Button21.Name = "Button21"
-        Me.Button21.Size = New System.Drawing.Size(90, 30)
-        Me.Button21.TabIndex = 112
-        Me.Button21.Text = "Добавить"
-        Me.Button21.UseVisualStyleBackColor = False
+        Me.Button23.Image = CType(resources.GetObject("Button23.Image"), System.Drawing.Image)
+        Me.Button23.Location = New System.Drawing.Point(372, 22)
+        Me.Button23.Name = "Button23"
+        Me.Button23.Size = New System.Drawing.Size(27, 26)
+        Me.Button23.TabIndex = 1
+        Me.Button23.UseVisualStyleBackColor = True
         '
-        'ListBox3
+        'CheckBox10
         '
-        Me.ListBox3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.HorizontalScrollbar = True
-        Me.ListBox3.ItemHeight = 17
-        Me.ListBox3.Location = New System.Drawing.Point(6, 24)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.ListBox3.Size = New System.Drawing.Size(136, 208)
-        Me.ListBox3.TabIndex = 114
-        '
-        'GroupBox43
-        '
-        Me.GroupBox43.Controls.Add(Me.Button22)
-        Me.GroupBox43.Controls.Add(Me.ListBox3)
-        Me.GroupBox43.Controls.Add(Me.Button25)
-        Me.GroupBox43.Location = New System.Drawing.Point(16, 24)
-        Me.GroupBox43.Name = "GroupBox43"
-        Me.GroupBox43.Size = New System.Drawing.Size(150, 279)
-        Me.GroupBox43.TabIndex = 115
-        Me.GroupBox43.TabStop = False
-        Me.GroupBox43.Text = "Единица измерения"
-        '
-        'ComboBox30
-        '
-        Me.ComboBox30.FormattingEnabled = True
-        Me.ComboBox30.Location = New System.Drawing.Point(6, 21)
-        Me.ComboBox30.Name = "ComboBox30"
-        Me.ComboBox30.Size = New System.Drawing.Size(404, 25)
-        Me.ComboBox30.TabIndex = 107
-        '
-        'GroupBox42
-        '
-        Me.GroupBox42.Controls.Add(Me.ComboBox30)
-        Me.GroupBox42.Location = New System.Drawing.Point(9, 21)
-        Me.GroupBox42.Name = "GroupBox42"
-        Me.GroupBox42.Size = New System.Drawing.Size(416, 52)
-        Me.GroupBox42.TabIndex = 108
-        Me.GroupBox42.TabStop = False
-        Me.GroupBox42.Text = "Выбор работы"
-        '
-        'Grid6
-        '
-        Me.Grid6.AllowUserToAddRows = False
-        Me.Grid6.AllowUserToDeleteRows = False
-        Me.Grid6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.Grid6.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.Grid6.BackgroundColor = System.Drawing.SystemColors.InactiveBorder
-        Me.Grid6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Grid6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Grid6.Location = New System.Drawing.Point(431, 11)
-        Me.Grid6.Name = "Grid6"
-        Me.Grid6.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle2
-        Me.Grid6.Size = New System.Drawing.Size(439, 128)
-        Me.Grid6.TabIndex = 110
+        Me.CheckBox10.AutoSize = True
+        Me.CheckBox10.Enabled = False
+        Me.CheckBox10.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.CheckBox10.Location = New System.Drawing.Point(814, 94)
+        Me.CheckBox10.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckBox10.Name = "CheckBox10"
+        Me.CheckBox10.Size = New System.Drawing.Size(76, 19)
+        Me.CheckBox10.TabIndex = 71
+        Me.CheckBox10.Text = "Контракт"
+        Me.CheckBox10.UseVisualStyleBackColor = True
         '
         'Прием
         '
@@ -3654,6 +3669,7 @@ Partial Class Прием
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1384, 765)
+        Me.Controls.Add(Me.CheckBox10)
         Me.Controls.Add(Me.CheckBox9)
         Me.Controls.Add(Me.CheckBox8)
         Me.Controls.Add(Me.Button11)
@@ -3726,11 +3742,16 @@ Partial Class Прием
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.GroupBox32.ResumeLayout(False)
+        CType(Me.Grid6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox36.ResumeLayout(False)
+        Me.GroupBox36.PerformLayout()
+        Me.GroupBox34.ResumeLayout(False)
+        Me.GroupBox34.PerformLayout()
         Me.GroupBox29.ResumeLayout(False)
         Me.GroupBox30.ResumeLayout(False)
-        Me.GroupBox36.ResumeLayout(False)
-        Me.GroupBox34.ResumeLayout(False)
+        Me.GroupBox43.ResumeLayout(False)
         Me.GroupBox31.ResumeLayout(False)
+        Me.GroupBox41.ResumeLayout(False)
         CType(Me.Grid5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox33.ResumeLayout(False)
         Me.GroupBox33.PerformLayout()
@@ -3738,10 +3759,6 @@ Partial Class Прием
         Me.GroupBox40.ResumeLayout(False)
         Me.GroupBox39.ResumeLayout(False)
         Me.GroupBox38.ResumeLayout(False)
-        Me.GroupBox41.ResumeLayout(False)
-        Me.GroupBox43.ResumeLayout(False)
-        Me.GroupBox42.ResumeLayout(False)
-        CType(Me.Grid6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -4011,7 +4028,6 @@ Partial Class Прием
     Friend WithEvents Button3 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button12 As Button
-    Friend WithEvents RichTextBox4 As RichTextBox
     Friend WithEvents Grid5 As DataGridView
     Friend WithEvents MaskedTextBox11 As MaskedTextBox
     Friend WithEvents MaskedTextBox12 As MaskedTextBox
@@ -4030,7 +4046,6 @@ Partial Class Прием
     Friend WithEvents ComboBox33 As ComboBox
     Friend WithEvents GroupBox32 As GroupBox
     Friend WithEvents GroupBox36 As GroupBox
-    Friend WithEvents RichTextBox5 As RichTextBox
     Friend WithEvents GroupBox34 As GroupBox
     Friend WithEvents Button22 As Button
     Friend WithEvents Button25 As Button
@@ -4040,10 +4055,13 @@ Partial Class Прием
     Friend WithEvents Button20 As Button
     Friend WithEvents Button21 As Button
     Friend WithEvents GroupBox43 As GroupBox
-    Friend WithEvents ListBox3 As ListBox
     Friend WithEvents GroupBox41 As GroupBox
     Friend WithEvents RichTextBox6 As RichTextBox
-    Friend WithEvents GroupBox42 As GroupBox
-    Friend WithEvents ComboBox30 As ComboBox
     Friend WithEvents Grid6 As DataGridView
+    Friend WithEvents ComboBox29 As ComboBox
+    Friend WithEvents Button13 As Button
+    Public WithEvents TextBox52 As TextBox
+    Public WithEvents TextBox22 As TextBox
+    Friend WithEvents Button23 As Button
+    Friend WithEvents CheckBox10 As CheckBox
 End Class
