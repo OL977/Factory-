@@ -883,7 +883,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
         Dim oWordDoc As Microsoft.Office.Interop.Word.Document
         'Dim oWordPara As Microsoft.Office.Interop.Word.Paragraph
 
-        KillProc()
+        'KillProc()
 
         oWord = CreateObject("Word.Application")
         oWord.Visible = False
@@ -901,7 +901,7 @@ WHERE IDКодШтСвод=" & ds.Rows(i).Item(1) & " AND Дата >= '" & DateE
         '    IO.File.Copy(OnePath & "\ОБЩДОКИ\General\Instrukciya.docx", "C:\Users\Public\Documents\Рик\Instrukciya.docx")
         'End Try
 
-
+        Начало("Instrukciya.docx")
         oWordDoc = oWord.Documents.Add(firthtPath & "\Instrukciya.docx")
 
         With oWordDoc.Bookmarks
@@ -1681,6 +1681,9 @@ VALUES (" & коднов & ",'" & Grid1.Rows(s + i).Cells(3).Value & "','" & Gri
         If IsNumeric(TextBox1.Text) = False Then
             If TextBox1.Text.Contains(".") Then
                 Replace(TextBox1.Text, ".", ",")
+                Exit Sub
+            End If
+            If TextBox1.Text = "" Then
                 Exit Sub
             End If
             fnm9 = 1

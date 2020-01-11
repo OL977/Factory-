@@ -241,6 +241,12 @@ Partial Public Class DbAllDataContext
     End Sub
   Partial Private Sub DeleteДогПодОсобен(instance As ДогПодОсобен)
     End Sub
+  Partial Private Sub InsertСНПРВ(instance As СНПРВ)
+    End Sub
+  Partial Private Sub UpdateСНПРВ(instance As СНПРВ)
+    End Sub
+  Partial Private Sub DeleteСНПРВ(instance As СНПРВ)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -475,6 +481,12 @@ Partial Public Class DbAllDataContext
 	Public ReadOnly Property ДогПодОсобен() As System.Data.Linq.Table(Of ДогПодОсобен)
 		Get
 			Return Me.GetTable(Of ДогПодОсобен)
+		End Get
+	End Property
+	
+	Public ReadOnly Property СНПРВ() As System.Data.Linq.Table(Of СНПРВ)
+		Get
+			Return Me.GetTable(Of СНПРВ)
 		End Get
 	End Property
 End Class
@@ -12072,6 +12084,112 @@ Partial Public Class ДогПодОсобен
 				Me._Организация = value
 				Me.SendPropertyChanged("Организация")
 				Me.OnОрганизацияChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.СНПРВ")>  _
+Partial Public Class СНПРВ
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _Код As Integer
+	
+	Private _Год As String
+	
+	Private _Норма As String
+	
+    #Region "Определения метода расширяемости"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnКодChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnКодChanged()
+    End Sub
+    Partial Private Sub OnГодChanging(value As String)
+    End Sub
+    Partial Private Sub OnГодChanged()
+    End Sub
+    Partial Private Sub OnНормаChanging(value As String)
+    End Sub
+    Partial Private Sub OnНормаChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Код", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Код() As Integer
+		Get
+			Return Me._Код
+		End Get
+		Set
+			If ((Me._Код = value)  _
+						= false) Then
+				Me.OnКодChanging(value)
+				Me.SendPropertyChanging
+				Me._Код = value
+				Me.SendPropertyChanged("Код")
+				Me.OnКодChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Год", DbType:="NVarChar(50)")>  _
+	Public Property Год() As String
+		Get
+			Return Me._Год
+		End Get
+		Set
+			If (String.Equals(Me._Год, value) = false) Then
+				Me.OnГодChanging(value)
+				Me.SendPropertyChanging
+				Me._Год = value
+				Me.SendPropertyChanged("Год")
+				Me.OnГодChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Норма", DbType:="NVarChar(50)")>  _
+	Public Property Норма() As String
+		Get
+			Return Me._Норма
+		End Get
+		Set
+			If (String.Equals(Me._Норма, value) = false) Then
+				Me.OnНормаChanging(value)
+				Me.SendPropertyChanging
+				Me._Норма = value
+				Me.SendPropertyChanged("Норма")
+				Me.OnНормаChanged
 			End If
 		End Set
 	End Property

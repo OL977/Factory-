@@ -22,16 +22,17 @@ Partial Class Прием
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Прием))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox42 = New System.Windows.Forms.TextBox()
         Me.ComboBox19 = New System.Windows.Forms.ComboBox()
         Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
+        Me.Button23 = New System.Windows.Forms.Button()
         Me.Label96 = New System.Windows.Forms.Label()
         Me.CheckBox23 = New System.Windows.Forms.CheckBox()
         Me.GroupBox13 = New System.Windows.Forms.GroupBox()
@@ -261,11 +262,14 @@ Partial Class Прием
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox32 = New System.Windows.Forms.GroupBox()
+        Me.Button13 = New System.Windows.Forms.Button()
         Me.Grid6 = New System.Windows.Forms.DataGridView()
         Me.Button20 = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
         Me.GroupBox36 = New System.Windows.Forms.GroupBox()
+        Me.TextBox52 = New System.Windows.Forms.TextBox()
         Me.GroupBox34 = New System.Windows.Forms.GroupBox()
+        Me.TextBox22 = New System.Windows.Forms.TextBox()
         Me.GroupBox29 = New System.Windows.Forms.GroupBox()
         Me.GroupBox30 = New System.Windows.Forms.GroupBox()
         Me.GroupBox43 = New System.Windows.Forms.GroupBox()
@@ -305,10 +309,6 @@ Partial Class Прием
         Me.Button11 = New System.Windows.Forms.Button()
         Me.CheckBox8 = New System.Windows.Forms.CheckBox()
         Me.CheckBox9 = New System.Windows.Forms.CheckBox()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.TextBox22 = New System.Windows.Forms.TextBox()
-        Me.TextBox52 = New System.Windows.Forms.TextBox()
-        Me.Button23 = New System.Windows.Forms.Button()
         Me.CheckBox10 = New System.Windows.Forms.CheckBox()
         Me.GroupBox12.SuspendLayout()
         Me.GroupBox13.SuspendLayout()
@@ -434,6 +434,15 @@ Partial Class Прием
         Me.GroupBox12.TabIndex = 61
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Сотрудники"
+        '
+        'Button23
+        '
+        Me.Button23.Image = CType(resources.GetObject("Button23.Image"), System.Drawing.Image)
+        Me.Button23.Location = New System.Drawing.Point(372, 22)
+        Me.Button23.Name = "Button23"
+        Me.Button23.Size = New System.Drawing.Size(27, 26)
+        Me.Button23.TabIndex = 1
+        Me.Button23.UseVisualStyleBackColor = True
         '
         'Label96
         '
@@ -669,9 +678,9 @@ Partial Class Прием
         Me.Grid1.Location = New System.Drawing.Point(13, 24)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.Grid1.Size = New System.Drawing.Size(742, 253)
         Me.Grid1.TabIndex = 103
         '
@@ -3113,6 +3122,16 @@ Partial Class Прием
         Me.GroupBox32.TabStop = False
         Me.GroupBox32.Text = "Список выбранных работ для договора подряда."
         '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button13.Location = New System.Drawing.Point(100, 105)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(88, 28)
+        Me.Button13.TabIndex = 112
+        Me.Button13.Text = "Изменить"
+        Me.Button13.UseVisualStyleBackColor = False
+        '
         'Grid6
         '
         Me.Grid6.AllowUserToAddRows = False
@@ -3128,9 +3147,9 @@ Partial Class Прием
         Me.Grid6.MultiSelect = False
         Me.Grid6.Name = "Grid6"
         Me.Grid6.ReadOnly = True
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.Grid6.Size = New System.Drawing.Size(582, 119)
         Me.Grid6.TabIndex = 110
         '
@@ -3164,6 +3183,15 @@ Partial Class Прием
         Me.GroupBox36.TabStop = False
         Me.GroupBox36.Text = "Копейки"
         '
+        'TextBox52
+        '
+        Me.TextBox52.Location = New System.Drawing.Point(5, 24)
+        Me.TextBox52.MaxLength = 2
+        Me.TextBox52.Name = "TextBox52"
+        Me.TextBox52.Size = New System.Drawing.Size(76, 25)
+        Me.TextBox52.TabIndex = 78
+        Me.TextBox52.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'GroupBox34
         '
         Me.GroupBox34.Controls.Add(Me.TextBox22)
@@ -3173,6 +3201,15 @@ Partial Class Прием
         Me.GroupBox34.TabIndex = 74
         Me.GroupBox34.TabStop = False
         Me.GroupBox34.Text = "Рубли"
+        '
+        'TextBox22
+        '
+        Me.TextBox22.Location = New System.Drawing.Point(6, 24)
+        Me.TextBox22.MaxLength = 25
+        Me.TextBox22.Name = "TextBox22"
+        Me.TextBox22.Size = New System.Drawing.Size(76, 25)
+        Me.TextBox22.TabIndex = 77
+        Me.TextBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'GroupBox29
         '
@@ -3333,9 +3370,9 @@ Partial Class Прием
         Me.Grid5.MultiSelect = False
         Me.Grid5.Name = "Grid5"
         Me.Grid5.ReadOnly = True
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle3
         Me.Grid5.Size = New System.Drawing.Size(677, 317)
         Me.Grid5.TabIndex = 103
         '
@@ -3612,43 +3649,6 @@ Partial Class Прием
         Me.CheckBox9.TabIndex = 70
         Me.CheckBox9.Text = "ДП(Иное)"
         Me.CheckBox9.UseVisualStyleBackColor = True
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button13.Location = New System.Drawing.Point(100, 105)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(88, 28)
-        Me.Button13.TabIndex = 112
-        Me.Button13.Text = "Изменить"
-        Me.Button13.UseVisualStyleBackColor = False
-        '
-        'TextBox22
-        '
-        Me.TextBox22.Location = New System.Drawing.Point(6, 24)
-        Me.TextBox22.MaxLength = 25
-        Me.TextBox22.Name = "TextBox22"
-        Me.TextBox22.Size = New System.Drawing.Size(76, 25)
-        Me.TextBox22.TabIndex = 77
-        Me.TextBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox52
-        '
-        Me.TextBox52.Location = New System.Drawing.Point(5, 24)
-        Me.TextBox52.MaxLength = 2
-        Me.TextBox52.Name = "TextBox52"
-        Me.TextBox52.Size = New System.Drawing.Size(76, 25)
-        Me.TextBox52.TabIndex = 78
-        Me.TextBox52.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Button23
-        '
-        Me.Button23.Image = CType(resources.GetObject("Button23.Image"), System.Drawing.Image)
-        Me.Button23.Location = New System.Drawing.Point(372, 22)
-        Me.Button23.Name = "Button23"
-        Me.Button23.Size = New System.Drawing.Size(27, 26)
-        Me.Button23.TabIndex = 1
-        Me.Button23.UseVisualStyleBackColor = True
         '
         'CheckBox10
         '

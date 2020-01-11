@@ -66,16 +66,27 @@ Public Class Уволенные
             MessageBox.Show("Выберите сотрудника!", Рик)
             Exit Sub
         End If
-        Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
-                                                  And x.Item("ДокМесто").ToString.Contains("Заявление-Увольнение") Select x
+        'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
+        '                                          And x.Item("ДокМесто").ToString.Contains("Заявление-Увольнение") Select x
 
-        If vb.ElementAtOrDefault(0) IsNot Nothing Then
-            ВыгрузкаФайловНаЛокалыныйКомп(vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            Dim proc As Process = Process.Start(PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            proc.WaitForExit()
-            proc.Close()
-            ЗагрНаСерверИУдаление(PathVremyanka & "/" & vb(0).Item("ИмяФайла"), vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-        End If
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
+                       Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Заявление-Увольнение")
+                       Select x).ToList
+
+            If var.Count > 0 Then
+                ВыгрузкаФайловНаЛокалыныйКомп(var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+                Dim proc As Process = Process.Start(PathVremyanka & "/" & var(0).ИмяФайла)
+                proc.WaitForExit()
+                proc.Close()
+                ЗагрНаСерверИУдаление(PathVremyanka & "/" & var(0).ИмяФайла, var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+            End If
+
+
+
+        End Using
+
+
 
     End Sub
 
@@ -85,16 +96,30 @@ Public Class Уволенные
             MessageBox.Show("Выберите сотрудника!", Рик)
             Exit Sub
         End If
-        Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
-                                                   And x.Item("ДокМесто").ToString.Contains("Приказ-Увольнение") Select x
+        'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
+        '                                           And x.Item("ДокМесто").ToString.Contains("Приказ-Увольнение") Select x
 
-        If vb.ElementAtOrDefault(0) IsNot Nothing Then
-            ВыгрузкаФайловНаЛокалыныйКомп(vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            Dim proc As Process = Process.Start(PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            proc.WaitForExit()
-            proc.Close()
-            ЗагрНаСерверИУдаление(PathVremyanka & "/" & vb(0).Item("ИмяФайла"), vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-        End If
+
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
+                       Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Приказ-Увольнение")
+                       Select x).ToList
+
+
+            If var.Count > 0 Then
+                ВыгрузкаФайловНаЛокалыныйКомп(var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+                Dim proc As Process = Process.Start(PathVremyanka & "/" & var(0).ИмяФайла)
+                proc.WaitForExit()
+                proc.Close()
+                ЗагрНаСерверИУдаление(PathVremyanka & "/" & var(0).ИмяФайла, var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+            End If
+
+
+        End Using
+
+
+
+
 
 
     End Sub
@@ -220,7 +245,7 @@ Public Class Уволенные
         For i = 0 To Grid1.Rows.Count - 1
             For j = 2 To Grid1.ColumnCount - 1
 
-                If j = 6 Or j = 9 Then
+                If j = 6 Or j = 11 Or j = 8 Then
                     xlworksheet.Cells(i + 4, j) = Strings.Left(Grid1(j, i).Value.ToString, 10)
                 Else
                     xlworksheet.Cells(i + 4, j) = Grid1(j, i).Value.ToString
@@ -232,8 +257,8 @@ Public Class Уволенные
         Next
 
 
-        xlworksheet.Cells(2, 6) = времянач
-        xlworksheet.Cells(2, 7) = времякон
+        xlworksheet.Cells(2, 6) = DateTimePicker4.Value.ToShortDateString
+        xlworksheet.Cells(2, 7) = DateTimePicker3.Value.ToShortDateString
 
 
         Try
@@ -418,6 +443,7 @@ Public Class Уволенные
 
         Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Сотрудники.ФИОСборное as ФИО,
 Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
+КарточкаСотрудника.ПриказОбУвольн as [Приказ об увольнении], КарточкаСотрудника.ДатаПриказаОбУвольн as [Дата приказа об увольнении], 
 КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения]
 FROM ((Сотрудники INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр) INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
 Where Сотрудники.НазвОрганиз =@НазвОрганиз AND ((КарточкаСотрудника.ДатаУвольнения) Between @начало And @конец) ORDER BY Сотрудники.ФИОСборное", list)
@@ -427,6 +453,7 @@ Where Сотрудники.НазвОрганиз =@НазвОрганиз AND (
         Grid1.Columns(0).Visible = False
         Grid1.Columns(1).Visible = False
         Grid1.Columns(3).Width = 350
+        Grid1.Columns(2).Width = 350
         Grid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
     End Sub
 

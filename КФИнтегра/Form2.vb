@@ -3526,14 +3526,14 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
             Return 1
         End If
 
-        If CheckBox5.Checked = False Then
-            If Not Примечани <> "" Then
-                If MessageBox.Show("Вы НЕ заполнили примечание!" & vbCrLf & "Выберите OK - если хотите продолжить, или ОТМЕНА - если хотите изменить", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.Cancel Then
-                    Return 1
-                End If
 
+        If Not Примечани <> "" Then
+            If MessageBox.Show("Вы НЕ заполнили примечание!" & vbCrLf & "Выберите OK - если хотите продолжить, или ОТМЕНА - если хотите изменить", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.Cancel Then
+                Return 1
             End If
+
         End If
+
 
 
         If Not ComboBox18.Text <> "" Then
@@ -3656,17 +3656,18 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
             IDso = IDsot1
         End Try
 
-        ДолжРуковВинПад = ДобОконч(ДолжРуков)
+        ДолжРуковВинПад = ДобОконч(ДолжРуков)  'ok
 
-        If Должность = "" And CheckBox5.Checked = True And CheckBox23.Checked = True Then 'если изменяем сотрудника и поле должность пустое то подтягиваем должность из базы
+        'если изменяем сотрудника и поле должность пустое то подтягиваем должность из базы
+        If Должность = "" And CheckBox5.Checked = True And CheckBox23.Checked = True Then
             ДолжСОконч = ДобОконч(ДолжПриИзменСотр())
         Else
             ДолжСОконч = ДобОконч(Replace(Должность, ".", ""))
         End If
 
-        СтавкаНов = Склонение(Ставка) 'склонение ставки
-        СклонГод = Склонение2(СрокКонтр) ' склонение год
-        СрКонтПроп = ЧислПроп(ComboBox11.Text)
+        СтавкаНов = Склонение(arrtcom("ComboBox10")) 'СтавкаНов = Склонение(Ставка) 'склонение ставки   'ok
+        СклонГод = Склонение2(arrtcom("ComboBox11")) 'СклонГод = Склонение2(СрокКонтр) ' склонение год  'ok
+        СрКонтПроп = ЧислПроп(arrtcom("ComboBox11")) 'СрКонтПроп = ЧислПроп(ComboBox11.Text) 'ok
 
         If CheckBox2.Checked = True Then 'галочка по осн или по совместительству
             ПоСовмИлиОсн = "совместительству"
@@ -3675,7 +3676,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
             ПоСовмИлиОсн = "основной работе"
             ПоСовмПриказ = "основное место работы"
         End If
-        ДолжРуковРодПад = ДолжРодПадежФункц(ДолжРуков)
+        ДолжРуковРодПад = ДолжРодПадежФункц(ДолжРуков)  'ok
     End Sub
     Private Function ДолжнИразрядДокЗаявлениеновыйПуть(ByVal d As Integer)
         Dim s As String = ""
@@ -3690,6 +3691,8 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         End Using
 
         Return s
+
+
     End Function
     Private Sub ДокЗаявлениеНовыйПуть(ByVal Сотрудник As IEnumerable(Of Сотрудники))
 
@@ -3700,21 +3703,6 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
         ВыгрузкаФайловНаЛокалыныйКомп(FTPStringAllDOC & "Zayavlenie.doc", firthtPath & "\Zayavlenie.doc")
         oWordDoc1 = oWord1.Documents.Add(firthtPath & "\Zayavlenie.doc")
-
-
-        'Заявление = {MaskedTextBox3.Text, Trim(TextBox6.Text), Trim(TextBox5.Text), Trim(TextBox4.Text),
-        '    TextBox21.Text, MaskedTextBox10.Text, ComboBox9.Text, MaskedTextBox4.Text, ComboBox10.Text,
-        '    Trim(TextBox1.Text), Trim(TextBox2.Text), Trim(TextBox3.Text), MaskedTextBox3.Text, Trim(TextBox11.Text), Trim(TextBox10.Text)}
-
-        'Контракт = {TextBox38.Text, MaskedTextBox4.Text, ComboBox11.Text, MaskedTextBox5.Text, TextBox33.Text,
-        '    TextBox12.Text, TextBox7.Text, MaskedTextBox1.Text, TextBox9.Text, TextBox8.Text, TextBox43.Text}
-
-        'Приказ = {TextBox42.Text, НПриказа, Trim(TextBox34.Text), Trim(TextBox5.Text), Trim(TextBox4.Text),
-        '    MaskedTextBox3.Text, Me.MaskedTextBox4.Text, MaskedTextBox5.Text,
-        '    TextBox38.Text, Trim(TextBox1.Text)}
-
-        'CorName = Mid(TextBox2.Text, 1, 1) & "."
-        'CorOtch = Mid(TextBox3.Text, 1, 1) & "."
 
 
         With oWordDoc1.Bookmarks
@@ -3742,7 +3730,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
             End If
 
             .Item("ЗАКЛ15").Range.Text = ФИОКорРукДат 'OK
-            .Item("ЗАКЛ16").Range.Text = МестоРаб
+            .Item("ЗАКЛ16").Range.Text = МестоРаб 'OK
             .Item("ЗАКЛ17").Range.Text = arrtmask("MaskedTextBox3")
 
 
@@ -3755,7 +3743,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
 
         Dim put, Name As String
-        Name = Заявление(9) & " (заявление)" & " - " & IDso & ".doc"
+        Name = Сотрудник(0).Фамилия & " (заявление)" & " - " & IDso & ".doc"
         put = PathVremyanka & Name 'место в корне программы
 
 
@@ -3773,31 +3761,441 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
         ВременнаяПапкаУдалениеФайла(firthtPath & "\Zayavlenie.doc")
     End Sub
+    Private Sub ГрафикСортНовыйПуть()
+        К33 = ""
+        К34 = ""
+        К35 = ""
+        К36 = ""
+        К37 = ""
+
+
+        Select Case arrtcom("ComboBox15")
+            Case "График"
+                К33 = "согласно графику работ"
+                К34 = "согласно графику работ"
+                К35 = "согласно графику работ"
+                Select Case CheckBox4.Checked
+                    Case False
+                        К36 = "Суббота, Воскресенье"
+                    Case True
+                        К36 = "согласно графику работ"
+                        К37 = "11.5. работнику устанавливается суммированный учет рабочего времени с учетным периодом - год."
+                End Select
+
+            Case "ПВТР"
+                К33 = "согласно правил внутреннего трудового распорядка"
+                К34 = "согласно правил внутреннего трудового распорядка"
+                К35 = "согласно правил внутреннего трудового распорядка"
+
+                Select Case CheckBox4.Checked
+                    Case False
+                        К36 = "согласно графику работ"
+                    Case True
+                        К36 = "согласно графику работ"
+                        К37 = "11.5. работнику устанавливается суммированный учет рабочего времени с учетным периодом - год."
+                End Select
+
+            Case "Задать"
+                К33 = arrtcom("ComboBox12") 'combx12
+                К34 = arrtbox("TextBox49") 'TextBox49.Text
+                К35 = arrtbox("TextBox50") 'TextBox50.Text
+
+                Select Case CheckBox4.Checked
+                    Case False
+                        К36 = "Суббота, Воскресенье"
+                    Case True
+                        К36 = "согласно графику работ"
+                        К37 = "11.5. работнику устанавливается суммированный учет рабочего времени с учетным периодом - год."
+                End Select
+        End Select
+    End Sub
+    Private Sub ДКонтрактНовыйПуть(ByVal Сотрудник As IEnumerable(Of Сотрудники))
+
+        Dim oWord2 As Microsoft.Office.Interop.Word.Application
+        Dim oWordDoc2 As Microsoft.Office.Interop.Word.Document
+        oWord2 = CreateObject("Word.Application")
+        oWord2.Visible = False
+
+        ВыгрузкаФайловНаЛокалыныйКомп(FTPStringAllDOC & "Kontrakt.doc", firthtPath & "\Kontrakt.doc")
+
+        oWordDoc2 = oWord2.Documents.Add(firthtPath & "\Kontrakt.doc")
+
+
+
+        With oWordDoc2.Bookmarks
+            .Item("К0").Range.Text = arrtbox("TextBox38") 'Контракт(0) 'ok
+            .Item("К1").Range.Text = arrtmask("MaskedTextBox3") 'mskbx3 'ok
+            .Item("К2").Range.Text = Сотрудник(0).Фамилия 'Заявление(9) 'ok
+            .Item("К3").Range.Text = Сотрудник(0).Имя 'Заявление(10) 'ok
+            .Item("К4").Range.Text = Сотрудник(0).Отчество 'Заявление(11) 'ok
+            .Item("К5").Range.Text = Сотрудник(0).ФамилияРодПад 'Заявление(1)  'ok
+            .Item("К6").Range.Text = Сотрудник(0).ИмяРодПад 'Заявление(2) 'ok
+            .Item("К7").Range.Text = Сотрудник(0).ОтчествоРодПад 'Заявление(3) 'ok
+
+            'Await Task.Run(Sub() КонтрРазряд()) 'ok
+
+            .Item("К8").Range.Text = LCase(ДолжСОконч) & ДолжнИразрядДокЗаявлениеновыйПуть(Сотрудник(0).КодСотрудники) ' ДокКонтрПерем 'ok
+
+            .Item("К9").Range.Text = arrtcom("ComboBox10") & " " & СтавкаНов 'Заявление(8) 'ok
+            .Item("К10").Range.Text = arrtcom("ComboBox11") & " (" & СрКонтПроп & ") " & СклонГод 'Контракт(2) & " (" & СрКонтПроп & ") " & СклонГод  'ok
+            .Item("К11").Range.Text = arrtmask("MaskedTextBox4") 'Контракт(1) 'ok
+            .Item("К12").Range.Text = arrtmask("MaskedTextBox5") 'Контракт(3) 'ok
+            .Item("К13").Range.Text = Сотрудник(0).Фамилия 'Заявление(9)'ok
+            .Item("К14").Range.Text = Сотрудник(0).Имя 'Заявление(10) 'ok
+            .Item("К15").Range.Text = Сотрудник(0).Отчество 'Заявление(11)  'ok
+            .Item("К16").Range.Text = Сотрудник(0).Регистрация 'Заявление(4)  'ok
+            .Item("К17").Range.Text = Сотрудник(0).ПаспортСерия 'Контракт(5) 'ok
+            .Item("К18").Range.Text = Сотрудник(0).ПаспортНомер 'Контракт(6) 'ok
+            .Item("К19").Range.Text = Сотрудник(0).ПаспортКемВыдан 'Контракт(8) 'ok
+            .Item("К20").Range.Text = Сотрудник(0).ПаспортКогдаВыдан 'Контракт(7) 'ok
+            .Item("К21").Range.Text = Сотрудник(0).ИДНомер 'Контракт(9) 'ok
+            .Item("К22").Range.Text = Сотрудник(0).Фамилия 'Заявление(9)'ok
+            .Item("К23").Range.Text = Mid(Сотрудник(0).Имя, 1, 1) & "." 'CorName 'ok
+            .Item("К24").Range.Text = Mid(Сотрудник(0).Отчество, 1, 1) & "." 'CorOtch 'ok
+            .Item("К25").Range.Text = Сотрудник(0).Фамилия & " " & Mid(Сотрудник(0).Имя, 1, 1) & "." & Mid(Сотрудник(0).Отчество, 1, 1) & "." 'Заявление(9) & " " & CorName & CorOtch 'ok
+            .Item("К26").Range.Text = arrtbox("TextBox33") & "," & arrtbox("TextBox44") 'Контракт(4) & "," & txtbx44  'ok
+            .Item("К27").Range.Text = arrtbox("TextBox43") 'Контракт(10) 'ok
+            .Item("К28").Range.Text = ПоСовмИлиОсн 'ok
+            'If TextBox46.InvokeRequired Then
+            '    Me.Invoke(New txtbx46(AddressOf ДокКонтракт))
+            'Else
+            .Item("К29").Range.Text = arrtbox("TextBox46") 'txtbxD46 'ok
+            'End If
+            .Item("К30").Range.Text = РДОрубли 'ok
+            .Item("К31").Range.Text = РДОкопейки  'ok
+            .Item("К32").Range.Text = arrtbox("TextBox47") 'txtbx47 'ok
+            Select Case arrtcom("ComboBox8")'combx8 'ok
+                Case "Руководители"
+                    .Item("К38").Range.Text = "должностной инструкции"
+                Case "Специалисты"
+                    .Item("К38").Range.Text = "должностной инструкции"
+            End Select
+
+            ГрафикСортНовыйПуть() 'Await Task.Run(Sub() Combx15Контракт()) 'ok
+
+            .Item("К33").Range.Text = К33 'ok
+            .Item("К34").Range.Text = К34  'ok
+            .Item("К35").Range.Text = К35  'ok
+            .Item("К36").Range.Text = К36  'ok
+            .Item("К37").Range.Text = К37  'ok
+
+
+            .Item("К39").Range.Text = ФормаСобстПолн 'ok
+
+            If ФормаСобстПолн = "Индивидуальный предприниматель" Then
+                .Item("К40").Range.Text = Клиент  'ok
+                .Item("К41").Range.Text = ""  'ok
+            Else
+                .Item("К40").Range.Text = " «" & Клиент & "» "  'ok
+                .Item("К41").Range.Text = ДолжРуковВинПад 'ok
+            End If
+
+            .Item("К42").Range.Text = ФИОРукРодПад 'ok
+
+            If Not arrtcom("ComboBox1") = "Итал Гэлэри Плюс" Then 'combx1  'ok
+                .Item("К43").Range.Text = ОснованиеДейств 'ok
+            Else
+                .Item("К51").Range.Text = ""  'ok
+            End If
+            .Item("К44").Range.Text = МестоРаб 'ok
+            .Item("К45").Range.Text = ФИОКор  'ok
+            .Item("К46").Range.Text = СборноеРеквПолн 'ok
+            .Item("К47").Range.Text = Year(Now).ToString  'ok
+            .Item("К48").Range.Text = arrtbox("TextBox40") 'TextBox40.Text 'ok
+
+            If arrtbox("TextBox56") = "" Or arrtbox("TextBox56") = "НЕТ" Then  'If TextBox56.Text = "" Or TextBox56.Text = "НЕТ" Then 'ok
+                .Item("К49").Range.Text = "" 'ok
+            Else
+                .Item("К49").Range.Text = "и " & arrtbox("TextBox56") & "-го (аванс) "  'ok
+            End If
+            'If ComboBox10.Text = "1.0" Then
+            .Item("К50").Range.Text = "1 ставка"
+            'Else
+            '    .Item("К50").Range.Text = ComboBox10.Text & " ставки"
+            'End If
+            Select Case Сотрудник(0).Пол'combx28
+                Case "М"
+                    .Item("К52").Range.Text = "ним"
+                Case "Ж"
+                    .Item("К52").Range.Text = "ней"
+            End Select
+
+        End With
+
+
+        Dim dirstring As String = Клиент & "/Контракт/" & Now.Year & "/" 'место сохранения файла
+        dirstring = СозданиепапкиНаСервере(dirstring) 'полный путь на сервер(кроме имени и разрешения файла)
+
+
+        Dim put, Name As String
+        Name = arrtbox("TextBox38") & " " & Сотрудник(0).Фамилия & " (контракт)" & " - " & Сотрудник(0).КодСотрудники & ".doc" 'txtbx38 & " " & Заявление(9) & " (контракт)" & " - " & IDso & ".doc"
+        put = PathVremyanka & Name 'место в корне программы
+
+        ВыборкаИзагрНаСервер(dirstring, Name, "Прием-Контракт")
+
+        oWordDoc2.SaveAs2(put,,,,,, False)
+
+
+        oWordDoc2.Close(True)
+        oWord2.Quit(True)
+        СохрКонтрFTP.AddRange(New String() {dirstring, Name})
+        dirstring += Name
+
+        ЗагрНаСерверИУдаление(put, dirstring, put)
+
+
+        ВременнаяПапкаУдалениеФайла(firthtPath & "\Kontrakt.doc")
+
+
+
+    End Sub
+    Private Sub ДокПриказНовыйПуть(ByVal Сотрудник As IEnumerable(Of Сотрудники))
+        Dim oWord3 As Microsoft.Office.Interop.Word.Application
+        Dim oWordDoc3 As Microsoft.Office.Interop.Word.Document
+        oWord3 = CreateObject("Word.Application")
+        oWord3.Visible = False
+
+        ВыгрузкаФайловНаЛокалыныйКомп(FTPStringAllDOC & "Prikaz.doc", firthtPath & "\Prikaz.doc")
+
+        oWordDoc3 = oWord3.Documents.Add(firthtPath & "\Prikaz.doc")
+
+
+        With oWordDoc3.Bookmarks
+            .Item("П1").Range.Text = arrtmask("MaskedTextBox3") 'Приказ(5) 'ok
+            .Item("П2").Range.Text = НПриказа 'ok
+            .Item("П3").Range.Text = Сотрудник(0).ФамилияРодПад 'txtbx6  'ok
+            .Item("П4").Range.Text = Mid(Сотрудник(0).Имя, 1, 1) & "." 'CorName  'ok
+            .Item("П5").Range.Text = Mid(Сотрудник(0).Отчество, 1, 1) & "." 'CorOtch  'ok
+            .Item("П6").Range.Text = Сотрудник(0).ФамилияРодПад 'txtbx6 'ok
+            .Item("П7").Range.Text = Сотрудник(0).ИмяРодПад 'Приказ(3) 'ok
+            .Item("П8").Range.Text = Сотрудник(0).ОтчествоРодПад 'Приказ(4)  'ok
+            .Item("П9").Range.Text = LCase(ДолжСОконч) & ДолжнИразрядДокЗаявлениеновыйПуть(Сотрудник(0).КодСотрудники) 'Strings.LCase(ДолжСОконч) & ДолжнИразрядДокЗаявление()  'ok
+            .Item("П10").Range.Text = arrtmask("MaskedTextBox4") 'Приказ(6)'ok
+            .Item("П11").Range.Text = arrtcom("ComboBox10") 'Ставка  'ok
+            .Item("П12").Range.Text = СтавкаНов  'ok
+            .Item("П13").Range.Text = arrtcom("ComboBox11") 'СрокКонтр 'ok
+            .Item("П14").Range.Text = СклонГод 'ok
+            .Item("П15").Range.Text = arrtmask("MaskedTextBox4") 'Приказ(6)'ok
+            .Item("П16").Range.Text = arrtmask("MaskedTextBox5") 'Приказ(7)
+            .Item("П17").Range.Text = Сотрудник(0).ФамилияДляЗаявления 'Приказ(2)
+            .Item("П18").Range.Text = Mid(Сотрудник(0).Имя, 1, 1) & "." 'CorName  'ok
+            .Item("П19").Range.Text = Mid(Сотрудник(0).Отчество, 1, 1) & "." 'CorOtch  'ok
+            .Item("П20").Range.Text = arrtbox("TextBox38") 'Приказ(8) 'ok
+            .Item("П21").Range.Text = arrtmask("MaskedTextBox3") 'Приказ(5) 'ok
+            .Item("П22").Range.Text = Сотрудник(0).Фамилия 'Приказ(9)  'ok
+            .Item("П23").Range.Text = Mid(Сотрудник(0).Имя, 1, 1) & "." 'CorName  'ok
+            .Item("П24").Range.Text = Mid(Сотрудник(0).Отчество, 1, 1) & "." 'CorOtch  'ok
+            .Item("П25").Range.Text = ФормаСобстПолн 'ok
+
+            If ФормаСобстПолн = "Индивидуальный предприниматель" Then
+                .Item("П26").Range.Text = Клиент   'ok
+            Else
+                .Item("П26").Range.Text = " «" & Клиент & "» "  'ok
+            End If
+
+            .Item("П27").Range.Text = ЮрАдрес   'ok
+            .Item("П28").Range.Text = УНП  'ok
+            .Item("П29").Range.Text = РасСчет  'ok
+            .Item("П30").Range.Text = АдресБанка 'ok
+            .Item("П31").Range.Text = БИК 'ok
+            .Item("П33").Range.Text = ЭлАдрес 'ok
+            .Item("П34").Range.Text = КонтТелефон  'ok
+            .Item("П35").Range.Text = МестоРаб   'ok
+
+            If ДолжРуков = "Индивидуальный предприниматель" Then    'ok
+                .Item("П36").Range.Text = ДолжРуков   'ok
+                .Item("П37").Range.Text = ""   'ok
+            Else
+                .Item("П36").Range.Text = ДолжРуков & " " & ФормаСобствКор  'ok
+                .Item("П37").Range.Text = " «" & Клиент & "» "  'ok
+            End If
+
+
+            .Item("П38").Range.Text = ФИОКор  'ok
+            .Item("П39").Range.Text = ПоСовмПриказ  'ok
+
+        End With
+
+
+        Dim dirstring As String = Клиент & "/Приказ/" & Now.Year & "/" 'место сохранения файла
+        dirstring = СозданиепапкиНаСервере(dirstring) 'полный путь на сервер(кроме имени и разрешения файла)
+
+
+        Dim put, Name As String
+        Name = НПриказа & " прием " & Сотрудник(0).Фамилия & " от " & arrtmask("MaskedTextBox3") & " (приказ)" & " - " & Сотрудник(0).КодСотрудники & " .doc" 'НПриказа & " прием " & Приказ(9) & " от " & mskbx3 & " (приказ)" & " - " & IDso & " .doc"
+        put = PathVremyanka & Name 'место в корне программы
+
+        ВыборкаИзагрНаСервер(dirstring, Name, "Прием-Приказ")
+
+        'Dim b = dtSotrudnikiAll.Select("ФИОСборное='" & combx19 & "'") 'выбираем данные по сотруднику
+        'Dim kd As Integer = CType(b(0).Item("КодСотрудники").ToString, Integer) 'находим ИД сотрудника
+        'ЗагрВБазуПутиДоковAsync(kd, dirstring, Name, "Прием-Приказ") 'заполняем данные путей и назв файла
+
+        oWordDoc3.SaveAs2(put,,,,,, False)
+
+
+        oWordDoc3.Close(True)
+        oWord3.Quit(True)
+
+        СохрПрикFTP.AddRange(New String() {dirstring, Name})
+        dirstring += Name
+
+        ЗагрНаСерверИУдаление(put, dirstring, put)
+
+        ВременнаяПапкаУдалениеФайла(firthtPath & "\Prikaz.doc")
+    End Sub
+    Private Sub ДокИнструкцНовыйПуть(Сотрудник As IEnumerable(Of Сотрудники))
+
+
+        Dim hk As DataTable
+        Dim list As New Dictionary(Of String, Object)()        '
+        list.Add("@Клиент", arrtcom("ComboBox1"))
+        list.Add("@Отделы", arrtcom("ComboBox8"))
+        list.Add("@Должность", arrtcom("ComboBox9"))
+        list.Add("@Разряд", arrtcom("ComboBox7"))
+
+        'list.Add("@Клиент", combx1)
+        'list.Add("@Отделы", combx8)
+        'list.Add("@Должность", combx9)
+        'list.Add("@Разряд", combx7)
+
+
+
+        list.Add("@ID", Сотрудник(0).КодСотрудники)
+
+        ИнстрFTP.Clear()
+
+        Try
+            If Not ПровИнстр = 1 Then
+                'Формируем инструкцию 
+                If CheckBox23.Checked = False Then
+                    Dim dg = Selects(StrSql:="Select ШтСвод.НомерДолжИнстр FROM ШтОтделы INNER JOIN ШтСвод On ШтОтделы.Код = ШтСвод.Отдел
+        WHERE ШтОтделы.Клиент=@Клиент AND ШтОтделы.Отделы=@Отделы AND ШтСвод.Должность=@Должность AND ШтСвод.Разряд=@Разряд AND ШтСвод.ДолжИнструкция='True'", list)
+                    If errds = 0 Then
+                        ИнстрП = dg.Rows(0).Item(0).ToString
+                        ИнстрFTP.AddRange(New String() {FTPString & arrtcom("ComboBox1") & "/Должностные инструкции/", dg.Rows(0).Item(0).ToString & ".doc"})
+                    End If
+
+                Else
+                    If CheckBox26.Checked = True Then
+                        Dim dg = Selects(StrSql:="SELECT ШтСвод.НомерДолжИнстр FROM ШтОтделы INNER JOIN ШтСвод ON ШтОтделы.Код = ШтСвод.Отдел
+WHERE ШтОтделы.Клиент=@Клиент AND ШтОтделы.Отделы=@Отделы AND ШтСвод.Должность=@Должность
+AND ШтСвод.Разряд=@Разряд AND ШтСвод.ДолжИнструкция='True'", list)
+
+                        If errds = 0 Then
+                            ИнстрП = dg.Rows(0).Item(0).ToString
+                            'Инстр = OnePath & combx1 & "\Должностные инструкции\" & dg.Rows(0).Item(0).ToString & ".doc"
+                            ИнстрFTP.AddRange(New String() {FTPString & arrtcom("ComboBox1") & "/Должностные инструкции/", dg.Rows(0).Item(0).ToString & ".doc"})
+                        End If
+
+                    Else
+                        If Not hk Is Nothing Then hk.Clear()
+                        hk = Selects(StrSql:="SELECT Отдел,Должность,Разряд FROM Штатное WHERE ИДСотр=@ID", list)
+
+                        If Not hk Is Nothing Then
+                            list.Add("@Отделы2", hk.Rows(0).Item(0).ToString)
+                            list.Add("@Должность2", hk.Rows(0).Item(1).ToString)
+                            list.Add("@Разряд2", hk.Rows(0).Item(2).ToString)
+                        End If
+
+                        If errds = 0 Then
+                            Dim dg = Selects(StrSql:="SELECT ШтСвод.НомерДолжИнстр FROM ШтОтделы INNER JOIN ШтСвод ON ШтОтделы.Код = ШтСвод.Отдел
+WHERE ШтОтделы.Клиент=@Клиент AND ШтОтделы.Отделы=@Отделы2 AND ШтСвод.Должность=@Должность2
+AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнструкция='True'", list)
+
+                            Try
+                                ИнстрП = dg.Rows(0).Item(0).ToString
+                                ИнстрFTP.AddRange(New String() {FTPString & arrtcom("ComboBox1") & "/Должностные инструкции/", dg.Rows(0).Item(0).ToString & ".doc"})
+                            Catch ex As Exception
+
+                            End Try
+
+                            'Инстр = OnePath & combx1 & "\Должностные инструкции\" & dg.Rows(0).Item(0).ToString & ".doc"
+
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+
+
+    End Sub
     Private Sub ДокиКонтрактНовыйПуть()
+
         'выбираем данные из таблицы Сотрудники по idсотрудника
         Dim Сотрудник As IEnumerable(Of Сотрудники)
         Using dbcx As New DbAllDataContext
             Сотрудник = (From x In dbcx.Сотрудники.AsEnumerable
                          Where x.КодСотрудники = CType(Label96.Text, Integer)
-                         Select x).FirstOrDefault()
+                         Select x).ToList()
         End Using
 
+        ДокПредварДаннНовыйПуть()
+
+        'если доки надо оформить
+        If CheckBox23.Checked = True Then
+            ДокЗаявлениеНовыйПуть(Сотрудник)
+            ДКонтрактНовыйПуть(Сотрудник)
+            ДокПриказНовыйПуть(Сотрудник)
+            ДокИнструкцНовыйПуть(Сотрудник)
+            If MessageBox.Show("Контракт № " & arrtbox("TextBox38") & " от " & arrtmask("MaskedTextBox3") & vbCrLf & "Приказ № " & НПриказа &
+ arrtbox("TextBox57") & " от " & arrtmask("MaskedTextBox3") & vbCrLf & "Заявление от " & arrtmask("MaskedTextBox3") & vbCrLf &
+ "С сотрудником " & vbCrLf & Сотрудник(0).Фамилия & " " & Сотрудник(0).Имя & " " & Сотрудник(0).Отчество & vbCrLf & "Инструкция " & ИнстрП & vbCrLf & "Сформированы!" & vbCrLf & "Распечатать Документы?",
+                               Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+
+                ПечатьКонтрактНовыйПуть()
+            End If
+        Else
+            MessageBox.Show("Сотрудник добавлен в базу!", Рик)
+        End If
 
 
 
-        'ДокПредварДаннНовыйПуть()
+    End Sub
+    Private Sub ПечатьКонтрактНовыйПуть()
+        'If MessageBox.Show("Напишите количество копий для контракта! Укажите цифру 1 или 2!", Рик, ) Then
+        'End If
+        Do
+            rz = InputBox("Напишите количество копий для контракта! Укажите цифру 1 или 2!", "1 или 2")
+        Loop Until rz = 1 Or rz = 2
+
+        'Task.WaitAll(TskArr)
+
+        Select Case rz
+            Case 1
+                If ПровИнстр = 1 Then
+                    massFTP.Add(СохрЗакFTP)
+                    massFTP.Add(СохрКонтрFTP)
+                    massFTP.Add(СохрПрикFTP)
+                Else
+                    massFTP.Add(СохрЗакFTP)
+                    massFTP.Add(СохрКонтрFTP)
+                    massFTP.Add(СохрПрикFTP)
+                    massFTP.Add(ИнстрFTP)
+                    massFTP.Add(ИнстрFTP)
+                End If
+            Case 2
+                If ПровИнстр = 1 Then
+                    massFTP.Add(СохрЗакFTP)
+                    massFTP.Add(СохрКонтрFTP)
+                    massFTP.Add(СохрПрикFTP)
+                    massFTP.Add(СохрКонтрFTP)
+                Else
+                    massFTP.Add(СохрЗакFTP)
+                    massFTP.Add(СохрКонтрFTP)
+                    massFTP.Add(СохрПрикFTP)
+                    massFTP.Add(СохрКонтрFTP)
+                    massFTP.Add(ИнстрFTP)
+                    massFTP.Add(ИнстрFTP)
+                End If
+        End Select
+        ПечатьДоковFTP(massFTP)
 
 
+        'Task.WaitAll(TskArr)
 
-
-
-
-
-
-        ДокЗаявлениеНовыйПуть(Сотрудник)
-        'ДокКонтрактНовыйПуть()
-        'ДокПриказНовыйПуть()
-        'ДокИнструкцНовыйПуть()
 
     End Sub
     Private Function МестоРаботыНовыйПуть()
@@ -3843,38 +4241,28 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
     Private Sub НовыйПутьКонтракт()
 
-        'Проверяем контракт 
-        'If ПроверкаЗаполненностиВкладкиКонтрактНовыйПуть() = 1 Then
-        '    Exit Sub
-        'End If
-
-        СохраняемКонтролыВСписки(TabPage2)
-
-        МестоРаботыНовыйПуть() 'проверка места работы 
-
-        ДокиКонтрактНовыйПуть()  'проверка временно
-
-        If MessageBox.Show("Оформить контракт и пакет документов?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        'Проверяем Контракт 
+        If ПроверкаЗаполненностиВкладкиКонтрактНовыйПуть() = 1 Then
             Exit Sub
         End If
 
-        '\\не добавил проверку объекта общепита т.к оформляю только прием сотрудника
+        СохраняемКонтролыВСписки(TabPage2)
 
-        'If CheckBox7.Checked = False Then
+        'оформление места работы 
+        If МестоРаботыНовыйПуть() = 1 Then Exit Sub
 
-        'If МестоРаботы() = 1 Then
-        '        Exit Sub
-        '    End If
-        'End If
-
-        '\\
-
-
+        'добавляем сотрудника в базу
         ДобавлениеСотрудникаНовыйПуть()
 
-            ДокиКонтрактНовыйПуть()
+        If MessageBox.Show("Оформить пакет документов?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
+        Else
+            CheckBox23.Checked = True
+        End If
 
 
+        'контракт оформление документов
+        ДокиКонтрактНовыйПуть()
 
 
 
@@ -4048,7 +4436,43 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         Статистика1(sot.ФИОСборное, "Добавление нового сотрудника", arrtcom("ComboBox1"))
 
     End Sub
+    Private Sub ОчисткаАктивнойВкладкиНовыйПуть()
+
+
+        'перебираем все контролы в гроупбоксах
+
+        For Each gp In TabControl1.SelectedTab.Controls.OfType(Of GroupBox) 'таб2 
+
+            For Each tf In gp.Controls.OfType(Of TextBox)
+                tf.Text = ""
+            Next
+
+            For Each tx In gp.Controls.OfType(Of ComboBox)
+                tx.Text = ""
+            Next
+
+            For Each ts In gp.Controls.OfType(Of MaskedTextBox)
+                ts.Text = ""   'arrtmask.Add(ts.Name, ts.Text)
+            Next
+
+            For Each tx1 In gp.Controls.OfType(Of GroupBox)
+
+                For Each tx In tx1.Controls.OfType(Of ComboBox)
+                    tx.Text = ""   'arrtcom.Add(tx.Name, tx.Text)
+                Next
+                For Each ts In tx1.Controls.OfType(Of MaskedTextBox)
+                    ts.Text = ""  'arrtmask.Add(ts.Name, ts.Text)
+                Next
+                For Each tf In tx1.Controls.OfType(Of TextBox)
+                    tf.Text = "" 'arrtbox.Add(tf.Name, tf.Text)
+                Next
+
+            Next
+
+        Next
+    End Sub
     Private Sub СохраняемКонтролыВСписки(ByVal TabPageName As TabPage)
+
         Parallel.Invoke(Sub() ЗаполнМассВнеТабах())
 
 
@@ -4086,6 +4510,112 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
 
     End Sub
+    Private Sub УдалениеСотрНовыйПуть()
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Dim idc As Integer = CType(Label96.Text, Integer)
+
+        'Проверяем есть в папке путиДокументов данные, если есть копируем и удаляем доки на сервере и в таблице ПутиДокументов
+        Using dbcx As New DbAllDataContext
+            Dim f = (From x In dbcx.ПутиДокументов.AsEnumerable
+                     Where x.IDСотрудник = idc
+                     Select x).ToList
+            If f.Count > 0 Then
+                Dim vart2 = From x In dtPutiDokumentovAll.AsEnumerable Where Not IsDBNull(x.Item("IDСотрудник")) Select x
+                Dim vart = From x1 In vart2 Where x1.Item("IDСотрудник") = idc Select x1.Item("Путь") & x1.Item("ИмяФайла")
+                For b As Integer = 0 To vart.Count - 1
+                    DeleteFluentFTP(vart(b).ToString)
+                Next
+            End If
+        End Using
+
+
+
+        Using dbcx As New DbAllDataContext
+
+            'удалем из таблицы Сотрудники
+            Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                       Where x.КодСотрудники = idc
+                       Select x).SingleOrDefault
+            If var IsNot Nothing Then
+                dbcx.Сотрудники.DeleteOnSubmit(var)
+                dbcx.SubmitChanges()
+            End If
+
+            ''удалем из таблицы КарточкаСотрудника
+            'Dim var1 = (From x In dbcx.КарточкаСотрудника.AsEnumerable
+            '            Where x.IDСотр = idc
+            '            Select x).SingleOrDefault
+            'If var1 IsNot Nothing Then
+            '    dbcx.КарточкаСотрудника.DeleteOnSubmit(var1)
+            '    dbcx.SubmitChanges()
+            'End If
+
+            ''удалем из таблицы ДогСотрудн
+            'Dim var2 = (From x In dbcx.ДогСотрудн.AsEnumerable
+            '            Where x.IDСотр = idc
+            '            Select x).SingleOrDefault
+            'If var2 IsNot Nothing Then
+            '    dbcx.ДогСотрудн.DeleteOnSubmit(var2)
+            '    dbcx.SubmitChanges()
+            'End If
+
+            ''удалем из таблицы Штатное
+            'Dim var3 = (From x In dbcx.Штатное.AsEnumerable
+            '            Where x.ИДСотр = idc
+            '            Select x).SingleOrDefault
+            'If var3 IsNot Nothing Then
+            '    dbcx.Штатное.DeleteOnSubmit(var3)
+            '    dbcx.SubmitChanges()
+            'End If
+
+            ''удалем из таблицы ПутиДокументов
+            'Dim var4 = (From x In dbcx.ПутиДокументов.AsEnumerable
+            '                Where x.IDСотрудник = idc
+            '                Select x).SingleOrDefault
+            'If var4 IsNot Nothing Then
+            '    dbcx.ПутиДокументов.DeleteOnSubmit(var4)
+            '    dbcx.SubmitChanges()
+            'End If
+
+
+        End Using
+
+        Статистика1(ComboBox19.Text, "Удаление сотрудника", ComboBox1.Text)
+        MessageBox.Show("Сотрудник удален из базы!", Рик)
+        CheckBox27.Checked = False
+
+
+        Me.Cursor = Cursors.Default
+
+        ОчисткаАктивнойВкладкиНовыйПуть()
+
+        Com1sel()
+            ComboBox19.Text = ""
+            Label96.Text = ""
+
+    End Sub
+    Private Sub Удаление()
+        If IsNumeric(Label96.Text) Then
+            Using dbcx As New DbAllDataContext  'определяем, оформлен ли сотрудник через справочник
+                Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                           Where x.КодСотрудники = CType(Label96.Text, Integer)
+                           Select x.ДанныеИзСправочника).FirstOrDefault()
+                If var = "True" Then
+                    УдалениеСотрНовыйПуть()
+                Else
+                    УдалениеСотр()
+
+                End If
+            End Using
+
+        End If
+
+
+
+
+    End Sub
 
     Public Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
@@ -4102,6 +4632,15 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         If arrtcom.Any Then
             arrtcom.Clear()
         End If
+
+        If CheckBox27.Checked = True Then
+            Удаление()
+
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End If
+
+
 
 
         'прверяем по новому пути идти или по старому
@@ -4148,13 +4687,13 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
         'Dim СборДанОрг As New Thread(AddressOf СборДаннОрганиз)
         'СборДанОрг.Start()
 
-        Dim d As Integer = УдалениеСотр() 'удаление сотрудника
-        If d = 1 Then
-            Me.Cursor = Cursors.WaitCursor
+        'Dim d As Integer = УдалениеСотр() 'удаление сотрудника
+        'If d = 1 Then
+        '    Me.Cursor = Cursors.WaitCursor
 
-            Me.Cursor = Cursors.Default
-            Exit Sub
-        End If
+        '    Me.Cursor = Cursors.Default
+        '    Exit Sub
+        'End If
 
         СрокКонтр = ComboBox11.Text
         Ставка = ComboBox10.Text
@@ -6675,7 +7214,7 @@ FROM СоставСемьи"
                         Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = ComboBox22.SelectedValue
                         Select x.Код).FirstOrDefault()
 
-            Dim var = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.Код = idob Select x).Single
+            Dim var = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.Код = idob Select x).SingleOrDefault
             If var IsNot Nothing Then
                 var.Обязанности = RichTextBox1.Text
                 dbcx.SubmitChanges()
@@ -7862,6 +8401,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             TabControl1.TabPages.Remove(TabPage4)
         End If
     End Sub
+
 
     Private Function ПроверкаОформенСотрудникЧерезСправочник(ByVal _КодСотр As Integer) As Boolean
         Using dbcx As New DbAllDataContext  'определяем, оформлен ли сотрудник через справочник

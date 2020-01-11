@@ -592,4 +592,11 @@
       <Column Name="Организация" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.СНПРВ" Member="СНПРВ">
+    <Type Name="СНПРВ">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Год" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Норма" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

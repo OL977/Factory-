@@ -718,4 +718,8 @@ Public Class MDIParent1
         СправочникСотрудники.BtnClick = "Изменить"
         СправочникСотрудники.ShowDialog()
     End Sub
+
+    Private Sub СНПРВToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СНПРВToolStripMenuItem.Click
+        СНПРВ.ShowDialog()
+    End Sub
 End Class

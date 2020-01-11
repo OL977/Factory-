@@ -717,6 +717,12 @@
     <Compile Include="ПринятыеСписки.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="СНПРВ.Designer.vb">
+      <DependentUpon>СНПРВ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="СНПРВ.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="СправкаЗпКонстанта.Designer.vb">
       <DependentUpon>СправкаЗпКонстанта.vb</DependentUpon>
     </Compile>
@@ -983,6 +989,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ПринятыеСписки.resx">
       <DependentUpon>ПринятыеСписки.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="СНПРВ.resx">
+      <DependentUpon>СНПРВ.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="СправкаЗпКонстанта.resx">
       <DependentUpon>СправкаЗпКонстанта.vb</DependentUpon>

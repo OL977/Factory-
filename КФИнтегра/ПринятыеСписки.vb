@@ -17,17 +17,30 @@ Public Class ПринятыеСписки
             MessageBox.Show("Выберите сотрудника!", Рик)
             Exit Sub
         End If
-        Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
-                                                   And x.Item("ДокМесто").ToString.Contains("Прием-Приказ") Select x
+        'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
+        '                                           And x.Item("ДокМесто").ToString.Contains("Прием-Приказ") Select x
 
-        If vb.ElementAtOrDefault(0) IsNot Nothing Then
-            ВыгрузкаФайловНаЛокалыныйКомп(vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            Dim proc As Process = Process.Start(PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            proc.WaitForExit()
-            proc.Close()
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
+                       Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Прием-Приказ")
+                       Select x).ToList
 
-            ЗагрНаСерверИУдаление(PathVremyanka & "/" & vb(0).Item("ИмяФайла"), vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-        End If
+
+            If var.Count > 0 Then
+                ВыгрузкаФайловНаЛокалыныйКомп(var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+                Dim proc As Process = Process.Start(PathVremyanka & "/" & var(0).ИмяФайла)
+                proc.WaitForExit()
+                proc.Close()
+
+                ЗагрНаСерверИУдаление(PathVremyanka & "/" & var(0).ИмяФайла, var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+            End If
+        End Using
+
+
+
+
+
+
 
     End Sub
 
@@ -37,16 +50,28 @@ Public Class ПринятыеСписки
             MessageBox.Show("Выберите сотрудника!", Рик)
             Exit Sub
         End If
-        Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
-                                                   And x.Item("ДокМесто").ToString.Contains("Прием-Зявление") Select x
+        'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
+        '                                           And x.Item("ДокМесто").ToString.Contains("Прием-Зявление") Select x
 
-        If vb.ElementAtOrDefault(0) IsNot Nothing Then
-            ВыгрузкаФайловНаЛокалыныйКомп(vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            Dim proc As Process = Process.Start(PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            proc.WaitForExit()
-            proc.Close()
-            ЗагрНаСерверИУдаление(PathVremyanka & "/" & vb(0).Item("ИмяФайла"), vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-        End If
+
+
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
+                       Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Прием-Зявление")
+                       Select x).ToList
+
+
+            If var.Count > 0 Then
+                ВыгрузкаФайловНаЛокалыныйКомп(var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+                Dim proc As Process = Process.Start(PathVremyanka & "/" & var(0).ИмяФайла)
+                proc.WaitForExit()
+                proc.Close()
+                ЗагрНаСерверИУдаление(PathVremyanka & "/" & var(0).ИмяФайла, var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+            End If
+
+        End Using
+
+
 
     End Sub
 
@@ -56,17 +81,27 @@ Public Class ПринятыеСписки
             MessageBox.Show("Выберите сотрудника!", Рик)
             Exit Sub
         End If
-        Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
-                                                   And x.Item("ДокМесто").ToString.Contains("Прием-Контракт") Select x
+        'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
+        '                                           And x.Item("ДокМесто").ToString.Contains("Прием-Контракт") Select x
+
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
+                       Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Прием-Контракт")
+                       Select x).ToList
+
+            If var.Count > 0 Then
+                ВыгрузкаФайловНаЛокалыныйКомп(var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+                Dim proc As Process = Process.Start(PathVremyanka & "/" & var(0).ИмяФайла)
+                proc.WaitForExit()
+                proc.Close()
+                ЗагрНаСерверИУдаление(PathVremyanka & "/" & var(0).ИмяФайла, var(0).ПолныйПуть, PathVremyanka & "/" & var(0).ИмяФайла)
+            End If
+
+        End Using
 
 
-        If vb.ElementAtOrDefault(0) IsNot Nothing Then
-            ВыгрузкаФайловНаЛокалыныйКомп(vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            Dim proc As Process = Process.Start(PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-            proc.WaitForExit()
-            proc.Close()
-            ЗагрНаСерверИУдаление(PathVremyanka & "/" & vb(0).Item("ИмяФайла"), vb(0).Item("ПолныйПуть"), PathVremyanka & "/" & vb(0).Item("ИмяФайла"))
-        End If
+
+
 
     End Sub
 
@@ -153,8 +188,11 @@ Public Class ПринятыеСписки
         'ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта]
         'From (Сотрудники INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр
         'Where Сотрудники.НазвОрганиз = '" & Организ & "' AND ((ДогСотрудн.ДатаКонтракта) Between #" & времянач & "# And #" & времякон & "#) ORDER BY Сотрудники.ФИОСборное"
+
+
         Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Сотрудники.ФИОСборное as ФИО,
 Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
+ ДогСотрудн.Приказ as [Приказ о приеме],ДогСотрудн.Датаприказа as [Дата приказа о приеме],
 КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения], ДогСотрудн.Перевод
 FROM ((Сотрудники INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр) INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
 Where Сотрудники.НазвОрганиз =@НазвОрганиз AND ((ДогСотрудн.ДатаКонтракта) Between @начало And @конец) ORDER BY Сотрудники.ФИОСборное", list) 'AND ((ДогСотрудн.ДатаКонтракта) Between '" & времянач1 & "' And '" & времякон1 & "') ORDER BY Сотрудники.ФИОСборное" 
@@ -166,6 +204,7 @@ Where Сотрудники.НазвОрганиз =@НазвОрганиз AND (
         Grid1.Columns(0).Visible = False
         Grid1.Columns(1).Visible = False
         Grid1.Columns(3).Width = 250
+        Grid1.Columns(2).Width = 350
     End Sub
     Private Sub ExtrExcel()
         If ComboBox2.Text = "" Then
@@ -211,7 +250,7 @@ Where Сотрудники.НазвОрганиз =@НазвОрганиз AND (
 
         For i = 0 To Grid1.Rows.Count - 1
             For j = 2 To Grid1.ColumnCount - 1
-                If j = 6 Or j = 9 Then
+                If j = 6 Or j = 11 Then
                     xlworksheet.Cells(i + 4, j) = Strings.Left(Grid1(j, i).Value.ToString, 10)
                 Else
                     xlworksheet.Cells(i + 4, j) = Grid1(j, i).Value.ToString
@@ -219,8 +258,8 @@ Where Сотрудники.НазвОрганиз =@НазвОрганиз AND (
             Next
         Next
 
-        xlworksheet.Cells(2, 6) = времянач
-        xlworksheet.Cells(2, 7) = времякон
+        xlworksheet.Cells(2, 6) = DateTimePicker4.Value.ToShortDateString
+        xlworksheet.Cells(2, 7) = DateTimePicker3.Value.ToShortDateString
 
         Try
 

@@ -22,7 +22,7 @@ Partial Class ПринятыеСписки
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -151,8 +151,8 @@ Partial Class ПринятыеСписки
         Me.Grid1.Location = New System.Drawing.Point(12, 183)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.Grid1.Size = New System.Drawing.Size(861, 412)
         Me.Grid1.TabIndex = 40
         '
@@ -229,13 +229,14 @@ Partial Class ПринятыеСписки
         '
         'ПринятыеСписки
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(916, 616)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Grid1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Name = "ПринятыеСписки"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Принятые сотрудники"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.GroupBox2.ResumeLayout(False)

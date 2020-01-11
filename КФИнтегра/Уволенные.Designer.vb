@@ -22,6 +22,7 @@ Partial Class Уволенные
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Уволенные))
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -173,10 +174,13 @@ Partial Class Уволенные
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Grid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.Grid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.Grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Grid1.Location = New System.Drawing.Point(12, 190)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.Grid1.Size = New System.Drawing.Size(1120, 276)
         Me.Grid1.TabIndex = 39
         '
@@ -264,14 +268,15 @@ Partial Class Уволенные
         '
         'Уволенные
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1144, 479)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Grid1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Уволенные"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Уволенные"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.GroupBox2.ResumeLayout(False)
