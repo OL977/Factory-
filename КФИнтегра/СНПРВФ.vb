@@ -1,37 +1,24 @@
-﻿Public Class СНПРВ
-    Private Sub СНПРВ_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+﻿Public Class СНПРВФ
+    Private Sub СНПРВФ_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Start()
-
-        'If ComboBox1.Items.Count > 0 Or ComboBox1.Items IsNot Nothing Then
-        '    ComboBox1.Items.Clear()
-        'End If
-
+        ComboBox1.Items.Clear()
         Dim f() As String = {Now.Year, Now.Year - 1, Now.Year - 2, Now.Year - 3}
-        'ComboBox2.Items.Add("2019")
-        'ComboBox2.Items.AddRange(f)
-        'ComboBox1.Items.AddRange(f)
+        ComboBox1.Items.AddRange(f)
+
 
     End Sub
     Private Sub Start()
-
         Using dbcx As New DbAllDataContext
             Dim var = (From x In dbcx.СНПРВ.AsEnumerable
                        Order By x.Год
                        Select x).ToList
-
             If var.Count > 0 Then
                 ListBox1.Items.Clear()
                 For Each x In var
                     ListBox1.Items.Add(x.Год & "г. - " & x.Норма)
                 Next
             End If
-
-
-
         End Using
-
-
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -40,7 +27,7 @@
             Exit Sub
         End If
 
-        TextBox1.Text = Replace(TextBox1.Text, ",", ".")
+        TextBox1.Text = Replace(TextBox1.Text, ".", ",")
 
         If Not IsNumeric(TextBox1.Text) Then
             MessageBox.Show("Введите корректные данные в поле" & vbCrLf & "'Среднемесячная норма, час'!", Рик)
@@ -51,18 +38,10 @@
 
         Dim m As String = CType(n, String)
 
-
-        'Dim list As New Dictionary(Of String, Object)
-        'list.Add("@Год", ComboBox1.Text)
-        'list.Add("@Норма", m)
-
-        'Dim dt As DataTable = Selects(StrSql:="SELECT * FROM СНПРВ WHERE Год=@Год", list)
-
         Using dbcx As New DbAllDataContext
             Dim var = (From x In dbcx.СНПРВ.AsEnumerable
                        Where x.Год = ComboBox1.Text
                        Select x).FirstOrDefault
-
             If var IsNot Nothing Then
                 var.Норма = m
                 dbcx.SubmitChanges()
@@ -73,11 +52,17 @@
                 dbcx.СНПРВ.InsertOnSubmit(f)
                 dbcx.SubmitChanges()
             End If
-
-
         End Using
 
 
+
+
+
+        'Dim list As New Dictionary(Of String, Object)
+        'list.Add("@Год", ComboBox1.Text)
+        'list.Add("@Норма", m)
+
+        'Dim dt As DataTable = Selects(StrSql:="SELECT * FROM СНПРВ WHERE Год=@Год", list)
 
         'If dt.Rows.Count > 0 Then
         '    Updates(stroka:="UPDATE СНПРВ SET Норма='" & m & "' WHERE Код=" & dt(0).Item("Код") & "")
@@ -89,12 +74,8 @@
 
 
 
-        'Dim ds As DataTable = Selects(StrSql:="SELECT * FROM СНПРВ ORDER BY Год")
-        'ListBox1.Items.Clear()
-        'For Each x As DataRow In ds.Rows
-        '    ListBox1.Items.Add(x.Item("Год").ToString & "г. - " & x.Item("Норма").ToString)
-        'Next
         Start()
+
 
         TextBox1.Text = ""
         ComboBox1.Text = ""

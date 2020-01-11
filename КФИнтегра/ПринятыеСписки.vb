@@ -190,7 +190,7 @@ Public Class ПринятыеСписки
         'Where Сотрудники.НазвОрганиз = '" & Организ & "' AND ((ДогСотрудн.ДатаКонтракта) Between #" & времянач & "# And #" & времякон & "#) ORDER BY Сотрудники.ФИОСборное"
 
 
-        Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Сотрудники.ФИОСборное as ФИО,
+        Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Штатное.Разряд as Разряд, Сотрудники.ФИОСборное as ФИО,
 Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
  ДогСотрудн.Приказ as [Приказ о приеме],ДогСотрудн.Датаприказа as [Дата приказа о приеме],
 КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения], ДогСотрудн.Перевод
@@ -203,8 +203,9 @@ Where Сотрудники.НазвОрганиз =@НазвОрганиз AND (
         GridView(Grid1)
         Grid1.Columns(0).Visible = False
         Grid1.Columns(1).Visible = False
-        Grid1.Columns(3).Width = 250
-        Grid1.Columns(2).Width = 350
+        Grid1.Columns(4).MinimumWidth = 250
+        Grid1.Columns(2).MinimumWidth = 250
+        Grid1.Columns(3).Width = 60
     End Sub
     Private Sub ExtrExcel()
         If ComboBox2.Text = "" Then
@@ -250,7 +251,7 @@ Where Сотрудники.НазвОрганиз =@НазвОрганиз AND (
 
         For i = 0 To Grid1.Rows.Count - 1
             For j = 2 To Grid1.ColumnCount - 1
-                If j = 6 Or j = 11 Then
+                If j = 7 Or j = 12 Then
                     xlworksheet.Cells(i + 4, j) = Strings.Left(Grid1(j, i).Value.ToString, 10)
                 Else
                     xlworksheet.Cells(i + 4, j) = Grid1(j, i).Value.ToString

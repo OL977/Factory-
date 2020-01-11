@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class СНПРВ
+Partial Class СНПРВФ
     Inherits System.Windows.Forms.Form
 
     'Форма переопределяет dispose для очистки списка компонентов.
@@ -23,7 +23,6 @@ Partial Class СНПРВ
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
@@ -38,36 +37,28 @@ Partial Class СНПРВ
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.GroupBox2.Controls.Add(Me.ComboBox2)
         Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.ComboBox1)
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
-        Me.GroupBox2.Location = New System.Drawing.Point(1, 12)
+        Me.GroupBox2.Location = New System.Drawing.Point(16, 16)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(268, 147)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Size = New System.Drawing.Size(357, 192)
         Me.GroupBox2.TabIndex = 8
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Текущие данные"
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(6, 103)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(96, 25)
-        Me.ComboBox2.TabIndex = 9
         '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Button1.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Button1.Location = New System.Drawing.Point(135, 100)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Location = New System.Drawing.Point(180, 131)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(93, 29)
+        Me.Button1.Size = New System.Drawing.Size(124, 38)
         Me.Button1.TabIndex = 25
         Me.Button1.Text = "Принять"
         Me.Button1.UseVisualStyleBackColor = False
@@ -75,7 +66,8 @@ Partial Class СНПРВ
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(97, 68)
+        Me.Label2.Location = New System.Drawing.Point(129, 89)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(31, 17)
         Me.Label2.TabIndex = 3
@@ -85,25 +77,27 @@ Partial Class СНПРВ
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(135, 68)
+        Me.ComboBox1.Location = New System.Drawing.Point(180, 89)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(93, 25)
+        Me.ComboBox1.Size = New System.Drawing.Size(123, 25)
         Me.ComboBox1.TabIndex = 2
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(14, 25)
+        Me.Label1.Location = New System.Drawing.Point(19, 33)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(114, 40)
+        Me.Label1.Size = New System.Drawing.Size(152, 52)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Среднемесячная норма, час"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(135, 36)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBox1.Location = New System.Drawing.Point(180, 47)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(93, 25)
+        Me.TextBox1.Size = New System.Drawing.Size(123, 25)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -111,9 +105,11 @@ Partial Class СНПРВ
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.GroupBox1.Controls.Add(Me.ListBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(284, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(393, 16)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(171, 147)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(228, 192)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Данные"
@@ -122,23 +118,24 @@ Partial Class СНПРВ
         '
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(6, 24)
+        Me.ListBox1.Location = New System.Drawing.Point(8, 31)
+        Me.ListBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(159, 106)
+        Me.ListBox1.Size = New System.Drawing.Size(211, 123)
         Me.ListBox1.TabIndex = 4
         '
-        'СНПРВ
+        'СНПРВФ
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(470, 175)
+        Me.ClientSize = New System.Drawing.Size(629, 219)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "СНПРВ"
+        Me.Name = "СНПРВФ"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Среднемесячная норма продолжительности рабочего времени"
         Me.GroupBox2.ResumeLayout(False)
@@ -156,5 +153,4 @@ Partial Class СНПРВ
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents ComboBox2 As ComboBox
 End Class
