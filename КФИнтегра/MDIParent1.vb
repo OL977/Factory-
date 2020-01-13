@@ -615,7 +615,7 @@ Public Class MDIParent1
     End Sub
 
     Private Sub ПоТребованиюToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ПоТребованиюToolStripMenuItem.Click
-        ОтпускСоц.ShowDialog()
+        ОтпускСоц1.ShowDialog()
 
     End Sub
 
@@ -721,5 +721,9 @@ Public Class MDIParent1
 
     Private Sub СНПРВToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СНПРВToolStripMenuItem.Click
         СНПРВФ.ShowDialog()
+    End Sub
+
+    Private Sub ОбразецToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ОбразецToolStripMenuItem.Click
+        ОтчетФорма.ShowDialog()
     End Sub
 End Class

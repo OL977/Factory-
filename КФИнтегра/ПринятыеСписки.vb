@@ -177,35 +177,79 @@ Public Class ПринятыеСписки
         'времянач1 = Replace(Format(DateTimePicker4.Value, "yyyy\/MM\/dd"), "/", "")
         'времякон1 = Replace(Format(DateTimePicker3.Value, "yyyy\/MM\/dd"), "/", "")
 
-        Dim list As New Dictionary(Of String, Object)
-        list.Add("@НазвОрганиз", Организ)
-        list.Add("@начало", DateTimePicker4.Value)
-        list.Add("@конец", DateTimePicker3.Value)
 
+        'Вариант номер 2
+        '        Dim list As New Dictionary(Of String, Object)
+        '        list.Add("@НазвОрганиз", Организ)
+        '        list.Add("@начало", DateTimePicker4.Value.ToShortDateString)
+        '        list.Add("@конец", DateTimePicker3.Value.ToShortDateString)
 
+        '        Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Штатное.Разряд as Разряд, Сотрудники.ФИОСборное as ФИО,
+        'Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
+        ' ДогСотрудн.Приказ as [Приказ о приеме],ДогСотрудн.Датаприказа as [Дата приказа о приеме],
+        'КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения], ДогСотрудн.Перевод
+        'FROM ((Сотрудники INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр) INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
+        'Where Сотрудники.НазвОрганиз =@НазвОрганиз AND ((ДогСотрудн.ДатаКонтракта) Between @начало And @конец) ORDER BY Сотрудники.ФИОСборное", list) 'AND ((ДогСотрудн.ДатаКонтракта) Between '" & времянач1 & "' And '" & времякон1 & "') ORDER BY Сотрудники.ФИОСборное" 
+
+        'Вариант номер 1
         '        StrSql = "SELECT Сотрудники.КодСотрудники as [ID], Сотрудники.НазвОрганиз as Наименование, Сотрудники.ФИОСборное as [ФИО Сотрудника], ДогСотрудн.ДатаКонтракта as [Дата приема сотрудника], 
         'ДогСотрудн.Контракт as [Контракт],КарточкаСотрудника.СрокКонтракта as [Продолжительность контракта, лет], 
         'ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта]
         'From (Сотрудники INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр
         'Where Сотрудники.НазвОрганиз = '" & Организ & "' AND ((ДогСотрудн.ДатаКонтракта) Between #" & времянач & "# And #" & времякон & "#) ORDER BY Сотрудники.ФИОСборное"
 
-
-        Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Штатное.Разряд as Разряд, Сотрудники.ФИОСборное as ФИО,
-Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
- ДогСотрудн.Приказ as [Приказ о приеме],ДогСотрудн.Датаприказа as [Дата приказа о приеме],
-КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения], ДогСотрудн.Перевод
-FROM ((Сотрудники INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр) INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
-Where Сотрудники.НазвОрганиз =@НазвОрганиз AND ((ДогСотрудн.ДатаКонтракта) Between @начало And @конец) ORDER BY Сотрудники.ФИОСборное", list) 'AND ((ДогСотрудн.ДатаКонтракта) Between '" & времянач1 & "' And '" & времякон1 & "') ORDER BY Сотрудники.ФИОСборное" 
-
         'ds = Selects(StrSql)
+        Me.Cursor = Cursors.WaitCursor
+        Dim ds1
+        Using dbcx As New DbAllDataContext
+            ds1 = (From x In dbcx.Сотрудники.AsEnumerable
+                   Join y In dbcx.ДогСотрудн.AsEnumerable On x.КодСотрудники Equals y.IDСотр
+                   Join z In dbcx.КарточкаСотрудника.AsEnumerable On x.КодСотрудники Equals z.IDСотр
+                   Join n In dbcx.Штатное.AsEnumerable On x.КодСотрудники Equals n.ИДСотр
+                   Where x.НазвОрганиз = ComboBox2.Text And y.ДатаКонтракта >= DateTimePicker4.Value.ToShortDateString And y.ДатаКонтракта <= DateTimePicker3.Value.ToShortDateString
+                   Order By x.ФИОСборное
+                   Select New With {
+                      x.НазвОрганиз,
+                      x.КодСотрудники,
+                      n.Должность,
+                      n.Разряд,
+                      .ФИО = x.ФИОСборное,
+                      n.РасчДолжностнОклад,
+                      y.Контракт,
+                      y.ДатаКонтракта,
+                      y.Приказ,
+                      y.Датаприказа,
+                      z.СрокКонтракта,
+                      y.СрокОкончКонтр,
+                      z.ДатаУвольнения,
+                      y.Перевод
+                      }).ToList()
+        End Using
 
-        Grid1.DataSource = ds
-        GridView(Grid1)
+
+
+
+
+
+
+        Grid1.DataSource = ds1
+        Grid1.Columns(5).HeaderText = "Расчетно должностной оклад"
+        Grid1.Columns(6).HeaderText = "Номер контракта"
+        Grid1.Columns(7).HeaderText = "Дата контракта"
+
+        Grid1.Columns(8).HeaderText = "Приказ о приеме"
+        Grid1.Columns(9).HeaderText = "Дата приказа о приеме"
+        Grid1.Columns(10).HeaderText = "Период контракта"
+        Grid1.Columns(11).HeaderText = "Дата окончания контракта"
+        Grid1.Columns(12).HeaderText = "Дата увольнения"
+
         Grid1.Columns(0).Visible = False
         Grid1.Columns(1).Visible = False
         Grid1.Columns(4).MinimumWidth = 250
         Grid1.Columns(2).MinimumWidth = 250
         Grid1.Columns(3).Width = 60
+        GridView(Grid1)
+        Me.Cursor = Cursors.Default
     End Sub
     Private Sub ExtrExcel()
         If ComboBox2.Text = "" Then

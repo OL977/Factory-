@@ -143,8 +143,8 @@
     <Reference Include="EASendMail, Version=7.5.0.3, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
       <HintPath>..\packages\EASendMail.7.5.0.3\lib\net461\EASendMail.dll</HintPath>
     </Reference>
-    <Reference Include="FluentFTP, Version=28.0.1.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentFTP.28.0.1\lib\net45\FluentFTP.dll</HintPath>
+    <Reference Include="FluentFTP, Version=29.0.1.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.29.0.1\lib\net45\FluentFTP.dll</HintPath>
     </Reference>
     <Reference Include="GemBox.Spreadsheet, Version=45.0.35.1019, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
       <HintPath>..\packages\GemBox.Spreadsheet.45.0.0.1019\lib\net35\GemBox.Spreadsheet.dll</HintPath>
@@ -189,6 +189,18 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -525,6 +537,11 @@
     <Compile Include="Инсотранцы.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ИнтеграDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ИнтеграDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="КонтрДопИзменСтавка.Designer.vb">
       <DependentUpon>КонтрДопИзменСтавка.vb</DependentUpon>
     </Compile>
@@ -595,6 +612,12 @@
       <DependentUpon>ОтчетСотрудники.vb</DependentUpon>
     </Compile>
     <Compile Include="ОтчетСотрудники.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ОтчетФорма.Designer.vb">
+      <DependentUpon>ОтчетФорма.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ОтчетФорма.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ПарольНаСтатистику.Designer.vb">
@@ -827,6 +850,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Report2.rdlc" />
     <EmbeddedResource Include="SendEMail.resx">
       <DependentUpon>SendEMail.vb</DependentUpon>
     </EmbeddedResource>
@@ -929,6 +954,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ОтчетСотрудники.resx">
       <DependentUpon>ОтчетСотрудники.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ОтчетФорма.resx">
+      <DependentUpon>ОтчетФорма.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ПарольНаСтатистику.resx">
       <DependentUpon>ПарольНаСтатистику.vb</DependentUpon>
@@ -1064,6 +1092,17 @@
     <None Include="Zidium.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ИнтеграDataSet.xsc">
+      <DependentUpon>ИнтеграDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ИнтеграDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ИнтеграDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ИнтеграDataSet.xss">
+      <DependentUpon>ИнтеграDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ИнтеграКадры_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -1090,6 +1129,20 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Эмблема.ico" />
   </ItemGroup>
   <ItemGroup>

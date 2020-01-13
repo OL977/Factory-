@@ -434,27 +434,67 @@ Public Class Уволенные
         'Dim времякон As String = Replace(Format(DateTimePicker3.Value, "yyyy\/MM\/dd"), "/", "")
         'tbl.Clear()
 
-        Dim list As New Dictionary(Of String, Object)
-        list.Add("@НазвОрганиз", ComboBox2.Text)
-        list.Add("@начало", DateTimePicker4.Value)
-        list.Add("@конец", DateTimePicker3.Value)
+        '        Dim list As New Dictionary(Of String, Object)
+        '        list.Add("@НазвОрганиз", ComboBox2.Text)
+        '        list.Add("@начало", DateTimePicker4.Value)
+        '        list.Add("@конец", DateTimePicker3.Value)
 
 
 
-        Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Сотрудники.ФИОСборное as ФИО,
-Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
-КарточкаСотрудника.ПриказОбУвольн as [Приказ об увольнении], КарточкаСотрудника.ДатаПриказаОбУвольн as [Дата приказа об увольнении], 
-КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения]
-FROM ((Сотрудники INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр) INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
-Where Сотрудники.НазвОрганиз =@НазвОрганиз AND ((КарточкаСотрудника.ДатаУвольнения) Between @начало And @конец) ORDER BY Сотрудники.ФИОСборное", list)
+        '        Dim ds = Selects(StrSql:="SELECT Сотрудники.НазвОрганиз, Сотрудники.КодСотрудники, Штатное.Должность as Должность, Сотрудники.ФИОСборное as ФИО,
+        'Штатное.РасчДолжностнОклад as [Расчетно должностной оклад], ДогСотрудн.Контракт as [Номер контракта], ДогСотрудн.ДатаКонтракта as [Дата контракта],
+        'КарточкаСотрудника.ПриказОбУвольн as [Приказ об увольнении], КарточкаСотрудника.ДатаПриказаОбУвольн as [Дата приказа об увольнении], 
+        'КарточкаСотрудника.СрокКонтракта as [Период контракта], ДогСотрудн.СрокОкончКонтр as [Дата окончания контракта], КарточкаСотрудника.ДатаУвольнения as [Дата увольнения]
+        'FROM ((Сотрудники INNER JOIN ДогСотрудн ON Сотрудники.КодСотрудники = ДогСотрудн.IDСотр) INNER JOIN КарточкаСотрудника ON Сотрудники.КодСотрудники = КарточкаСотрудника.IDСотр) INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
+        'Where Сотрудники.НазвОрганиз =@НазвОрганиз AND ((КарточкаСотрудника.ДатаУвольнения) Between @начало And @конец) ORDER BY Сотрудники.ФИОСборное", list)
 
-        Grid1.DataSource = ds
-        GridView(Grid1)
+        Me.Cursor = Cursors.WaitCursor
+        Dim ds1
+        Using dbcx As New DbAllDataContext
+            ds1 = (From x In dbcx.Сотрудники.AsEnumerable
+                   Join y In dbcx.ДогСотрудн.AsEnumerable On x.КодСотрудники Equals y.IDСотр
+                   Join z In dbcx.КарточкаСотрудника.AsEnumerable On x.КодСотрудники Equals z.IDСотр
+                   Join n In dbcx.Штатное.AsEnumerable On x.КодСотрудники Equals n.ИДСотр
+                   Where x.НазвОрганиз = ComboBox2.Text And z.ДатаУвольнения >= DateTimePicker4.Value.ToShortDateString And z.ДатаУвольнения <= DateTimePicker3.Value.ToShortDateString
+                   Order By x.ФИОСборное
+                   Select New With {
+                      x.НазвОрганиз,
+                      x.КодСотрудники,
+                      n.Должность,
+                      .ФИО = x.ФИОСборное,
+                      n.РасчДолжностнОклад,
+                      y.Контракт,
+                      y.ДатаКонтракта,
+                      z.ПриказОбУвольн,
+                      z.ДатаПриказаОбУвольн,
+                      z.СрокКонтракта,
+                      y.СрокОкончКонтр,
+                      z.ДатаУвольнения
+                           }).ToList()
+        End Using
+
+
+
+
+
+        Grid1.DataSource = ds1
+
+        Grid1.Columns(4).HeaderText = "Расчетно должностной оклад"
+        Grid1.Columns(5).HeaderText = "Номер контракта"
+        Grid1.Columns(6).HeaderText = "Дата контракта"
+        Grid1.Columns(7).HeaderText = "Приказ об увольнении"
+        Grid1.Columns(8).HeaderText = "Дата приказа об увольнении"
+        Grid1.Columns(9).HeaderText = "Период контракта"
+        Grid1.Columns(10).HeaderText = "Дата окончания контракта"
+        Grid1.Columns(11).HeaderText = "Дата увольнения"
+
         Grid1.Columns(0).Visible = False
         Grid1.Columns(1).Visible = False
         Grid1.Columns(3).Width = 350
         Grid1.Columns(2).Width = 350
         Grid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        GridView(Grid1)
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Grid1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles Grid1.CellDoubleClick

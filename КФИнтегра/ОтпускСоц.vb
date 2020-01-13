@@ -1,7 +1,7 @@
 ﻿Option Explicit On
 Imports System.Data.OleDb
 Imports System.Threading
-Public Class ОтпускСоц
+Public Class ОтпускСоц1
     Dim idsotr As Integer
     Dim dssotr As DataTable
     Dim dsorg As DataRow()
@@ -12,7 +12,7 @@ Public Class ОтпускСоц
     Dim СохрЗак2 As New List(Of String)
     Dim СохрЗак As New List(Of String)
 
-    Private Sub ОтпускСоц_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ОтпускСоц1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
 
         Me.ComboBox1.AutoCompleteCustomSource.Clear()
@@ -172,7 +172,7 @@ Public Class ОтпускСоц
         If e.KeyCode = Keys.Enter Then
             e.SuppressKeyPress = True
             MaskedTextBox2.Focus()
-            расчет
+            расчет()
         End If
     End Sub
 
@@ -228,7 +228,7 @@ Public Class ОтпускСоц
         Dim list As New Dictionary(Of String, Object)
         list.Add("@КодСотрудники", idsotr)
 
-        dssotr = Selects(StrSql:= "SELECT Сотрудники.Фамилия, Сотрудники.Имя, Сотрудники.Отчество, Штатное.Должность, Штатное.Разряд,
+        dssotr = Selects(StrSql:="SELECT Сотрудники.Фамилия, Сотрудники.Имя, Сотрудники.Отчество, Штатное.Должность, Штатное.Разряд,
 Сотрудники.ФамилияДляЗаявления,Сотрудники.ИмяДляЗаявления,Сотрудники.ОтчествоДляЗаявления
 FROM Сотрудники INNER JOIN Штатное ON Сотрудники.КодСотрудники = Штатное.ИДСотр
 WHERE Сотрудники.КодСотрудники=@КодСотрудники", list)

@@ -153,6 +153,14 @@ Public Class Прием
 
         dtShtatnoeOtdely()
 
+        'изменяем вкладки в Tabcontrol
+        TabControl1.DrawMode = TabDrawMode.OwnerDrawFixed
+        For Each tg As TabPage In TabControl1.TabPages
+            tg.BackColor = Color.Gainsboro
+        Next
+
+
+
     End Sub
 
     Private Sub ТарифнаяСтавка()
@@ -4238,6 +4246,171 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
         Return 0
 
     End Function
+    Private Sub ОбновлениеСотрудникаКонтрактНовыйПуть(ByVal IDSotr As Integer)
+
+        Dim ФИО As String
+        'обновляем данные во всех таблицах по Контракту
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                       Join y In dbcx.Штатное.AsEnumerable On x.КодСотрудники Equals y.ИДСотр
+                       Join z In dbcx.ПродлКонтракта.AsEnumerable On x.КодСотрудники Equals z.IDСотр
+                       Join u In dbcx.КарточкаСотрудника.AsEnumerable On x.КодСотрудники Equals u.IDСотр
+                       Join s In dbcx.ДогСотрудн.AsEnumerable On x.КодСотрудники Equals s.IDСотр
+                       Where x.КодСотрудники = IDSotr
+                       Select x, y, z, u, s).FirstOrDefault
+            If var Is Nothing Then
+                Exit Sub
+            End If
+
+            ФИО = var.x.ФИОСборное
+
+            If arrtbox("TextBox46") = "" Then
+                Dtxt46 = Nothing
+            ElseIf arrtbox("TextBox46").Length > 2 Then
+                Dtxt46 = CType(Replace(arrtbox("TextBox46"), ".", ","), Double)
+            Else
+                Dtxt46 = CType(arrtbox("TextBox46"), Integer)
+            End If
+
+            Dim ФОТ2 As Double = Replace(arrtbox("TextBox48"), ".", ",")
+            Dim ФОТ3 As Double = Replace(arrtcom("ComboBox10"), ".", ",")
+            ФОТ2 = ФОТ2 * ФОТ3
+
+            Dim dcx As Double = Replace(arrtbox("TextBox48"), ".", ",")
+            Dim fgd As Double = CType(arrtbox("TextBox33") & "," & arrtbox("TextBox44"), Double)
+
+            'обновляем данные в таблице Штатное
+            Try
+                var.y.ПовышОклРуб = Math.Round(fgd * Replace(Dtxt46, ",", ".") / 100, 2)
+            Catch ex As Exception
+                var.y.ПовышОклРуб = Math.Round(fgd * Replace(Dtxt46, ".", ",") / 100, 2)
+            End Try
+
+            Try
+                var.y.ЧасоваяТарифСтавка = Math.Round(Replace(dcx, ",", ".") / 168, 2)
+            Catch ex As Exception
+                var.y.ЧасоваяТарифСтавка = Math.Round(Replace(dcx, ".", ",") / 168, 2)
+            End Try
+
+            If arrtcom("ComboBox7") = "" Then
+                var.y.Разряд = ""
+            Else
+                var.y.Разряд = arrtcom("ComboBox7")
+            End If
+            var.y.Должность = arrtcom("ComboBox9")
+
+            var.y.ТарифнаяСтавка = Math.Round(CType(arrtbox("TextBox33") & "," & arrtbox("TextBox44"), Double), 2)
+            var.y.ПовышОклПроц = Replace(Dtxt46, ",", ".")
+
+            Try
+                var.y.РасчДолжностнОклад = Replace(dcx, ".", ",")
+            Catch ex As Exception
+                var.y.РасчДолжностнОклад = Replace(dcx, ",", ".")
+            End Try
+
+            var.y.Отдел = arrtcom("ComboBox8")
+
+            Try
+                var.y.ФонОплатыТруда = Replace(ФОТ2, ".", ",")
+            Catch ex As Exception
+                var.y.ФонОплатыТруда = Replace(ФОТ2, ",", ".")
+            End Try
+
+            'Обновляем таблицу Продление Контракта.
+            If var.z.ПервоеПродлениеС = "" Then
+                var.z.ДатаПриема = arrtmask("MaskedTextBox4")
+                var.z.ДатаОкончания = arrtmask("MaskedTextBox5")
+                var.z.СрокКонтракта = arrtcom("ComboBox11")
+                var.z.НомерУвед = arrtbox("TextBox38")
+            Else
+                If Not var.z.ДатаПриема = arrtmask("MaskedTextBox4") Or Not var.z.ДатаОкончания = arrtmask("MaskedTextBox5") Or Not var.z.СрокКонтракта = arrtcom("ComboBox11") Then
+                    If MessageBox.Show("С данным сотрудником был продлен контракт" & vbCrLf & "Если вы продолжите изменения то данные о продлении будут удалены!" & vbCrLf & "Продолжить?", Рик, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
+                        var.z.ДатаПриема = arrtmask("MaskedTextBox4")
+                        var.z.ДатаОкончания = arrtmask("MaskedTextBox5")
+                        var.z.СрокКонтракта = arrtcom("ComboBox11")
+                        var.z.НомерУвед = arrtbox("TextBox38")
+
+                        var.z.ПервоеПродлениеС = ""
+                        var.z.ПервоеПродлениеПо = ""
+                        var.z.ПервоеПродлениеСрок = ""
+
+                        var.z.ВтороеПродлениеПо = ""
+                        var.z.ВтороеПродлениеС = ""
+                        var.z.ВтороеПродлениеСрок = ""
+
+                        var.z.ТретьеПродлениеПо = ""
+                        var.z.ТретьеПродлениеС = ""
+                        var.z.ТретьеПродлениеСрок = ""
+
+                        var.z.ЧетвертоеПродлениеПо = ""
+                        var.z.ЧетвертоеПродлениеС = ""
+                        var.z.ЧетвертоеПродлениеСрок = ""
+
+                        var.z.НомерУвед1 = ""
+                        var.z.НомерУвед2 = ""
+                        var.z.НомерУвед3 = ""
+                        var.z.НомерУвед4 = ""
+
+                        var.z.Итого = ""
+                    End If
+                End If
+            End If
+
+
+            Dim _ПоСовмест, _СуммирУчет As String
+            If CheckBox2.Checked = True Then
+                _ПоСовмест = "по совместительству"
+            Else
+                _ПоСовмест = ""
+            End If
+            If CheckBox4.Checked = True Then
+                _СуммирУчет = "Да"
+            Else
+                _СуммирУчет = ""
+            End If
+
+
+            'Обновляем таблицу КарточкаСотрудника данные контракта и обновляем таблицу.
+            With var.u
+                .ДатаПриема = arrtmask("MaskedTextBox4")
+                .СрокКонтракта = arrtcom("ComboBox11")
+                .ТипРаботы = arrtcom("ComboBox15")
+                .Ставка = arrtcom("ComboBox10")
+                .ВремяНачРаботы = arrtcom("ComboBox12")
+                .ПродолРабДня = arrtcom("ComboBox16")
+                .Обед = arrtbox("TextBox49")
+                .ОкончРабДня = arrtbox("TextBox50")
+                .ДатаУведомлПродКонтр = ДатаУведомл(arrtcom("ComboBox11"), arrtmask("MaskedTextBox4"))
+                .АдресОбъектаОбщепита = arrtcom("ComboBox18")
+                .ДатаЗарплаты = arrtbox("TextBox40")
+                .ДатаАванса = arrtbox("TextBox56")
+                .ПоСовмест = _ПоСовмест
+                .СуммирУчет = _СуммирУчет
+            End With
+
+            If Примечани = "" Or Примечани Is Nothing Then
+                var.u.Примечание = ""
+            Else
+                var.u.Примечание = Примечани
+            End If
+
+            'Вставляем в таблицу ДогСотрудн данные контракта и обновляем таблицу.
+            With var.s
+                .Контракт = arrtbox("TextBox38")
+                .ДатаКонтракта = arrtmask("MaskedTextBox3")
+                .СрокОкончКонтр = arrtmask("MaskedTextBox5")
+                .Приказ = НПриказа
+                .Датаприказа = arrtmask("MaskedTextBox3")
+            End With
+
+            dbcx.SubmitChanges()
+
+        End Using
+
+        Статистика1(ФИО, "Обновление данных контракта сотрудника", arrtcom("ComboBox1"))
+
+
+    End Sub
 
     Private Sub НовыйПутьКонтракт()
 
@@ -4246,25 +4419,49 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
             Exit Sub
         End If
 
+        Me.Cursor = Cursors.WaitCursor
+
         СохраняемКонтролыВСписки(TabPage2)
 
         'оформление места работы 
         If МестоРаботыНовыйПуть() = 1 Then Exit Sub
 
-        'добавляем сотрудника в базу
-        ДобавлениеСотрудникаНовыйПуть()
-
-        If MessageBox.Show("Оформить пакет документов?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        If IsNumeric(Label96.Text) = False Then
+            MessageBox.Show("Нет идентификатора сотрудника!", Рик)
             Exit Sub
-        Else
-            CheckBox23.Checked = True
+        End If
+
+        Dim IDSotr As Integer = CType(Label96.Text, Integer)
+        'добавляем сотрудника в базу или обновляем данные
+        Using dbcx As New DbAllDataContext
+            Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                       Where x.ДанныеИзСправочника = "True" And x.ТипОтношения = "(кт)" And x.КодСотрудники = IDSotr
+                       Select x).FirstOrDefault
+            If var Is Nothing Then
+                ДобавлениеСотрудникаНовыйПуть()
+            Else
+                ОбновлениеСотрудникаКонтрактНовыйПуть(IDSotr)
+            End If
+        End Using
+
+
+        If CheckBox23.Checked = False Then
+            If MessageBox.Show("Оформить пакет документов?", Рик, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+                MessageBox.Show("Данные изменены!", Рик)
+                ОчисткаАктивнойВкладкиНовыйПуть()
+                Me.Cursor = Cursors.Default
+                Exit Sub
+            Else
+                CheckBox23.Checked = True
+            End If
         End If
 
 
         'контракт оформление документов
         ДокиКонтрактНовыйПуть()
 
-
+        ОчисткаАктивнойВкладкиНовыйПуть()
+        Me.Cursor = Cursors.Default
 
     End Sub
     Private Sub ДобавлениеСотрудникаНовыйПуть()
@@ -4591,9 +4788,10 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
         ОчисткаАктивнойВкладкиНовыйПуть()
 
-        Com1sel()
-            ComboBox19.Text = ""
-            Label96.Text = ""
+        Button23.PerformClick()
+
+        ComboBox19.Text = ""
+        Label96.Text = ""
 
     End Sub
     Private Sub Удаление()
@@ -7571,10 +7769,16 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             If var1 IsNot Nothing Then
                 'Штатное.Отдел, Штатное.Должность, Штатное.Разряд, Штатное.ТарифнаяСтавка, Штатное.ПовышОклПроц, Штатное.РасчДолжностнОклад
                 Label48.Text = ""
+                CheckBox26.Checked = True
                 If var1.Разряд <> "" Then
-                    Label48.Text = var1.Должность & " " & combxS19 & " работает в отделе " & var1.Отдел & ", разряд " & var1.Разряд
+                    'Label48.Text = var1.Должность & " " & combxS19 & " работает в отделе " & var1.Отдел & ", разряд " & var1.Разряд
+                    ComboBox8.Text = var1.Отдел
+                    ComboBox9.Text = var1.Должность
+                    ComboBox7.Text = var1.Разряд
                 Else
-                    Label48.Text = var1.Должность & " " & combxS19 & " работает в отделе " & var1.Отдел
+                    'Label48.Text = var1.Должность & " " & combxS19 & " работает в отделе " & var1.Отдел
+                    ComboBox8.Text = var1.Отдел
+                    ComboBox9.Text = var1.Должность
                 End If
 
 
@@ -8404,12 +8608,15 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
 
     Private Function ПроверкаОформенСотрудникЧерезСправочник(ByVal _КодСотр As Integer) As Boolean
+        Me.Cursor = Cursors.WaitCursor
+
         Using dbcx As New DbAllDataContext  'определяем, оформлен ли сотрудник через справочник
 
             Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                        Where x.КодСотрудники = _КодСотр
                        Select x.ДанныеИзСправочника).FirstOrDefault()
             If Not var = "True" Then
+                Me.Cursor = Cursors.Default
                 Return False
             End If
         End Using
@@ -8418,14 +8625,29 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         If f = "Контракт" Then
             TabControl1.TabPages.Remove(TabPage3)
             TabControl1.TabPages.Remove(TabPage1)
+            TabControl1.TabPages.Remove(TabPage2)
+            TabControl1.TabPages.Remove(TabPage4)
+            TabControl1.TabPages.Add(TabPage2)
             TabControl1.SelectTab(TabPage2)
+
+            CheckBox9.Enabled = True
+            CheckBox10.Enabled = True
+            CheckBox10.Checked = True
+            CheckBox8.Enabled = True
+            CheckBox7.Enabled = False
+
+            Me.Cursor = Cursors.Default
             Return True
         ElseIf f = "Подряд(час)" Then
             TabControl1.TabPages.Remove(TabPage2)
             TabControl1.TabPages.Remove(TabPage1)
+            TabControl1.TabPages.Remove(TabPage3)
+            TabControl1.TabPages.Remove(TabPage4)
             TabControl1.TabPages.Add(TabPage3)
             TabControl1.SelectTab(TabPage3)
             CheckBox8.Checked = True
+
+            Me.Cursor = Cursors.Default
             Return True
         Else
             If (TabControl1.TabPages.Contains(TabPage2) = True) Then
@@ -8447,6 +8669,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             CheckBox8.Enabled = True
             CheckBox7.Enabled = False
 
+            Me.Cursor = Cursors.Default
             Return True
         End If
 
@@ -10672,6 +10895,42 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
     Private Sub MaskedTextBox3_TextChanged(sender As Object, e As EventArgs) Handles MaskedTextBox3.TextChanged
 
 
+
+    End Sub
+
+    Private Sub TabControl1_DrawItem(sender As Object, e As DrawItemEventArgs) Handles TabControl1.DrawItem
+
+        Dim g As Graphics = e.Graphics
+        Dim tp As TabPage = TabControl1.TabPages(e.Index)
+        Dim br As Brush
+        Dim sf As New StringFormat
+
+        Dim r As New RectangleF(e.Bounds.X, e.Bounds.Y + 2, e.Bounds.Width, e.Bounds.Height - 2)
+
+        sf.Alignment = StringAlignment.Center
+
+        Dim strTitle As String = tp.Text
+
+        'If the current index is the Selected Index, change the color 
+        If TabControl1.SelectedIndex = e.Index Then
+
+            'this is the background color of the tabpage header
+            br = New SolidBrush(Color.Gainsboro) ' chnge to your choice
+            g.FillRectangle(br, e.Bounds)
+
+            'this is the foreground color of the text in the tab header
+            br = New SolidBrush(Color.Black) ' change to your choice
+            g.DrawString(strTitle, TabControl1.Font, br, r, sf)
+
+        Else
+
+            'these are the colors for the unselected tab pages 
+            br = New SolidBrush(Color.LightSteelBlue) ' Change this to your preference
+            g.FillRectangle(br, e.Bounds)
+            br = New SolidBrush(Color.Black)
+            g.DrawString(strTitle, TabControl1.Font, br, r, sf)
+
+        End If
 
     End Sub
 End Class

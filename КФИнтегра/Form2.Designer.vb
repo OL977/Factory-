@@ -23,9 +23,9 @@ Partial Class Прием
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Прием))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox42 = New System.Windows.Forms.TextBox()
@@ -362,8 +362,8 @@ Partial Class Прием
         '
         'ComboBox1
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(8, 23)
@@ -396,8 +396,8 @@ Partial Class Прием
         '
         'ComboBox19
         '
-        Me.ComboBox19.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBox19.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.ComboBox19.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox19.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.ComboBox19.FormattingEnabled = True
         Me.ComboBox19.Location = New System.Drawing.Point(8, 23)
@@ -409,17 +409,19 @@ Partial Class Прием
         'CheckBox5
         '
         Me.CheckBox5.AutoSize = True
+        Me.CheckBox5.BackColor = System.Drawing.SystemColors.Control
         Me.CheckBox5.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox5.Location = New System.Drawing.Point(8, 54)
+        Me.CheckBox5.Location = New System.Drawing.Point(8, 49)
         Me.CheckBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox5.Name = "CheckBox5"
         Me.CheckBox5.Size = New System.Drawing.Size(190, 19)
         Me.CheckBox5.TabIndex = 60
         Me.CheckBox5.Text = "Изменить данные сотрудника"
-        Me.CheckBox5.UseVisualStyleBackColor = True
+        Me.CheckBox5.UseVisualStyleBackColor = False
         '
         'GroupBox12
         '
+        Me.GroupBox12.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.GroupBox12.Controls.Add(Me.Button23)
         Me.GroupBox12.Controls.Add(Me.Label96)
         Me.GroupBox12.Controls.Add(Me.CheckBox23)
@@ -430,7 +432,7 @@ Partial Class Прием
         Me.GroupBox12.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox12.Size = New System.Drawing.Size(401, 82)
+        Me.GroupBox12.Size = New System.Drawing.Size(401, 74)
         Me.GroupBox12.TabIndex = 61
         Me.GroupBox12.TabStop = False
         Me.GroupBox12.Text = "Сотрудники"
@@ -456,24 +458,26 @@ Partial Class Прием
         'CheckBox23
         '
         Me.CheckBox23.AutoSize = True
+        Me.CheckBox23.BackColor = System.Drawing.SystemColors.Control
         Me.CheckBox23.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.CheckBox23.Location = New System.Drawing.Point(206, 54)
+        Me.CheckBox23.Location = New System.Drawing.Point(212, 49)
         Me.CheckBox23.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBox23.Name = "CheckBox23"
         Me.CheckBox23.Size = New System.Drawing.Size(153, 19)
         Me.CheckBox23.TabIndex = 61
         Me.CheckBox23.Text = "Оформить Документы"
-        Me.CheckBox23.UseVisualStyleBackColor = True
+        Me.CheckBox23.UseVisualStyleBackColor = False
         '
         'GroupBox13
         '
+        Me.GroupBox13.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.GroupBox13.Controls.Add(Me.ComboBox1)
         Me.GroupBox13.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.GroupBox13.Location = New System.Drawing.Point(193, 13)
         Me.GroupBox13.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox13.Name = "GroupBox13"
         Me.GroupBox13.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox13.Size = New System.Drawing.Size(434, 81)
+        Me.GroupBox13.Size = New System.Drawing.Size(434, 74)
         Me.GroupBox13.TabIndex = 62
         Me.GroupBox13.TabStop = False
         Me.GroupBox13.Text = "Организация"
@@ -504,7 +508,7 @@ Partial Class Прием
         '
         'TabPage3
         '
-        Me.TabPage3.BackColor = System.Drawing.Color.Snow
+        Me.TabPage3.BackColor = System.Drawing.Color.Gainsboro
         Me.TabPage3.Controls.Add(Me.Label57)
         Me.TabPage3.Controls.Add(Me.ListBox1)
         Me.TabPage3.Controls.Add(Me.GroupBox19)
@@ -678,9 +682,9 @@ Partial Class Прием
         Me.Grid1.Location = New System.Drawing.Point(13, 24)
         Me.Grid1.Name = "Grid1"
         Me.Grid1.ReadOnly = True
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid1.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.Grid1.Size = New System.Drawing.Size(742, 253)
         Me.Grid1.TabIndex = 103
         '
@@ -1004,7 +1008,7 @@ Partial Class Прием
         '
         'TabPage2
         '
-        Me.TabPage2.BackColor = System.Drawing.Color.Snow
+        Me.TabPage2.BackColor = System.Drawing.Color.Gainsboro
         Me.TabPage2.Controls.Add(Me.GroupBox10)
         Me.TabPage2.Controls.Add(Me.GroupBox7)
         Me.TabPage2.Location = New System.Drawing.Point(4, 26)
@@ -1180,6 +1184,7 @@ Partial Class Прием
         'Button7
         '
         Me.Button7.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.Button7.Enabled = False
         Me.Button7.Location = New System.Drawing.Point(464, 21)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(23, 15)
@@ -2004,7 +2009,7 @@ Partial Class Прием
         '
         'TabPage1
         '
-        Me.TabPage1.BackColor = System.Drawing.Color.Snow
+        Me.TabPage1.BackColor = System.Drawing.Color.Gainsboro
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Controls.Add(Me.GroupBox2)
@@ -3095,7 +3100,7 @@ Partial Class Прием
         '
         'TabPage4
         '
-        Me.TabPage4.BackColor = System.Drawing.Color.Snow
+        Me.TabPage4.BackColor = System.Drawing.Color.Gainsboro
         Me.TabPage4.Controls.Add(Me.GroupBox32)
         Me.TabPage4.Controls.Add(Me.GroupBox29)
         Me.TabPage4.Controls.Add(Me.GroupBox33)
@@ -3147,9 +3152,9 @@ Partial Class Прием
         Me.Grid6.MultiSelect = False
         Me.Grid6.Name = "Grid6"
         Me.Grid6.ReadOnly = True
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid6.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.Grid6.Size = New System.Drawing.Size(582, 119)
         Me.Grid6.TabIndex = 110
         '
@@ -3370,9 +3375,9 @@ Partial Class Прием
         Me.Grid5.MultiSelect = False
         Me.Grid5.Name = "Grid5"
         Me.Grid5.ReadOnly = True
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Grid5.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.Grid5.Size = New System.Drawing.Size(677, 317)
         Me.Grid5.TabIndex = 103
         '
@@ -3627,6 +3632,7 @@ Partial Class Прием
         'CheckBox8
         '
         Me.CheckBox8.AutoSize = True
+        Me.CheckBox8.BackColor = System.Drawing.SystemColors.Control
         Me.CheckBox8.Enabled = False
         Me.CheckBox8.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.CheckBox8.Location = New System.Drawing.Point(640, 94)
@@ -3635,11 +3641,12 @@ Partial Class Прием
         Me.CheckBox8.Size = New System.Drawing.Size(80, 19)
         Me.CheckBox8.TabIndex = 69
         Me.CheckBox8.Text = "ДП(Цена)"
-        Me.CheckBox8.UseVisualStyleBackColor = True
+        Me.CheckBox8.UseVisualStyleBackColor = False
         '
         'CheckBox9
         '
         Me.CheckBox9.AutoSize = True
+        Me.CheckBox9.BackColor = System.Drawing.SystemColors.Control
         Me.CheckBox9.Enabled = False
         Me.CheckBox9.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.CheckBox9.Location = New System.Drawing.Point(728, 94)
@@ -3648,11 +3655,12 @@ Partial Class Прием
         Me.CheckBox9.Size = New System.Drawing.Size(81, 19)
         Me.CheckBox9.TabIndex = 70
         Me.CheckBox9.Text = "ДП(Иное)"
-        Me.CheckBox9.UseVisualStyleBackColor = True
+        Me.CheckBox9.UseVisualStyleBackColor = False
         '
         'CheckBox10
         '
         Me.CheckBox10.AutoSize = True
+        Me.CheckBox10.BackColor = System.Drawing.SystemColors.Control
         Me.CheckBox10.Enabled = False
         Me.CheckBox10.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.CheckBox10.Location = New System.Drawing.Point(814, 94)
@@ -3661,7 +3669,7 @@ Partial Class Прием
         Me.CheckBox10.Size = New System.Drawing.Size(76, 19)
         Me.CheckBox10.TabIndex = 71
         Me.CheckBox10.Text = "Контракт"
-        Me.CheckBox10.UseVisualStyleBackColor = True
+        Me.CheckBox10.UseVisualStyleBackColor = False
         '
         'Прием
         '
