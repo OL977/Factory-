@@ -70,16 +70,16 @@
             нагод = ComboBox1.Text
         End If
 
-        StrSql = "INSERT INTO Отпуск(Орг,НаГод,Номер,Составлен,Утвержден)  VALUES('" & Отпуск.ComboBox2.Text & "',
+        StrSql = "INSERT INTO Отпуск(Орг,НаГод,Номер,Составлен,Утвержден)  VALUES('" & Отпуск1.ComboBox2.Text & "',
 '" & нагод & "','" & TextBox1.Text & "','" & MaskedTextBox1.Text & "','" & MaskedTextBox2.Text & "')"
         Updates(StrSql)
 
         StrSql = ""
 
-        StrSql = "SELECT НаГод, Номер, Составлен, Утвержден FROM Отпуск WHERE Орг='" & Отпуск.ComboBox2.Text & "'"
+        StrSql = "SELECT НаГод, Номер, Составлен, Утвержден FROM Отпуск WHERE Орг='" & Отпуск1.ComboBox2.Text & "'"
         dt = Selects(StrSql)
-        Отпуск.Grid1.DataSource = dt
-        Статистика1("Нет", "Создание нового графика отпусков", Отпуск.ComboBox2.Text)
+        Отпуск1.Grid1.DataSource = dt
+        Статистика1("Нет", "Создание нового графика отпусков", Отпуск1.ComboBox2.Text)
         Me.Close()
     End Sub
 

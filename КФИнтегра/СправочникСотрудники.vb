@@ -435,6 +435,20 @@
     Private Sub InsertInfo()
         Dim idNew As Integer
         Using dbcx = New DbAllDataContext  'мой insert
+
+            'вставляем данные в таблицу СотрудникиСправочникУчет и вынимаем номерID
+            Dim h As New Сотрудники
+
+
+
+
+
+
+
+
+
+
+
             Dim f As New Сотрудники()
             With f
                 .НазвОрганиз = ComboBox2.Text
@@ -509,6 +523,12 @@
                 End Using
             Next
         End If
+
+
+
+
+
+
         Btn6()
         MessageBox.Show("Данные внесены!", Рик)
     End Sub

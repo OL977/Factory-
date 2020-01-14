@@ -109,7 +109,7 @@
         Dim ИтогоВЧисло As String
 
         If TextBox4.Text = "0" Then
-            ИтогоВЧисло = Отпуск.Grid3.CurrentRow.Cells("Итого").Value
+            ИтогоВЧисло = Отпуск1.Grid3.CurrentRow.Cells("Итого").Value
             Разн = "0"
             Try
                 а = CType(CType(ИтогоВЧисло, Integer) - (CType(TextBox2.Text, Integer) + CType(TextBox3.Text, Integer)), String)
@@ -130,7 +130,7 @@
         If Not TextBox4.Text = "0" And CType(TextBox4.Text, Integer) > 0 Then
 
             Разн = TextBox4.Text
-            ИтогоВЧисло = CType(CType(TextBox4.Text, Integer) + CType(Отпуск.Grid3.CurrentRow.Cells("Положено дней отпуска").Value, Integer), String)
+            ИтогоВЧисло = CType(CType(TextBox4.Text, Integer) + CType(Отпуск1.Grid3.CurrentRow.Cells("Положено дней отпуска").Value, Integer), String)
 
             Try
                 а = CType(CType(ИтогоВЧисло, Integer) - (CType(TextBox2.Text, Integer) + CType(TextBox3.Text, Integer)), String)
@@ -171,9 +171,9 @@
 
         Dim rf As Integer
         If Разн <> "" Then
-            rf = (CType(Отпуск.ДнОтпус, Integer) + CType(Разн, Integer))
+            rf = (CType(Отпуск1.ДнОтпус, Integer) + CType(Разн, Integer))
         Else
-            rf = CType(Отпуск.ДнОтпус, Integer)
+            rf = CType(Отпуск1.ДнОтпус, Integer)
         End If
 
 
@@ -189,15 +189,15 @@
         strsql = "UPDATE ОтпускСотрудники SET ДатаНач1='" & msk1 & "', Продолж1='" & TextBox2.Text & "',
 ДатаОконч1='" & d1 & "',ДатаНач2='" & msk2 & "', Продолж2='" & TextBox3.Text & "', ДатаОконч2='" & d8 & "',
 Израсходовано='" & s & "', ОсталосьЭтотГод ='" & а & "' , ОсталосьПрошлГод= '" & Разн & "', Итого='" & ИтогоВЧисло & "'
-WHERE Код=" & Отпуск.idgr3cod & ""
+WHERE Код=" & Отпуск1.idgr3cod & ""
         Updates(strsql)
 
         Доки()
 
-        Статистика1(TextBox1.Text, "Отправка сотрудника в отпуск", Отпуск.ComboBox2.Text)
+        Статистика1(TextBox1.Text, "Отправка сотрудника в отпуск", Отпуск1.ComboBox2.Text)
         hg = 0
-        Отпуск.grcellclick()
-        Отпуск.grid3activ()
+        Отпуск1.grcellclick()
+        Отпуск1.grid3activ()
         Me.Cursor = Cursors.Default
         Me.Close()
     End Sub
@@ -243,7 +243,7 @@ WHERE Код=" & Отпуск.idgr3cod & ""
         'Dim strsql1 As String = "SELECT * FROM Клиент WHERE НазвОрг= '" & Отпуск.ComboBox2.Text & "'"
         'Dim dsd2 As DataTable = Selects(strsql1)
 
-        Dim dsd2 = dtClientAll.Select("НазвОрг= '" & Отпуск.ComboBox2.Text & "'")
+        Dim dsd2 = dtClientAll.Select("НазвОрг= '" & Отпуск1.ComboBox2.Text & "'")
 
 
         'Dim strsql2 As String = "SELECT Должность, Разряд FROM Штатное WHERE ИДСотр= " & idcn & ""
@@ -285,7 +285,7 @@ WHERE Код=" & Отпуск.idgr3cod & ""
             If dsd2(0).Item(1).ToString = "Индивидуальный предприниматель" Then
                 .Item("П10").Range.Text = dsd2(0).Item(18).ToString
             Else
-                .Item("П10").Range.Text = dsd2(0).Item(18).ToString & " " & ФормСобствКор(dsd2(0).Item(1).ToString) & " """ & Отпуск.ComboBox2.Text & """ "
+                .Item("П10").Range.Text = dsd2(0).Item(18).ToString & " " & ФормСобствКор(dsd2(0).Item(1).ToString) & " """ & Отпуск1.ComboBox2.Text & """ "
 
             End If
 
@@ -328,11 +328,11 @@ WHERE Код=" & Отпуск.idgr3cod & ""
 
         Dim Name As String = TextBox5.Text & "-отп " & ФИОКорРук(TextBox1.Text, False) & " с " & Me.MaskedTextBox1.Text & " по " & d1 & " (Приказ.ТрудОтпуск часть 1)" & ".doc"
         Dim СохрЗак As New List(Of String)
-        СохрЗак.AddRange(New String() {Отпуск.ComboBox2.Text & "\Приказ\" & Now.Year & "\", Name})
+        СохрЗак.AddRange(New String() {Отпуск1.ComboBox2.Text & "\Приказ\" & Now.Year & "\", Name})
         oWordDoc.SaveAs2(PathVremyanka & Name,,,,,, False)
         oWordDoc.Close(True)
         oWord.Quit(True)
-        Конец(Отпуск.ComboBox2.Text & "\Приказ\" & Now.Year, Name, idcn, Отпуск.ComboBox2.Text, "\PrikazNaOtpusk.doc", "Приказ.ТрудОтпуск часть 1")
+        Конец(Отпуск1.ComboBox2.Text & "\Приказ\" & Now.Year, Name, idcn, Отпуск1.ComboBox2.Text, "\PrikazNaOtpusk.doc", "Приказ.ТрудОтпуск часть 1")
         massFTP3.Add(СохрЗак)
 
 
@@ -424,7 +424,7 @@ WHERE Код=" & Отпуск.idgr3cod & ""
                 .Item("ЗСО1").Range.Text = ДолжРодПадежФункц(dsorg.Rows(0).Item(18).ToString)
                 .Item("ЗСО2").Range.Text = ФИОКорРук(dsorg.Rows(0).Item(30).ToString, False)
             Else
-                .Item("ЗСО1").Range.Text = ДолжРодПадежФункц(dsorg.Rows(0).Item(18).ToString) & " " & ФормСобствКор(dsorg.Rows(0).Item(1).ToString) & " «" & Отпуск.ComboBox2.Text & "» "
+                .Item("ЗСО1").Range.Text = ДолжРодПадежФункц(dsorg.Rows(0).Item(18).ToString) & " " & ФормСобствКор(dsorg.Rows(0).Item(1).ToString) & " «" & Отпуск1.ComboBox2.Text & "» "
                 If dsorg.Rows(0).Item(31) = True Then
                     .Item("ЗСО2").Range.Text = ФИОКорРук(dsorg.Rows(0).Item(30).ToString, True)
                 Else
@@ -439,7 +439,7 @@ WHERE Код=" & Отпуск.idgr3cod & ""
             End If
             .Item("ЗСО4").Range.Text = dssotr.Rows(0).Item(5).ToString & " " & dssotr.Rows(0).Item(6).ToString & " " & dssotr.Rows(0).Item(7).ToString
 
-            If Отпуск.ДнОтпус = CType(TextBox2.Text, Integer) Then
+            If Отпуск1.ДнОтпус = CType(TextBox2.Text, Integer) Then
                 .Item("ЗСО5").Range.Text = "трудовой отпуск"
             Else
                 .Item("ЗСО5").Range.Text = "часть трудового отпуска"
@@ -468,11 +468,11 @@ WHERE Код=" & Отпуск.idgr3cod & ""
 
         Dim Name As String = f & n & ".doc"
         Dim СохрЗак2 As New List(Of String)
-        СохрЗак2.AddRange(New String() {Отпуск.ComboBox2.Text & "\Заявление\" & Now.Year & "\", Name})
+        СохрЗак2.AddRange(New String() {Отпуск1.ComboBox2.Text & "\Заявление\" & Now.Year & "\", Name})
         oWordDoc.SaveAs2(PathVremyanka & Name,,,,,, False)
         oWordDoc.Close(True)
         oWord.Quit(True)
-        Конец(Отпуск.ComboBox2.Text & "\Заявление\" & Now.Year, Name, idcn, Отпуск.ComboBox2.Text, "\ZayavlenieTrudOtpusk.doc", "Заявление на труд.отпуск")
+        Конец(Отпуск1.ComboBox2.Text & "\Заявление\" & Now.Year, Name, idcn, Отпуск1.ComboBox2.Text, "\ZayavlenieTrudOtpusk.doc", "Заявление на труд.отпуск")
         massFTP3.Add(СохрЗак2)
 
 
@@ -523,13 +523,13 @@ WHERE Код=" & Отпуск.idgr3cod & ""
     Private Sub СборДаннОрганиз()
 
         Dim догПод As String = "Нет"
-        Dim dh = dtSotrudnikiAll.Select("ФИОСборное='" & TextBox1.Text & "' and НазвОрганиз='" & Отпуск.ComboBox2.Text & "' and НаличеДогПодряда='" & догПод & "'")
+        Dim dh = dtSotrudnikiAll.Select("ФИОСборное='" & TextBox1.Text & "' and НазвОрганиз='" & Отпуск1.ComboBox2.Text & "' and НаличеДогПодряда='" & догПод & "'")
 
         'Dim strsql3 As String = "SELECT КодСотрудники FROM Сотрудники WHERE ФИОСборное='" & TextBox1.Text & "' and НазвОрганиз='" & Отпуск.ComboBox2.Text & "'"
         'Dim dh As DataTable = Selects(strsql3)
         Dim list As New Dictionary(Of String, Object)
         list.Add("@КодСотрудники", CType(dh(0).Item("КодСотрудники"), Integer))
-        list.Add("@НазвОрг", Отпуск.ComboBox2.Text)
+        list.Add("@НазвОрг", Отпуск1.ComboBox2.Text)
 
         dssotr = Selects(StrSql:= "SELECT Сотрудники.Фамилия, Сотрудники.Имя, Сотрудники.Отчество, Штатное.Должность, Штатное.Разряд,
 Сотрудники.ФамилияДляЗаявления,Сотрудники.ИмяДляЗаявления,Сотрудники.ОтчествоДляЗаявления
@@ -585,7 +585,7 @@ WHERE Сотрудники.КодСотрудники=@КодСотрудник�
         '        Files2(n) = gth3
         '    Next
 
-        Dim dt = listFluentFTP("/" & Отпуск.ComboBox2.Text & "/Приказ/" & ComboBox1.Text & "/")
+        Dim dt = listFluentFTP("/" & Отпуск1.ComboBox2.Text & "/Приказ/" & ComboBox1.Text & "/")
         ComboBox2.Items.Clear()
         For Each v In dt
             ComboBox2.Items.Add(v.ToString)
@@ -630,8 +630,8 @@ WHERE Сотрудники.КодСотрудники=@КодСотрудник�
 
             Updates(stroka:="DELETE FROM ОтпускСотрудники WHERE ФИО='" & TextBox1.Text & "'", list, "ОтпускСотрудники")
 
-            Отпуск.grcellclick()
-            Отпуск.grid3activ()
+            Отпуск1.grcellclick()
+            Отпуск1.grid3activ()
             Me.Close()
         End Try
 

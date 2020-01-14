@@ -1,12 +1,12 @@
 ﻿Option Explicit On
 Imports System.Data.OleDb
-Public Class Отпуск
+Public Class Отпуск1
     Public dt, dt2, dt3, dt4, dt5 As DataTable
     Dim StrSql As String
     Public indrow, idwor, idgr3cod, ДнОтпус As Integer
     Public ПерС As String
 
-    Private Sub Отпуск_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Отпуск1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.MdiParent = MDIParent1
         Me.WindowState = FormWindowState.Maximized
 

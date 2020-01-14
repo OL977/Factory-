@@ -67,8 +67,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=45.14.50.13\723\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Secur"& _ 
-            "ity Info=True;User ID=userintegra;Password=61kzHBRa4e6Mfl")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Sec"& _ 
+            "urity Info=True;User ID=userintegra1;Password=61kzHBRa4e6Mfl")>  _
         Public ReadOnly Property ИнтеграConnectionString() As String
             Get
                 Return CType(Me("ИнтеграConnectionString"),String)

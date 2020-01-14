@@ -10901,7 +10901,13 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
     Private Sub TabControl1_DrawItem(sender As Object, e As DrawItemEventArgs) Handles TabControl1.DrawItem
 
         Dim g As Graphics = e.Graphics
-        Dim tp As TabPage = TabControl1.TabPages(e.Index)
+        Dim tp As TabPage
+        Try
+            tp = TabControl1.TabPages(e.Index)
+        Catch ex As Exception
+            Exit Sub
+        End Try
+
         Dim br As Brush
         Dim sf As New StringFormat
 

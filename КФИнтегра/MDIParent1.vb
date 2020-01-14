@@ -609,9 +609,9 @@ Public Class MDIParent1
         Catch ex As Exception
 
         End Try
-        Отпуск.WindowState = FormWindowState.Maximized
+        Отпуск1.WindowState = FormWindowState.Maximized
         'AddHandler Штатное.FormClosing, AddressOf запускзакрытия
-        Отпуск.Show()
+        Отпуск1.Show()
     End Sub
 
     Private Sub ПоТребованиюToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ПоТребованиюToolStripMenuItem.Click
