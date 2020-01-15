@@ -34,9 +34,14 @@
         ComboBox3.Visible = False
         Label33.Visible = False
 
-        Dim dbcx As New DbAllDataContext
-        Dim ds = From x In dbcx.Клиент.AsEnumerable Order By x.НазвОрг Select x.НазвОрг
-        ComboBox2.DataSource = ds.ToList
+        Using dbcx As New DbAllDataContext
+            Dim ds = From x In dbcx.Клиент.AsEnumerable
+                     Order By x.НазвОрг
+                     Select x.НазвОрг
+            ComboBox2.DataSource = ds.ToList
+        End Using
+
+
         If BtnClick = "Изменить" Then
             ComboBox3.Visible = True
             Label33.Visible = True
@@ -70,17 +75,33 @@
         'Grid1.Columns(0).Width = 250
     End Sub
     Private Sub com2()
-        Dim dbcx As New DbAllDataContext
-        If ComboBox3.Visible = True Then
-            Dim ds = From x In dbcx.Сотрудники.AsEnumerable
-                     Where x.НазвОрганиз = ComboBox2.Text
-                     Order By x.ФИОСборное
-                     Select x.ФИОСборное, x.КодСотрудники
-            ComboBox3.DataSource = ds.ToList
-            ComboBox3.DisplayMember = "ФИОСборное"
-            ComboBox3.ValueMember = "КодСотрудники"
+        Using dbcx As New DbAllDataContext
 
-        End If
+            If ComboBox3.Visible = True Then
+                Dim ds = From x In dbcx.СотрудникиСправочникУчет.AsEnumerable
+                         Where x._Клиент = ComboBox2.Text
+                         Order By x._ФИОСотр
+                         Select x._ФИОСотр, x.Код
+                ComboBox3.DataSource = ds.ToList
+                ComboBox3.DisplayMember = "_ФИОСотр"
+                ComboBox3.ValueMember = "Код"
+
+            End If
+
+        End Using
+
+        'If ComboBox3.Visible = True Then
+        '    Dim ds = From x In dbcx.Сотрудники.AsEnumerable
+        '             Where x.НазвОрганиз = ComboBox2.Text
+        '             Order By x.ФИОСборное
+        '             Select x.ФИОСборное, x.КодСотрудники
+        '    ComboBox3.DataSource = ds.ToList
+        '    ComboBox3.DisplayMember = "ФИОСборное"
+        '    ComboBox3.ValueMember = "КодСотрудники"
+
+        'End If
+
+
 
     End Sub
 
@@ -433,20 +454,29 @@
 
     End Function
     Private Sub InsertInfo()
-        Dim idNew As Integer
-        Using dbcx = New DbAllDataContext  'мой insert
+        Dim idNew, idSNw As Integer
 
+        Using dbcx As New DbAllDataContext
             'вставляем данные в таблицу СотрудникиСправочникУчет и вынимаем номерID
-            Dim h As New Сотрудники
+            Dim h As New СотрудникиСправочникУчет
+            With h
+                ._Клиент = ComboBox2.Text
+                ._НомерПаспорта = TextBox10.Text
+                ._СерияПаспорта = TextBox13.Text
+                ._ФИОСотр = Trim(TextBox1.Text) & " " & Trim(TextBox2.Text) & " " & Trim(TextBox3.Text)
+                ._Страховое = TextBox45.Text
+            End With
+            dbcx.СотрудникиСправочникУчет.InsertOnSubmit(h)
+            dbcx.SubmitChanges()
+            idSNw = h.Код
+
+
+        End Using
 
 
 
 
-
-
-
-
-
+        Using dbcx = New DbAllDataContext  'мой insert
 
 
             Dim f As New Сотрудники()
@@ -483,13 +513,28 @@
                 .ИДНомер = Trim(TextBox11.Text)
                 .СтраховойПолис = Trim(TextBox45.Text)
                 .ДатаРожд = MaskedTextBox9.Text
-
+                .IDСотрудникиСправочникУчет = idSNw
             End With
             dbcx.Сотрудники.InsertOnSubmit(f)
             dbcx.SubmitChanges()
             idNew = f.КодСотрудники
         End Using
 
+        'Заполняем таблицу СотрудникиСправочникУчетID
+        Using dbcx = New DbAllDataContext
+            Dim n As New СотрудникиСправочникУчетID
+            With n
+                ._IDSot = idSNw
+                ._IDСотрСправУчет = idNew
+            End With
+            dbcx.СотрудникиСправочникУчетID.InsertOnSubmit(n)
+            dbcx.SubmitChanges()
+        End Using
+
+
+
+
+        'Заполняем таблицу СоставСемьи
         Using dbcx = New DbAllDataContext 'мой insert
             Dim d As New СоставСемьи()
             With d
@@ -534,70 +579,78 @@
     End Sub
     Private Sub UpdateInfo()
 
-        Using dbcx = New DbAllDataContext              'мой insert
-            Dim var = (From x In dbcx.Сотрудники.AsEnumerable
-                       Where x.КодСотрудники = ComboBox3.SelectedValue
-                       Select x).Single
-
-            If var IsNot Nothing Then
-                With var
-                    .НазвОрганиз = ComboBox2.Text
-                    .Фамилия = Trim(TextBox1.Text)
-                    .Имя = Trim(TextBox2.Text)
-                    .Отчество = Trim(TextBox3.Text)
-                    .ДанныеИзСправочника = "True"
-                    .Пол = ComboBox28.Text
-                    .ФИОСборное = Trim(TextBox1.Text) & " " & Trim(TextBox2.Text) & " " & Trim(TextBox3.Text)
-                    .ФамилияРодПад = Trim(TextBox6.Text)
-                    .ИмяРодПад = Trim(TextBox5.Text)
-                    .ОтчествоРодПад = Trim(TextBox4.Text)
-                    .ФИОРодПод = Trim(TextBox6.Text) & " " & Trim(TextBox5.Text) & " " & Trim(TextBox4.Text)
-                    .ФамилияДляЗаявления = Trim(TextBox9.Text)
-                    .ИмяДляЗаявления = Trim(TextBox8.Text)
-                    .ОтчествоДляЗаявления = Trim(TextBox7.Text)
-                    .Гражданин = Trim(TextBox51.Text)
-                    .Регистрация = Trim(TextBox21.Text)
-                    .МестоПрожив = Trim(TextBox20.Text)
-                    .КонтТелГор = Trim(TextBox37.Text)
-                    .КонтТелефон = MaskedTextBox10.Text
-                    If CheckBox1.Checked = False Then
-                        .Иностранец = "False"
-                    Else
-                        .Иностранец = "True"
-                    End If
-                    .ПаспортСерия = Trim(TextBox13.Text)
-                    .ПаспортНомер = Trim(TextBox10.Text)
-                    .ПаспортКогдаВыдан = MaskedTextBox1.Text
-                    .ДоКакогоДейств = MaskedTextBox2.Text
-                    .ПаспортКемВыдан = RichTextBox1.Text
-                    .ИДНомер = Trim(TextBox11.Text)
-                    .СтраховойПолис = Trim(TextBox45.Text)
-                    .ДатаРожд = MaskedTextBox9.Text
-                    dbcx.SubmitChanges()
-                End With
-            End If
+        Dim idSotrN As List(Of Сотрудники)
+        Using dbcx As New DbAllDataContext
+            idSotrN = (From x In dbcx.Сотрудники.AsEnumerable
+                       Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
+                       Select x).ToList
         End Using
 
-        Using dbcx = New DbAllDataContext 'мой update
-            Dim var = (From x In dbcx.СоставСемьи.AsEnumerable
-                       Where x.IDСотр = ComboBox3.SelectedValue
-                       Select x).SingleOrDefault
-            If var IsNot Nothing Then
-                With var
-                    .ФИО = Trim(TextBox24.Text)
-                    .МестоРаботы = Trim(TextBox23.Text)
-                    .Телефон = Trim(TextBox19.Text)
-                    If Grid1.Rows.Count > 0 Then
-                        .КолДетей = Grid1.Rows.Count
-                    Else
-                        .КолДетей = "Нет"
-                    End If
-                End With
-                dbcx.SubmitChanges()
-            Else
-                Using dbx As New DbAllDataContext
-                    Dim var2 As New СоставСемьи()
-                    With var2
+        If idSotrN.Count = 0 Then Exit Sub
+
+        For Each item In idSotrN
+            Using dbcx As New DbAllDataContext
+                Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+                           Join y In dbcx.СоставСемьи.AsEnumerable On x.КодСотрудники Equals y.IDСотр
+                           Where x.КодСотрудники = item.КодСотрудники
+                           Select x, y).FirstOrDefault
+
+                'вставляем данные в таблицу Сотрудники
+                If var IsNot Nothing Then
+                    With var.x
+                        .НазвОрганиз = ComboBox2.Text
+                        .Фамилия = Trim(TextBox1.Text)
+                        .Имя = Trim(TextBox2.Text)
+                        .Отчество = Trim(TextBox3.Text)
+                        .ДанныеИзСправочника = "True"
+                        .Пол = ComboBox28.Text
+                        .ФИОСборное = Trim(TextBox1.Text) & " " & Trim(TextBox2.Text) & " " & Trim(TextBox3.Text)
+                        .ФамилияРодПад = Trim(TextBox6.Text)
+                        .ИмяРодПад = Trim(TextBox5.Text)
+                        .ОтчествоРодПад = Trim(TextBox4.Text)
+                        .ФИОРодПод = Trim(TextBox6.Text) & " " & Trim(TextBox5.Text) & " " & Trim(TextBox4.Text)
+                        .ФамилияДляЗаявления = Trim(TextBox9.Text)
+                        .ИмяДляЗаявления = Trim(TextBox8.Text)
+                        .ОтчествоДляЗаявления = Trim(TextBox7.Text)
+                        .Гражданин = Trim(TextBox51.Text)
+                        .Регистрация = Trim(TextBox21.Text)
+                        .МестоПрожив = Trim(TextBox20.Text)
+                        .КонтТелГор = Trim(TextBox37.Text)
+                        .КонтТелефон = MaskedTextBox10.Text
+                        If CheckBox1.Checked = False Then
+                            .Иностранец = "False"
+                        Else
+                            .Иностранец = "True"
+                        End If
+                        .ПаспортСерия = Trim(TextBox13.Text)
+                        .ПаспортНомер = Trim(TextBox10.Text)
+                        .ПаспортКогдаВыдан = MaskedTextBox1.Text
+                        .ДоКакогоДейств = MaskedTextBox2.Text
+                        .ПаспортКемВыдан = RichTextBox1.Text
+                        .ИДНомер = Trim(TextBox11.Text)
+                        .СтраховойПолис = Trim(TextBox45.Text)
+                        .ДатаРожд = MaskedTextBox9.Text
+                    End With
+
+                    'вставляем данные в таблицу СоставСемьи
+                    With var.y
+                        .ФИО = Trim(TextBox24.Text)
+                        .МестоРаботы = Trim(TextBox23.Text)
+                        .Телефон = Trim(TextBox19.Text)
+                        If Grid1.Rows.Count > 0 Then
+                            .КолДетей = Grid1.Rows.Count
+                        Else
+                            .КолДетей = "Нет"
+                        End If
+                    End With
+
+                    dbcx.SubmitChanges()
+
+
+                Else
+
+                    'всатвляем данные новые в таблицу СоставСемьи
+                    With var.y
                         .IDСотр = ComboBox3.SelectedValue
                         .ФИО = Trim(TextBox24.Text)
                         .МестоРаботы = Trim(TextBox23.Text)
@@ -609,49 +662,174 @@
                         End If
                     End With
 
-                    dbcx.СоставСемьи.InsertOnSubmit(var2)
+                    dbcx.СоставСемьи.InsertOnSubmit(var.y)
                     dbcx.SubmitChanges()
-                End Using
-            End If
-        End Using
+
+                End If
+            End Using
+
+            'удаляем старые данные из таблицы дети
+            Using dbcx = New DbAllDataContext
+                Dim var = (From x In dbcx.Дети.AsEnumerable
+                           Where x.IDСотр = item.КодСотрудники
+                           Select x).ToList
+                If var.Count > 0 Then
+                    For Each item1 In var
+                        dbcx.Дети.DeleteOnSubmit(item1)
+                        dbcx.SubmitChanges()
+                    Next
+
+                End If
+                'If var Is Nothing Then
+
+                'End If
+
+            End Using
 
 
-        Using dbcx = New DbAllDataContext  'удаляем старые данные из таблицы дети
-            Dim var = (From x In dbcx.Дети.AsEnumerable
-                       Where x.IDСотр = ComboBox3.SelectedValue
-                       Select x).ToList
-            If var.Count > 0 Then
-                For Each item In var
-                    dbcx.Дети.DeleteOnSubmit(item)
-                    dbcx.SubmitChanges()
+
+
+            'вставляем данные в таблицу дети
+            If Grid1.Rows.Count > 0 Then
+                For x As Integer = 0 To Grid1.Rows.Count - 1
+                    Using dbcx = New DbAllDataContext 'мой insert
+                        Dim v As New Дети()
+                        With v
+                            .IDСотр = item.КодСотрудники
+                            .ФИО = Grid1.Rows(x).Cells(0).Value
+                            .Пол = Grid1.Rows(x).Cells(1).Value
+                            .ДатаРождения = CDate(Grid1.Rows(x).Cells(2).Value)
+                        End With
+                        dbcx.Дети.InsertOnSubmit(v)
+                        dbcx.SubmitChanges()
+                    End Using
                 Next
-
             End If
-            'If var Is Nothing Then
 
-            'End If
-
-        End Using
+        Next
 
 
 
+        'Using dbcx = New DbAllDataContext
+        '    Dim var = (From x In dbcx.Сотрудники.AsEnumerable
+        '               Where x.КодСотрудники = ComboBox3.SelectedValue
+        '               Select x).Single
+
+        '    If var IsNot Nothing Then
+        '        With var
+        '            .НазвОрганиз = ComboBox2.Text
+        '            .Фамилия = Trim(TextBox1.Text)
+        '            .Имя = Trim(TextBox2.Text)
+        '            .Отчество = Trim(TextBox3.Text)
+        '            .ДанныеИзСправочника = "True"
+        '            .Пол = ComboBox28.Text
+        '            .ФИОСборное = Trim(TextBox1.Text) & " " & Trim(TextBox2.Text) & " " & Trim(TextBox3.Text)
+        '            .ФамилияРодПад = Trim(TextBox6.Text)
+        '            .ИмяРодПад = Trim(TextBox5.Text)
+        '            .ОтчествоРодПад = Trim(TextBox4.Text)
+        '            .ФИОРодПод = Trim(TextBox6.Text) & " " & Trim(TextBox5.Text) & " " & Trim(TextBox4.Text)
+        '            .ФамилияДляЗаявления = Trim(TextBox9.Text)
+        '            .ИмяДляЗаявления = Trim(TextBox8.Text)
+        '            .ОтчествоДляЗаявления = Trim(TextBox7.Text)
+        '            .Гражданин = Trim(TextBox51.Text)
+        '            .Регистрация = Trim(TextBox21.Text)
+        '            .МестоПрожив = Trim(TextBox20.Text)
+        '            .КонтТелГор = Trim(TextBox37.Text)
+        '            .КонтТелефон = MaskedTextBox10.Text
+        '            If CheckBox1.Checked = False Then
+        '                .Иностранец = "False"
+        '            Else
+        '                .Иностранец = "True"
+        '            End If
+        '            .ПаспортСерия = Trim(TextBox13.Text)
+        '            .ПаспортНомер = Trim(TextBox10.Text)
+        '            .ПаспортКогдаВыдан = MaskedTextBox1.Text
+        '            .ДоКакогоДейств = MaskedTextBox2.Text
+        '            .ПаспортКемВыдан = RichTextBox1.Text
+        '            .ИДНомер = Trim(TextBox11.Text)
+        '            .СтраховойПолис = Trim(TextBox45.Text)
+        '            .ДатаРожд = MaskedTextBox9.Text
+        '            dbcx.SubmitChanges()
+        '        End With
+        '    End If
+        'End Using
+
+        'Using dbcx = New DbAllDataContext 'мой update
+        '    Dim var = (From x In dbcx.СоставСемьи.AsEnumerable
+        '               Where x.IDСотр = ComboBox3.SelectedValue
+        '               Select x).SingleOrDefault
+        '    If var IsNot Nothing Then
+        '        With var
+        '            .ФИО = Trim(TextBox24.Text)
+        '            .МестоРаботы = Trim(TextBox23.Text)
+        '            .Телефон = Trim(TextBox19.Text)
+        '            If Grid1.Rows.Count > 0 Then
+        '                .КолДетей = Grid1.Rows.Count
+        '            Else
+        '                .КолДетей = "Нет"
+        '            End If
+        '        End With
+        '        dbcx.SubmitChanges()
+        '    Else
+        '        Using dbx As New DbAllDataContext
+        '            Dim var2 As New СоставСемьи()
+        '            With var2
+        '                .IDСотр = ComboBox3.SelectedValue
+        '                .ФИО = Trim(TextBox24.Text)
+        '                .МестоРаботы = Trim(TextBox23.Text)
+        '                .Телефон = Trim(TextBox19.Text)
+        '                If Grid1.Rows.Count > 0 Then
+        '                    .КолДетей = Grid1.Rows.Count
+        '                Else
+        '                    .КолДетей = "Нет"
+        '                End If
+        '            End With
+
+        '            dbcx.СоставСемьи.InsertOnSubmit(var2)
+        '            dbcx.SubmitChanges()
+        '        End Using
+        '    End If
+        'End Using
 
 
-        If Grid1.Rows.Count > 0 Then 'вставляем данные в таблицу дети
-            For x As Integer = 0 To Grid1.Rows.Count - 1
-                Using dbcx = New DbAllDataContext 'мой insert
-                    Dim v As New Дети()
-                    With v
-                        .IDСотр = ComboBox3.SelectedValue
-                        .ФИО = Grid1.Rows(x).Cells(0).Value
-                        .Пол = Grid1.Rows(x).Cells(1).Value
-                        .ДатаРождения = CDate(Grid1.Rows(x).Cells(2).Value)
-                    End With
-                    dbcx.Дети.InsertOnSubmit(v)
-                    dbcx.SubmitChanges()
-                End Using
-            Next
-        End If
+        'Using dbcx = New DbAllDataContext  'удаляем старые данные из таблицы дети
+        '    Dim var = (From x In dbcx.Дети.AsEnumerable
+        '               Where x.IDСотр = ComboBox3.SelectedValue
+        '               Select x).ToList
+        '    If var.Count > 0 Then
+        '        For Each item In var
+        '            dbcx.Дети.DeleteOnSubmit(item)
+        '            dbcx.SubmitChanges()
+        '        Next
+
+        '    End If
+        '    'If var Is Nothing Then
+
+        '    'End If
+
+        'End Using
+
+
+
+
+
+        'If Grid1.Rows.Count > 0 Then 'вставляем данные в таблицу дети
+        '    For x As Integer = 0 To Grid1.Rows.Count - 1
+        '        Using dbcx = New DbAllDataContext 'мой insert
+        '            Dim v As New Дети()
+        '            With v
+        '                .IDСотр = ComboBox3.SelectedValue
+        '                .ФИО = Grid1.Rows(x).Cells(0).Value
+        '                .Пол = Grid1.Rows(x).Cells(1).Value
+        '                .ДатаРождения = CDate(Grid1.Rows(x).Cells(2).Value)
+        '            End With
+        '            dbcx.Дети.InsertOnSubmit(v)
+        '            dbcx.SubmitChanges()
+        '        End Using
+        '    Next
+        'End If
+
+
         Btn6()
         MessageBox.Show("Данные внесены!", Рик)
 
@@ -880,71 +1058,131 @@
             Exit Sub
         End If
 
-        Dim dbc As New DbAllDataContext
-        Dim var = (From x In dbc.Сотрудники.AsEnumerable
-                   Where CType(x.КодСотрудники.ToString, Integer) = ComboBox3.SelectedValue
-                   Select x).FirstOrDefault()
+        Using dbcx2 As New DbAllDataContext
+            Dim var = (From x In dbcx2.Сотрудники.AsEnumerable
+                       Join y In dbcx2.СоставСемьи.AsEnumerable On x.КодСотрудники Equals y.IDСотр
+                       Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
+                       Select x, y).FirstOrDefault
+            If var Is Nothing Then Exit Sub
+            With var.x
+                TextBox1.Text = .Фамилия
+                TextBox2.Text = .Имя
+                TextBox3.Text = .Отчество
+                ComboBox28.Text = .Пол
+
+                TextBox4.Text = .ОтчествоРодПад
+                TextBox5.Text = .ИмяРодПад
+                TextBox6.Text = .ФамилияРодПад
+
+                TextBox7.Text = .ОтчествоДляЗаявления
+                TextBox8.Text = .ИмяДляЗаявления
+                TextBox9.Text = .ФамилияДляЗаявления
+
+                TextBox21.Text = .Регистрация
+                TextBox20.Text = .МестоПрожив
+                TextBox37.Text = .КонтТелГор
+                MaskedTextBox10.Text = .КонтТелефон
+                TextBox51.Text = .Гражданин
+
+                If .Иностранец = True Then
+                    CheckBox1.Checked = True
+                Else
+                    CheckBox1.Checked = False
+                End If
+
+                TextBox13.Text = .ПаспортСерия
+                TextBox10.Text = .ПаспортНомер
+                MaskedTextBox1.Text = .ПаспортКогдаВыдан
+                MaskedTextBox2.Text = .ДоКакогоДейств
+                RichTextBox1.Text = .ПаспортКемВыдан
+                TextBox11.Text = .ИДНомер
+                TextBox45.Text = .СтраховойПолис
+                MaskedTextBox9.Text = .ДатаРожд
+            End With
+
+            With var.y
+                TextBox24.Text = .ФИО
+                TextBox23.Text = .МестоРаботы
+                TextBox19.Text = .Телефон
+            End With
+
+        End Using
 
 
 
 
-        TextBox1.Text = var.Фамилия
-        TextBox2.Text = var.Имя
-        TextBox3.Text = var.Отчество
-        ComboBox28.Text = var.Пол
 
-        TextBox4.Text = var.ОтчествоРодПад
-        TextBox5.Text = var.ИмяРодПад
-        TextBox6.Text = var.ФамилияРодПад
-
-        TextBox7.Text = var.ОтчествоДляЗаявления
-        TextBox8.Text = var.ИмяДляЗаявления
-        TextBox9.Text = var.ФамилияДляЗаявления
-
-        TextBox21.Text = var.Регистрация
-        TextBox20.Text = var.МестоПрожив
-        TextBox37.Text = var.КонтТелГор
-        MaskedTextBox10.Text = var.КонтТелефон
-        TextBox51.Text = var.Гражданин
-
-        If var.Иностранец = True Then
-            CheckBox1.Checked = True
-        Else
-            CheckBox1.Checked = False
-        End If
-
-        TextBox13.Text = var.ПаспортСерия
-        TextBox10.Text = var.ПаспортНомер
-        MaskedTextBox1.Text = var.ПаспортКогдаВыдан
-        MaskedTextBox2.Text = var.ДоКакогоДейств
-        RichTextBox1.Text = var.ПаспортКемВыдан
-        TextBox11.Text = var.ИДНомер
-        TextBox45.Text = var.СтраховойПолис
-        MaskedTextBox9.Text = var.ДатаРожд
+        'Using dbc As New DbAllDataContext
+        '    Dim var = (From x In dbc.Сотрудники.AsEnumerable
+        '               Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
+        '               Select x).FirstOrDefault()
 
 
+        '    TextBox1.Text = var.Фамилия
+        '    TextBox2.Text = var.Имя
+        '    TextBox3.Text = var.Отчество
+        '    ComboBox28.Text = var.Пол
 
-        Dim dbcx As New DbAllDataContext
-        Dim var1 = (From x In dbc.СоставСемьи.AsEnumerable
-                    Where x.IDСотр = ComboBox3.SelectedValue
-                    Select x).FirstOrDefault()
-        If var1 IsNot Nothing Then
-            TextBox24.Text = var1.ФИО
-            TextBox23.Text = var1.МестоРаботы
-            TextBox19.Text = var1.Телефон
-        End If
+        '    TextBox4.Text = var.ОтчествоРодПад
+        '    TextBox5.Text = var.ИмяРодПад
+        '    TextBox6.Text = var.ФамилияРодПад
+
+        '    TextBox7.Text = var.ОтчествоДляЗаявления
+        '    TextBox8.Text = var.ИмяДляЗаявления
+        '    TextBox9.Text = var.ФамилияДляЗаявления
+
+        '    TextBox21.Text = var.Регистрация
+        '    TextBox20.Text = var.МестоПрожив
+        '    TextBox37.Text = var.КонтТелГор
+        '    MaskedTextBox10.Text = var.КонтТелефон
+        '    TextBox51.Text = var.Гражданин
+
+        '    If var.Иностранец = True Then
+        '        CheckBox1.Checked = True
+        '    Else
+        '        CheckBox1.Checked = False
+        '    End If
+
+        '    TextBox13.Text = var.ПаспортСерия
+        '    TextBox10.Text = var.ПаспортНомер
+        '    MaskedTextBox1.Text = var.ПаспортКогдаВыдан
+        '    MaskedTextBox2.Text = var.ДоКакогоДейств
+        '    RichTextBox1.Text = var.ПаспортКемВыдан
+        '    TextBox11.Text = var.ИДНомер
+        '    TextBox45.Text = var.СтраховойПолис
+        '    MaskedTextBox9.Text = var.ДатаРожд
+        'End Using
+        ''Dim var = (From x In dbc.Сотрудники.AsEnumerable
+        ''           Where CType(x.КодСотрудники.ToString, Integer) = ComboBox3.SelectedValue
+        ''           Select x).FirstOrDefault()
 
 
 
-        Dim dbcx1 As New DbAllDataContext
-        Dim var2 = From x In dbc.Дети.AsEnumerable
-                   Where x.IDСотр = ComboBox3.SelectedValue
-                   Select x.ФИО, x.Пол, x.ДатаРождения
 
-        If var2 IsNot Nothing Then
-            Grid1.DataSource = var2.ToList()
-            GridView(Grid1)
-        End If
+
+        'Dim dbcx As New DbAllDataContext
+        'Dim var1 = (From x In dbcx.СоставСемьи.AsEnumerable
+        '            Where x.IDСотр = ComboBox3.SelectedValue
+        '            Select x).FirstOrDefault()
+        'If var1 IsNot Nothing Then
+        '    TextBox24.Text = var1.ФИО
+        '    TextBox23.Text = var1.МестоРаботы
+        '    TextBox19.Text = var1.Телефон
+        'End If
+
+
+
+        Using dbcx1 As New DbAllDataContext
+            Dim var2 = From x In dbcx1.Дети.AsEnumerable
+                       Where x.IDСотр = ComboBox3.SelectedValue
+                       Select x.ФИО, x.Пол, x.ДатаРождения
+
+            If var2 IsNot Nothing Then
+                Grid1.DataSource = var2.ToList()
+                GridView(Grid1)
+            End If
+        End Using
+
 
 
 

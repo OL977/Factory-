@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS\</PublishUrl>
+    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS64\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://rikconsulting.by/IS/</InstallUrl>
-    <UpdateUrl>http://rikconsulting.by/IS/</UpdateUrl>
+    <InstallUrl>http://rikconsulting.by/IS64/</InstallUrl>
+    <UpdateUrl>http://rikconsulting.by/IS64/</UpdateUrl>
     <SupportUrl>http://rikconsulting.by</SupportUrl>
     <ProductName>КФ Интегра - Кадры</ProductName>
     <PublisherName>ООО Рикманс</PublisherName>
@@ -36,7 +36,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

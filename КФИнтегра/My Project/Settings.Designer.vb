@@ -74,6 +74,18 @@ Namespace My
                 Return CType(Me("ИнтеграConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Sec"& _ 
+            "urity Info=True;User ID=FurtadoRickmasPull8;Password=ArRP660LwHD$bf~qXGKxq2FOk7P"& _ 
+            "aPhZK|2WA")>  _
+        Public ReadOnly Property ИнтеграConnectionString1() As String
+            Get
+                Return CType(Me("ИнтеграConnectionString1"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 
