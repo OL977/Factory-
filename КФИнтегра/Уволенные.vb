@@ -69,7 +69,7 @@ Public Class Уволенные
         'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
         '                                          And x.Item("ДокМесто").ToString.Contains("Заявление-Увольнение") Select x
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
                        Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Заявление-Увольнение")
                        Select x).ToList
@@ -100,7 +100,7 @@ Public Class Уволенные
         '                                           And x.Item("ДокМесто").ToString.Contains("Приказ-Увольнение") Select x
 
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
                        Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Приказ-Увольнение")
                        Select x).ToList
@@ -450,7 +450,7 @@ Public Class Уволенные
 
         Me.Cursor = Cursors.WaitCursor
         Dim ds1
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ds1 = (From x In dbcx.Сотрудники.AsEnumerable
                    Join y In dbcx.ДогСотрудн.AsEnumerable On x.КодСотрудники Equals y.IDСотр
                    Join z In dbcx.КарточкаСотрудника.AsEnumerable On x.КодСотрудники Equals z.IDСотр

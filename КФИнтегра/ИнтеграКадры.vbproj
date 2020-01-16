@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS64\</PublishUrl>
+    <PublishUrl>B:\_РАБОЧАЯ ПАПКА\Интегра Сохраненные изменения Visual Studio\IS\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://rikconsulting.by/IS64/</InstallUrl>
-    <UpdateUrl>http://rikconsulting.by/IS64/</UpdateUrl>
+    <InstallUrl>http://rikconsulting.by/IS/</InstallUrl>
+    <UpdateUrl>http://rikconsulting.by/IS/</UpdateUrl>
     <SupportUrl>http://rikconsulting.by</SupportUrl>
     <ProductName>КФ Интегра - Кадры</ProductName>
     <PublisherName>ООО Рикманс</PublisherName>
@@ -190,15 +190,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
@@ -215,9 +206,6 @@
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog.ZidiumTarget, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.Zidium.1.0.6\lib\net35-client\NLog.ZidiumTarget.dll</HintPath>
     </Reference>
     <Reference Include="office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -326,14 +314,8 @@
     <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
     </Reference>
-    <Reference Include="unvell.ReoGrid, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\unvell.ReoGrid.dll.2.1.0.0\lib\20\unvell.ReoGrid.dll</HintPath>
-    </Reference>
     <Reference Include="WinSCPnet, Version=1.6.5.9925, Culture=neutral, PublicKeyToken=2271ec4a3c56d0bf, processorArchitecture=MSIL">
       <HintPath>..\packages\WinSCP.5.15.5\lib\net\WinSCPnet.dll</HintPath>
-    </Reference>
-    <Reference Include="Zidium.Api, Version=1.0.53.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Api.Zidium.Net.1.0.53\lib\net35-client\Zidium.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -351,13 +333,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Async.vb" />
-    <Compile Include="DbAll.designer.vb">
+    <Compile Include="DbAll1.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbAll.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="DbAll.vb">
-      <DependentUpon>DbAll.dbml</DependentUpon>
+      <DependentUpon>DbAll1.dbml</DependentUpon>
     </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -612,12 +591,6 @@
       <DependentUpon>ОтчетСотрудники.vb</DependentUpon>
     </Compile>
     <Compile Include="ОтчетСотрудники.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ОтчетФорма.Designer.vb">
-      <DependentUpon>ОтчетФорма.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ОтчетФорма.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ПарольНаСтатистику.Designer.vb">
@@ -955,9 +928,6 @@
     <EmbeddedResource Include="ОтчетСотрудники.resx">
       <DependentUpon>ОтчетСотрудники.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ОтчетФорма.resx">
-      <DependentUpon>ОтчетФорма.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ПарольНаСтатистику.resx">
       <DependentUpon>ПарольНаСтатистику.vb</DependentUpon>
     </EmbeddedResource>
@@ -1059,13 +1029,13 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
-    <None Include="DbAll.dbml">
+    <None Include="DbAll1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DbAll.designer.vb</LastGenOutput>
+      <LastGenOutput>DbAll1.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DbAll.dbml.layout">
-      <DependentUpon>DbAll.dbml</DependentUpon>
+    <None Include="DbAll1.dbml.layout">
+      <DependentUpon>DbAll1.dbml</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
@@ -1082,9 +1052,6 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="Resources\Уволенные.xlsx" />
     <None Include="Resources\Штатное.xlsx" />

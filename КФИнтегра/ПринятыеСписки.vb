@@ -20,7 +20,7 @@ Public Class ПринятыеСписки
         'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
         '                                           And x.Item("ДокМесто").ToString.Contains("Прием-Приказ") Select x
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
                        Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Прием-Приказ")
                        Select x).ToList
@@ -55,7 +55,7 @@ Public Class ПринятыеСписки
 
 
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
                        Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Прием-Зявление")
                        Select x).ToList
@@ -84,7 +84,7 @@ Public Class ПринятыеСписки
         'Dim vb = From x In dtPutiDokumentovAll Where x.Item("IDСотрудник") = idsotr _
         '                                           And x.Item("ДокМесто").ToString.Contains("Прием-Контракт") Select x
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.ПутиДокументов.AsEnumerable
                        Where x.IDСотрудник = idsotr And x.ДокМесто.Contains("Прием-Контракт")
                        Select x).ToList
@@ -201,7 +201,7 @@ Public Class ПринятыеСписки
         'ds = Selects(StrSql)
         Me.Cursor = Cursors.WaitCursor
         Dim ds1
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ds1 = (From x In dbcx.Сотрудники.AsEnumerable
                    Join y In dbcx.ДогСотрудн.AsEnumerable On x.КодСотрудники Equals y.IDСотр
                    Join z In dbcx.КарточкаСотрудника.AsEnumerable On x.КодСотрудники Equals z.IDСотр

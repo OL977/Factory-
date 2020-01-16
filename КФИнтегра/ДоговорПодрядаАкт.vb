@@ -366,7 +366,7 @@ WHERE ДогПодряда.ID=@ID", list)
     Private Sub ТолькоДоговора(ByVal int As Integer)
 
         Dim ds1
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ds1 = (From x In dbcx.ДогПодряда.AsEnumerable
                    Where x.ID = int
                    Select x.НомерДогПодр Distinct).ToList

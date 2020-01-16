@@ -11,7 +11,7 @@ Public Class Примечание
             End If
 
         Else
-            Using dbcx As New DbAllDataContext
+            Using dbcx As New DbAll1DataContext
                 Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                            Where x.ФИОСборное = Прием.ComboBox19.SelectedItem
                            Select x.КодСотрудники).FirstOrDefault

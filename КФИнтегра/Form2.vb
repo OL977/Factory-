@@ -300,7 +300,7 @@ WHERE ШтОтделы.Отделы='" & Отдел & "' AND ШтСвод.Дол
                 ComboBox19.Items.Clear()
                 ComboBox26.Items.Clear()
                 Dim var As List(Of Сотрудники)
-                Using dbcx As New DbAllDataContext
+                Using dbcx As New DbAll1DataContext
                     var = (From x In dbcx.Сотрудники.AsEnumerable
                            Where x.НазвОрганиз = ComboBox1.Text
                            Order By x.ФИОСборное
@@ -2250,7 +2250,7 @@ AND ШтСвод.Разряд='" & разр1 & "'"
         Me.Cursor = Cursors.WaitCursor
 
         Dim ds As Клиент
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ds = (From x In dbcx.Клиент.AsEnumerable
                   Where x.НазвОрг = ComboBox1.Text
                   Select x).FirstOrDefault()
@@ -2351,7 +2351,7 @@ AND ШтСвод.Разряд='" & разр1 & "'"
 
         'выбираем из Штсвод номер и обновляем данные
         Dim ШтСв As ШтСвод
-        Using dbc As New DbAllDataContext
+        Using dbc As New DbAll1DataContext
             ШтСв = (From x In dbc.Клиент.AsEnumerable
                     Join y In dbc.ШтОтделы.AsEnumerable On x.НазвОрг Equals y.Клиент
                     Join z In dbc.ШтСвод.AsEnumerable On y.Код Equals z.Отдел
@@ -3613,7 +3613,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
 
         'выбираем инструкцию, если есть.
         Dim ds
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ds = (From x In dbcx.ШтОтделы.AsEnumerable
                   Join y In dbcx.ШтСвод.AsEnumerable On x.Код Equals y.Отдел
                   Where x.Клиент = ComboBox1.Text And x.Отделы = от1 And y.Должность = дол1 And y.Разряд = разр1
@@ -3688,7 +3688,7 @@ WHERE КодШтСвод=" & dtv.Rows(0).Item(0) & "")
     End Sub
     Private Function ДолжнИразрядДокЗаявлениеновыйПуть(ByVal d As Integer)
         Dim s As String = ""
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.Штатное.AsEnumerable
                        Where x.ИДСотр = d
                        Select x).FirstOrDefault()
@@ -4134,7 +4134,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
         'выбираем данные из таблицы Сотрудники по idсотрудника
         Dim Сотрудник As IEnumerable(Of Сотрудники)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Сотрудник = (From x In dbcx.Сотрудники.AsEnumerable
                          Where x.КодСотрудники = CType(Label96.Text, Integer)
                          Select x).ToList()
@@ -4208,7 +4208,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
     End Sub
     Private Function МестоРаботыНовыйПуть()
         Dim Тип As String = "", Название As String = ""
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.ОбъектОбщепита.AsEnumerable
                        Where x.АдресОбъекта = arrtcom("ComboBox18") And x.НазвОрг = arrtcom("ComboBox1")
                        Select x).FirstOrDefault()
@@ -4250,7 +4250,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
         Dim ФИО As String
         'обновляем данные во всех таблицах по Контракту
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                        Join y In dbcx.Штатное.AsEnumerable On x.КодСотрудники Equals y.ИДСотр
                        Join z In dbcx.ПродлКонтракта.AsEnumerable On x.КодСотрудники Equals z.IDСотр
@@ -4433,7 +4433,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
         Dim IDSotr As Integer = CType(Label96.Text, Integer)
         'добавляем сотрудника в базу или обновляем данные
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                        Where x.ДанныеИзСправочника = "True" And x.ТипОтношения = "(кт)" And x.КодСотрудники = IDSotr
                        Select x).FirstOrDefault
@@ -4468,7 +4468,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
         Dim IDSotr As Integer = CType(Label96.Text, Integer)
 
         'добавляем данные в таблицу Сотрудники
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                        Where x.КодСотрудники = IDSotr
                        Select x).FirstOrDefault
@@ -4501,7 +4501,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
         'вставляем данные в таблицу штатное
         Dim idШтатное As Integer
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim f As New Штатное()
 
             Try
@@ -4550,7 +4550,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
         'Вставляем в таблицу продление контракта.
         Dim sot
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
 
             sot = (From x In dbcx.Сотрудники.AsEnumerable
                    Where x.КодСотрудники = IDSotr
@@ -4585,7 +4585,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
         End If
 
         'Вставляем в таблицу Карточкасотрудника данные контракта и обновляем таблицу.
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var As New КарточкаСотрудника With {
                 .IDСотр = IDSotr,
                 .ДатаПриема = arrtmask("MaskedTextBox4"),
@@ -4615,7 +4615,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
         End Using
 
         'Вставляем в таблицу ДогСотрудн данные контракта и обновляем таблицу.
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var As New ДогСотрудн() With {
                 .IDСотр = IDSotr,
                 .Контракт = arrtbox("TextBox38"),
@@ -4714,7 +4714,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
         Dim idc As Integer = CType(Label96.Text, Integer)
 
         'Проверяем есть в папке путиДокументов данные, если есть копируем и удаляем доки на сервере и в таблице ПутиДокументов
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim f = (From x In dbcx.ПутиДокументов.AsEnumerable
                      Where x.IDСотрудник = idc
                      Select x).ToList
@@ -4729,7 +4729,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
 
 
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
 
             'удалем из таблицы Сотрудники
             Dim var = (From x In dbcx.Сотрудники.AsEnumerable
@@ -4796,7 +4796,7 @@ AND ШтСвод.Разряд=@Разряд2 AND ШтСвод.ДолжИнстр
     End Sub
     Private Sub Удаление()
         If IsNumeric(Label96.Text) Then
-            Using dbcx As New DbAllDataContext  'определяем, оформлен ли сотрудник через справочник
+            Using dbcx As New DbAll1DataContext  'определяем, оформлен ли сотрудник через справочник
                 Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                            Where x.КодСотрудники = CType(Label96.Text, Integer)
                            Select x.ДанныеИзСправочника).FirstOrDefault()
@@ -6031,12 +6031,7 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз AND С
 
         'MessageBox.Show("Приказ закончен")
     End Sub
-    Private Sub reogrid() 'альтернатива Excel
 
-        Dim grid As New unvell.ReoGrid.ReoGridControl() With {.Dock = DockStyle.Fill}
-        Me.Controls.Add(grid)
-
-    End Sub
     Private Function ДолжнИразрядДокЗаявление()
 
         If CheckBox5.Checked = False Then
@@ -7139,7 +7134,7 @@ FROM СоставСемьи"
     End Sub
     Private Sub Comb22Update()
 
-        dbcx = New DbAllDataContext()
+        dbcx = New DbAll1DataContext()
         Dim ds1 = From x In dbcx.ДогПодДолжн
                   Where x.Клиент = ComboBox1.Text
                   Order By x.Должность
@@ -7172,7 +7167,7 @@ FROM СоставСемьи"
             Exit Sub
         End If
 
-        Using dbcx = New DbAllDataContext
+        Using dbcx = New DbAll1DataContext
             Dim ds = From x In dbcx.ДогПодДолжн.AsEnumerable Where x.Клиент = ComboBox1.Text And x.Должность = RichTextBox2.Text Select x
             If ds.Count > 0 Then
                 MessageBox.Show("Должность " & RichTextBox2.Text & " уже существует!", Рик)
@@ -7187,7 +7182,7 @@ FROM СоставСемьи"
         '    End If
         'End If
         Dim f2 As String = RichTextBox2.Text
-        Dim db As New DbAllDataContext() 'добавление в базу datacontext
+        Dim db As New DbAll1DataContext() 'добавление в базу datacontext
         Dim f As New ДогПодДолжн()
         f.Клиент = ComboBox1.Text
         f.Должность = RichTextBox2.Text
@@ -7217,7 +7212,7 @@ FROM СоставСемьи"
 
 
 
-        Using dbcx = New DbAllDataContext()
+        Using dbcx = New DbAll1DataContext()
             'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = ComboBox22.SelectedValue)
             Dim var = (From x In dbcx.ДогПодДолжн.AsEnumerable Where x.Код = ComboBox22.SelectedValue Select x).Single()
             If var IsNot Nothing Then
@@ -7253,7 +7248,7 @@ FROM СоставСемьи"
         End If
 
 
-        Using dbcx = New DbAllDataContext() 'мой delete
+        Using dbcx = New DbAll1DataContext() 'мой delete
             'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = ComboBox22.SelectedValue)
             Dim var = (From x In dbcx.ДогПодДолжн.AsEnumerable Where x.Код = ComboBox22.SelectedValue Select x).FirstOrDefault
             If var IsNot Nothing Then
@@ -7291,7 +7286,7 @@ FROM СоставСемьи"
         idОбязAsync(ComboBox22.SelectedValue)
     End Sub
     Private Sub idОбяз(ByVal d As Integer)
-        Using dbcx = New DbAllDataContext
+        Using dbcx = New DbAll1DataContext
             idОбязанность = (From x In dbcx.ДогПодрОбязан.AsEnumerable
                              Join y In dbcx.ДогПодДолжн On x.ID Equals y.Код
                              Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = d
@@ -7396,7 +7391,7 @@ FROM СоставСемьи"
             Exit Sub
         End If
 
-        Using dbcx = New DbAllDataContext
+        Using dbcx = New DbAll1DataContext
             Dim v = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.ID = ComboBox22.SelectedValue Select x.Обязанности).ToList
             If v.Contains(RichTextBox1.Text) Then
                 MessageBox.Show("Внесите изменения!", Рик)
@@ -7406,7 +7401,7 @@ FROM СоставСемьи"
 
 
 
-        Using dbcx = New DbAllDataContext() 'мой update
+        Using dbcx = New DbAll1DataContext() 'мой update
             Dim idob = (From x In dbcx.ДогПодрОбязан.AsEnumerable
                         Join y In dbcx.ДогПодДолжн.AsEnumerable On x.ID Equals y.Код
                         Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = ComboBox22.SelectedValue
@@ -7439,7 +7434,7 @@ FROM СоставСемьи"
             Exit Sub
         End If
 
-        Using dbcx = New DbAllDataContext() 'мой удаление
+        Using dbcx = New DbAll1DataContext() 'мой удаление
             Dim idob = (From x In dbcx.ДогПодрОбязан.AsEnumerable
                         Join y In dbcx.ДогПодДолжн.AsEnumerable On x.ID Equals y.Код
                         Where x.Обязанности = Grid1.CurrentRow.Cells(3).Value And y.Код = ComboBox22.SelectedValue
@@ -7466,7 +7461,7 @@ FROM СоставСемьи"
         End If
 
 
-        Using dbcx = New DbAllDataContext
+        Using dbcx = New DbAll1DataContext
             Dim v = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.ID = ComboBox22.SelectedValue Select x.Обязанности).ToList
             If v.Contains(RichTextBox1.Text) Then
                 MessageBox.Show("Обязанность '" & RichTextBox1.Text & "'" & vbCrLf & "уже создана!", Рик)
@@ -7475,7 +7470,7 @@ FROM СоставСемьи"
         End Using
 
         'мой insert
-        Using dbcx = New DbAllDataContext
+        Using dbcx = New DbAll1DataContext
             Dim f As New ДогПодрОбязан()
             f.Обязанности = RichTextBox1.Text
             f.ID = ComboBox22.SelectedValue
@@ -7744,7 +7739,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
     Private Function ПроверкаДоговорИлиПодрядЧерезСправочник(ByVal _КодСотр As Integer) As String
 
         Dim var As List(Of ДогСотрудн)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
 
             var = (From x In dbcx.ДогСотрудн.AsEnumerable
                    Where x.IDСотр = _КодСотр
@@ -7760,7 +7755,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
 
             Dim var1 As Штатное
-            Using dbcx1 As New DbAllDataContext 'штатное
+            Using dbcx1 As New DbAll1DataContext 'штатное
                 var1 = (From x In dbcx1.Штатное.AsEnumerable
                         Where x.ИДСотр = _КодСотр
                         Select x).FirstOrDefault()
@@ -7819,7 +7814,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
 
             Dim var2 As КарточкаСотрудника
-            Using dbc As New DbAllDataContext 'адрес обьекта общепита 
+            Using dbc As New DbAll1DataContext 'адрес обьекта общепита 
                 var2 = (From x In dbc.КарточкаСотрудника.AsEnumerable
                         Where x.IDСотр = _КодСотр
                         Select x).FirstOrDefault()
@@ -7865,7 +7860,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         'проверяем на договор подряда час//
 
         Dim var3 As List(Of ДогПодряда)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
 
             var3 = (From x In dbcx.ДогПодряда.AsEnumerable
                     Join y In dbcx.Сотрудники.AsEnumerable On y.КодСотрудники Equals x.ID
@@ -7889,7 +7884,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
             'выбираем недостающие данные для заполнения данных во вкладку договор подряда (час)
             Dim var5
-            Using dbcxc As New DbAllDataContext
+            Using dbcxc As New DbAll1DataContext
                 var5 = (From x In dbcxc.Клиент.AsEnumerable
                         Join y In dbcxc.ДогПодДолжн.AsEnumerable On x.НазвОрг Equals y.Клиент
                         Join c In dbcxc.ДогПодрОбязан.AsEnumerable On y.Код Equals c.ID
@@ -7970,7 +7965,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         ComboBox32.DataSource = com32
         'Объект общепита, единицы измерения из списка
         Dim list3
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ComboBox31.DataSource = (From x In dbcx.ОбъектОбщепита.AsEnumerable
                                      Where x.НазвОрг = ComboBox1.Text
                                      Select x.АдресОбъекта).ToList()
@@ -7991,7 +7986,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         Next
 
         Dim _grid5 As List(Of ДогПодОсобен)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             _grid5 = (From x In dbcx.ДогПодОсобен.AsEnumerable
                       Where x.Организация = ComboBox1.Text
                       Select x).ToList()
@@ -8118,7 +8113,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             Exit Sub
         End If
         'сохраняем данные в базу ДогПодОсобен
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim f As New ДогПодОсобен()
             f.ЕденицаИзм = ComboBox29.SelectedItem
             f.Текст = RichTextBox3.Text
@@ -8130,7 +8125,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
         'Выбираем из базы необходимые данные
         Dim _grid5 As List(Of ДогПодОсобен)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             _grid5 = (From x In dbcx.ДогПодОсобен.AsEnumerable
                       Where x.Организация = ComboBox1.Text
                       Select x).ToList()
@@ -8200,7 +8195,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             Exit Sub
         End If
 
-        Using dbcx = New DbAllDataContext() 'мой update2
+        Using dbcx = New DbAll1DataContext() 'мой update2
             Dim var = (From x In dbcx.ДогПодОсобен.AsEnumerable
                        Where x.Код = Grid5.CurrentRow.Cells(0).Value
                        Select x).SingleOrDefault
@@ -8219,7 +8214,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
     Private Sub UpgradeGrid5()
         Dim list3
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             ComboBox31.DataSource = (From x In dbcx.ОбъектОбщепита.AsEnumerable
                                      Where x.НазвОрг = ComboBox1.Text
                                      Select x.АдресОбъекта).ToList()
@@ -8240,7 +8235,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         Next
 
         Dim _grid5 As List(Of ДогПодОсобен)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             _grid5 = (From x In dbcx.ДогПодОсобен.AsEnumerable
                       Where x.Организация = ComboBox1.Text
                       Select x).ToList()
@@ -8276,7 +8271,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         End If
 
 
-        Using dbcx = New DbAllDataContext() 'мой delete
+        Using dbcx = New DbAll1DataContext() 'мой delete
             Dim var = (From x In dbcx.ДогПодОсобен.AsEnumerable
                        Where x.Код = Grid5.CurrentRow.Cells(0).Value
                        Select x).SingleOrDefault
@@ -8538,7 +8533,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
             ComboBox19.Items.Clear()
             ComboBox26.Items.Clear()
             Dim var As List(Of Сотрудники)
-            Using dbcx As New DbAllDataContext
+            Using dbcx As New DbAll1DataContext
                 var = (From x In dbcx.Сотрудники.AsEnumerable
                        Where x.НазвОрганиз = ComboBox1.Text
                        Order By x.ФИОСборное
@@ -8610,7 +8605,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
     Private Function ПроверкаОформенСотрудникЧерезСправочник(ByVal _КодСотр As Integer) As Boolean
         Me.Cursor = Cursors.WaitCursor
 
-        Using dbcx As New DbAllDataContext  'определяем, оформлен ли сотрудник через справочник
+        Using dbcx As New DbAll1DataContext  'определяем, оформлен ли сотрудник через справочник
 
             Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                        Where x.КодСотрудники = _КодСотр
@@ -9034,7 +9029,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
         'StrSql = "SELECT Должность FROM ДогПодДолжн WHERE Клиент='" & ComboBox1.Text & "'"
         'ds = Selects(StrSql)
         Dim ds1
-        dbcx = New DbAllDataContext
+        dbcx = New DbAll1DataContext
         ds1 = From x In dbcx.ДогПодДолжн Where x.Клиент = ComboBox1.Text
               Order By x.Должность
               Select x.Должность, x.Код
@@ -9236,7 +9231,7 @@ Where ДогСотрудн.IDСотр = " & КодСотрудника & ""
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         GroupBox19.Visible = True
-        Dim db As New DbAllDataContext
+        Dim db As New DbAll1DataContext
 
         Dim dt = (From x In db.ДогПодДолжн
                   From y In db.ДогПодрОбязан
@@ -10074,7 +10069,7 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
     End Sub
     Private Function list1Update(ByVal _Клиент As String, ByVal _Должность As String) As List(Of String)
         Dim ds As List(Of String)
-        Using db As New DbAllDataContext
+        Using db As New DbAll1DataContext
             ds = (From x In db.ДогПодДолжн.AsEnumerable
                   Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
                   Where x.Клиент = _Клиент And x.Должность = _Должность
@@ -10086,7 +10081,7 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
     End Function
     Private Sub listbx1(ByVal t As String, ByVal d As String)
         Dim ds
-        Dim db As New DbAllDataContext
+        Dim db As New DbAll1DataContext
         ds = (From x In db.ДогПодДолжн.AsEnumerable
               Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
               Where x.Клиент = t And x.Должность = d
@@ -10113,7 +10108,7 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
             listbx1(ComboBox1.Text, ComboBox22.Text)
         End If
 
-        'Dim db As New DbAllDataContext
+        'Dim db As New DbAll1DataContext
         'Dim ds = (From x In db.ДогПодДолжн.AsEnumerable
         '          Join y In db.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
         '          Where x.Клиент = ComboBox1.Text And x.Должность = ComboBox22.Text
@@ -10137,7 +10132,7 @@ WHERE ДогПодДолжн.Клиент='" & ComboBox1.Text & "' AND ДогП�
     End Sub
 
     Private Sub checkbx24()
-        Using dbcx = New DbAllDataContext()
+        Using dbcx = New DbAll1DataContext()
             Dim dt = From x In dbcx.ДогПодДолжн.AsEnumerable
                      Join y In dbcx.ДогПодрОбязан.AsEnumerable On x.Код Equals y.ID
                      Where x.Код = ComboBox22.SelectedValue And x.Клиент = ComboBox1.Text

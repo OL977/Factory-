@@ -62,7 +62,7 @@
     '    }
 
 
-    'Using dbcx = New DbAllDataContext  'мой insert
+    'Using dbcx = New DbAll1DataContext  'мой insert
     'Dim f As New ДогПодрОбязан()
     '        f.Обязанности = ComboBox1.Text
     '        f.ID = RichTextBox2.Text
@@ -73,7 +73,7 @@
 
 
 
-    'Using dbcx = New DbAllDataContext() 'мой update
+    'Using dbcx = New DbAll1DataContext() 'мой update
     'Dim var = (From x In dbcx.ДогПодрОбязан.AsEnumerable Where x.Код = idОбязанность Select x).Single
     'If var IsNot Nothing Then
     '            var.Обязанности = RichTextBox1.Text
@@ -82,7 +82,7 @@
     'End Using
 
 
-    'Using dbcx = New DbAllDataContext() 'мой update2
+    'Using dbcx = New DbAll1DataContext() 'мой update2
     'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = idДолжность)
     'If var IsNot Nothing Then
     '            var.Должность = RichTextBox2.Text
@@ -91,7 +91,7 @@
     'End Using
 
 
-    'Using dbcx = New DbAllDataContext() 'мой delete
+    'Using dbcx = New DbAll1DataContext() 'мой delete
     'Dim var = dbcx.ДогПодДолжн.Single(Function(x) x.Код = ComboBox22.SelectedValue)
     'If var IsNot Nothing Then
     '            dbcx.ДогПодДолжн.DeleteOnSubmit(var)
@@ -102,7 +102,7 @@
 
 
     '(удаляем старые данные из таблицы несколько записей)
-    'Using dbcx = New DbAllDataContext  
+    'Using dbcx = New DbAll1DataContext  
     'Dim var = (From x In dbcx.Дети.AsEnumerable
     '           Where x.IDСотр = ComboBox3.SelectedValue
     '           Select x).ToList
@@ -121,7 +121,7 @@
 
 
     'Dim ds1   'комбобокс с id
-    '    dbcx = New DbAllDataContext
+    '    dbcx = New DbAll1DataContext
     '    ds1 = From x In dbcx.ДогПодДолжн Where x.Клиент = ComboBox1.Text
     '          Order By x.Должность
     '          Select x.Должность, x.Код

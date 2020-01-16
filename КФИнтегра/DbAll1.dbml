@@ -1,142 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Интегра" Class="DbAllDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=FurtadoRickmasPull8" SettingsObjectName="ИнтеграКадры.My.MySettings" SettingsPropertyName="ИнтеграConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.InputName" Member="InputName">
-    <Type Name="InputName">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ФИООриганл" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОтпускСоц" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОтпускТруд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Olegius" Member="Olegius">
-    <Type Name="Olegius">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="newField" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДАТА1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ДАТА2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ДАТА3" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="СТ4" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДАТА4" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="['СТ17072019']" Member="_СТ17072019_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="['17072019']" Member="_17072019_" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Банк" Member="Банк">
-    <Type Name="Банк">
-      <Column Name="Код" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="БИК" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Наименование" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="КодГлав" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Банки2" Member="Банки2">
-    <Type Name="Банки2">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="МФО" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="УНП" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Наименование" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Адрес" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Телефон" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Факс" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="КорНазв" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Бик" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОтдБанка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="АдресОтдел" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.БанкКор" Member="БанкКор">
-    <Type Name="БанкКор">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="КорНазБанк" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.[выборка отдел должн разряд и ставка]" Member="выборка_отдел_должн_разряд_и_ставка">
-    <Type Name="выборка_отдел_должн_разряд_и_ставка">
-      <Column Name="Отделы" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Разряд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ТарифнаяСтавка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодДолжн" Member="ДогПодДолжн">
-    <Type Name="ДогПодДолжн">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Клиент" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="ДогПодДолжн_ДогПодрОбязан" Member="ДогПодрОбязан" ThisKey="Код" OtherKey="ID" Type="ДогПодрОбязан" />
-      <Association Name="Клиент_ДогПодДолжн" Member="Клиент1" ThisKey="Клиент" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодрОбязан" Member="ДогПодрОбязан">
-    <Type Name="ДогПодрОбязан">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Обязанности" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="ДогПодДолжн_ДогПодрОбязан" Member="ДогПодДолжн" ThisKey="ID" OtherKey="Код" Type="ДогПодДолжн" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодрядаАкт" Member="ДогПодрядаАкт">
-    <Type Name="ДогПодрядаАкт">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDДогПодр" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ПорНомерАкта" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ЗаПериодС" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ЗаПериодПо" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ВремяРабот" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимЧаса" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимРабот" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаАкта" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаОплатыРабот" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="ДогПодряда_ДогПодрядаАкт" Member="ДогПодряда" ThisKey="IDДогПодр" OtherKey="Код" Type="ДогПодряда" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодрядаАктИное" Member="ДогПодрядаАктИное">
-    <Type Name="ДогПодрядаАктИное">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDДогПодряда" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ОбъемВыпРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ЕдИзмерАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимЕдРаботыАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОбщСтоимРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ПорНомерАктаИное" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="ЗаПериодСИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ЗаПериодПоИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаАктаИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаОплатыРаботИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ВыпРаб1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="ДогПодряда_ДогПодрядаАктИное" Member="ДогПодряда" ThisKey="IDДогПодряда" OtherKey="Код" Type="ДогПодряда" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодрядаРаботыИное" Member="ДогПодрядаРаботыИное">
-    <Type Name="ДогПодрядаРаботыИное">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDДогПодряда" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ВыпРаб1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="СтоимРуб1" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="СтоимКоп1" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ВидИзм" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="ДогПодряда_ДогПодрядаРаботыИное" Member="ДогПодряда" ThisKey="IDДогПодряда" OtherKey="Код" Type="ДогПодряда" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогСотрудн" Member="ДогСотрудн">
-    <Type Name="ДогСотрудн">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDСотр" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Контракт" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаКонтракта" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="СрокОкончКонтр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Приказ" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Датаприказа" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Заявление" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаЗаявл" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДолжностИнстр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаДолжнИнстр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаНачДействКонтр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Перевод" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Сотрудники_ДогСотрудн" Member="Сотрудники" ThisKey="IDСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Интегра" Class="DbAll1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1" SettingsObjectName="ИнтеграКадры.My.MySettings" SettingsPropertyName="ИнтеграConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.КарточкаСотрудника" Member="КарточкаСотрудника">
     <Type Name="КарточкаСотрудника">
       <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -217,12 +80,12 @@
       <Column Name="ФИОРукРодПадеж" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="ФИОРукДатПадеж" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="РукИП" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Клиент_ДогПодДолжн" Member="ДогПодДолжн" ThisKey="НазвОрг" OtherKey="Клиент" Type="ДогПодДолжн" />
       <Association Name="Клиент_ОбъектОбщепита" Member="ОбъектОбщепита" ThisKey="НазвОрг" OtherKey="НазвОрг" Type="ОбъектОбщепита" />
       <Association Name="Клиент_Отпуск" Member="Отпуск" ThisKey="НазвОрг" OtherKey="Орг" Type="Отпуск" />
       <Association Name="Клиент_Штатное" Member="Штатное" ThisKey="НазвОрг" OtherKey="Клиент" Type="Штатное" />
       <Association Name="Клиент_ШтатРаспис" Member="ШтатРаспис" ThisKey="НазвОрг" OtherKey="КодОрганиз" Type="ШтатРаспис" />
       <Association Name="Клиент_ШтОтделы" Member="ШтОтделы" ThisKey="НазвОрг" OtherKey="Клиент" Type="ШтОтделы" />
+      <Association Name="Клиент_ДогПодДолжн" Member="ДогПодДолжн" ThisKey="НазвОрг" OtherKey="Клиент" Type="ДогПодДолжн" />
     </Type>
   </Table>
   <Table Name="dbo.КонстантаПоВычетамЗп" Member="КонстантаПоВычетамЗп">
@@ -235,6 +98,15 @@
       <Column Name="Год" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Окончание" Member="Окончание">
+    <Type Name="Окончание">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Должность" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Кого" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Кому" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Кем" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ОбъектОбщепита" Member="ОбъектОбщепита">
     <Type Name="ОбъектОбщепита">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -243,15 +115,6 @@
       <Column Name="НазОбъекта" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="АдресОбъекта" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Клиент_ОбъектОбщепита" Member="Клиент" ThisKey="НазвОрг" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Окончание" Member="Окончание">
-    <Type Name="Окончание">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Должность" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Кого" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Кому" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Кем" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Отпуск" Member="Отпуск">
@@ -373,96 +236,11 @@
       <Association Name="Сотрудники_ПутиДокументов" Member="Сотрудники" ThisKey="IDСотрудник" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="dbo.Статистика" Member="Статистика">
-    <Type Name="Статистика">
+  <Table Name="dbo.СНПРВ" Member="СНПРВ">
+    <Type Name="СНПРВ">
       <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Дата" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Время" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Организация" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Событие" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Сотрудник" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="КемИзменено" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ФормаСобств" Member="ФормаСобств">
-    <Type Name="ФормаСобств">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ПолноеНазвание" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Сокращенное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Штатное" Member="Штатное">
-    <Type Name="Штатное">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Клиент" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ИДСотр" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Отдел" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Разряд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ТарифнаяСтавка" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ПовышОклПроц" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ПовышОклРуб" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="РасчДолжностнОклад" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ФонОплатыТруда" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ЧасоваяТарифСтавка" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Association Name="Клиент_Штатное" Member="Клиент1" ThisKey="Клиент" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="Сотрудники_Штатное" Member="Сотрудники" ThisKey="ИДСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ШтатРаспис" Member="ШтатРаспис">
-    <Type Name="ШтатРаспис">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="КодОрганиз" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаСформШт" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="НомерШт" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Клиент_ШтатРаспис" Member="Клиент" ThisKey="КодОрганиз" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ШтОтделы" Member="ШтОтделы">
-    <Type Name="ШтОтделы">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Клиент" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Отделы" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="IDШтСвод" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ШтОтделы_ШтСвод" Member="ШтСвод" ThisKey="Код" OtherKey="Отдел" Type="ШтСвод" />
-      <Association Name="Клиент_ШтОтделы" Member="Клиент1" ThisKey="Клиент" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ШтСвод" Member="ШтСвод">
-    <Type Name="ШтСвод">
-      <Column Name="КодШтСвод" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Отдел" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Разряд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ТарифнаяСтавка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ПовышениеПроц" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ТарСтПослеИспСрока" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ПовПроцПослеИспСрока" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДолжИнструкция" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="НомерДолжИнстр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ТекстИнструкции" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ДатаИнструкции" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="ШтСвод_ШтСводИзмСтавка" Member="ШтСводИзмСтавка" ThisKey="КодШтСвод" OtherKey="IDКодШтСвод" Type="ШтСводИзмСтавка" />
-      <Association Name="ШтОтделы_ШтСвод" Member="ШтОтделы" ThisKey="Отдел" OtherKey="Код" Type="ШтОтделы" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ШтСводИзмСтавка" Member="ШтСводИзмСтавка">
-    <Type Name="ШтСводИзмСтавка">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDКодШтСвод" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Дата" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Ставка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="ШтСвод_ШтСводИзмСтавка" Member="ШтСвод" ThisKey="IDКодШтСвод" OtherKey="КодШтСвод" Type="ШтСвод" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Дети" Member="Дети">
-    <Type Name="Дети">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IDСотр" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ФИО" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Пол" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
-      <Column Name="ДатаРождения" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Сотрудники_Дети" Member="Сотрудники" ThisKey="IDСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Column Name="Год" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Норма" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.СоставСемьи" Member="СоставСемьи">
@@ -493,66 +271,6 @@
       <Column Name="ДатаРожденияРебенка" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Справочник" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="Сотрудники_СоставСемьи" Member="Сотрудники" ThisKey="IDСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодряда" Member="ДогПодряда">
-    <Type Name="ДогПодряда">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="НомерДогПодр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаДогПодр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаНачала" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаОконч" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимЧасаРуб" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимЧасаКоп" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОбъекОбщепита" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Примечание" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ВыпРаб1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимРуб1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимКоп1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ВидИзм" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОбъемВыпРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ЕдИзмерАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="СтоимЕдРаботыАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ОбщСтоимРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ПорНомерАктаИное" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="ЗаПериодСИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ЗаПериодПоИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаАктаИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ДатаОплатыРаботИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ВидДоговора" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Association Name="ДогПодряда_ДогПодрядаАкт" Member="ДогПодрядаАкт" ThisKey="Код" OtherKey="IDДогПодр" Type="ДогПодрядаАкт" />
-      <Association Name="ДогПодряда_ДогПодрядаАктИное" Member="ДогПодрядаАктИное" ThisKey="Код" OtherKey="IDДогПодряда" Type="ДогПодрядаАктИное" />
-      <Association Name="ДогПодряда_ДогПодрядаРаботыИное" Member="ДогПодрядаРаботыИное" ThisKey="Код" OtherKey="IDДогПодряда" Type="ДогПодрядаРаботыИное" />
-      <Association Name="Сотрудники_ДогПодряда" Member="Сотрудники" ThisKey="ID" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ДогПодОсобен" Member="ДогПодОсобен">
-    <Type Name="ДогПодОсобен">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ЕденицаИзм" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Текст" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ТесктИменПад" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Организация" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.СНПРВ" Member="СНПРВ">
-    <Type Name="СНПРВ">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Год" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Норма" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.СотрудникиСправочникУчет" Member="СотрудникиСправочникУчет">
-    <Type Name="СотрудникиСправочникУчет">
-      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="[_Клиент]" Member="_Клиент" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="[_ФИОСотр]" Member="_ФИОСотр" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="[_СерияПаспорта]" Member="_СерияПаспорта" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[_НомерПаспорта]" Member="_НомерПаспорта" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="[_Страховое]" Member="_Страховое" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="СотрудникиСправочникУчет_СотрудникиСправочникУчетID" Member="СотрудникиСправочникУчетID" ThisKey="Код" OtherKey="_IDSot" Type="СотрудникиСправочникУчетID" />
     </Type>
   </Table>
   <Table Name="dbo.Сотрудники" Member="Сотрудники">
@@ -601,14 +319,25 @@
       <Column Name="ТипОтношения" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ДанныеИзСправочника" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="IDСотрудникиСправочникУчет" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Сотрудники_ДогСотрудн" Member="ДогСотрудн" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="ДогСотрудн" />
       <Association Name="Сотрудники_КарточкаСотрудника" Member="КарточкаСотрудника" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="КарточкаСотрудника" />
       <Association Name="Сотрудники_ПродлКонтракта" Member="ПродлКонтракта" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="ПродлКонтракта" />
       <Association Name="Сотрудники_ПутиДокументов" Member="ПутиДокументов" ThisKey="КодСотрудники" OtherKey="IDСотрудник" Type="ПутиДокументов" />
+      <Association Name="Сотрудники_СоставСемьи" Member="СоставСемьи" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="СоставСемьи" />
       <Association Name="Сотрудники_Штатное" Member="Штатное" ThisKey="КодСотрудники" OtherKey="ИДСотр" Type="Штатное" />
       <Association Name="Сотрудники_Дети" Member="Дети" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="Дети" />
-      <Association Name="Сотрудники_СоставСемьи" Member="СоставСемьи" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="СоставСемьи" />
       <Association Name="Сотрудники_ДогПодряда" Member="ДогПодряда" ThisKey="КодСотрудники" OtherKey="ID" Type="ДогПодряда" />
+      <Association Name="Сотрудники_ДогСотрудн" Member="ДогСотрудн" ThisKey="КодСотрудники" OtherKey="IDСотр" Type="ДогСотрудн" />
+    </Type>
+  </Table>
+  <Table Name="dbo.СотрудникиСправочникУчет" Member="СотрудникиСправочникУчет">
+    <Type Name="СотрудникиСправочникУчет">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_Клиент]" Member="_Клиент" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="[_ФИОСотр]" Member="_ФИОСотр" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="[_СерияПаспорта]" Member="_СерияПаспорта" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_НомерПаспорта]" Member="_НомерПаспорта" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[_Страховое]" Member="_Страховое" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="СотрудникиСправочникУчет_СотрудникиСправочникУчетID" Member="СотрудникиСправочникУчетID" ThisKey="Код" OtherKey="_IDSot" Type="СотрудникиСправочникУчетID" />
     </Type>
   </Table>
   <Table Name="dbo.СотрудникиСправочникУчетID" Member="СотрудникиСправочникУчетID">
@@ -618,6 +347,277 @@
       <Column Name="[_IDСотрСправУчет]" Member="_IDСотрСправУчет" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[_ТипОтношения]" Member="_ТипОтношения" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="СотрудникиСправочникУчет_СотрудникиСправочникУчетID" Member="СотрудникиСправочникУчет" ThisKey="_IDSot" OtherKey="Код" Type="СотрудникиСправочникУчет" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Статистика" Member="Статистика">
+    <Type Name="Статистика">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Дата" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Время" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Организация" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Событие" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Сотрудник" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="КемИзменено" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ФормаСобств" Member="ФормаСобств">
+    <Type Name="ФормаСобств">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ПолноеНазвание" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Сокращенное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Штатное" Member="Штатное">
+    <Type Name="Штатное">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Клиент" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ИДСотр" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Отдел" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Разряд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ТарифнаяСтавка" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ПовышОклПроц" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ПовышОклРуб" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="РасчДолжностнОклад" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="ФонОплатыТруда" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ЧасоваяТарифСтавка" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Association Name="Сотрудники_Штатное" Member="Сотрудники" ThisKey="ИДСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Клиент_Штатное" Member="Клиент1" ThisKey="Клиент" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ШтатРаспис" Member="ШтатРаспис">
+    <Type Name="ШтатРаспис">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="КодОрганиз" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаСформШт" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="НомерШт" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Клиент_ШтатРаспис" Member="Клиент" ThisKey="КодОрганиз" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ШтОтделы" Member="ШтОтделы">
+    <Type Name="ШтОтделы">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Клиент" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Отделы" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IDШтСвод" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ШтОтделы_ШтСвод" Member="ШтСвод" ThisKey="Код" OtherKey="Отдел" Type="ШтСвод" />
+      <Association Name="Клиент_ШтОтделы" Member="Клиент1" ThisKey="Клиент" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ШтСвод" Member="ШтСвод">
+    <Type Name="ШтСвод">
+      <Column Name="КодШтСвод" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Отдел" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Разряд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ТарифнаяСтавка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ПовышениеПроц" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ТарСтПослеИспСрока" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ПовПроцПослеИспСрока" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДолжИнструкция" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="НомерДолжИнстр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ТекстИнструкции" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ДатаИнструкции" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="ШтСвод_ШтСводИзмСтавка" Member="ШтСводИзмСтавка" ThisKey="КодШтСвод" OtherKey="IDКодШтСвод" Type="ШтСводИзмСтавка" />
+      <Association Name="ШтОтделы_ШтСвод" Member="ШтОтделы" ThisKey="Отдел" OtherKey="Код" Type="ШтОтделы" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ШтСводИзмСтавка" Member="ШтСводИзмСтавка">
+    <Type Name="ШтСводИзмСтавка">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDКодШтСвод" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Дата" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Ставка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="ШтСвод_ШтСводИзмСтавка" Member="ШтСвод" ThisKey="IDКодШтСвод" OtherKey="КодШтСвод" Type="ШтСвод" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InputName" Member="InputName">
+    <Type Name="InputName">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ФИООриганл" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОтпускСоц" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОтпускТруд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Olegius" Member="Olegius">
+    <Type Name="Olegius">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="newField" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДАТА1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ДАТА2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ДАТА3" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="СТ4" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДАТА4" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="['СТ17072019']" Member="_СТ17072019_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="['17072019']" Member="_17072019_" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Банк" Member="Банк">
+    <Type Name="Банк">
+      <Column Name="Код" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="БИК" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Наименование" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="КодГлав" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Банки2" Member="Банки2">
+    <Type Name="Банки2">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="МФО" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="УНП" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Наименование" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Адрес" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Телефон" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Факс" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="КорНазв" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Бик" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОтдБанка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="АдресОтдел" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.БанкКор" Member="БанкКор">
+    <Type Name="БанкКор">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="КорНазБанк" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[выборка отдел должн разряд и ставка]" Member="выборка_отдел_должн_разряд_и_ставка">
+    <Type Name="выборка_отдел_должн_разряд_и_ставка">
+      <Column Name="Отделы" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Разряд" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ТарифнаяСтавка" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Дети" Member="Дети">
+    <Type Name="Дети">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDСотр" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ФИО" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Пол" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="ДатаРождения" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Сотрудники_Дети" Member="Сотрудники" ThisKey="IDСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодДолжн" Member="ДогПодДолжн">
+    <Type Name="ДогПодДолжн">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Клиент" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="ДогПодДолжн_ДогПодрОбязан" Member="ДогПодрОбязан" ThisKey="Код" OtherKey="ID" Type="ДогПодрОбязан" />
+      <Association Name="Клиент_ДогПодДолжн" Member="Клиент1" ThisKey="Клиент" OtherKey="НазвОрг" Type="Клиент" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодОсобен" Member="ДогПодОсобен">
+    <Type Name="ДогПодОсобен">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ЕденицаИзм" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Текст" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ТесктИменПад" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Организация" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодрОбязан" Member="ДогПодрОбязан">
+    <Type Name="ДогПодрОбязан">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Обязанности" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="ДогПодДолжн_ДогПодрОбязан" Member="ДогПодДолжн" ThisKey="ID" OtherKey="Код" Type="ДогПодДолжн" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодряда" Member="ДогПодряда">
+    <Type Name="ДогПодряда">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="НомерДогПодр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаДогПодр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Должность" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаНачала" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаОконч" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимЧасаРуб" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимЧасаКоп" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОбъекОбщепита" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Примечание" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ВыпРаб1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимРуб1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимКоп1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ВидИзм" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОбъемВыпРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ЕдИзмерАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимЕдРаботыАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОбщСтоимРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ПорНомерАктаИное" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ЗаПериодСИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ЗаПериодПоИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаАктаИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаОплатыРаботИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ВидДоговора" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="ДогПодряда_ДогПодрядаАкт" Member="ДогПодрядаАкт" ThisKey="Код" OtherKey="IDДогПодр" Type="ДогПодрядаАкт" />
+      <Association Name="ДогПодряда_ДогПодрядаАктИное" Member="ДогПодрядаАктИное" ThisKey="Код" OtherKey="IDДогПодряда" Type="ДогПодрядаАктИное" />
+      <Association Name="ДогПодряда_ДогПодрядаРаботыИное" Member="ДогПодрядаРаботыИное" ThisKey="Код" OtherKey="IDДогПодряда" Type="ДогПодрядаРаботыИное" />
+      <Association Name="Сотрудники_ДогПодряда" Member="Сотрудники" ThisKey="ID" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодрядаАкт" Member="ДогПодрядаАкт">
+    <Type Name="ДогПодрядаАкт">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDДогПодр" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ПорНомерАкта" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ЗаПериодС" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ЗаПериодПо" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ВремяРабот" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимЧаса" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимРабот" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаАкта" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаОплатыРабот" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="ДогПодряда_ДогПодрядаАкт" Member="ДогПодряда" ThisKey="IDДогПодр" OtherKey="Код" Type="ДогПодряда" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодрядаАктИное" Member="ДогПодрядаАктИное">
+    <Type Name="ДогПодрядаАктИное">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDДогПодряда" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ОбъемВыпРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ЕдИзмерАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="СтоимЕдРаботыАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ОбщСтоимРаботАктИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ПорНомерАктаИное" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ЗаПериодСИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ЗаПериодПоИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаАктаИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаОплатыРаботИное" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ВыпРаб1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="ДогПодряда_ДогПодрядаАктИное" Member="ДогПодряда" ThisKey="IDДогПодряда" OtherKey="Код" Type="ДогПодряда" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогПодрядаРаботыИное" Member="ДогПодрядаРаботыИное">
+    <Type Name="ДогПодрядаРаботыИное">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDДогПодряда" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ВыпРаб1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="СтоимРуб1" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="СтоимКоп1" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ВидИзм" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="ДогПодряда_ДогПодрядаРаботыИное" Member="ДогПодряда" ThisKey="IDДогПодряда" OtherKey="Код" Type="ДогПодряда" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ДогСотрудн" Member="ДогСотрудн">
+    <Type Name="ДогСотрудн">
+      <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDСотр" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Контракт" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаКонтракта" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="СрокОкончКонтр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Приказ" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Датаприказа" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Заявление" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаЗаявл" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДолжностИнстр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаДолжнИнстр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ДатаНачДействКонтр" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Перевод" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Сотрудники_ДогСотрудн" Member="Сотрудники" ThisKey="IDСотр" OtherKey="КодСотрудники" Type="Сотрудники" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

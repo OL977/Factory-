@@ -181,7 +181,7 @@ WHERE Сотрудники.НазвОрганиз=@НазвОрганиз", list
         'Выборка Среднемесячной нормы продолжительности рабочего времени за выбранный год
         Dim _Year As String = CType(DateTimePicker1.Value.Year, String)
         Dim _Норма As String
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.СНПРВ.AsEnumerable
                        Where x.Год = _Year
                        Select x).FirstOrDefault

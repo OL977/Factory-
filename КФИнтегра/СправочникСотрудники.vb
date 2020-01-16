@@ -34,7 +34,7 @@
         ComboBox3.Visible = False
         Label33.Visible = False
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim ds = From x In dbcx.Клиент.AsEnumerable
                      Order By x.НазвОрг
                      Select x.НазвОрг
@@ -75,7 +75,7 @@
         'Grid1.Columns(0).Width = 250
     End Sub
     Private Sub com2()
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
 
             If ComboBox3.Visible = True Then
                 Dim ds = From x In dbcx.СотрудникиСправочникУчет.AsEnumerable
@@ -456,7 +456,7 @@
     Private Sub InsertInfo()
         Dim idNew, idSNw As Integer
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             'вставляем данные в таблицу СотрудникиСправочникУчет и вынимаем номерID
             Dim h As New СотрудникиСправочникУчет
             With h
@@ -476,7 +476,7 @@
 
 
 
-        Using dbcx = New DbAllDataContext  'мой insert
+        Using dbcx = New DbAll1DataContext  'мой insert
 
 
             Dim f As New Сотрудники()
@@ -521,7 +521,7 @@
         End Using
 
         'Заполняем таблицу СотрудникиСправочникУчетID
-        Using dbcx = New DbAllDataContext
+        Using dbcx = New DbAll1DataContext
             Dim n As New СотрудникиСправочникУчетID
             With n
                 ._IDSot = idSNw
@@ -535,7 +535,7 @@
 
 
         'Заполняем таблицу СоставСемьи
-        Using dbcx = New DbAllDataContext 'мой insert
+        Using dbcx = New DbAll1DataContext 'мой insert
             Dim d As New СоставСемьи()
             With d
                 .IDСотр = idNew
@@ -555,7 +555,7 @@
 
         If Grid1.Rows.Count > 0 Then
             For x As Integer = 0 To Grid1.Rows.Count - 1
-                Using dbcx = New DbAllDataContext 'мой insert
+                Using dbcx = New DbAll1DataContext 'мой insert
                     Dim v As New Дети()
                     With v
                         .IDСотр = idNew
@@ -580,7 +580,7 @@
     Private Sub UpdateInfo()
 
         Dim idSotrN As List(Of Сотрудники)
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             idSotrN = (From x In dbcx.Сотрудники.AsEnumerable
                        Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
                        Select x).ToList
@@ -589,7 +589,7 @@
         If idSotrN.Count = 0 Then Exit Sub
 
         For Each item In idSotrN
-            Using dbcx As New DbAllDataContext
+            Using dbcx As New DbAll1DataContext
                 Dim var = (From x In dbcx.Сотрудники.AsEnumerable
                            Join y In dbcx.СоставСемьи.AsEnumerable On x.КодСотрудники Equals y.IDСотр
                            Where x.КодСотрудники = item.КодСотрудники
@@ -669,7 +669,7 @@
             End Using
 
             'удаляем старые данные из таблицы дети
-            Using dbcx = New DbAllDataContext
+            Using dbcx = New DbAll1DataContext
                 Dim var = (From x In dbcx.Дети.AsEnumerable
                            Where x.IDСотр = item.КодСотрудники
                            Select x).ToList
@@ -692,7 +692,7 @@
             'вставляем данные в таблицу дети
             If Grid1.Rows.Count > 0 Then
                 For x As Integer = 0 To Grid1.Rows.Count - 1
-                    Using dbcx = New DbAllDataContext 'мой insert
+                    Using dbcx = New DbAll1DataContext 'мой insert
                         Dim v As New Дети()
                         With v
                             .IDСотр = item.КодСотрудники
@@ -710,7 +710,7 @@
 
 
 
-        'Using dbcx = New DbAllDataContext
+        'Using dbcx = New DbAll1DataContext
         '    Dim var = (From x In dbcx.Сотрудники.AsEnumerable
         '               Where x.КодСотрудники = ComboBox3.SelectedValue
         '               Select x).Single
@@ -754,7 +754,7 @@
         '    End If
         'End Using
 
-        'Using dbcx = New DbAllDataContext 'мой update
+        'Using dbcx = New DbAll1DataContext 'мой update
         '    Dim var = (From x In dbcx.СоставСемьи.AsEnumerable
         '               Where x.IDСотр = ComboBox3.SelectedValue
         '               Select x).SingleOrDefault
@@ -771,7 +771,7 @@
         '        End With
         '        dbcx.SubmitChanges()
         '    Else
-        '        Using dbx As New DbAllDataContext
+        '        Using dbx As New DbAll1DataContext
         '            Dim var2 As New СоставСемьи()
         '            With var2
         '                .IDСотр = ComboBox3.SelectedValue
@@ -792,7 +792,7 @@
         'End Using
 
 
-        'Using dbcx = New DbAllDataContext  'удаляем старые данные из таблицы дети
+        'Using dbcx = New DbAll1DataContext  'удаляем старые данные из таблицы дети
         '    Dim var = (From x In dbcx.Дети.AsEnumerable
         '               Where x.IDСотр = ComboBox3.SelectedValue
         '               Select x).ToList
@@ -815,7 +815,7 @@
 
         'If Grid1.Rows.Count > 0 Then 'вставляем данные в таблицу дети
         '    For x As Integer = 0 To Grid1.Rows.Count - 1
-        '        Using dbcx = New DbAllDataContext 'мой insert
+        '        Using dbcx = New DbAll1DataContext 'мой insert
         '            Dim v As New Дети()
         '            With v
         '                .IDСотр = ComboBox3.SelectedValue
@@ -1058,47 +1058,78 @@
             Exit Sub
         End If
 
-        Using dbcx2 As New DbAllDataContext
+        'Dim list As New Dictionary(Of String, Object)
+        'list.Add("@IDСотрудникиСправочникУчет", 2)
+        'Dim bn = SelectsP(list, "ВыборкаСотрудникиПоИДСотрСправочникУчетID")
+
+
+        'Dim var96
+        'Using dbcx6 As New DbAll1DataContext
+        '    var96 = From x In dbcx6.Сотрудники.AsEnumerable
+        '            Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
+        '            Select x
+
+        '    var96 = From x In dbcx6.Сотрудники.AsEnumerable
+        '            Join y In dbcx6.СоставСемьи.AsEnumerable On x.КодСотрудники Equals y.IDСотр
+        '            Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
+        '            Select x, y
+
+
+
+
+
+        'End Using
+
+
+        Using dbcx2 As New DbAll1DataContext
+            dbcx2.DeferredLoadingEnabled = False
+
+            '    Dim var4 = (From t In dbcx2.ВыборкаСотрудникиПоИДСотрСправочникУчетID(ComboBox3.SelectedValue)).ToList()
+
+
+
             Dim var = (From x In dbcx2.Сотрудники.AsEnumerable
-                       Join y In dbcx2.СоставСемьи.AsEnumerable On x.КодСотрудники Equals y.IDСотр
+                       Join y In dbcx2.СоставСемьи On x.КодСотрудники Equals y.IDСотр
                        Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
-                       Select x, y).FirstOrDefault
+                       Select x, y).FirstOrDefault()
+
             If var Is Nothing Then Exit Sub
-            With var.x
-                TextBox1.Text = .Фамилия
-                TextBox2.Text = .Имя
-                TextBox3.Text = .Отчество
-                ComboBox28.Text = .Пол
 
-                TextBox4.Text = .ОтчествоРодПад
-                TextBox5.Text = .ИмяРодПад
-                TextBox6.Text = .ФамилияРодПад
+            'With var.x
+            TextBox1.Text = var.x.Фамилия
+            TextBox2.Text = var.x.Имя
+            TextBox3.Text = var.x.Отчество
+            ComboBox28.Text = var.x.Пол
 
-                TextBox7.Text = .ОтчествоДляЗаявления
-                TextBox8.Text = .ИмяДляЗаявления
-                TextBox9.Text = .ФамилияДляЗаявления
+            TextBox4.Text = var.x.ОтчествоРодПад
+            TextBox5.Text = var.x.ИмяРодПад
+            TextBox6.Text = var.x.ФамилияРодПад
 
-                TextBox21.Text = .Регистрация
-                TextBox20.Text = .МестоПрожив
-                TextBox37.Text = .КонтТелГор
-                MaskedTextBox10.Text = .КонтТелефон
-                TextBox51.Text = .Гражданин
+            TextBox7.Text = var.x.ОтчествоДляЗаявления
+            TextBox8.Text = var.x.ИмяДляЗаявления
+            TextBox9.Text = var.x.ФамилияДляЗаявления
 
-                If .Иностранец = True Then
-                    CheckBox1.Checked = True
-                Else
-                    CheckBox1.Checked = False
+            TextBox21.Text = var.x.Регистрация
+            TextBox20.Text = var.x.МестоПрожив
+            TextBox37.Text = var.x.КонтТелГор
+            MaskedTextBox10.Text = var.x.КонтТелефон
+            TextBox51.Text = var.x.Гражданин
+
+            If var.x.Иностранец = True Then
+                CheckBox1.Checked = True
+            Else
+                CheckBox1.Checked = False
                 End If
 
-                TextBox13.Text = .ПаспортСерия
-                TextBox10.Text = .ПаспортНомер
-                MaskedTextBox1.Text = .ПаспортКогдаВыдан
-                MaskedTextBox2.Text = .ДоКакогоДейств
-                RichTextBox1.Text = .ПаспортКемВыдан
-                TextBox11.Text = .ИДНомер
-                TextBox45.Text = .СтраховойПолис
-                MaskedTextBox9.Text = .ДатаРожд
-            End With
+            TextBox13.Text = var.x.ПаспортСерия
+            TextBox10.Text = var.x.ПаспортНомер
+            MaskedTextBox1.Text = var.x.ПаспортКогдаВыдан
+            MaskedTextBox2.Text = var.x.ДоКакогоДейств
+            RichTextBox1.Text = var.x.ПаспортКемВыдан
+            TextBox11.Text = var.x.ИДНомер
+            TextBox45.Text = var.x.СтраховойПолис
+            MaskedTextBox9.Text = var.x.ДатаРожд
+            'End With
 
             With var.y
                 TextBox24.Text = .ФИО
@@ -1112,7 +1143,7 @@
 
 
 
-        'Using dbc As New DbAllDataContext
+        'Using dbc As New DbAll1DataContext
         '    Dim var = (From x In dbc.Сотрудники.AsEnumerable
         '               Where x.IDСотрудникиСправочникУчет = ComboBox3.SelectedValue
         '               Select x).FirstOrDefault()
@@ -1160,7 +1191,7 @@
 
 
 
-        'Dim dbcx As New DbAllDataContext
+        'Dim dbcx As New DbAll1DataContext
         'Dim var1 = (From x In dbcx.СоставСемьи.AsEnumerable
         '            Where x.IDСотр = ComboBox3.SelectedValue
         '            Select x).FirstOrDefault()
@@ -1172,7 +1203,7 @@
 
 
 
-        Using dbcx1 As New DbAllDataContext
+        Using dbcx1 As New DbAll1DataContext
             Dim var2 = From x In dbcx1.Дети.AsEnumerable
                        Where x.IDСотр = ComboBox3.SelectedValue
                        Select x.ФИО, x.Пол, x.ДатаРождения

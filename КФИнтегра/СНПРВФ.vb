@@ -8,7 +8,7 @@
 
     End Sub
     Private Sub Start()
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.СНПРВ.AsEnumerable
                        Order By x.Год
                        Select x).ToList
@@ -38,7 +38,7 @@
 
         Dim m As String = CType(n, String)
 
-        Using dbcx As New DbAllDataContext
+        Using dbcx As New DbAll1DataContext
             Dim var = (From x In dbcx.СНПРВ.AsEnumerable
                        Where x.Год = ComboBox1.Text
                        Select x).FirstOrDefault

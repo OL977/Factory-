@@ -44,7 +44,7 @@ Module Module1
     Public connДоработчик As SqlConnection
     Public Logger = LogManager.GetCurrentClassLogger()
     Public ПодтверждПароляУдаление As Boolean = False
-    Public dbcx As DbAllDataContext
+    Public dbcx As DbAll1DataContext
 
     Public Sub COMxt(ByVal form As Form, ByVal strsql As String, ByVal c As ComboBox)
         'Dim strsql As String = "SELECT DISTINCT Страна FROM Страна ORDER BY Страна"
@@ -556,6 +556,46 @@ Module Module1
 
         c.Parameters.AddRange(list.ToArray())
 
+
+        Dim dst As New DataTable
+
+        Dim da As New SqlDataAdapter(c)
+        Try
+            da.Fill(dst)
+            Dim gf As Object = dst.Rows(0).Item(0)
+
+            If conn3.State = ConnectionState.Open Then
+                conn3.Close()
+            End If
+            Return dst
+        Catch ex As Exception
+            errds = 1
+            If conn3.State = ConnectionState.Open Then
+                conn3.Close()
+            End If
+            Return dst
+        End Try
+
+    End Function
+    Public Function SelectsP(ByVal Parram As Dictionary(Of String, Object), ByVal ProcName As String) As DataTable  'Parram As List(Of String)
+        errds = 0
+        Dim conn3 As New SqlConnection(ConString)
+        If conn3.State = ConnectionState.Closed Then
+            conn3.Open()
+        End If
+
+        Dim c As New SqlCommand(ProcName, conn3)
+
+        c.Parameters.Clear()
+        Dim list = New List(Of SqlParameter)()
+
+        For Each r In Parram
+            list.Add(New SqlParameter(r.Key, r.Value))
+        Next
+
+        c.Parameters.AddRange(list.ToArray())
+
+        c.CommandType = CommandType.StoredProcedure
 
         Dim dst As New DataTable
 

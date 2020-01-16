@@ -697,8 +697,7 @@ Public Class MDIParent1
     End Sub
 
     Private Sub MDIParent1_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        Api.Client.Instance.EventManager.Flush()
-        Api.Client.Instance.WebLogManager.Flush()
+
     End Sub
 
     Private Sub ИзменитьToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ИзменитьToolStripMenuItem1.Click
@@ -723,7 +722,5 @@ Public Class MDIParent1
         СНПРВФ.ShowDialog()
     End Sub
 
-    Private Sub ОбразецToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ОбразецToolStripMenuItem.Click
-        ОтчетФорма.ShowDialog()
-    End Sub
+
 End Class
