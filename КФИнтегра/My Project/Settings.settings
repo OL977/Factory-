@@ -13,18 +13,18 @@
     <Setting Name="ИнтеграConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=61kzHBRa4e6Mfl&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=61kzHBRa4e6Mfl</Value>
+      <Value Profile="(Default)">Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=</Value>
     </Setting>
     <Setting Name="ИнтеграConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=FurtadoRickmasPull8;Password=ArRP660LwHD$bf~qXGKxq2FOk7PaPhZK|2WA&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=FurtadoRickmasPull8;Password=;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=FurtadoRickmasPull8;Password=ArRP660LwHD$bf~qXGKxq2FOk7PaPhZK|2WA</Value>
+      <Value Profile="(Default)">Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=FurtadoRickmasPull8;Password=</Value>
     </Setting>
     <Setting Name="ИнтеграConnectionString2" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -45,10 +45,10 @@
     <Setting Name="ИнтеграConnectionString4" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=61kzHBRa4e6Mfl&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=61kzHBRa4e6Mfl</Value>
+      <Value Profile="(Default)">Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1;Password=</Value>
     </Setting>
   </Settings>
 </SettingsFile>
