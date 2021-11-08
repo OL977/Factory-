@@ -14,9 +14,7 @@ Module Module1
     Public errds, gr1, gr2, errupd, proverka As Integer, ДогПодрНомНовы As Integer = 0
     Public Прим As Integer
     Public FilesList27 As New List(Of String)
-    Public ConStringOleDb As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=U:\Офис\Рикконсалтинг\Рик.accdb; Persist Security Info=False;"
-    Public ConString1 As String = "Data Source=45.14.50.13\723\SQLEXPRESS,1433;Network Library=DBMSSOCN;Initial Catalog=Интегра;User ID=userintegra;Password=61kzHBRa4e6Mfl"
-    Public ConString As String = "Data Source=45.14.50.142\2749\SQLEXPRESS,1433;Network Library=DBMSSOCN;Initial Catalog=Интегра;User ID=userintegra1;Password=61kzHBRa4e6Mfl"
+    
 
     Public FTPString As String = "ftp://86.57.135.184:21/"
     Public HstName As String = "86.57.135.184"
