@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Интегра" Class="DbAll1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=userintegra1" SettingsObjectName="ИнтеграКадры.My.MySettings" SettingsPropertyName="ИнтеграConnectionString4" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=45.14.50.142,1433;Initial Catalog=Интегра;Persist Security Info=True;User ID=" SettingsObjectName="ИнтеграКадры.My.MySettings" SettingsPropertyName="ИнтеграConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.КарточкаСотрудника" Member="КарточкаСотрудника">
     <Type Name="КарточкаСотрудника">
       <Column Name="Код" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
